@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transformadores · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="13-transformadores" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 13</p>
+        <h1>Transformadores</h1>
+        <p class="lead">Dos bobinas sobre un mismo núcleo de hierro permiten subir o bajar una tensión alterna sin partes móviles y con muy pocas pérdidas. Es lo que hace posible transportar la energía eléctrica a grandes distancias.</p>
+      </header>
+      <section>
+        <h2>Qué es y para qué sirve</h2>
+        <p>Un <strong>transformador</strong> cambia el valor de una tensión alterna: la sube o la baja, sin partes móviles y con muy pocas pérdidas. Está formado por dos <a class="xref" href="12-induccion.html">bobinas</a> de alambre de cobre enrolladas sobre un mismo <strong>núcleo de hierro</strong>. La bobina conectada a la fuente se llama <strong>primario</strong> y la que alimenta la carga, <strong>secundario</strong>. Las dos bobinas <em>no están conectadas eléctricamente</em>: la energía pasa de una a otra a través del campo magnético del núcleo.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 262" role="img" aria-labelledby="g13at g13ad">
+            <title id="g13at">Partes de un transformador</title>
+            <desc id="g13ad">Dos bobinas sobre un núcleo de hierro: el primario conectado a la fuente y el secundario a la carga, con el flujo magnético circulando por el núcleo.</desc>
+            <rect class="fg-box" x="200" y="30" width="240" height="180" rx="4"/>
+            <rect x="250" y="76" width="140" height="88" style="fill:var(--surface);stroke:var(--wire);stroke-width:1.5"/>
+            <text class="fg-m fg-c" x="320" y="124">núcleo de hierro</text>
+            <path class="fg-acc" style="stroke-dasharray:6 4" d="M225 52 H415 V188 H225 Z"/>
+            <path class="fg-acc" d="M313.0 56.2 L320.0 52.0 L313.0 47.8" style="stroke-width:2"/><path class="fg-acc" d="M410.8 113.0 L415.0 120.0 L419.2 113.0" style="stroke-width:2"/><path class="fg-acc" d="M327.0 183.8 L320.0 188.0 L327.0 192.2" style="stroke-width:2"/><path class="fg-acc" d="M229.2 127.0 L225.0 120.0 L220.8 127.0" style="stroke-width:2"/>
+            <text class="fg-a fg-b" x="335" y="46" style="fill:var(--accent)">Φ</text>
+            <ellipse cx="225" cy="81.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="92.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="103.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="114.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="125.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="136.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="147.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="225" cy="158.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="415" cy="103.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="415" cy="114.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="415" cy="125.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="415" cy="136.5" rx="34" ry="5" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/>
+            <path class="fg-line" d="M191 84 H90 V104 M90 136 V156 H191"/>
+            <circle cx="90" cy="120" r="17" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/>
+            <path class="fg-acc" d="M78 120 q6 -12 12 0 t12 0" style="stroke-width:2"/>
+            <path class="fg-line" d="M449 104 H550 V104 M550 170 H470 V137 H449"/>
+            <g transform="translate(550,104) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <text class="fg-t fg-i fg-c" x="90" y="188">V<tspan font-size="10" dy="3">p</tspan></text>
+            <text class="fg-t fg-b fg-c" x="225" y="232">Primario</text><text class="fg-m fg-c" x="225" y="250">N<tspan font-size="10" dy="3">p</tspan><tspan dy="-3"> vueltas</tspan></text>
+            <text class="fg-t fg-b fg-c" x="415" y="232">Secundario</text><text class="fg-m fg-c" x="415" y="250">N<tspan font-size="10" dy="3">s</tspan><tspan dy="-3"> vueltas</tspan></text>
+            <text class="fg-t fg-i" x="574" y="142">Carga</text>
+          </svg>
+          <figcaption><strong>No hay conexión eléctrica entre las bobinas:</strong> la energía viaja por el flujo magnético que el núcleo de hierro conduce de una a otra.</figcaption>
+        </figure>
+        <p>Se usa cada vez que hace falta otra tensión que la disponible: para bajar los 220 V de la red a los 12 V de un aparato, para subir la tensión de una central a cientos de miles de volts y transportarla con pocas pérdidas, o para separar eléctricamente dos circuitos por seguridad.</p>
+      </section>
+
+      <section>
+        <h2 id="funcionamiento">Cómo funciona, paso a paso</h2>
+        <ol>
+          <li>Se conecta el primario a una tensión alterna. Por la bobina circula una corriente que cambia continuamente de valor y de sentido.</li>
+          <li>Esa corriente crea un <strong>campo magnético alterno</strong> (capítulo <a class="xref" href="12-induccion.html">12</a>). El núcleo de hierro lo concentra y lo conduce: casi todo el <a class="xref" href="12-induccion.html#flujo">flujo magnético</a> queda atrapado en el núcleo y atraviesa también el secundario.</li>
+          <li>Como el flujo cambia en el tiempo, por la <a class="xref" href="12-induccion.html#faraday">ley de Faraday</a> se induce una tensión en <em>cada vuelta</em> de las dos bobinas. Como el flujo es el mismo en ambas, <strong>cada vuelta, del primario o del secundario, tiene la misma tensión inducida</strong>: es la “tensión por vuelta”.</li>
+          <li>La tensión del primario queda determinada por la fuente y su número de vueltas. La tensión del secundario es simplemente la tensión por vuelta multiplicada por <em>sus</em> vueltas.</li>
+          <li>Si hay una carga conectada al secundario, circula corriente por ella. Esa corriente crea su propio flujo que, por la <a class="xref" href="12-induccion.html#lenz">ley de Lenz</a>, se opone al del primario; el primario compensa tomando más corriente de la fuente. Así la energía que sale del secundario es repuesta desde el primario.</li>
+        </ol>
+        <div class="note">
+          <span class="box-title">Un detalle clave</span>
+          <p>El primario, aun sin carga en el secundario, <em>no</em> consume una corriente enorme. El campo variable que crea induce en el propio primario una tensión que se opone a la de la fuente (autoinducción; capítulo <a class="xref" href="12-induccion.html#inductancia">12</a>) y limita la corriente a un valor pequeño, la <strong>corriente de vacío</strong>, que solo magnetiza el núcleo.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="relacion">La relación de transformación</h2>
+        <p>Como la tensión por vuelta es la misma en los dos bobinados, las tensiones son proporcionales a las vueltas:</p>
+        <p class="equation"><span class="eq">V<sub>s</sub> / V<sub>p</sub> = N<sub>s</sub> / N<sub>p</sub></span></p>
+        <ul>
+          <li>Si <span class="eq">N<sub>s</sub> &lt; N<sub>p</sub></span>, la tensión baja: transformador <em>reductor</em>.</li>
+          <li>Si <span class="eq">N<sub>s</sub> &gt; N<sub>p</sub></span>, la tensión sube: transformador <em>elevador</em>.</li>
+          <li>Si <span class="eq">N<sub>s</sub> = N<sub>p</sub></span>, la tensión no cambia: transformador de <em>aislación</em> (útil por seguridad, ver más abajo).</li>
+        </ul>
+        <p>A la relación <em>N<sub>p</sub>/N<sub>s</sub></em> se la llama relación de transformación. Por ejemplo, un transformador 220 V / 12 V tiene una relación de 18,3 a 1.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g13bt g13bd">
+            <title id="g13bt">Reductor y elevador</title>
+            <desc id="g13bd">Dos transformadores: uno con más vueltas en el primario que baja la tensión y otro con más en el secundario que la sube.</desc>
+            <text class="fg-t fg-b fg-c" x="150.0" y="32">Reductor</text>
+            <rect class="fg-box" x="80" y="50" width="140" height="100" rx="3"/>
+            <rect x="115" y="75" width="70" height="50" style="fill:var(--surface);stroke:var(--wire);stroke-width:1.5"/>
+            <ellipse cx="97.5" cy="72.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="97.5" cy="83.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="97.5" cy="94.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="97.5" cy="105.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="97.5" cy="116.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="97.5" cy="127.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="202.5" cy="94.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="202.5" cy="105.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/>
+            <text class="fg-t fg-c" x="28" y="94.0" font-size="13">220 V</text><text class="fg-m fg-c" x="28" y="112.0" font-size="12">0,1 A</text>
+            <text class="fg-t fg-c" x="272" y="94.0" font-size="13">73 V</text><text class="fg-m fg-c" x="272" y="112.0" font-size="12">0,3 A</text>
+            <text class="fg-m fg-c" x="150.0" y="174">N<tspan font-size="10" dy="3">p</tspan><tspan dy="-3"> = 600  ·  N</tspan><tspan font-size="10" dy="3">s</tspan><tspan dy="-3"> = 200</tspan></text>
+            <text class="fg-a fg-c fg-b" x="150.0" y="196" style="fill:var(--accent)">baja V · sube I</text>            <text class="fg-t fg-b fg-c" x="500.0" y="32">Elevador</text>
+            <rect class="fg-box" x="430" y="50" width="140" height="100" rx="3"/>
+            <rect x="465" y="75" width="70" height="50" style="fill:var(--surface);stroke:var(--wire);stroke-width:1.5"/>
+            <ellipse cx="447.5" cy="94.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="447.5" cy="105.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="72.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="83.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="94.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="105.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="116.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="552.5" cy="127.5" rx="22" ry="4" class="fg-line" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/>
+            <text class="fg-t fg-c" x="378" y="94.0" font-size="13">100 V</text><text class="fg-m fg-c" x="378" y="112.0" font-size="12">3 A</text>
+            <text class="fg-t fg-c" x="622" y="94.0" font-size="13">300 V</text><text class="fg-m fg-c" x="622" y="112.0" font-size="12">1 A</text>
+            <text class="fg-m fg-c" x="500.0" y="174">N<tspan font-size="10" dy="3">p</tspan><tspan dy="-3"> = 200  ·  N</tspan><tspan font-size="10" dy="3">s</tspan><tspan dy="-3"> = 600</tspan></text>
+            <text class="fg-a fg-c fg-b" x="500.0" y="196" style="fill:var(--accent)">sube V · baja I</text>
+          </svg>
+          <figcaption>Lo que sube en tensión baja en corriente, y al revés: el producto V·I se mantiene (sin contar las pérdidas). Las cifras son ilustrativas.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="potencia">Potencia y corrientes: lo que sube en tensión baja en corriente</h2>
+        <p>Un transformador no crea energía. En el caso ideal, la potencia que entra por el primario es la que sale por el secundario:</p>
+        <p class="equation"><span class="eq">V<sub>p</sub> · I<sub>p</sub> = V<sub>s</sub> · I<sub>s</sub></span> &nbsp;⇒&nbsp; <span class="eq">I<sub>p</sub> / I<sub>s</sub> = N<sub>s</sub> / N<sub>p</sub></span></p>
+        <p>Es decir, <strong>si el secundario tiene menos tensión, entrega más corriente</strong> (y su bobinado se hace con alambre más grueso), y viceversa. Un transformador reductor de 220 V a 12 V entrega unas 18 veces más corriente de la que toma.</p>
+        <h3 id="reflejada">La carga vista desde el primario</h3>
+        <p>Una consecuencia útil: la fuente “ve” la resistencia de la carga multiplicada por el cuadrado de la relación de vueltas. Esa es la <strong>resistencia reflejada</strong>:</p>
+        <p class="equation"><span class="eq">R<sub>vista</sub> = R<sub>carga</sub> · (N<sub>p</sub> / N<sub>s</sub>)²</span></p>
+        <p>Una carga de 10 Ω en el secundario de un transformador 20:1 se ve, desde la red, como una de 10 · 20² = 4000 Ω. Por eso cuando la carga del secundario baja (más corriente), la resistencia vista por el primario también baja y el primario toma más corriente, aunque nadie lo haya tocado. La misma idea se usa en audio para adaptar la impedancia entre un amplificador y un parlante.</p>
+      </section>
+
+      <section>
+        <h2 id="nucleo">El núcleo: por qué hierro y por qué láminas</h2>
+        <p>El hierro (en realidad, acero al silicio) tiene una propiedad llamada alta <strong>permeabilidad magnética</strong>: concentra y conduce el flujo magnético miles de veces mejor que el aire. Gracias a eso, casi todo el flujo del primario llega al secundario y el transformador rinde bien.</p>
+        <p>Pero un núcleo de hierro también pierde energía de dos maneras:</p>
+        <ul>
+          <li><strong>Histéresis:</strong> cada vez que el campo invierte su sentido, los minúsculos “imanes” internos del hierro tienen que reorientarse, y eso cuesta energía que sale como calor. Se reduce usando materiales magnéticamente blandos (acero al silicio).</li>
+          <li><strong>Corrientes parásitas o de Foucault:</strong> el flujo variable induce corrientes dentro del propio núcleo (porque el hierro también conduce; ley de Faraday otra vez), y esas corrientes lo calientan. Se reducen armando el núcleo con <em>láminas finas</em> (de unos 0,3 mm) aisladas entre sí, que cortan los caminos por los que podrían circular. Por eso un núcleo de transformador, visto de costado, se ve “apilado”.</li>
+        </ul>
+                <figure class="figure">
+          <svg viewBox="0 0 700 245" role="img" aria-labelledby="g13ct g13cd">
+            <title id="g13ct">Núcleo macizo y núcleo laminado</title>
+            <desc id="g13cd">Corte de un núcleo: en el macizo circulan grandes corrientes parásitas y en el laminado solo pequeñas por chapa.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="22">Núcleo macizo</text>
+            <rect class="fg-box" x="90" y="40" width="160" height="150" rx="3"/>
+            <circle cx="170" cy="115" r="52" fill="none" class="fg-bad" style="stroke-width:2.2"/><path class="fg-bad" d="M225.6 121.0 L222.0 115.0 L218.4 121.0" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="170" y="123" font-size="22">⊙</text>
+            <text class="fg-m fg-c" x="170" y="214">grandes corrientes parásitas</text>
+            <text class="fg-c fg-b" x="170" y="234" style="fill:var(--bad)">mucho calor</text>
+            <text class="fg-t fg-b fg-c" x="520" y="22">Núcleo laminado</text>
+            <rect class="fg-box" x="440" y="40" width="160" height="150" rx="3" style="fill:var(--surface)"/><rect x="440" y="41.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="52.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="52.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="52.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><rect x="440" y="66.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="77.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="77.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="77.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><rect x="440" y="91.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="102.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="102.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="102.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><rect x="440" y="116.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="127.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="127.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="127.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><rect x="440" y="141.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="152.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="152.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="152.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><rect x="440" y="166.5" width="160" height="22" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1"/><ellipse cx="475" cy="177.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="520" cy="177.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/><ellipse cx="565" cy="177.5" rx="9" ry="6" fill="none" class="fg-good" style="stroke-width:1.8"/>
+            <text class="fg-m fg-c" x="520" y="214">chapas finas aisladas entre sí</text>
+            <text class="fg-c fg-b" x="520" y="234" style="fill:var(--good)">corrientes mínimas, poco calor</text>
+            <text class="fg-m fg-c" x="330" y="108">flujo variable</text><text class="fg-m fg-c" x="330" y="126">(sale hacia vos)</text>
+          </svg>
+          <figcaption><strong>Las láminas cortan los caminos</strong> por los que podrían circular las corrientes parásitas, y con eso baja el calentamiento.</figcaption>
+        </figure>
+        <p>En frecuencias altas (como en las fuentes conmutadas de los cargadores) se usan núcleos de <strong>ferrita</strong>, un material cerámico magnético que casi no conduce y casi no tiene corrientes parásitas.</p>
+      </section>
+
+      <section>
+        <h2 id="perdidas">Pérdidas, rendimiento y calentamiento</h2>
+        <p>En un transformador real, la potencia de salida es menor que la de entrada. El <strong>rendimiento</strong> es <span class="eq">η = P<sub>sal</sub> / P<sub>ent</sub></span>, y la diferencia es calor:</p>
+        <ul>
+          <li><strong>Pérdidas en el cobre:</strong> los bobinados tienen resistencia, y disipan <em>I²·R</em>. Crecen con la corriente (con la carga).</li>
+          <li><strong>Pérdidas en el hierro:</strong> histéresis y corrientes parásitas. Existen aunque el secundario no tenga carga, porque dependen de que el núcleo esté magnetizado.</li>
+          <li><strong>Flujo disperso:</strong> una pequeña parte del flujo no llega al otro bobinado.</li>
+        </ul>
+        <p>Un transformador pequeño de un adaptador rinde entre 70 y 90 %; uno grande de potencia supera el 98–99 %. Con la carga, además, la tensión del secundario baja un poco (por la resistencia de los bobinados), un efecto llamado <em>regulación</em>.</p>
+        <p>Por eso la potencia de un transformador no se mide en watts sino en <strong>volt-amperes (VA)</strong>: es el producto <em>V·I</em> máximo que puede entregar sin calentarse de más, sin importar si la carga lo aprovecha como potencia útil. Un transformador de 12 V / 1 A es de 12 VA.</p>
+      </section>
+
+      <section>
+        <h2 id="cc">Qué pasa si se lo conecta a corriente continua</h2>
+        <p>Con una batería, la corriente del primario sería constante y, por lo tanto, el flujo también: no habría variación de flujo, no habría tensión inducida y <strong>el secundario no entregaría nada</strong>. Hay algo peor: ya no existiría la “contratensión” del primario que limita la corriente. Lo único que la limita sería la resistencia del alambre, que es muy pequeña (por ejemplo 50 Ω en un primario para 220 V). Circularían 220 V / 50 Ω = 4,4 A en vez de unas decenas de mA, y el bobinado se recalentaría hasta quemarse.</p>
+        <div class="note">
+          <span class="box-title">Importante</span>
+          <p>Un transformador diseñado para corriente alterna se daña si se lo conecta a corriente continua de su tensión nominal. Solo funciona como transformador cuando el flujo <em>cambia</em>.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tipos de transformadores</h2>
+        <ul>
+          <li><strong>De aislación (1:1):</strong> separa eléctricamente la red del aparato. Aunque la tensión sea la misma, el secundario no comparte conductores con la red, lo que reduce el riesgo de sacudidas. Se usa en bancos de trabajo y equipos médicos.</li>
+          <li><strong>Autotransformador:</strong> tiene un único bobinado con una toma intermedia. Es más pequeño y barato, pero <em>no aísla</em>. Los “variac” de laboratorio y muchos reguladores de tensión funcionan así.</li>
+          <li><strong>Con punto medio:</strong> el secundario tiene una toma central, que permite obtener dos tensiones iguales y opuestas (por ejemplo ±12 V para circuitos de audio) o usar solo dos diodos en un rectificador de onda completa.</li>
+          <li><strong>Toroidal:</strong> el núcleo tiene forma de anillo. El flujo queda mejor encerrado, con menos pérdidas, menos zumbido y menos tamaño.</li>
+          <li><strong>De alta frecuencia (fuentes conmutadas):</strong> trabajan a decenas de kHz, con núcleo de ferrita. Como la tensión por vuelta crece con la frecuencia, se necesitan menos vueltas y mucho menos hierro: por eso un cargador moderno es tan liviano.</li>
+          <li><strong>Trifásicos:</strong> tres juegos de bobinas para los sistemas de tres fases de la red.</li>
+          <li><strong>De corriente y de potencial (de medición):</strong> reducen corrientes o tensiones muy altas a valores seguros para medir.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="red">El transformador en la red eléctrica</h2>
+        <p>Entre la central y el enchufe, la energía atraviesa varios transformadores, cada uno cambiando la tensión al valor que conviene en ese tramo:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 205" role="img" aria-labelledby="g13dt g13dd">
+            <title id="g13dt">Transporte de energía</title>
+            <desc id="g13dd">Cadena de central, transformador elevador, línea de alta tensión, transformador reductor y casas, con el grosor de la flecha indicando la corriente.</desc>
+<rect class="fg-box" x="10" y="40" width="110" height="56" rx="5"/><text class="fg-t fg-b fg-c" x="65.0" y="64" font-size="13.5">Central</text><text class="fg-m fg-c" x="65.0" y="83" font-size="12">genera</text><rect class="fg-box" x="150" y="40" width="120" height="56" rx="5"/><text class="fg-t fg-b fg-c" x="210.0" y="64" font-size="13.5">Elevador</text><text class="fg-m fg-c" x="210.0" y="83" font-size="12">sube la tensión</text><rect class="fg-box" x="300" y="40" width="150" height="56" rx="5"/><text class="fg-t fg-b fg-c" x="375.0" y="64" font-size="13.5">Línea de transporte</text><text class="fg-m fg-c" x="375.0" y="83" font-size="12">cientos de km</text><rect class="fg-box" x="480" y="40" width="120" height="56" rx="5"/><text class="fg-t fg-b fg-c" x="540.0" y="64" font-size="13.5">Reductor</text><text class="fg-m fg-c" x="540.0" y="83" font-size="12">baja la tensión</text><rect class="fg-box" x="620" y="40" width="70" height="56" rx="5"/><text class="fg-t fg-b fg-c" x="655.0" y="64" font-size="13.5">Casas</text><text class="fg-m fg-c" x="655.0" y="83" font-size="12">220 V</text>
+            <path class="fg-pos" d="M10 132 H140" style="stroke-width:9;stroke-linecap:butt"/><path class="fg-pos" d="M140.0 138.0 L150.0 132.0 L140.0 126.0" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="75" y="156">baja V · alta I</text>
+            <path class="fg-pos" d="M290 132 H470" style="stroke-width:2;stroke-linecap:butt"/><path class="fg-pos" d="M474.0 135.6 L480.0 132.0 L474.0 128.4" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="385" y="156">alta V · baja I → pocas pérdidas</text>
+            <path class="fg-pos" d="M560 132 H675" style="stroke-width:9;stroke-linecap:butt"/><path class="fg-pos" d="M665 123 L685 132 L665 141" style="stroke-width:2.5"/><text class="fg-m fg-c" x="625" y="156">baja V · alta I</text>
+            <path class="fg-line" d="M120 68 H150 M270 68 H300 M450 68 H480 M600 68 H620"/>
+            <text class="fg-m fg-c" x="385" y="26">100 kV, por ejemplo</text>
+            <text class="fg-m fg-c" x="385" y="188" font-size="13">P<tspan font-size="10" dy="3">pérdida</tspan><tspan dy="-3"> = I² · R: con 10 veces menos corriente, 100 veces menos pérdidas</tspan></text>
+          </svg>
+          <figcaption>El trazo grueso es mucha corriente y el fino, poca. Subir la tensión en la línea permite transportar la misma potencia con muy poca corriente.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Niveles de tensión típicos de una red eléctrica (varían según el país y la región)</caption>
+            <thead><tr><th>Tramo</th><th>Tensión típica</th><th>Transformador</th></tr></thead>
+            <tbody>
+              <tr><td>Generador de la central</td><td>10 – 20 kV</td><td>—</td></tr>
+              <tr><td>Transmisión a largas distancias</td><td>132 – 500 kV</td><td>Elevador en la central</td></tr>
+              <tr><td>Subtransmisión</td><td>33 – 132 kV</td><td>Reductor en subestaciones</td></tr>
+              <tr><td>Distribución en el barrio</td><td>13,2 kV</td><td>Reductor en subestación</td></tr>
+              <tr><td>Hogares (una fase / tres fases)</td><td>220 V / 380 V</td><td>Reductor en el poste o cámara</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>La razón es la que se ve en el ejemplo de transporte de más abajo: para una misma potencia, a mayor tensión menor corriente, y las pérdidas por calor en los cables (<em>I²·R</em>) son mucho menores.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El poste de la esquina</span>
+          <p>La energía llega a los barrios en media tensión (por ejemplo, 13,2 kV) y un transformador montado en el poste la baja a 220 V para las casas: una relación de unas 60 a 1. Está sumergido en aceite, que lo aísla y lo refrigera, y por eso tiene aletas.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El transformador de un adaptador</span>
+          <p>Los cargadores y fuentes de equipos más antiguos usaban un transformador reductor (de 220 V a pocos volts) seguido de rectificador y filtro (capítulo <a class="xref" href="07-diodos-led.html">7</a>). Es el “ladrillo pesado y tibio” del cable de muchos aparatos: el calor son las pérdidas. Si lo acercás al oído, a veces zumba a 100 Hz: el núcleo vibra por el campo magnético alterno.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El horno de microondas</span>
+          <p>Para generar las microondas necesita unos 2000 V, mucho más que los 220 V de la red. Lo logra con un transformador elevador. Es una de las razones por las que no se debe abrir un microondas: el capacitor de alta tensión puede mantener su carga aun desenchufado.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Por qué se transporta la energía en alta tensión</span>
+          <p>Supongamos que se transmiten 1 MW por una línea con 5 Ω de resistencia. A 10 kV circulan 100 A y se pierden <span class="eq">I² · R = 100² · 5 = 50 kW</span> (5 %). A 100 kV circulan 10 A y las pérdidas bajan a <span class="eq">10² · 5 = 500 W</span> (0,05 %). Subir la tensión 10 veces reduce las pérdidas 100 veces.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: tensión, corriente y resistencia reflejada</span>
+          <p>Un transformador con N<sub>p</sub> = 1000 vueltas y N<sub>s</sub> = 50 vueltas se conecta a 230 V y alimenta una carga de 10 Ω.</p>
+          <ol>
+            <li>Tensión de salida: <span class="eq">V<sub>s</sub> = 230 · 50 / 1000 = 11,5 V</span></li>
+            <li>Corriente en la carga: <span class="eq">I<sub>s</sub> = 11,5 / 10 = 1,15 A</span> y potencia <span class="eq">P = 11,5 · 1,15 ≈ 13,2 W</span></li>
+            <li>Corriente del primario (ideal): <span class="eq">I<sub>p</sub> = 13,2 / 230 ≈ 57 mA</span>, es decir, I<sub>s</sub> · (N<sub>s</sub>/N<sub>p</sub>) = 1,15 · 0,05 ✓</li>
+            <li>Resistencia vista por la fuente: <span class="eq">10 Ω · (1000/50)² = 4000 Ω</span>, y 230 V / 4000 Ω = 57,5 mA ✓ (coincide).</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: elegir un transformador para una fuente de 12 V y 1 A</span>
+          <ol>
+            <li>Relación de vueltas: <span class="eq">N<sub>s</sub>/N<sub>p</sub> = 12/220 ≈ 0,055</span>. Con unas 5 vueltas por volt (valor típico para un núcleo pequeño), serían ≈ 1100 vueltas en el primario y ≈ 60 en el secundario.</li>
+            <li>Potencia aparente: <span class="eq">12 V · 1 A = 12 VA</span>. Conviene elegir uno de 15 o 20 VA para que no trabaje al límite.</li>
+            <li>Con un rendimiento de 85 %, el primario toma <span class="eq">12 W / 0,85 ≈ 14 W</span>, o sea <span class="eq">I<sub>p</sub> ≈ 14 / 220 ≈ 64 mA</span>: un fusible de 100 mA es adecuado.</li>
+            <li>La tensión de 12 V eficaces tiene un pico de 17 V; si se rectifica y filtra (capítulo 7), la continua resultante ronda los 15 V, por lo que hay que contar con eso para el regulador posterior.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con los valores iniciales, el transformador baja 230 V a 11,5 V. Observá que la corriente del primario es mucho menor que la del secundario.</li>
+          <li>Aumentá N<sub>s</sub> por encima de N<sub>p</sub>: la tensión sube (¡y la corriente del primario también se dispara!, porque la carga se ve como más pequeña).</li>
+          <li>Bajá la resistencia de la carga: la corriente del secundario sube, y el primario, sin que nadie lo toque, toma más corriente de la red para entregarla. Mirá la “resistencia vista desde el primario” en el cuaderno.</li>
+          <li>Cambiá a “Real (95 %)”: el primario toma más potencia de la que entrega el secundario; la diferencia son las pérdidas en forma de calor.</li>
+          <li>Mirá cómo el flujo del núcleo (puntos amarillos) oscila: como cambia en el tiempo, induce tensión en las dos bobinas. Si el flujo fuera constante, no habría nada que inducir.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/transformer.js"></script>
+  <script src="../js/quizzes/13-transformadores.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capacitores y circuito RC · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="06-capacitores-rc" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 6</p>
+        <h1>Capacitores y circuito RC</h1>
+        <p class="lead">Un capacitor almacena carga y energía. Junto con una resistencia, define cuánto tarda un circuito en “llenarse” o “vaciarse”.</p>
+      </header>
+      <section>
+        <h2>El capacitor</h2>
+        <p>Son dos placas conductoras separadas por un aislante. Al aplicar una tensión, una placa acumula carga positiva y la otra negativa. Cuánta carga guarda por cada volt es su <strong>capacidad</strong>, en <strong>farads (F)</strong>:</p>
+        <p class="equation"><span class="eq">C = Q / V</span> &nbsp;⇒&nbsp; <span class="eq">Q = C · V</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 240" role="img" aria-labelledby="g6at g6ad">
+            <title id="g6at">Estructura de un capacitor</title>
+            <desc id="g6ad">Dos placas paralelas con cargas opuestas y el campo eléctrico entre ellas.</desc>
+            <path class="fg-line" d="M60 66 V50 H140 M60 100 V150 H140"/>
+            <path class="fg-line" d="M60 66 v10 M60 90 v10"/><line class="fg-line" x1="46" y1="76" x2="74" y2="76"/><line class="fg-line" x1="52" y1="90" x2="68" y2="90" stroke-width="4"/>
+            <rect class="fg-fill-wire" x="140" y="62" width="260" height="8" rx="2"/>
+            <rect class="fg-fill-wire" x="140" y="130" width="260" height="8" rx="2"/>
+            <path class="fg-line" d="M140 50 V62 M140 150 V138"/>
+            <rect x="140" y="70" width="260" height="60" style="fill:var(--surface-2);opacity:.5"/>
+            <g font-size="16" font-weight="700" text-anchor="middle" style="fill:var(--charge-pos);">
+              <text x="165" y="58">+</text><text x="215" y="58">+</text><text x="265" y="58">+</text><text x="315" y="58">+</text><text x="365" y="58">+</text></g>
+            <g font-size="18" font-weight="700" text-anchor="middle" style="fill:var(--charge-neg);">
+              <text x="165" y="154">−</text><text x="215" y="154">−</text><text x="265" y="154">−</text><text x="315" y="154">−</text><text x="365" y="154">−</text></g>
+            <g class="fg-acc" style="stroke-width:1.8">
+              <path d="M165 76 V122 M215 76 V122 M265 76 V122 M315 76 V122 M365 76 V122"/>
+              <path d="M160 114 L165 122 L170 114 M210 114 L215 122 L220 114 M260 114 L265 122 L270 114 M310 114 L315 122 L320 114 M360 114 L365 122 L370 114"/></g>
+            <path class="fg-thin" d="M420 62 V138 M414 70 L420 62 L426 70 M414 130 L420 138 L426 130"/>
+            <text class="fg-t fg-i" x="432" y="105">d</text>
+            <path class="fg-thin" d="M140 176 H400 M146 170 L140 176 L146 182 M394 170 L400 176 L394 182"/>
+            <text class="fg-t fg-i fg-c" x="270" y="196">A (área de las placas)</text>
+            <text class="fg-a" x="460" y="176" style="fill:var(--accent)">↓ flechas: campo E = V / d</text>
+            <text class="fg-m" x="460" y="82">placa +: carga +Q</text>
+            <text class="fg-m" x="460" y="146">placa −: carga −Q</text>
+            <text class="fg-m" x="460" y="114">dieléctrico (aislante)</text>
+            <text class="fg-t fg-i" x="30" y="108" text-anchor="end">V</text>
+            <text class="fg-a fg-b" x="270" y="228" text-anchor="middle" font-size="17">C = Q / V = ε · A / d</text>
+          </svg>
+          <figcaption><strong>Dos placas y un aislante.</strong> La batería empuja cargas de una placa a la otra; cuanto más área y menos separación, más carga entra por cada volt.</figcaption>
+        </figure>
+        <p>La energía almacenada en el campo eléctrico entre las placas es:</p>
+        <p class="equation"><span class="eq">E = ½ · C · V²</span></p>
+      </section>
+
+      <section>
+        <h2>Carga y descarga a través de una resistencia</h2>
+        <p>Si el capacitor se carga a través de una resistencia R, la corriente es máxima al inicio (el capacitor está vacío) y va disminuyendo a medida que su tensión se acerca a la de la fuente. La tensión sigue una curva exponencial:</p>
+        <p class="equation"><span class="eq">v<sub>C</sub>(t) = V<sub>f</sub> + (V<sub>0</sub> − V<sub>f</sub>) · e<sup>−t/τ</sup></span></p>
+        <p>donde <span class="eq">τ = R · C</span> es la <strong>constante de tiempo</strong>, en segundos.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 680 210" role="img" aria-labelledby="g6bt g6bd">
+            <title id="g6bt">Carga y descarga exponencial</title>
+            <desc id="g6bd">Dos curvas: la tensión sube en la carga hasta Vf y baja en la descarga desde V0, con marcas en 1, 2 y 3 constantes de tiempo.</desc>
+            <path class="fg-line" d="M50 40 V180 H314"/>
+            <line class="fg-dash" x1="50" y1="50" x2="300" y2="50"/>
+            <path class="fg-acc" d="M50.0 180.0 L54.2 169.6 L58.3 160.0 L62.5 151.2 L66.7 143.1 L70.8 135.7 L75.0 128.8 L79.2 122.5 L83.3 116.7 L87.5 111.4 L91.7 106.5 L95.8 102.0 L100.0 97.8 L104.2 94.0 L108.3 90.5 L112.5 87.2 L116.7 84.3 L120.8 81.5 L125.0 79.0 L129.2 76.7 L133.3 74.6 L137.5 72.6 L141.7 70.8 L145.8 69.1 L150.0 67.6 L154.2 66.2 L158.3 64.9 L162.5 63.7 L166.7 62.6 L170.8 61.6 L175.0 60.7 L179.2 59.8 L183.3 59.0 L187.5 58.3 L191.7 57.6 L195.8 57.0 L200.0 56.5 L204.2 56.0 L208.3 55.5 L212.5 55.0 L216.7 54.6 L220.8 54.3 L225.0 53.9 L229.2 53.6 L233.3 53.3 L237.5 53.1 L241.7 52.8 L245.8 52.6 L250.0 52.4 L254.2 52.2 L258.3 52.0 L262.5 51.9 L266.7 51.7 L270.8 51.6 L275.0 51.4 L279.2 51.3 L283.3 51.2 L287.5 51.1 L291.7 51.0 L295.8 51.0 L300.0 50.9"/>
+            <text class="fg-t fg-b fg-c" x="175.0" y="22">Carga</text>
+            <text class="fg-m fg-e" x="44" y="54">V<tspan font-size="10" dy="3">f</tspan></text><text class="fg-m fg-e" x="44" y="184">0</text>
+            <text class="fg-m" x="304" y="198" font-size="12">t</text>
+            <line class="fg-thin" x1="100.0" y1="180" x2="100.0" y2="185"/><text class="fg-m fg-c" x="100.0" y="198">1τ</text>
+            <circle cx="100.0" cy="97.8" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="108.0" y="115.8" font-size="12.5">63 %</text>
+            <line class="fg-thin" x1="150.0" y1="180" x2="150.0" y2="185"/><text class="fg-m fg-c" x="150.0" y="198">2τ</text>
+            <circle cx="150.0" cy="67.6" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="158.0" y="85.6" font-size="12.5">86 %</text>
+            <line class="fg-thin" x1="200.0" y1="180" x2="200.0" y2="185"/><text class="fg-m fg-c" x="200.0" y="198">3τ</text>
+            <circle cx="200.0" cy="56.5" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="208.0" y="74.5" font-size="12.5">95 %</text>
+            <path class="fg-line" d="M370 40 V180 H634"/>
+            <line class="fg-dash" x1="370" y1="50" x2="620" y2="50"/>
+            <path class="fg-bad" d="M370.0 50.0 L374.2 60.4 L378.3 70.0 L382.5 78.8 L386.7 86.9 L390.8 94.3 L395.0 101.2 L399.2 107.5 L403.3 113.3 L407.5 118.6 L411.7 123.5 L415.8 128.0 L420.0 132.2 L424.2 136.0 L428.3 139.5 L432.5 142.8 L436.7 145.7 L440.8 148.5 L445.0 151.0 L449.2 153.3 L453.3 155.4 L457.5 157.4 L461.7 159.2 L465.8 160.9 L470.0 162.4 L474.2 163.8 L478.3 165.1 L482.5 166.3 L486.7 167.4 L490.8 168.4 L495.0 169.3 L499.2 170.2 L503.3 171.0 L507.5 171.7 L511.7 172.4 L515.8 173.0 L520.0 173.5 L524.2 174.0 L528.3 174.5 L532.5 175.0 L536.7 175.4 L540.8 175.7 L545.0 176.1 L549.2 176.4 L553.3 176.7 L557.5 176.9 L561.7 177.2 L565.8 177.4 L570.0 177.6 L574.2 177.8 L578.3 178.0 L582.5 178.1 L586.7 178.3 L590.8 178.4 L595.0 178.6 L599.2 178.7 L603.3 178.8 L607.5 178.9 L611.7 179.0 L615.8 179.0 L620.0 179.1"/>
+            <text class="fg-t fg-b fg-c" x="495.0" y="22">Descarga</text>
+            <text class="fg-m fg-e" x="364" y="54">V₀</text><text class="fg-m fg-e" x="364" y="184">0</text>
+            <text class="fg-m" x="624" y="198" font-size="12">t</text>
+            <line class="fg-thin" x1="420.0" y1="180" x2="420.0" y2="185"/><text class="fg-m fg-c" x="420.0" y="198">1τ</text>
+            <circle cx="420.0" cy="132.2" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="426.0" y="124.2" font-size="12.5">37 %</text>
+            <line class="fg-thin" x1="470.0" y1="180" x2="470.0" y2="185"/><text class="fg-m fg-c" x="470.0" y="198">2τ</text>
+            <circle cx="470.0" cy="162.4" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="476.0" y="154.4" font-size="12.5">14 %</text>
+            <line class="fg-thin" x1="520.0" y1="180" x2="520.0" y2="185"/><text class="fg-m fg-c" x="520.0" y="198">3τ</text>
+            <circle cx="520.0" cy="173.5" r="4.5" class="fg-fill-acc"/><text class="fg-t" x="526.0" y="165.5" font-size="12.5">5 %</text>
+
+          </svg>
+          <figcaption><strong>Rápido al principio, lento al final.</strong> En cada τ queda un 37 % de lo que faltaba: por eso se considera completa a los 5τ.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">Números para recordar</span>
+          <p>En <em>t = 1τ</em> el capacitor completó el 63 % del cambio; en <em>2τ</em>, el 86 %; en <em>3τ</em>, el 95 %; en <em>5τ</em>, más del 99 %. En la descarga ocurre lo mismo: queda el 37 % en 1τ.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="campo">El campo eléctrico entre las placas</h2>
+        <p>Una carga eléctrica modifica el espacio que la rodea: crea un <strong>campo eléctrico</strong>, una región donde cualquier otra carga siente una fuerza. Entre las dos placas de un capacitor, las cargas acumuladas (positivas en una, negativas en la otra) producen un campo uniforme cuya intensidad es:</p>
+        <p class="equation"><span class="eq">E = V / d</span> &nbsp;(en volts por metro)</p>
+        <p>donde <em>d</em> es la separación entre placas. Este campo es el que guarda la energía del capacitor. La capacidad depende de la geometría y del aislante (el <em>dieléctrico</em>) que hay entre las placas:</p>
+        <p class="equation"><span class="eq">C = ε · A / d</span></p>
+        <p>donde <em>A</em> es el área de las placas y <em>ε</em> la permitividad del dieléctrico (en el vacío, ε₀ ≈ 8,85 × 10<sup>−12</sup> F/m). Placas más grandes, más cercanas o con un mejor dieléctrico dan más capacidad. Cada dieléctrico soporta una tensión máxima: si se la supera, el aislante se perfora y el capacitor se destruye.</p>
+        <p>Por ejemplo, dos placas de 10 cm × 10 cm (0,01 m²) separadas 1 mm en el aire tienen <span class="eq">C = 8,85 × 10<sup>−12</sup> · 0,01 / 0,001 ≈ 89 pF</span>: el farad es una unidad enorme, y por eso los capacitores prácticos se miden en µF, nF y pF (o se enrollan en capas para aumentar el área).</p>
+      </section>
+
+      <section>
+        <h2 id="combinaciones">Capacitores en paralelo y en serie</h2>
+        <p>Se combinan al revés que las resistencias:</p>
+        <ul>
+          <li><strong>En paralelo:</strong> las capacidades <em>suman</em>, porque es como tener placas de más área: <span class="eq">C = C<sub>1</sub> + C<sub>2</sub></span></li>
+          <li><strong>En serie:</strong> la capacidad total es <em>menor</em> que la menor de ellas, porque es como separar más las placas: <span class="eq">1/C = 1/C<sub>1</sub> + 1/C<sub>2</sub></span></li>
+        </ul>
+        <p>Por ejemplo, 10 µF en paralelo con 22 µF dan 32 µF; dos de 10 µF en serie dan 5 µF. En serie, además, la tensión se reparte entre ellos, lo que sirve para soportar tensiones mayores.</p>
+      </section>
+
+      <section>
+        <h2 id="reactancia">El capacitor frente a la corriente alterna</h2>
+        <p>Con corriente continua, un capacitor se carga una sola vez y después ya no circula corriente: <strong>bloquea la continua</strong>. Con corriente alterna, en cambio, la tensión sube y baja todo el tiempo, y el capacitor se carga y se descarga una y otra vez; aunque no pase carga <em>a través</em> de él, hay corriente de ida y vuelta en el circuito. El capacitor <strong>deja pasar la alterna</strong>.</p>
+        <p>Cuánta corriente deja pasar depende de la frecuencia y de su capacidad. Se describe con la <strong>reactancia capacitiva</strong>, una especie de “resistencia” que depende de la frecuencia:</p>
+        <p class="equation"><span class="eq">X<sub>C</sub> = 1 / (2π · f · C)</span></p>
+        <p>A mayor frecuencia o mayor capacidad, menor reactancia y más corriente. Con continua (<em>f</em> = 0), tiende a infinito: bloquea. Un capacitor de 1 µF presenta <span class="eq">3,18 kΩ</span> a 50 Hz y solo <span class="eq">159 Ω</span> a 1 kHz. Esta propiedad se aprovecha para separar señales: dejar pasar el audio y bloquear la continua (<em>acoplamiento</em>), y armar filtros combinados con resistores (capítulo <a class="xref" href="21-impedancia-filtros.html">21</a>).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 520 228" role="img" aria-labelledby="g6ct g6cd">
+            <title id="g6ct">Reactancia según la frecuencia</title>
+            <desc id="g6cd">Curva decreciente de la reactancia capacitiva al aumentar la frecuencia (esquema sin escala).</desc>
+            <path class="fg-line" d="M70 30 V190 H470 M464 184 L470 190 L464 196 M64 38 L70 30 L76 38"/>
+            <path class="fg-acc" d="M76.3 108.2 L82.7 133.8 L89.0 147.1 L95.3 155.4 L101.7 161.0 L108.0 165.0 L114.3 168.0 L120.7 170.4 L127.0 172.4 L133.3 173.9 L139.7 175.2 L146.0 176.4 L152.3 177.3 L158.7 178.2 L165.0 178.9 L171.3 179.5 L177.7 180.1 L184.0 180.6 L190.3 181.1 L196.7 181.5 L203.0 181.9 L209.3 182.2 L215.7 182.6 L222.0 182.9 L228.3 183.1 L234.7 183.4 L241.0 183.6 L247.3 183.8 L253.7 184.0 L260.0 184.2 L266.3 184.4 L272.7 184.6 L279.0 184.7 L285.3 184.9 L291.7 185.0 L298.0 185.2 L304.3 185.3 L310.7 185.4 L317.0 185.5 L323.3 185.6 L329.7 185.7 L336.0 185.8 L342.3 185.9 L348.7 186.0 L355.0 186.1 L361.3 186.2 L367.7 186.3 L374.0 186.3 L380.3 186.4 L386.7 186.5 L393.0 186.6 L399.3 186.6 L405.7 186.7 L412.0 186.7 L418.3 186.8 L424.7 186.9 L431.0 186.9 L437.3 187.0 L443.7 187.0 L450.0 187.1"/>
+            <text class="fg-t fg-i" x="478" y="195">f</text><text class="fg-t fg-i" x="60" y="24" text-anchor="end">X<tspan font-size="10" dy="3">C</tspan></text>
+            <text class="fg-m" x="84" y="50">f → 0 (continua): X<tspan font-size="10" dy="3">C</tspan><tspan dy="-3"> → ∞, bloquea</tspan></text>
+            <circle class="fg-fill-heat" cx="115.6" cy="168.6" r="5"/>
+            <text class="fg-m" x="128" y="150">50 Hz: 3,18 kΩ</text>
+            <circle class="fg-fill-good" cx="400" cy="186.7" r="5" style="fill:var(--good)"/>
+            <text class="fg-m fg-e" x="410" y="168">1 kHz: 159 Ω</text>
+            <text class="fg-m fg-c" x="270" y="216">frecuencia creciente → la alterna pasa cada vez mejor</text>
+          </svg>
+          <figcaption>Esquema sin escala, con los valores del ejemplo de 1 µF: el capacitor es casi un circuito abierto para frecuencias bajas y casi un cable para las altas.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Tipos de capacitores y polaridad</h2>
+        <ul>
+          <li><strong>Cerámicos:</strong> pequeños, sin polaridad, de pF a µF. Los más usados en electrónica general.</li>
+          <li><strong>De película (poliéster, polipropileno):</strong> estables y precisos; usados en audio y en filtros.</li>
+          <li><strong>Electrolíticos:</strong> de µF a mF en poco espacio, ideales para filtrar fuentes. Tienen <em>polaridad</em>: si se los conecta al revés o con más tensión que la nominal, pueden calentarse, ventear o incluso explotar.</li>
+          <li><strong>Supercapacitores:</strong> de varios farads, capaces de reemplazar baterías pequeñas en algunas aplicaciones.</li>
+        </ul>
+        <div class="note">
+          <span class="box-title">Seguridad</span>
+          <p>Un capacitor grande puede conservar su carga mucho después de apagar el equipo (por ejemplo, el del flash de una cámara o el de un microondas). Antes de tocar su circuito, hay que descargarlo con una resistencia adecuada.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El flash de una cámara</span>
+          <p>Una pila no puede entregar de golpe la energía de un destello. Entonces carga lentamente un capacitor (por ejemplo 100 µF a 300 V) y después lo descarga en una fracción de milisegundo a través de la lámpara. Energía guardada: <span class="eq">½ · 100 µF · (300 V)² = 4,5 J</span>. El “pitido” de que el flash está listo es el capacitor llegando a su tensión final.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Alisar la tensión de una fuente</span>
+          <p>Un adaptador de pared <a class="xref" href="07-diodos-led.html#rectificacion">rectifica</a> la corriente alterna, pero queda una tensión pulsante. Un capacitor grande en la salida se carga en los picos y se descarga en los valles, entregando una tensión casi continua. Cuanto mayor es C (o la carga más liviana), más lisa queda.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Temporizadores y antirrebote</span>
+          <p>Un resistor y un capacitor son el temporizador más simple: el tiempo está fijado por τ = RC. Los botones de equipos electrónicos suelen llevar un RC pequeño para ignorar los rebotes mecánicos del contacto, y las pantallas táctiles detectan el dedo midiendo cambios de capacidad.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>R = 10 kΩ y C = 100 µF, cargados desde 5 V.</p>
+          <ol>
+            <li>Constante de tiempo: <span class="eq">τ = 10 000 Ω · 0,0001 F = 1 s</span></li>
+            <li>A los 1 s: <span class="eq">v<sub>C</sub> = 5 · (1 − e<sup>−1</sup>) = 3,16 V</span> (63 % de 5 V).</li>
+            <li>¿Cuánto tarda en llegar al 90 %? <span class="eq">t = −τ · ln(0,1) ≈ 2,3 τ = 2,3 s</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con R = 1 kΩ y C = 1 mF, τ = 1 s. Verificá que, a los 1 s, el capacitor llegó al 63 % de la tensión (la línea naranja en la gráfica).</li>
+        <li>Duplicá R: τ se duplica y la curva se estira, pero el valor final es el mismo.</li>
+        <li>Observá la corriente: empieza alta y decae. ¿Cuándo es mayor, al inicio o al final de la carga?</li>
+        <li>Cambiá a <strong>Descargar</strong>: la corriente invierte su sentido (los electrones circulan al revés) y la tensión decae hacia 0 V.</li>
+        <li>Fijá la tensión y mirá cómo la energía almacenada depende del <em>cuadrado</em> de v<sub>C</sub>.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/rc.js"></script>
+  <script src="../js/quizzes/06-capacitores-rc.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

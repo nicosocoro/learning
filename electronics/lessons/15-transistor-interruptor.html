@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El transistor como interruptor · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="15-transistor-interruptor" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 15</p>
+        <h1>El transistor como interruptor</h1>
+        <p class="lead">Con una señal débil se enciende y se apaga una carga que consume mucho más. La clave es dejarlo en corte o en saturación y calcular bien el resistor de base.</p>
+      </header>
+      <section>
+        <h2>Un interruptor sin partes móviles</h2>
+        <p>En el <a class="xref" href="14-transistor-bjt.html#regiones">capítulo anterior</a> vimos que un transistor puede estar en <strong>corte</strong> (no conduce) o en <strong>saturación</strong> (conduce todo lo que el circuito permite). Si se evita la zona intermedia, el transistor se comporta como un <strong>interruptor accionado por una señal eléctrica</strong>: con 0 V en la base está «abierto» y con una tensión alta está «cerrado».</p>
+        <p>Frente a un interruptor mecánico o a un relé (capítulo <a class="xref" href="18-rele.html">18</a>), el transistor conmuta en nanosegundos, no se desgasta, no hace ruido ni rebota, y se maneja con muy poca energía. A cambio, cuando conduce tiene una pequeña caída de unos 0,2 V, es sensible a la polaridad y solo maneja corriente continua.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 300" role="img" aria-labelledby="g15at g15ad">
+            <title id="g15at">El transistor como interruptor</title>
+            <desc id="g15ad">Dos circuitos iguales: con señal baja la lámpara está apagada y el transistor en corte; con señal alta la lámpara está encendida y el transistor saturado.</desc>
+<text class="fg-t fg-b fg-c" x="130" y="22">Señal baja: transistor en corte</text><path class="fg-line" d="M40 52 H210 V133.77427686910778 " style="display:none"/><path class="fg-line" d="M30 56 H142.6 V80"/><circle cx="142.6" cy="100" r="20" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M129.0 86.4 L156.2 113.6 M129.0 113.6 L156.2 86.4" style="stroke-width:1.8"/><path class="fg-line" d="M142.6 120 V133.77427686910778"/><circle cx="130" cy="185" r="30" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M74 185 H121.0"/><path class="fg-line" d="M121.0 170.0 V200.0" style="stroke-width:3.5"/><path class="fg-line" d="M121.0 178.4 L142.6 157.77427686910778 V133.77427686910778 M121.0 191.6 L142.6 212.22572313089222 V236.22572313089222"/><polygon class="fg-fill-wire" points="138.3,208.1 129.9,204.9 134.7,199.8"/><text class="fg-m" x="151.6" y="139.77427686910778">C</text><text class="fg-m" x="151.6" y="238.22572313089222">E</text><text class="fg-m fg-e" x="70" y="179">B</text><path class="fg-line" d="M142.6 236.22572313089222 V244.22572313089222"/><path class="fg-line" d="M142.6 244.22572313089222 V252.22572313089222 M128.6 252.22572313089222 H156.6 M133.6 257.2257231308922 H151.6 M138.6 262.2257231308922 H146.6"/><text class="fg-a fg-b" x="30" y="46" style="fill:var(--accent)">+12 V</text><path class="fg-line" d="M74 185 H20"/><text class="fg-t fg-i" x="20" y="171">0 V</text><text class="fg-t" x="186.6" y="106" style="fill:var(--muted)">I ≈ 0</text><text class="fg-t fg-b" x="186.6" y="190" style="fill:var(--accent)">V<tspan font-size="10" dy="3">CE</tspan><tspan dy="-3"> ≈ 12 V</tspan></text><text class="fg-m" x="130" y="288.2257231308922" text-anchor="middle">equivale a un interruptor abierto</text><text class="fg-t fg-b fg-c" x="480" y="22">Señal alta: transistor saturado</text><path class="fg-line" d="M390 52 H560 V133.77427686910778 " style="display:none"/><path class="fg-line" d="M380 56 H492.6 V80"/><circle cx="492.6" cy="100" r="40" style="fill:var(--heat);opacity:.28"/><circle cx="492.6" cy="100" r="20" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M479.0 86.4 L506.20000000000005 113.6 M479.0 113.6 L506.20000000000005 86.4" style="stroke-width:1.8"/><path class="fg-line" d="M492.6 120 V133.77427686910778"/><circle cx="480" cy="185" r="30" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M424 185 H471.0"/><path class="fg-line" d="M471.0 170.0 V200.0" style="stroke-width:3.5"/><path class="fg-line" d="M471.0 178.4 L492.6 157.77427686910778 V133.77427686910778 M471.0 191.6 L492.6 212.22572313089222 V236.22572313089222"/><polygon class="fg-fill-wire" points="488.3,208.1 479.9,204.9 484.7,199.8"/><text class="fg-m" x="501.6" y="139.77427686910778">C</text><text class="fg-m" x="501.6" y="238.22572313089222">E</text><text class="fg-m fg-e" x="420" y="179">B</text><path class="fg-line" d="M492.6 236.22572313089222 V244.22572313089222"/><path class="fg-line" d="M492.6 244.22572313089222 V252.22572313089222 M478.6 252.22572313089222 H506.6 M483.6 257.2257231308922 H501.6 M488.6 262.2257231308922 H496.6"/><text class="fg-a fg-b" x="380" y="46" style="fill:var(--accent)">+12 V</text><path class="fg-line" d="M424 185 H370"/><text class="fg-t fg-i" x="370" y="171">5 V</text><path class="fg-pos" d="M570 90 V150" style="stroke-width:5;stroke-linecap:butt;display:none"/><path class="fg-pos" d="M526.6 82 V122 M520.6 114 L526.6 122 L532.6 114" style="stroke-width:3"/><text class="fg-t" x="536.6" y="106" style="fill:var(--charge-pos)">I = 120 mA</text><text class="fg-t fg-b" x="536.6" y="190" style="fill:var(--good)">V<tspan font-size="10" dy="3">CE</tspan><tspan dy="-3"> ≈ 0,2 V</tspan></text><text class="fg-m" x="480" y="288.2257231308922" text-anchor="middle">equivale a un interruptor cerrado</text>
+          </svg>
+          <figcaption><strong>Dos estados limpios.</strong> En corte no circula corriente y toda la tensión cae sobre el transistor; en saturación la corriente la fija la lámpara y sobre el transistor cae casi nada.</figcaption>
+        </figure>
+
+        <p>Fijate que el transistor <em>invierte</em> la señal: si la entrada es alta, la tensión del colector es baja, y viceversa. Un transistor con su resistor de carga es, por eso, una <strong>compuerta NOT</strong>, el ladrillo de la electrónica digital (los procesadores usan miles de millones, aunque hechos con MOSFET, que veremos en el capítulo <a class="xref" href="17-mosfet.html">17</a>).</p>
+      </section>
+
+      <section id="calculo">
+        <h2>Cómo saturarlo bien: calcular el resistor de base</h2>
+        <p>Para que el transistor sea un buen interruptor hay que <strong>saturarlo con margen</strong>: darle más corriente de base de la mínima necesaria. Se sigue este procedimiento:</p>
+        <ol>
+          <li><strong>Corriente de la carga</strong> que se quiere manejar: <span class="eq">I<sub>C</sub> = (V<sub>CC</sub> − V<sub>CE,sat</sub>) / R<sub>carga</sub></span>.</li>
+          <li><strong>Corriente de base mínima</strong> para saturar, usando la β más pequeña de la hoja de datos (no la típica): <span class="eq">I<sub>B,mín</sub> = I<sub>C</sub> / β<sub>mín</sub></span>.</li>
+          <li><strong>Margen</strong>: se multiplica por 2 a 10 (el «factor de saturación»). Así, aunque β sea más baja de lo previsto o la temperatura cambie, el transistor sigue saturado.</li>
+          <li><strong>Resistor de base</strong>: <span class="eq">R<sub>B</sub> = (V<sub>señal</sub> − V<sub>BE</sub>) / I<sub>B</sub></span>, con V<sub>BE</sub> ≈ 0,7 V. Se redondea <em>hacia abajo</em> al valor comercial más cercano (más corriente de base, más margen).</li>
+        </ol>
+        <div class="note">
+          <span class="box-title">Por qué se satura con margen</span>
+          <p>En saturación, la corriente de colector no depende de β sino de la carga y de V<sub>CC</sub>. Así el circuito funciona igual con un transistor de β = 100 que con uno de β = 300. En la zona activa, en cambio, el resultado depende de β y del temperamento del transistor: un diseño frágil.</p>
+        </div>
+        <figure class="figure">
+          <svg viewBox="0 0 640 300" role="img" aria-labelledby="g15ct g15cd">
+            <title id="g15ct">Esquema típico de un driver con un transistor NPN</title>
+            <desc id="g15cd">Un pin de microcontrolador alimenta la base a través de un resistor; la carga va entre la fuente y el colector, y el emisor se conecta a la masa común.</desc>
+            <rect class="fg-box" x="20" y="150" width="100" height="80" rx="6"/>
+            <text class="fg-t fg-b fg-c" x="70" y="184">Micro-</text><text class="fg-t fg-b fg-c" x="70" y="204">controlador</text>
+            <path class="fg-line" d="M120 190 H150"/><path class="fg-line" d="M150 190 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M216 190 H344"/>
+            <text class="fg-t fg-i fg-c" x="183" y="168">R<tspan font-size="10" dy="3">B</tspan></text><text class="fg-m fg-c" x="183" y="218">1,8 kΩ</text>
+            <text class="fg-m fg-c" x="135" y="178" font-size="11.5">pin</text>
+            <circle cx="400" cy="190" r="30" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M344 190 H391.0"/><path class="fg-line" d="M391.0 175.0 V205.0" style="stroke-width:3.5"/><path class="fg-line" d="M391.0 183.4 L412.6 162.77427686910778 V138.77427686910778 M391.0 196.6 L412.6 217.22572313089222 V241.22572313089222"/><polygon class="fg-fill-wire" points="408.3,213.1 399.9,209.9 404.7,204.8"/><text class="fg-m" x="421.6" y="144.77427686910778">C</text><text class="fg-m" x="421.6" y="243.22572313089222">E</text><text class="fg-m fg-e" x="340" y="184">B</text>
+            <path class="fg-line" d="M412.6 138.77427686910778 V120"/>
+            <circle cx="412.6" cy="100" r="40" style="fill:var(--heat);opacity:.28"/><circle cx="412.6" cy="100" r="20" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M399.0 86.4 L426.20000000000005 113.6 M399.0 113.6 L426.20000000000005 86.4" style="stroke-width:1.8"/>
+            <path class="fg-line" d="M412.6 60 V80 M412.6 60 H560 V60"/>
+            <text class="fg-a fg-b" x="442.6" y="54" style="fill:var(--accent)">+12 V (fuente aparte)</text>
+            <text class="fg-m" x="442.6" y="104">lámpara 12 V · 120 mA</text>
+            <path class="fg-line" d="M412.6 241.22572313089222 V251.22572313089222"/><path class="fg-line" d="M412.6 251.22572313089222 V259.2257231308922 M398.6 259.2257231308922 H426.6 M403.6 264.2257231308922 H421.6 M408.6 269.2257231308922 H416.6"/>
+            <path class="fg-line" d="M70 230 V251.22572313089222 H412.6" style="stroke-dasharray:5 4"/>
+            <text class="fg-m" x="90" y="273.2257231308922" font-size="12">masa común (0 V compartido)</text>
+            <path class="fg-pos" d="M232 180 H280 M270 174 L280 180 L270 186" style="stroke-width:2"/>
+            <text class="fg-t" x="232" y="168" style="fill:var(--charge-pos)" font-size="12.5">I<tspan font-size="9" dy="3">B</tspan><tspan dy="-3"> = 2,4 mA</tspan></text>
+          </svg>
+          <figcaption><strong>La carga va del lado del colector</strong> (entre +V y C) y el emisor a masa. El pin solo entrega la pequeña corriente de base.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="errores">
+        <h2>Los errores típicos</h2>
+        <ul>
+          <li><strong>Resistor de base demasiado grande.</strong> La base recibe poca corriente, el transistor queda en la zona activa y, además de no entregar la corriente esperada, <em>se calienta</em>, porque disipa <span class="eq">V<sub>CE</sub> · I<sub>C</sub></span> con una V<sub>CE</sub> alta.</li>
+          <li><strong>Sin resistor de base.</strong> La juntura base-emisor es un diodo: conectada directo a una señal de 5 V, su corriente solo la limita la fuente, y se quema el pin del microcontrolador, el transistor o los dos.</li>
+          <li><strong>Olvidar la masa común.</strong> Si la señal de control y la fuente de la carga no comparten el 0 V, la corriente de base no tiene por dónde cerrar el circuito y el transistor no conduce.</li>
+          <li><strong>Base «flotante».</strong> Con el pin del microcontrolador desconectado o en alta impedancia, la base capta ruido y el transistor conduce a medias. Un resistor de 10–100 kΩ de la base a masa (<em>pull-down</em>) lo mantiene en corte.</li>
+          <li><strong>Carga inductiva sin protección.</strong> Motores y relés generan picos de tensión al apagarse y pueden destruir al transistor. Se resuelve con un diodo; es el tema del capítulo <a class="xref" href="19-cargas-inductivas.html">19</a>.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 640 245" role="img" aria-labelledby="g15bt g15bd">
+            <title id="g15bt">Potencia que disipa el transistor</title>
+            <desc id="g15bd">Curva de la potencia disipada por el transistor según la corriente de base: nula en corte, máxima en la zona activa y pequeña en saturación.</desc>
+            <path class="fg-line" d="M70 35 V205 H604 M64 43 L70 35 L76 43 M596 199 L604 205 L596 211"/>
+            <path class="fg-dash" d="M70 17.5 H590" style="stroke:var(--bad)"/>
+            <text class="fg-m fg-e" x="590" y="11.5" style="fill:var(--bad)">límite de un transistor TO-92 ≈ 0,5 W</text>
+            <path class="fg-acc" d="M70.0 205.0 L71.7 199.7 L73.5 194.6 L75.2 189.5 L76.9 184.6 L78.7 179.8 L80.4 175.0 L82.1 170.4 L83.9 165.9 L85.6 161.4 L87.3 157.1 L89.1 152.9 L90.8 148.8 L92.5 144.8 L94.3 140.9 L96.0 137.1 L97.7 133.4 L99.5 129.8 L101.2 126.3 L102.9 123.0 L104.7 119.7 L106.4 116.5 L108.1 113.5 L109.9 110.5 L111.6 107.6 L113.3 104.9 L115.1 102.2 L116.8 99.7 L118.5 97.3 L120.3 94.9 L122.0 92.7 L123.7 90.6 L125.5 88.5 L127.2 86.6 L128.9 84.8 L130.7 83.1 L132.4 81.5 L134.1 80.0 L135.9 78.6 L137.6 77.3 L139.3 76.1 L141.1 75.1 L142.8 74.1 L144.5 73.2 L146.3 72.4 L148.0 71.8 L149.7 71.2 L151.5 70.8 L153.2 70.4 L154.9 70.2 L156.7 70.0 L158.4 70.0 L160.1 70.1 L161.9 70.2 L163.6 70.5 L165.3 70.9 L167.1 71.4 L168.8 72.0 L170.5 72.7 L172.3 73.5 L174.0 74.4 L175.7 75.4 L177.5 76.5 L179.2 77.7 L180.9 79.0 L182.7 80.5 L184.4 82.0 L186.1 83.6 L187.9 85.4 L189.6 87.2 L191.3 89.2 L193.1 91.2 L194.8 93.4 L196.5 95.6 L198.3 98.0 L200.0 100.5 L201.7 103.0 L203.5 105.7 L205.2 108.5 L206.9 111.4 L208.7 114.4 L210.4 117.5 L212.1 120.7 L213.9 124.0 L215.6 127.4 L217.3 130.9 L219.1 134.5 L220.8 138.2 L222.5 142.1 L224.3 146.0 L226.0 150.0 L227.7 154.2 L229.5 158.4 L231.2 162.8 L232.9 167.2 L234.7 171.8 L236.4 176.5 L238.1 181.2 L239.9 186.1 L241.6 191.1 L243.3 196.2 L245.1 196.2 L246.8 196.2 L248.5 196.2 L250.3 196.2 L252.0 196.2 L253.7 196.2 L255.5 196.2 L257.2 196.2 L258.9 196.2 L260.7 196.2 L262.4 196.2 L264.1 196.2 L265.9 196.2 L267.6 196.2 L269.3 196.2 L271.1 196.2 L272.8 196.2 L274.5 196.2 L276.3 196.2 L278.0 196.2 L279.7 196.2 L281.5 196.2 L283.2 196.2 L284.9 196.2 L286.7 196.2 L288.4 196.2 L290.1 196.2 L291.9 196.2 L293.6 196.2 L295.3 196.2 L297.1 196.2 L298.8 196.2 L300.5 196.2 L302.3 196.2 L304.0 196.2 L305.7 196.2 L307.5 196.2 L309.2 196.2 L310.9 196.2 L312.7 196.2 L314.4 196.2 L316.1 196.2 L317.9 196.2 L319.6 196.2 L321.3 196.2 L323.1 196.2 L324.8 196.2 L326.5 196.2 L328.3 196.2 L330.0 196.2 L331.7 196.2 L333.5 196.2 L335.2 196.2 L336.9 196.2 L338.7 196.2 L340.4 196.2 L342.1 196.2 L343.9 196.2 L345.6 196.2 L347.3 196.2 L349.1 196.2 L350.8 196.2 L352.5 196.2 L354.3 196.2 L356.0 196.2 L357.7 196.2 L359.5 196.2 L361.2 196.2 L362.9 196.2 L364.7 196.2 L366.4 196.2 L368.1 196.2 L369.9 196.2 L371.6 196.2 L373.3 196.2 L375.1 196.2 L376.8 196.2 L378.5 196.2 L380.3 196.2 L382.0 196.2 L383.7 196.2 L385.5 196.2 L387.2 196.2 L388.9 196.2 L390.7 196.2 L392.4 196.2 L394.1 196.2 L395.9 196.2 L397.6 196.2 L399.3 196.2 L401.1 196.2 L402.8 196.2 L404.5 196.2 L406.3 196.2 L408.0 196.2 L409.7 196.2 L411.5 196.2 L413.2 196.2 L414.9 196.2 L416.7 196.2 L418.4 196.2 L420.1 196.2 L421.9 196.2 L423.6 196.2 L425.3 196.2 L427.1 196.2 L428.8 196.2 L430.5 196.2 L432.3 196.2 L434.0 196.2 L435.7 196.2 L437.5 196.2 L439.2 196.2 L440.9 196.2 L442.7 196.2 L444.4 196.2 L446.1 196.2 L447.9 196.2 L449.6 196.2 L451.3 196.2 L453.1 196.2 L454.8 196.2 L456.5 196.2 L458.3 196.2 L460.0 196.2 L461.7 196.2 L463.5 196.2 L465.2 196.2 L466.9 196.2 L468.7 196.2 L470.4 196.2 L472.1 196.2 L473.9 196.2 L475.6 196.2 L477.3 196.2 L479.1 196.2 L480.8 196.2 L482.5 196.2 L484.3 196.2 L486.0 196.2 L487.7 196.2 L489.5 196.2 L491.2 196.2 L492.9 196.2 L494.7 196.2 L496.4 196.2 L498.1 196.2 L499.9 196.2 L501.6 196.2 L503.3 196.2 L505.1 196.2 L506.8 196.2 L508.5 196.2 L510.3 196.2 L512.0 196.2 L513.7 196.2 L515.5 196.2 L517.2 196.2 L518.9 196.2 L520.7 196.2 L522.4 196.2 L524.1 196.2 L525.9 196.2 L527.6 196.2 L529.3 196.2 L531.1 196.2 L532.8 196.2 L534.5 196.2 L536.3 196.2 L538.0 196.2 L539.7 196.2 L541.5 196.2 L543.2 196.2 L544.9 196.2 L546.7 196.2 L548.4 196.2 L550.1 196.2 L551.9 196.2 L553.6 196.2 L555.3 196.2 L557.1 196.2 L558.8 196.2 L560.5 196.2 L562.3 196.2 L564.0 196.2 L565.7 196.2 L567.5 196.2 L569.2 196.2 L570.9 196.2 L572.7 196.2 L574.4 196.2 L576.1 196.2 L577.9 196.2 L579.6 196.2 L581.3 196.2 L583.1 196.2 L584.8 196.2 L586.5 196.2 L588.3 196.2 L590.0 196.2"/>
+            <path class="fg-dash" d="M243.3 205 V141"/>
+            <circle cx="70" cy="205" r="8" style="fill:var(--muted)"/><text class="fg-c fg-b" x="70" y="209" font-size="11" style="fill:var(--bg)">1</text>
+            <circle cx="158.1" cy="70.0" r="8" style="fill:var(--bad)"/><text class="fg-c fg-b" x="158.1" y="74.0" font-size="11" style="fill:var(--bg)">2</text>
+            <circle cx="486.0" cy="196.2" r="8" style="fill:var(--good)"/><text class="fg-c fg-b" x="486.0" y="200.2" font-size="11" style="fill:var(--bg)">3</text>
+            <text class="fg-m" x="82" y="193">1 corte: 0 W</text>
+            <text class="fg-t" x="174.1" y="56.0" style="fill:var(--bad)">2 zona activa: 0,36 W (¡se calienta!)</text>
+            <text class="fg-m fg-e" x="590" y="175" style="fill:var(--good)">3 saturado: 0,2 V × 118 mA ≈ 24 mW</text>
+            <text class="fg-m" x="251.3" y="137">I<tspan font-size="9" dy="3">B</tspan><tspan dy="-3"> mínima para saturar (1,2 mA)</tspan></text>
+            <text class="fg-m fg-c" x="330.0" y="235">corriente de base I<tspan font-size="9" dy="3">B</tspan><tspan dy="-3"> (de 0 a 3,6 mA)</tspan></text>
+            <text class="fg-m" x="76" y="31">potencia en el transistor</text>
+          </svg>
+          <figcaption><strong>El interruptor bueno evita la zona activa.</strong> Ejemplo de la lámpara de 12 V y 100 Ω: a medio camino entre corte y saturación el transistor disipa 0,36 W; saturado, solo 24 mW.</figcaption>
+        </figure>
+
+      </section>
+
+      <section>
+        <h2>Cuando un transistor no alcanza: el par Darlington</h2>
+        <p>Para corrientes grandes, la corriente de base que haría falta también es grande. Un <strong>par Darlington</strong> conecta dos transistores de modo que el emisor del primero alimenta la base del segundo: las ganancias se multiplican (<em>β = β<sub>1</sub> · β<sub>2</sub></em>, a menudo más de 1000). Un pin de microcontrolador puede así manejar varios amperes. El precio es una caída mayor: V<sub>BE</sub> ≈ 1,4 V (dos junturas) y V<sub>CE,sat</sub> ≈ 1 V o más, por lo que se calienta más. El TIP120 es un Darlington muy usado para motores y tiras de LED.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>BJT simple frente a Darlington</caption>
+            <thead><tr><th></th><th>BJT simple (2N2222)</th><th>Darlington (TIP120)</th></tr></thead>
+            <tbody>
+              <tr><td>Ganancia β</td><td>100–300</td><td>≥ 1000</td></tr>
+              <tr><td>Corriente máxima</td><td>0,8 A</td><td>5 A</td></tr>
+              <tr><td>V<sub>BE</sub> necesaria</td><td>≈ 0,7 V</td><td>≈ 1,4 V</td></tr>
+              <tr><td>V<sub>CE,sat</sub></td><td>≈ 0,2 V</td><td>≈ 1 V o más (disipa más)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Hoy, para corrientes altas, suele preferirse un MOSFET (capítulo <a class="xref" href="17-mosfet.html">17</a>), que casi no necesita corriente de control y pierde mucho menos.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Una tira de LED desde una placa de 3,3 V</span>
+          <p>Una tira de LED de 12 V y 300 mA no se puede conectar a un pin de 3,3 V. Se coloca un transistor que la conecta a la fuente de 12 V cuando el pin sube: el pin entrega solo unos 3 mA de base.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un zumbador o una alarma</span>
+          <p>Un buzzer de 5 V que consume 30 mA excede lo que conviene pedirle a un pin. Con un transistor, el pin solo «señala» y la corriente la da la fuente. Si el pin genera una señal cuadrada, el zumbador suena con esa frecuencia.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un relé que enciende un aparato de 220 V</span>
+          <p>La bobina de un relé necesita decenas de mA, más que un pin. Un transistor la maneja, y los contactos del relé gobiernan el aparato (capítulos <a class="xref" href="18-rele.html">18</a> y <a class="xref" href="19-cargas-inductivas.html">19</a>).</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: encender una lámpara de 12 V desde un pin de 5 V</span>
+          <p>Lámpara de 12 V y 100 Ω, transistor con β<sub>mín</sub> = 100, señal de 5 V.</p>
+          <ol>
+            <li>Corriente de colector: <span class="eq">I<sub>C</sub> = (12 − 0,2) / 100 = 118 mA</span> (casi 120 mA).</li>
+            <li>Corriente de base mínima: <span class="eq">118 mA / 100 = 1,18 mA</span>. Con un factor de saturación de 2: <span class="eq">I<sub>B</sub> = 2,4 mA</span>.</li>
+            <li>Resistor de base: <span class="eq">R<sub>B</sub> = (5 − 0,7) / 2,4 mA = 1,8 kΩ</span> (valor comercial).</li>
+            <li>Potencia en el transistor: <span class="eq">0,2 V · 118 mA ≈ 24 mW</span>: ni se entibia. La lámpara disipa casi todo.</li>
+            <li>Con una señal de 3,3 V, el mismo cálculo da <span class="eq">(3,3 − 0,7) / 2,4 mA ≈ 1,1 kΩ</span>: se usaría 1 kΩ.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: qué pasa si el resistor es muy grande</span>
+          <p>Se elige R<sub>B</sub> = 47 kΩ para la misma lámpara con la señal de 5 V.</p>
+          <ol>
+            <li><span class="eq">I<sub>B</sub> = 4,3 V / 47 kΩ ≈ 91 µA</span> y <span class="eq">β · I<sub>B</sub> ≈ 9,1 mA</span>, mucho menos que los 118 mA que pide la lámpara.</li>
+            <li>El transistor queda en la zona activa con <span class="eq">V<sub>CE</sub> = 12 − 9,1 mA · 100 Ω ≈ 11,1 V</span>. La lámpara casi no enciende (recibe 0,9 V).</li>
+            <li>Potencia en el transistor: <span class="eq">11,1 V · 9,1 mA ≈ 0,1 W</span>. Con un resistor de ~7 kΩ el transistor entregaría 60 mA con 6 V entre C y E: <span class="eq">0,36 W</span>, al borde de lo que aguanta.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con la señal en <strong>0 V</strong> el transistor está en corte: la lámpara apagada, I<sub>C</sub> = 0 y V<sub>CE</sub> = 12 V. Cambiá a <strong>Alto</strong>: con R<sub>B</sub> = 1,8 kΩ la lámpara enciende y V<sub>CE</sub> cae a unos 0,2 V.</li>
+        <li>Con la señal alta, mirá la gráfica de potencia: el punto está muy a la derecha del pico, en la zona saturada, con una potencia mínima. Ese es el funcionamiento correcto de un interruptor.</li>
+        <li>Subí R<sub>B</sub> a 10 kΩ y luego a 47 kΩ: la lámpara se apaga de a poco y el punto se acerca al pico de la curva. Observá el calor del transistor y su potencia.</li>
+        <li>Cambiá β de 100 a 300 y a 50 con R<sub>B</sub> = 1,8 kΩ: la lámpara no cambia (el transistor está saturado). Repetí con R<sub>B</sub> = 47 kΩ y comprobá que ahora sí depende de β.</li>
+        <li>Bajá la señal a 3,3 V con R<sub>B</sub> = 1,8 kΩ: I<sub>B</sub> baja a 1,4 mA, sigue siendo mayor que el mínimo (1,2 mA), pero con poco margen. Si además subís la carga (bajá R<sub>carga</sub> a 50 Ω), el transistor deja de saturar.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/switch.js"></script>
+  <script src="../js/quizzes/15-transistor-interruptor.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

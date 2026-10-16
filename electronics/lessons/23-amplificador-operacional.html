@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El amplificador operacional · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="23-amplificador-operacional" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 23</p>
+        <h1>El amplificador operacional</h1>
+        <p class="lead">El amplificador de precisión: con realimentación negativa su ganancia depende solo de dos resistores. Las reglas del operacional ideal y sus tres configuraciones básicas.</p>
+      </header>
+      <section>
+        <h2>El amplificador de precisión</h2>
+        <p>En el <a class="xref" href="16-transistor-amplificador.html">capítulo 16</a> armamos un amplificador con un transistor y su ganancia dependía de la corriente de reposo, de β y de la temperatura. El <strong>amplificador operacional</strong> (<em>op-amp</em>) resuelve ese problema: es un circuito integrado con decenas de transistores adentro que ofrece un amplificador casi perfecto, con una ganancia gigantesca y entradas que casi no consumen corriente. Se lo llama «operacional» porque con él se pueden realizar operaciones matemáticas (sumar, restar, integrar) con señales.</p>
+        <p>Tiene dos entradas, la <strong>inversora (−)</strong> y la <strong>no inversora (+)</strong>, y una salida. Amplifica la <em>diferencia</em> entre ellas: <span class="eq">V<sub>sal</sub> = A · (V<sub>+</sub> − V<sub>−</sub>)</span>, con A ≈ 100 000. También necesita alimentación (dos terminales más): con una fuente doble (por ejemplo ±12 V) la salida puede ser positiva y negativa; con una sola fuente (LM358) se mueve entre casi 0 V y poco menos que la tensión de alimentación.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 225" role="img" aria-labelledby="g23at g23ad">
+            <title id="g23at">El amplificador operacional: símbolo y reglas</title>
+            <desc id="g23ad">El triángulo del amplificador operacional con sus dos entradas, la salida y las dos terminales de alimentación, junto a las tres reglas del operacional ideal.</desc>
+<text class="fg-t fg-b fg-c" x="250" y="20">El símbolo</text>
+            <polygon points="190.0,55.0 190.0,175.0 322.0,115" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><text class="fg-c fg-b" x="202.0" y="91.0" font-size="17" style="fill:var(--charge-neg)">−</text><text class="fg-c fg-b" x="202.0" y="151.0" font-size="17" style="fill:var(--charge-pos)">+</text>
+            <path class="fg-line" d="M20 85.0 H190.0 M20 145.0 H190.0 M322.0 115 H380"/>
+            <path class="fg-line" d="M250 73.0 V28 M250 157.0 V202"/>
+            <text class="fg-m" x="24" y="77.0">entrada inversora (−)</text><text class="fg-m" x="24" y="137.0">entrada no inversora (+)</text>
+            <text class="fg-m" x="386" y="119">salida</text>
+            <text class="fg-m" x="262" y="40">V+ (por ejemplo +12 V)</text><text class="fg-m" x="262" y="198">V− (−12 V o masa)</text>
+            <text class="fg-t fg-b" x="470" y="50" style="fill:var(--accent)" font-size="15">Reglas del operacional ideal</text>
+            <text class="fg-t" x="470" y="86" font-size="14">① Ninguna corriente entra</text><text class="fg-m" x="487" y="104" font-size="12.5">por las entradas (impedancia infinita).</text>
+            <text class="fg-t" x="470" y="138" font-size="14">② Con realimentación negativa,</text><text class="fg-m" x="487" y="156" font-size="12.5">V₊ ≈ V₋ (el operacional hace lo que</text><text class="fg-m" x="487" y="172" font-size="12.5">sea para igualarlas).</text>
+            <text class="fg-t" x="470" y="204" font-size="14">③ La salida no supera la alimentación.</text>
+          </svg>
+          <figcaption><strong>Un amplificador de ganancia enorme</strong> (unas 100 000 veces) que amplifica la <em>diferencia</em> entre sus dos entradas: V<sub>sal</sub> = A · (V₊ − V₋).</figcaption>
+        </figure>
+
+        <p>Los modelos más conocidos son el <strong>741</strong> (el clásico), el <strong>LM358</strong> (doble, económico, funciona con una sola fuente de 3 a 32 V), el <strong>TL072</strong> (para audio, de baja distorsión) y los de entrada y salida «rail-to-rail» (MCP6002), que llegan casi hasta los extremos de la alimentación.</p>
+      </section>
+
+      <section id="realimentacion">
+        <h2>La realimentación negativa</h2>
+        <p>Con una ganancia de 100 000, una diferencia de apenas 0,1 mV entre las entradas ya produce 10 V a la salida: el operacional «solo» sirve así como comparador (capítulo <a class="xref" href="24-aplicaciones-operacional.html">24</a>). Para usarlo como amplificador, se devuelve parte de la salida a la entrada inversora, <em>restándola</em> de la entrada: eso es <strong>realimentación negativa</strong>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 305" role="img" aria-labelledby="g23bt g23bd">
+            <title id="g23bt">La realimentación negativa</title>
+            <desc id="g23bd">Diagrama de bloques con un sumador, un amplificador de ganancia muy alta y una red de realimentación que devuelve parte de la salida a la entrada restándola.</desc>
+<circle cx="130" cy="100" r="18" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="130" y="106" font-size="17">Σ</text>
+            <text class="fg-m fg-c" x="118" y="76" font-size="13">+</text><text class="fg-m fg-c" x="144" y="132" font-size="13">−</text>
+            <path class="fg-line" d="M40 100 H112 M148 100 H210"/><polygon points="114,100 104,95 104,105" class="fg-fill-wire"/><polygon points="212,100 202,95 202,105" class="fg-fill-wire"/><polygon points="522,100 512,95 512,105" class="fg-fill-wire"/><polygon points="352,190 362,185 362,195" class="fg-fill-wire"/><polygon points="130,120 125,130 135,130" class="fg-fill-wire"/>
+            <text class="fg-t fg-i" x="40" y="88">V<tspan font-size="10" dy="3">ent</tspan></text>
+            <rect class="fg-box" x="210" y="70" width="140" height="60" rx="6"/><text class="fg-t fg-c fg-b" x="280" y="96">amplificador</text><text class="fg-m fg-c" x="280" y="116">A ≈ 100 000</text>
+            <path class="fg-line" d="M350 100 H520"/><text class="fg-t fg-i" x="478" y="88">V<tspan font-size="10" dy="3">sal</tspan></text>
+            <path class="fg-line" d="M440 100 V190 H280"/><circle cx="440" cy="100" r="4" class="fg-fill-wire"/>
+            <rect class="fg-box" x="210" y="160" width="140" height="60" rx="6" style="fill:var(--surface)"/><text class="fg-t fg-c fg-b" x="280" y="186">realimentación</text><text class="fg-m fg-c" x="280" y="206">β = R<tspan font-size="9" dy="3">g</tspan><tspan dy="-3"> / (R</tspan><tspan font-size="9" dy="3">f</tspan><tspan dy="-3"> + R</tspan><tspan font-size="9" dy="3">g</tspan><tspan dy="-3">)</tspan></text>
+            <path class="fg-line" d="M210 190 H130 V118"/>
+            <text class="fg-a fg-b" x="40" y="260" style="fill:var(--accent)" font-size="16">V<tspan font-size="10" dy="3">sal</tspan><tspan dy="-3"> = A · (V</tspan><tspan font-size="10" dy="3">ent</tspan><tspan dy="-3"> − β · V</tspan><tspan font-size="10" dy="3">sal</tspan><tspan dy="-3">)</tspan></text>
+            <text class="fg-a fg-b" x="40" y="286" style="fill:var(--accent)" font-size="16">⇒  V<tspan font-size="10" dy="3">sal</tspan><tspan dy="-3"> / V</tspan><tspan font-size="10" dy="3">ent</tspan><tspan dy="-3"> = A / (1 + A·β) ≈ 1 / β</tspan></text>
+            <text class="fg-m" x="330" y="262" font-size="12.5">Si A es enorme, la ganancia ya no depende de A</text><text class="fg-m" x="330" y="280" font-size="12.5">sino solo de los resistores (de β).</text>
+          </svg>
+          <figcaption><strong>Se «gasta» ganancia para ganar precisión.</strong> El amplificador tiene una ganancia gigantesca pero imprecisa; al devolver parte de la salida a la entrada, la ganancia total pasa a depender solo de dos resistores, que son baratos y estables.</figcaption>
+        </figure>
+
+        <p>El efecto es sorprendente: la ganancia total deja de depender de A (que es enorme pero imprecisa) y pasa a depender <em>solo de los resistores</em> de la realimentación. Y cuando la realimentación funciona, el operacional se «autoajusta» para que la tensión en la entrada − sea igual a la de la entrada +. De ahí salen las dos reglas que permiten analizar cualquier circuito con operacionales:</p>
+        <ol>
+          <li><strong>Las entradas no consumen corriente</strong> (su impedancia es altísima).</li>
+          <li><strong>V<sub>+</sub> ≈ V<sub>−</sub></strong> (cortocircuito virtual), siempre que haya realimentación negativa y la salida no esté saturada.</li>
+        </ol>
+      </section>
+
+      <section id="configuraciones">
+        <h2>Las tres configuraciones básicas</h2>
+        <figure class="figure">
+          <svg viewBox="0 0 830 340" role="img" aria-labelledby="g23ct g23cd">
+            <title id="g23ct">Las tres configuraciones básicas</title>
+            <desc id="g23cd">Circuitos de un seguidor de tensión, un amplificador no inversor con dos resistores y un amplificador inversor con resistor de entrada y de realimentación, con sus ganancias.</desc>
+<polygon points="90.0,75.0 90.0,145.0 167.0,110" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><text class="fg-c fg-b" x="97.0" y="98.5" font-size="17" style="fill:var(--charge-neg)">−</text><text class="fg-c fg-b" x="97.0" y="133.5" font-size="17" style="fill:var(--charge-pos)">+</text><path class="fg-line" d="M15 127.5 H90.0 M167.0 110 H201.0 M185.0 110 V52 H63 V92.5 H90.0"/><circle cx="185.0" cy="110" r="3.5" class="fg-fill-wire"/><text class="fg-m " x="15" y="119.5" font-size="12.5">V<tspan font-size="9" dy="3">ent</tspan></text><text class="fg-t fg-b fg-c" x="125" y="16">Seguidor</text><text class="fg-a fg-b fg-c" x="125" y="292" style="fill:var(--accent)" font-size="15">Av = 1</text><text class="fg-m fg-c" x="125" y="312" font-size="12">copia la señal con más corriente</text><text class="fg-m fg-c" x="125" y="328" font-size="12">(impedancia de entrada altísima)</text><polygon points="350.0,57.0 350.0,127.0 427.0,92" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><text class="fg-c fg-b" x="357.0" y="80.5" font-size="17" style="fill:var(--charge-pos)">+</text><text class="fg-c fg-b" x="357.0" y="115.5" font-size="17" style="fill:var(--charge-neg)">−</text><path class="fg-line" d="M265 74.5 H350.0"/><path class="fg-line" d="M427.0 92 H461.0 M447.0 92 V158 H389"/><path class="fg-line" d="M323 158 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M323 158 H323"/><path class="fg-line" d="M309 109.5 H350.0 M309 109.5 V158 H323"/><circle cx="447.0" cy="92" r="3.5" class="fg-fill-wire"/><circle cx="309" cy="158" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M309 158 V176"/><g transform="translate(309,176) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M309 242 V250"/><path class="fg-line" d="M309 250 V258 M295 258 H323 M300 263 H318 M305 268 H313"/><text class="fg-m " x="265" y="66.5" font-size="12.5">V<tspan font-size="9" dy="3">ent</tspan></text><text class="fg-m fg-c" x="373" y="146" font-size="12.5">R<tspan font-size="9" dy="3">f</tspan></text><text class="fg-m fg-e" x="297" y="212" font-size="12.5">R<tspan font-size="9" dy="3">g</tspan></text><text class="fg-t fg-b fg-c" x="385" y="16">No inversor</text><text class="fg-a fg-b fg-c" x="385" y="292" style="fill:var(--accent)" font-size="15">Av = 1 + Rf / Rg</text><text class="fg-m fg-c" x="385" y="312" font-size="12">no invierte la señal; la impedancia</text><text class="fg-m fg-c" x="385" y="328" font-size="12">de entrada es muy alta</text><polygon points="655.0,75.0 655.0,145.0 732.0,110" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><text class="fg-c fg-b" x="662.0" y="98.5" font-size="17" style="fill:var(--charge-neg)">−</text><text class="fg-c fg-b" x="662.0" y="133.5" font-size="17" style="fill:var(--charge-pos)">+</text><path class="fg-line" d="M500 92.5 H514"/><path class="fg-line" d="M514 92.5 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M580 92.5 H655.0"/><path class="fg-line" d="M628 92.5 V52 H642"/><path class="fg-line" d="M642 52 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M708 52 H750.0 V110 M732.0 110 H766.0"/><circle cx="628" cy="92.5" r="3.5" class="fg-fill-wire"/><circle cx="750.0" cy="110" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M655.0 127.5 H637.0 V143.5"/><path class="fg-line" d="M637.0 143.5 V151.5 M623.0 151.5 H651.0 M628.0 156.5 H646.0 M633.0 161.5 H641.0"/><text class="fg-m " x="500" y="66.5" font-size="12.5">V<tspan font-size="9" dy="3">ent</tspan></text><text class="fg-m " x="546" y="78.5" font-size="12.5">R<tspan font-size="9" dy="3">in</tspan></text><text class="fg-m fg-c" x="664" y="40" font-size="12.5">R<tspan font-size="9" dy="3">f</tspan></text><text class="fg-t fg-b fg-c" x="690" y="16">Inversor</text><text class="fg-a fg-b fg-c" x="690" y="292" style="fill:var(--accent)" font-size="15">Av = −Rf / Rin</text><text class="fg-m fg-c" x="690" y="312" font-size="12">invierte la señal; la entrada − es</text><text class="fg-m fg-c" x="690" y="328" font-size="12">una “tierra virtual” (0 V)</text>
+          </svg>
+          <figcaption>Con solo dos resistores se elige cuánto amplificar. El resultado no depende del operacional (mientras sea bueno y no se sature), sino de la relación entre R<sub>f</sub> y la otra resistencia.</figcaption>
+        </figure>
+
+        <ul>
+          <li><strong>Seguidor de tensión (buffer):</strong> la salida se conecta directamente a la entrada −. Por la regla ②, V<sub>sal</sub> = V<sub>ent</sub>: ganancia 1. Parece inútil, pero tiene una impedancia de entrada altísima y una de salida muy baja: sirve para «copiar» una señal de un sensor débil sin cargarlo (el equivalente al seguidor de emisor del capítulo 16).</li>
+          <li><strong>No inversor:</strong> la señal entra por +, y un divisor R<sub>f</sub>–R<sub>g</sub> toma parte de la salida hacia −. Como V<sub>−</sub> = V<sub>sal</sub> · R<sub>g</sub>/(R<sub>f</sub> + R<sub>g</sub>) debe igualar a V<sub>ent</sub>: <span class="eq">A<sub>v</sub> = 1 + R<sub>f</sub> / R<sub>g</sub></span>. Nunca es menor que 1.</li>
+          <li><strong>Inversor:</strong> la señal entra a la entrada − a través de R<sub>in</sub>, con + a masa. La entrada − queda a 0 V (tierra virtual) y toda la corriente de entrada, V<sub>ent</sub>/R<sub>in</sub>, tiene que pasar por R<sub>f</sub>: <span class="eq">A<sub>v</sub> = −R<sub>f</sub> / R<sub>in</sub></span>. Invierte la señal y su impedancia de entrada es R<sub>in</sub> (baja).</li>
+        </ul>
+      </section>
+
+      <section id="limites">
+        <h2>Los límites reales</h2>
+        <ul>
+          <li><strong>Saturación:</strong> la salida no puede superar la alimentación. Con ±12 V, un operacional común llega a unos ±10,5 V. Si la ganancia por la señal pide más, se recorta, como en el amplificador de transistor.</li>
+          <li><strong>Ancho de banda:</strong> el producto ganancia × ancho de banda (GBW) es casi constante. Un LM358 o un 741 tienen 1 MHz: con ganancia 100 solo llegan a 10 kHz; un TL072 tiene 3 MHz.</li>
+          <li><strong>Velocidad de respuesta (<em>slew rate</em>):</strong> cuánto puede cambiar la salida por microsegundo (unos 0,5 V/µs en un 741). Limita las señales grandes y rápidas.</li>
+          <li><strong>Imperfecciones de continua:</strong> una pequeña tensión de <em>offset</em> (milivolts) y corrientes de entrada (nA a µA) que se notan al amplificar señales muy pequeñas.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g23dt g23dd">
+            <title id="g23dt">Ganancia y ancho de banda</title>
+            <desc id="g23dd">Curva de ganancia en lazo abierto de un operacional que cae 20 decibeles por década hasta cruzar cero decibeles en un megahertz, y las ganancias en lazo cerrado de 1, 10 y 100 que se cortan al encontrarse con esa curva.</desc>
+<path class="fg-line" d="M70 48 V210 H602 M65 55 L70 48 L75 55 M595 205 L602 210 L595 215"/>
+            <path class="fg-grid" d="M70 180.0 H590 M70 150.0 H590 M70 120.0 H590 M70 90.0 H590 M70 60.0 H590"/>
+            <g class="fg-m fg-c"><text x="70.0" y="228">10 Hz</text><text x="156.7" y="228">100 Hz</text><text x="243.3" y="228">1 kHz</text><text x="330.0" y="228">10 kHz</text><text x="416.7" y="228">100 kHz</text><text x="503.3" y="228">1 MHz</text><text x="590.0" y="228">10 MHz</text></g>
+            <g class="fg-m fg-e"><text x="62" y="214.0">0 dB</text><text x="62" y="184.0">20 dB</text><text x="62" y="154.0">40 dB</text><text x="62" y="124.0">60 dB</text><text x="62" y="94.0">80 dB</text><text x="62" y="64.0">100 dB</text></g>
+            <path class="fg-acc" d="M70.0 60.0 H70.0 L503.3 210.0" style="stroke:var(--muted);stroke-width:3.5"/>
+            <path class="fg-acc" d="M70.0 150.0 H330.0" style="stroke:var(--accent)"/><path class="fg-acc" d="M70.0 180.0 H416.7" style="stroke:var(--charge-neg)"/><path class="fg-acc" d="M70.0 210.0 H503.3" style="stroke:var(--good)"/>
+            <path class="fg-dash" d="M330.0 150.0 V210 M416.7 180.0 V210 M503.3 210.0 V210"/>
+            <text class="fg-t fg-b" x="78.0" y="52.0" style="fill:var(--muted)" font-size="12.5">sin realimentación (100 dB, cae 20 dB por década)</text>
+            <text class="fg-t fg-b" x="80.0" y="144.0" style="fill:var(--accent)" font-size="12.5">ganancia 100: hasta 10 kHz</text>
+            <text class="fg-t fg-b" x="80.0" y="174.0" style="fill:var(--charge-neg)" font-size="12.5">ganancia 10: hasta 100 kHz</text>
+            <text class="fg-t fg-b" x="80.0" y="204.0" style="fill:var(--good)" font-size="12.5">ganancia 1: hasta 1 MHz</text>
+            <text class="fg-m fg-c" x="330.0" y="250">frecuencia (escala logarítmica) · operacional con producto ganancia-ancho de banda de 1 MHz</text>
+          </svg>
+          <figcaption><strong>Ganancia × ancho de banda = constante.</strong> Un operacional de 1 MHz amplifica 100 veces hasta 10 kHz o 10 veces hasta 100 kHz: cuanta más ganancia se pida, menos frecuencia soporta.</figcaption>
+        </figure>
+
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El preamplificador de un micrófono o de un sensor</span>
+          <p>Un micrófono entrega unos 10 mV; un termopar, microvolts. Un operacional en configuración no inversora los lleva a un nivel de volts, con ganancia estable y poco ruido. Es lo primero que se coloca antes de un conversor analógico-digital (capítulo <a class="xref" href="26-entradas-adc.html">26</a>).</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un buffer entre un sensor y el resto del circuito</span>
+          <p>Un sensor de alta impedancia (como un electrodo de pH) no puede alimentar una carga sin falsear su señal. Un seguidor de tensión la copia con baja impedancia de salida, igual que un divisor de tensión (<a class="xref" href="05-multimetro.html#interior">efecto de carga del capítulo 5</a>) deja de ser un problema.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Audio, filtros y control</span>
+          <p>Mezcladores y ecualizadores de audio, filtros activos (capítulo <a class="xref" href="24-aplicaciones-operacional.html">24</a>), reguladores de temperatura y fuentes de corriente constante usan operacionales: es el bloque de construcción analógico más versátil.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un amplificador inversor</span>
+          <p>R<sub>in</sub> = 10 kΩ y R<sub>f</sub> = 100 kΩ, entrada de 0,5 V de pico, alimentación de ±12 V.</p>
+          <ol>
+            <li>Ganancia: <span class="eq">A<sub>v</sub> = −100 k / 10 k = −10</span>.</li>
+            <li>Salida: <span class="eq">−10 · 0,5 V = −5 V</span> de pico (invertida): cabe dentro de ±10,5 V.</li>
+            <li>Con 1,5 V de entrada se pediría 15 V: la salida se recortaría en ±10,5 V.</li>
+            <li>Corriente de entrada: <span class="eq">0,5 V / 10 kΩ = 50 µA</span>; esa misma corriente atraviesa R<sub>f</sub> (porque el operacional no consume), y la caída en R<sub>f</sub> es 50 µA · 100 kΩ = 5 V.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿alcanza el ancho de banda?</span>
+          <p>Un preamplificador de micrófono con LM358 (GBW = 1 MHz), configuración no inversora con R<sub>f</sub> = 100 kΩ y R<sub>g</sub> = 1 kΩ.</p>
+          <ol>
+            <li>Ganancia: <span class="eq">A<sub>v</sub> = 1 + 100 / 1 = 101</span>. Con 10 mV de entrada, 1,01 V a la salida.</li>
+            <li>Ancho de banda: <span class="eq">B = GBW / A<sub>v</sub> = 1 MHz / 101 ≈ 9,9 kHz</span>.</li>
+            <li>El audio llega hasta 20 kHz, así que una sola etapa no alcanza: se usan dos etapas de ganancia ≈ 10 (cada una con 100 kHz de ancho de banda) o un operacional más rápido.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>En <strong>Inversor</strong> con R<sub>f</sub> = 100 kΩ y R<sub>in</sub> = 10 kΩ, la ganancia es −10: la salida es diez veces más grande e invertida. Compará con la curva de transferencia: una recta que baja, hasta que se satura.</li>
+        <li>Subí la amplitud de la entrada hasta que la salida pase los ±10,5 V: la onda se aplana y la figura avisa «saturada». ¿A qué amplitud empieza el recorte? (con ganancia 10, a 1,05 V).</li>
+        <li>Pasá a <strong>No inversor</strong> con R<sub>f</sub> = 47 kΩ y R<sub>g</sub> = 4,7 kΩ: ganancia 11, sin inversión. Cambiá R<sub>g</sub> a 1 kΩ: ¡la ganancia sube a 48! Mirá cómo la ganancia depende solo de los resistores.</li>
+        <li>Probá <strong>Seguidor</strong>: la salida copia exactamente a la entrada (ganancia 1), sin importar los resistores (que ni se usan). En el panel verás que la impedancia de entrada es altísima.</li>
+        <li>Elegí <strong>Sin realimentación</strong>: aunque la entrada sea de 0,1 V, la salida salta de −10,5 V a +10,5 V como un interruptor. Es un comparador: el tema del próximo capítulo.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/opamp.js"></script>
+  <script src="../js/quizzes/23-amplificador-operacional.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

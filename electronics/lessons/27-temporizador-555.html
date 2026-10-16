@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El temporizador 555 · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="27-temporizador-555" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 27</p>
+        <h1>El temporizador 555</h1>
+        <p class="lead">Un circuito integrado clásico con dos comparadores, un flip-flop y un transistor de descarga: genera un pulso de duración controlada (monoestable) o una señal periódica (astable).</p>
+      </header>
+      <section>
+        <h2>Un integrado clásico</h2>
+        <p>El <strong>555</strong> es un circuito integrado de ocho patas diseñado en 1971 por Hans Camenzind que sigue fabricándose en cantidades enormes: es uno de los integrados más vendidos de la historia. Sirve para dos cosas muy comunes en electrónica: generar <strong>pulsos de duración controlada</strong> (temporizador) y producir <strong>señales periódicas</strong> (oscilador). Para ello combina cosas que ya conocemos: un circuito RC (<a class="xref" href="06-capacitores-rc.html">capítulo 6</a>), dos comparadores (<a class="xref" href="24-aplicaciones-operacional.html">capítulo 24</a>), un flip-flop (<a class="xref" href="25-logica.html#memoria">capítulo 25</a>) y un transistor como interruptor (<a class="xref" href="15-transistor-interruptor.html">capítulo 15</a>).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 815 250" role="img" aria-labelledby="g27at g27ad">
+            <title id="g27at">Terminales y estructura interna del 555</title>
+            <desc id="g27ad">El encapsulado de ocho terminales del 555 y su diagrama interno: un divisor de tres resistores de 5 kiloohms, dos comparadores, un flip-flop, un transistor de descarga y la salida.</desc>
+<text class="fg-t fg-b fg-c" x="165" y="22">Terminales (DIP-8)</text><rect x="95" y="46" width="140" height="182" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><path d="M150 46 a15 15 0 0 0 30 0" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-b fg-c" x="165" y="140" font-size="22">555</text><path class="fg-line" d="M75 76 H95"/><text class="fg-t fg-b fg-e" x="68" y="80" font-size="12">1</text><text class="fg-m fg-e" x="40" y="80" font-size="11.5">masa</text><path class="fg-line" d="M75 120 H95"/><text class="fg-t fg-b fg-e" x="68" y="124" font-size="12">2</text><text class="fg-m fg-e" x="40" y="124" font-size="11.5">disparo</text><path class="fg-line" d="M75 164 H95"/><text class="fg-t fg-b fg-e" x="68" y="168" font-size="12">3</text><text class="fg-m fg-e" x="40" y="168" font-size="11.5">salida</text><path class="fg-line" d="M75 208 H95"/><text class="fg-t fg-b fg-e" x="68" y="212" font-size="12">4</text><text class="fg-m fg-e" x="40" y="212" font-size="11.5">reset</text><path class="fg-line" d="M235 76 H255"/><text class="fg-t fg-b" x="262" y="80" font-size="12">8</text><text class="fg-m" x="282" y="80" font-size="11.5">+V</text><path class="fg-line" d="M235 120 H255"/><text class="fg-t fg-b" x="262" y="124" font-size="12">7</text><text class="fg-m" x="282" y="124" font-size="11.5">descarga</text><path class="fg-line" d="M235 164 H255"/><text class="fg-t fg-b" x="262" y="168" font-size="12">6</text><text class="fg-m" x="282" y="168" font-size="11.5">umbral</text><path class="fg-line" d="M235 208 H255"/><text class="fg-t fg-b" x="262" y="212" font-size="12">5</text><text class="fg-m" x="282" y="212" font-size="11.5">control</text><text class="fg-t fg-b fg-c" x="550" y="22">Por dentro</text><rect x="380" y="40" width="340" height="196" rx="8" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><path class="fg-line" d="M406 40 V52"/><path class="fg-line" d="M406 52 v6 l-8 7 l16 8 l-16 8 l16 8 l-8 7 v6"/><text class="fg-m" x="422" y="82" font-size="11">5 kΩ</text><path class="fg-line" d="M406 104 v6 l-8 7 l16 8 l-16 8 l16 8 l-8 7 v6"/><text class="fg-m" x="422" y="134" font-size="11">5 kΩ</text><path class="fg-line" d="M406 156 v6 l-8 7 l16 8 l-16 8 l16 8 l-8 7 v6"/><text class="fg-m" x="422" y="186" font-size="11">5 kΩ</text><path class="fg-line" d="M406 208 V236"/>
+<path class="fg-thin" d="M406 104 H480 M406 156 H480" style="stroke-dasharray:4 3"/>
+<text class="fg-m" x="414" y="100" font-size="10.5">⅔ V</text><text class="fg-m" x="414" y="152" font-size="10.5">⅓ V</text>
+<rect class="fg-box" x="480" y="62" width="112" height="46" rx="6" style="fill:var(--surface-2)"/><text class="fg-t fg-c fg-b" x="536" y="82" font-size="11.5">comparador A</text><text class="fg-m fg-c" x="536" y="98" font-size="10.5">pin 6 vs ⅔ V</text>
+<rect class="fg-box" x="480" y="150" width="112" height="46" rx="6" style="fill:var(--surface-2)"/><text class="fg-t fg-c fg-b" x="536" y="170" font-size="11.5">comparador B</text><text class="fg-m fg-c" x="536" y="186" font-size="10.5">pin 2 vs ⅓ V</text>
+<rect class="fg-box" x="620" y="92" width="70" height="80" rx="6" style="fill:var(--surface-2)"/><text class="fg-t fg-c fg-b" x="655" y="128" font-size="11.5">flip-flop</text><text class="fg-m fg-c" x="655" y="146" font-size="10.5">R   S</text>
+<path class="fg-line" d="M592 85 H606 V110 H620 M592 173 H606 V154 H620" style="stroke-width:2"/>
+<path class="fg-line" d="M690 132 H736" style="stroke-width:2.2"/><text class="fg-t fg-b" x="742" y="136" font-size="11.5">salida (3)</text>
+<circle cx="655" cy="212" r="11" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><text class="fg-c fg-b" x="655" y="217" font-size="11.5" style="fill:var(--text)">T</text>
+<path class="fg-dash" d="M655 172 V201"/><text class="fg-m" x="672" y="216" font-size="10.5">descarga (7)</text>
+          </svg>
+          <figcaption><strong>Todo el 555 son dos comparadores y un flip-flop.</strong> El divisor de tres resistores iguales fija los umbrales en ⅓ y ⅔ de la alimentación; de ahí viene el nombre «555» (tres resistores de 5 kΩ).</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="funcionamiento">
+        <h2>Cómo funciona</h2>
+        <p>Dentro hay un <strong>divisor</strong> de tres resistores iguales de 5 kΩ (de ahí su nombre) que genera dos tensiones de referencia: un tercio y dos tercios de la alimentación. Dos comparadores miran la tensión de un capacitor externo y la comparan con esas referencias:</p>
+        <ul>
+          <li>El <strong>comparador de umbral</strong> (pin 6) se activa cuando el capacitor supera <strong>⅔ V</strong>: pone a cero el flip-flop. La salida (pin 3) baja y se enciende un transistor interno (pin 7, «descarga») que descarga el capacitor.</li>
+          <li>El <strong>comparador de disparo</strong> (pin 2) se activa cuando la tensión cae por debajo de <strong>⅓ V</strong>: pone a uno el flip-flop. La salida sube y el transistor de descarga se apaga, de modo que el capacitor vuelve a cargarse.</li>
+        </ul>
+        <p>Entre ⅓ y ⅔ de V el flip-flop <em>conserva</em> su estado: es una histéresis como la del disparador de Schmitt (<a class="xref" href="24-aplicaciones-operacional.html#histeresis">capítulo 24</a>). Con distintas conexiones de R y C se obtienen los dos modos principales.</p>
+        <p>Las demás terminales: el <strong>reset</strong> (pin 4) pone la salida en bajo cuando se lo lleva a masa, y si no se usa se conecta a +V; el <strong>control</strong> (pin 5) permite modificar el umbral de ⅔ V, y si no se usa se conecta a masa con un capacitor de 10 nF para reducir el ruido.</p>
+      </section>
+
+      <section id="monoestable">
+        <h2>Modo monoestable: un pulso por disparo</h2>
+        <p>En reposo la salida está baja. Un pulso breve en el pin 2 (se lo baja por debajo de ⅓ V, por ejemplo con un pulsador) <em>dispara</em> el circuito: la salida sube y el capacitor C empieza a cargarse a través de R. Cuando llega a ⅔ V, el 555 vuelve a reposo. El pulso dura:</p>
+        <p class="equation"><span class="eq">T = 1,1 · R · C</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 445" role="img" aria-labelledby="g27bt g27bd">
+            <title id="g27bt">El 555 como monoestable</title>
+            <desc id="g27bd">Circuito del 555 monoestable con un resistor y un capacitor de temporización y un pulsador de disparo, con las formas de onda del disparo, de la tensión del capacitor y de la salida, que dura 1,1 por R por C.</desc>
+<text class="fg-t fg-b" x="40" y="22">Circuito</text>
+<rect x="180" y="70" width="100" height="190" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-b fg-c" x="230.0" y="92" font-size="16">555</text><path class="fg-line" d="M164 110 H180"/><text class="fg-m" x="186" y="114" font-size="11.5">2</text><path class="fg-line" d="M280 110 H296"/><text class="fg-m fg-e" x="274" y="114" font-size="11.5">3</text><path class="fg-line" d="M280 200 H296"/><text class="fg-m fg-e" x="274" y="204" font-size="11.5">7</text><path class="fg-line" d="M280 240 H296"/><text class="fg-m fg-e" x="274" y="244" font-size="11.5">6</text>
+<path class="fg-line" d="M110 110 H164"/><circle cx="110" cy="110" r="3.5" class="fg-fill-wire"/>
+<text class="fg-a fg-b fg-c" x="110" y="30" style="fill:var(--accent)" font-size="11.5">+V</text>
+<path class="fg-line" d="M110 36 V44"/><g transform="translate(110,44) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><text class="fg-m" x="120" y="82" font-size="11.5">10 kΩ</text>
+<path class="fg-line" d="M110 110 V148"/><circle cx="110" cy="150" r="3.5" class="fg-fill-wire"/><circle cx="110" cy="180" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M110 150 L128 172 M110 183 V200"/><path class="fg-line" d="M110 200 V208 M96 208 H124 M101 213 H119 M106 218 H114"/>
+<text class="fg-m fg-e" x="98" y="170" font-size="11.5">pulsador</text>
+<path class="fg-line" d="M296 200 H322 M296 240 H322 M322 200 V240 M322 220 H352"/><circle cx="322" cy="220" r="3.5" class="fg-fill-wire"/><circle cx="352" cy="220" r="3.5" class="fg-fill-wire"/>
+<text class="fg-a fg-b fg-c" x="352" y="126" style="fill:var(--accent)" font-size="11.5">+V</text><path class="fg-line" d="M352 130 V136"/><g transform="translate(352,136) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M352 202 V220"/><text class="fg-m" x="364" y="172" font-size="11.5">R</text>
+<path class="fg-line" d="M352 220 V248"/><path class="fg-line" d="M340 248 H364 M340 258 H364" style="stroke-width:3"/><path class="fg-line" d="M352 258 V276"/><path class="fg-line" d="M352 276 V284 M338 284 H366 M343 289 H361 M348 294 H356"/><text class="fg-m" x="370" y="258" font-size="11.5">C</text>
+<path class="fg-line" d="M296 110 H340"/><text class="fg-m" x="300" y="100" font-size="11.5">salida</text>
+<text class="fg-m" x="40" y="320" font-size="12">Al apretar el pulsador, el pin 2 baja de ⅓ V: la salida sube y C empieza</text>
+<text class="fg-m" x="40" y="338" font-size="12">a cargarse a través de R. Al llegar a ⅔ V el 555 baja la salida y descarga C.</text>
+<text class="fg-m" x="40" y="356" font-size="11.5">(la alimentación y la masa del chip, pines 8 y 1, no se dibujan)</text>
+<path class="fg-thin" d="M440 98 H700"/><path class="fg-acc" d="M440.0 46.0 L480.0 46.0 L480.0 92.0 L500.0 92.0 L500.0 46.0 L700.0 46.0" style="stroke:var(--charge-neg)"/><text class="fg-m" x="440" y="44" font-size="11.5">disparo (pin 2)</text>
+<path class="fg-thin" d="M440 230 H700"/><path class="fg-acc" d="M440.0 230.0 L480.0 230.0 L480.0 230.0 L482.0 228.0 L484.0 226.0 L486.0 224.1 L488.0 222.3 L490.0 220.5 L492.0 218.8 L494.0 217.1 L496.0 215.5 L498.0 213.9 L500.0 212.4 L502.0 211.0 L504.0 209.6 L506.0 208.2 L508.0 206.9 L510.0 205.6 L512.0 204.4 L514.0 203.2 L516.0 202.0 L518.0 200.9 L520.0 199.8 L522.0 198.8 L524.0 197.8 L526.0 196.8 L528.0 195.9 L530.0 194.9 L532.0 194.1 L534.0 193.2 L536.0 192.4 L538.0 191.6 L540.0 190.8 L542.0 190.1 L544.0 189.3 L546.0 188.6 L546.0 230.0 L700.0 230.0" style="stroke:var(--accent)"/><text class="fg-m" x="440" y="176" font-size="11.5">tensión del capacitor</text>
+<path class="fg-dash" d="M480 188.6 H700" style="stroke:var(--heat)"/><text class="fg-m fg-e" x="700" y="182.6" style="fill:var(--heat)" font-size="11.5">⅔ V</text>
+<path class="fg-thin" d="M440 372 H700"/><path class="fg-acc" d="M440.0 372.0 L480.0 372.0 L480.0 326.0 L546.0 326.0 L546.0 372.0 L700.0 372.0" style="stroke:var(--charge-pos)"/><text class="fg-m" x="440" y="318" font-size="11.5">salida (pin 3)</text>
+<path class="fg-dash" d="M480 410 V326 M546.0 410 V326"/>
+<path class="fg-thin" d="M480 404 H546.0 M486 399 L480 404 L486 409 M540.0 399 L546.0 404 L540.0 409"/>
+<text class="fg-a fg-b fg-c" x="513.0" y="426" style="fill:var(--accent)" font-size="13">T = 1,1 · R · C</text>
+          </svg>
+          <figcaption><strong>Un disparo, un pulso de duración fija.</strong> El ancho del pulso solo depende de R y C: T = 1,1·R·C. Sirve para temporizadores, retardos y para «estirar» pulsos muy cortos.</figcaption>
+        </figure>
+
+        <p>Se usa para temporizadores (una luz de escalera que se apaga sola), retardos, y para «estirar» un pulso demasiado corto para ser visto. Es muy preciso: depende solo de R y C, y casi nada de la alimentación.</p>
+      </section>
+
+      <section id="astable">
+        <h2>Modo astable: un oscilador</h2>
+        <p>Con dos resistores, R<sub>1</sub> y R<sub>2</sub>, el capacitor se carga de ⅓ a ⅔ V a través de R<sub>1</sub> + R<sub>2</sub> y se descarga de ⅔ a ⅓ V a través de R<sub>2</sub> (el transistor de descarga conecta el nodo entre R<sub>1</sub> y R<sub>2</sub> a masa). La salida alterna sin parar entre alto y bajo:</p>
+        <p class="equation"><span class="eq">t<sub>alto</sub> = 0,693 · (R<sub>1</sub> + R<sub>2</sub>) · C</span> &nbsp;&nbsp; <span class="eq">t<sub>bajo</sub> = 0,693 · R<sub>2</sub> · C</span></p>
+        <p class="equation"><span class="eq">f = 1,44 / ((R<sub>1</sub> + 2 · R<sub>2</sub>) · C)</span> &nbsp;&nbsp; <span class="eq">D = (R<sub>1</sub> + R<sub>2</sub>) / (R<sub>1</sub> + 2 · R<sub>2</sub>)</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 740 400" role="img" aria-labelledby="g27ct g27cd">
+            <title id="g27ct">El 555 como astable</title>
+            <desc id="g27cd">Circuito del 555 astable con dos resistores y un capacitor, y las formas de onda de la tensión del capacitor, que oscila entre un tercio y dos tercios de la alimentación, y de la salida.</desc>
+<text class="fg-t fg-b" x="40" y="22">Circuito</text>
+<rect x="160" y="70" width="100" height="200" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-b fg-c" x="210.0" y="92" font-size="16">555</text><path class="fg-line" d="M144 110 H160"/><text class="fg-m" x="166" y="114" font-size="11.5">3</text><path class="fg-line" d="M260 150 H276"/><text class="fg-m fg-e" x="254" y="154" font-size="11.5">7</text><path class="fg-line" d="M260 210 H276"/><text class="fg-m fg-e" x="254" y="214" font-size="11.5">6</text><path class="fg-line" d="M260 248 H276"/><text class="fg-m fg-e" x="254" y="252" font-size="11.5">2</text>
+<path class="fg-line" d="M144 110 H110"/><text class="fg-m fg-e" x="106" y="114" font-size="11.5">salida</text>
+<path class="fg-line" d="M276 150 H340"/><circle cx="340" cy="150" r="3.5" class="fg-fill-wire"/>
+<text class="fg-a fg-b fg-c" x="340" y="28" style="fill:var(--accent)" font-size="11.5">+V</text><path class="fg-line" d="M340 34 V40"/><g transform="translate(340,40) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M340 106 V150"/><text class="fg-m" x="350" y="80" font-size="11.5">R1</text>
+<g transform="translate(340,150) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><text class="fg-m" x="350" y="186" font-size="11.5">R2</text>
+<path class="fg-line" d="M276 210 H300 M276 248 H300 M300 210 V248 M300 229 H340"/><circle cx="300" cy="229" r="3.5" class="fg-fill-wire"/>
+<path class="fg-line" d="M340 216 V262"/><circle cx="340" cy="229" r="3.5" class="fg-fill-wire"/>
+<path class="fg-line" d="M328 262 H352 M328 272 H352" style="stroke-width:3"/><path class="fg-line" d="M340 272 V292"/><path class="fg-line" d="M340 292 V300 M326 300 H354 M331 305 H349 M336 310 H344"/><text class="fg-m" x="358" y="272" font-size="11.5">C</text>
+<text class="fg-m" x="40" y="322" font-size="12">R1 va de +V al pin 7; R2 une el pin 7 con los pines 6 y 2 (unidos);</text>
+<text class="fg-m" x="40" y="340" font-size="12">C va de los pines 6 y 2 a masa.</text>
+<text class="fg-m" x="40" y="358" font-size="11.5">(la alimentación y la masa del chip, pines 8 y 1, no se dibujan)</text>
+<path class="fg-thin" d="M420 200 H710"/><path class="fg-acc" d="M420.0 160.0 L420.5 159.5 L421.0 158.9 L421.4 158.4 L421.9 157.8 L422.4 157.3 L422.9 156.8 L423.4 156.3 L423.9 155.7 L424.4 155.2 L424.8 154.7 L425.3 154.2 L425.8 153.7 L426.3 153.2 L426.8 152.7 L427.2 152.2 L427.7 151.7 L428.2 151.2 L428.7 150.7 L429.2 150.2 L429.7 149.7 L430.1 149.3 L430.6 148.8 L431.1 148.3 L431.6 147.9 L432.1 147.4 L432.6 146.9 L433.1 146.5 L433.5 146.0 L434.0 145.6 L434.5 145.1 L435.0 144.7 L435.5 144.2 L435.9 143.8 L436.4 143.4 L436.9 142.9 L437.4 142.5 L437.9 142.1 L438.4 141.6 L438.9 141.2 L439.3 140.8 L439.8 140.4 L440.3 140.0 L440.8 139.6 L441.3 139.2 L441.8 138.8 L442.2 138.4 L442.7 138.0 L443.2 137.6 L443.7 137.2 L444.2 136.8 L444.6 136.4 L445.1 136.0 L445.6 135.6 L446.1 135.2 L446.6 134.9 L447.1 134.5 L447.6 134.1 L448.0 133.7 L448.5 133.4 L449.0 133.0 L449.5 132.7 L450.0 132.3 L450.4 131.9 L450.9 131.6 L451.4 131.2 L451.9 130.9 L452.4 130.5 L452.9 130.2 L453.4 129.8 L453.8 129.5 L454.3 129.2 L454.8 128.8 L455.3 128.5 L455.8 128.2 L456.2 127.8 L456.7 127.5 L457.2 127.2 L457.7 126.9 L458.2 126.5 L458.7 126.2 L459.1 125.9 L459.6 125.6 L460.1 125.3 L460.6 125.0 L461.1 124.7 L461.6 124.4 L462.1 124.1 L462.5 123.8 L463.0 123.5 L463.5 123.2 L464.0 122.9 L464.5 122.6 L464.9 122.3 L465.4 122.0 L465.9 121.7 L466.4 121.4 L466.9 121.1 L467.4 120.9 L467.9 120.6 L468.3 120.3 L468.8 120.0 L469.3 120.5 L469.8 121.1 L470.3 121.6 L470.8 122.2 L471.2 122.7 L471.7 123.3 L472.2 123.8 L472.7 124.3 L473.2 124.9 L473.6 125.4 L474.1 125.9 L474.6 126.4 L475.1 126.9 L475.6 127.4 L476.1 128.0 L476.6 128.5 L477.0 129.0 L477.5 129.4 L478.0 129.9 L478.5 130.4 L479.0 130.9 L479.4 131.4 L479.9 131.9 L480.4 132.4 L480.9 132.8 L481.4 133.3 L481.9 133.8 L482.4 134.2 L482.8 134.7 L483.3 135.1 L483.8 135.6 L484.3 136.0 L484.8 136.5 L485.2 136.9 L485.7 137.4 L486.2 137.8 L486.7 138.2 L487.2 138.7 L487.7 139.1 L488.1 139.5 L488.6 139.9 L489.1 140.4 L489.6 140.8 L490.1 141.2 L490.6 141.6 L491.1 142.0 L491.5 142.4 L492.0 142.8 L492.5 143.2 L493.0 143.6 L493.5 144.0 L493.9 144.4 L494.4 144.8 L494.9 145.2 L495.4 145.6 L495.9 145.9 L496.4 146.3 L496.9 146.7 L497.3 147.1 L497.8 147.4 L498.3 147.8 L498.8 148.2 L499.3 148.5 L499.8 148.9 L500.2 149.2 L500.7 149.6 L501.2 149.9 L501.7 150.3 L502.2 150.6 L502.6 151.0 L503.1 151.3 L503.6 151.7 L504.1 152.0 L504.6 152.3 L505.1 152.7 L505.6 153.0 L506.0 153.3 L506.5 153.7 L507.0 154.0 L507.5 154.3 L508.0 154.6 L508.4 154.9 L508.9 155.3 L509.4 155.6 L509.9 155.9 L510.4 156.2 L510.9 156.5 L511.4 156.8 L511.8 157.1 L512.3 157.4 L512.8 157.7 L513.3 158.0 L513.8 158.3 L514.2 158.6 L514.7 158.9 L515.2 159.1 L515.7 159.4 L516.2 159.7 L516.7 160.0 L517.1 159.5 L517.6 158.9 L518.1 158.4 L518.6 157.8 L519.1 157.3 L519.6 156.8 L520.0 156.3 L520.5 155.7 L521.0 155.2 L521.5 154.7 L522.0 154.2 L522.5 153.7 L523.0 153.2 L523.4 152.7 L523.9 152.2 L524.4 151.7 L524.9 151.2 L525.4 150.7 L525.9 150.2 L526.3 149.7 L526.8 149.3 L527.3 148.8 L527.8 148.3 L528.3 147.9 L528.8 147.4 L529.2 146.9 L529.7 146.5 L530.2 146.0 L530.7 145.6 L531.2 145.1 L531.6 144.7 L532.1 144.2 L532.6 143.8 L533.1 143.4 L533.6 142.9 L534.1 142.5 L534.5 142.1 L535.0 141.6 L535.5 141.2 L536.0 140.8 L536.5 140.4 L537.0 140.0 L537.5 139.6 L537.9 139.2 L538.4 138.8 L538.9 138.4 L539.4 138.0 L539.9 137.6 L540.4 137.2 L540.8 136.8 L541.3 136.4 L541.8 136.0 L542.3 135.6 L542.8 135.2 L543.2 134.9 L543.7 134.5 L544.2 134.1 L544.7 133.7 L545.2 133.4 L545.7 133.0 L546.1 132.7 L546.6 132.3 L547.1 131.9 L547.6 131.6 L548.1 131.2 L548.6 130.9 L549.0 130.5 L549.5 130.2 L550.0 129.8 L550.5 129.5 L551.0 129.2 L551.5 128.8 L552.0 128.5 L552.4 128.2 L552.9 127.8 L553.4 127.5 L553.9 127.2 L554.4 126.9 L554.9 126.5 L555.3 126.2 L555.8 125.9 L556.3 125.6 L556.8 125.3 L557.3 125.0 L557.8 124.7 L558.2 124.4 L558.7 124.1 L559.2 123.8 L559.7 123.5 L560.2 123.2 L560.6 122.9 L561.1 122.6 L561.6 122.3 L562.1 122.0 L562.6 121.7 L563.1 121.4 L563.5 121.1 L564.0 120.9 L564.5 120.6 L565.0 120.3 L565.5 120.0 L566.0 120.5 L566.5 121.1 L566.9 121.6 L567.4 122.2 L567.9 122.7 L568.4 123.3 L568.9 123.8 L569.4 124.3 L569.8 124.9 L570.3 125.4 L570.8 125.9 L571.3 126.4 L571.8 126.9 L572.2 127.4 L572.7 128.0 L573.2 128.5 L573.7 129.0 L574.2 129.4 L574.7 129.9 L575.1 130.4 L575.6 130.9 L576.1 131.4 L576.6 131.9 L577.1 132.4 L577.6 132.8 L578.0 133.3 L578.5 133.8 L579.0 134.2 L579.5 134.7 L580.0 135.1 L580.5 135.6 L581.0 136.0 L581.4 136.5 L581.9 136.9 L582.4 137.4 L582.9 137.8 L583.4 138.2 L583.9 138.7 L584.3 139.1 L584.8 139.5 L585.3 139.9 L585.8 140.4 L586.3 140.8 L586.8 141.2 L587.2 141.6 L587.7 142.0 L588.2 142.4 L588.7 142.8 L589.2 143.2 L589.6 143.6 L590.1 144.0 L590.6 144.4 L591.1 144.8 L591.6 145.2 L592.1 145.6 L592.5 145.9 L593.0 146.3 L593.5 146.7 L594.0 147.1 L594.5 147.4 L595.0 147.8 L595.5 148.2 L595.9 148.5 L596.4 148.9 L596.9 149.2 L597.4 149.6 L597.9 149.9 L598.4 150.3 L598.8 150.6 L599.3 151.0 L599.8 151.3 L600.3 151.7 L600.8 152.0 L601.2 152.3 L601.7 152.7 L602.2 153.0 L602.7 153.3 L603.2 153.7 L603.7 154.0 L604.1 154.3 L604.6 154.6 L605.1 154.9 L605.6 155.3 L606.1 155.6 L606.6 155.9 L607.0 156.2 L607.5 156.5 L608.0 156.8 L608.5 157.1 L609.0 157.4 L609.5 157.7 L610.0 158.0 L610.4 158.3 L610.9 158.6 L611.4 158.9 L611.9 159.1 L612.4 159.4 L612.9 159.7 L613.3 160.0 L613.8 159.5 L614.3 158.9 L614.8 158.4 L615.3 157.8 L615.8 157.3 L616.2 156.8 L616.7 156.3 L617.2 155.7 L617.7 155.2 L618.2 154.7 L618.6 154.2 L619.1 153.7 L619.6 153.2 L620.1 152.7 L620.6 152.2 L621.1 151.7 L621.5 151.2 L622.0 150.7 L622.5 150.2 L623.0 149.7 L623.5 149.3 L624.0 148.8 L624.5 148.3 L624.9 147.9 L625.4 147.4 L625.9 146.9 L626.4 146.5 L626.9 146.0 L627.4 145.6 L627.8 145.1 L628.3 144.7 L628.8 144.2 L629.3 143.8 L629.8 143.4 L630.2 142.9 L630.7 142.5 L631.2 142.1 L631.7 141.6 L632.2 141.2 L632.7 140.8 L633.1 140.4 L633.6 140.0 L634.1 139.6 L634.6 139.2 L635.1 138.8 L635.6 138.4 L636.0 138.0 L636.5 137.6 L637.0 137.2 L637.5 136.8 L638.0 136.4 L638.5 136.0 L639.0 135.6 L639.4 135.2 L639.9 134.9 L640.4 134.5 L640.9 134.1 L641.4 133.7 L641.9 133.4 L642.3 133.0 L642.8 132.7 L643.3 132.3 L643.8 131.9 L644.3 131.6 L644.8 131.2 L645.2 130.9 L645.7 130.5 L646.2 130.2 L646.7 129.8 L647.2 129.5 L647.6 129.2 L648.1 128.8 L648.6 128.5 L649.1 128.2 L649.6 127.8 L650.1 127.5 L650.5 127.2 L651.0 126.9 L651.5 126.5 L652.0 126.2 L652.5 125.9 L653.0 125.6 L653.5 125.3 L653.9 125.0 L654.4 124.7 L654.9 124.4 L655.4 124.1 L655.9 123.8 L656.4 123.5 L656.8 123.2 L657.3 122.9 L657.8 122.6 L658.3 122.3 L658.8 122.0 L659.2 121.7 L659.7 121.4 L660.2 121.1 L660.7 120.9 L661.2 120.6 L661.7 120.3 L662.1 120.0 L662.6 120.5 L663.1 121.1 L663.6 121.6 L664.1 122.2 L664.6 122.7 L665.0 123.3 L665.5 123.8 L666.0 124.3 L666.5 124.9 L667.0 125.4 L667.5 125.9 L668.0 126.4 L668.4 126.9 L668.9 127.4 L669.4 128.0 L669.9 128.5 L670.4 129.0 L670.9 129.4 L671.3 129.9 L671.8 130.4 L672.3 130.9 L672.8 131.4 L673.3 131.9 L673.8 132.4 L674.2 132.8 L674.7 133.3 L675.2 133.8 L675.7 134.2 L676.2 134.7 L676.6 135.1 L677.1 135.6 L677.6 136.0 L678.1 136.5 L678.6 136.9 L679.1 137.4 L679.5 137.8 L680.0 138.2 L680.5 138.7 L681.0 139.1 L681.5 139.5 L682.0 139.9 L682.5 140.4 L682.9 140.8 L683.4 141.2 L683.9 141.6 L684.4 142.0 L684.9 142.4 L685.4 142.8 L685.8 143.2 L686.3 143.6 L686.8 144.0 L687.3 144.4 L687.8 144.8 L688.2 145.2 L688.7 145.6 L689.2 145.9 L689.7 146.3 L690.2 146.7 L690.7 147.1 L691.1 147.4 L691.6 147.8 L692.1 148.2 L692.6 148.5 L693.1 148.9 L693.6 149.2 L694.0 149.6 L694.5 149.9 L695.0 150.3 L695.5 150.6 L696.0 151.0 L696.5 151.3 L697.0 151.7 L697.4 152.0 L697.9 152.3 L698.4 152.7 L698.9 153.0 L699.4 153.3 L699.9 153.7 L700.3 154.0 L700.8 154.3 L701.3 154.6 L701.8 154.9 L702.3 155.3 L702.8 155.6 L703.2 155.9 L703.7 156.2 L704.2 156.5 L704.7 156.8 L705.2 157.1 L705.6 157.4 L706.1 157.7 L706.6 158.0 L707.1 158.3 L707.6 158.6 L708.1 158.9 L708.5 159.1 L709.0 159.4 L709.5 159.7 L710.0 160.0" style="stroke:var(--accent)"/>
+<path class="fg-dash" d="M420 120.0 H710 M420 160.0 H710" style="stroke:var(--heat)"/>
+<text class="fg-m fg-e" x="414" y="124.0" style="fill:var(--heat)" font-size="11.5">⅔ V</text><text class="fg-m fg-e" x="414" y="164.0" style="fill:var(--heat)" font-size="11.5">⅓ V</text>
+<text class="fg-m" x="420" y="64" font-size="11.5">tensión del capacitor</text>
+<path class="fg-thin" d="M420 350 H710"/><path class="fg-acc" d="M420.0 280.0 L420.5 280.0 L421.0 280.0 L421.4 280.0 L421.9 280.0 L422.4 280.0 L422.9 280.0 L423.4 280.0 L423.9 280.0 L424.4 280.0 L424.8 280.0 L425.3 280.0 L425.8 280.0 L426.3 280.0 L426.8 280.0 L427.2 280.0 L427.7 280.0 L428.2 280.0 L428.7 280.0 L429.2 280.0 L429.7 280.0 L430.1 280.0 L430.6 280.0 L431.1 280.0 L431.6 280.0 L432.1 280.0 L432.6 280.0 L433.1 280.0 L433.5 280.0 L434.0 280.0 L434.5 280.0 L435.0 280.0 L435.5 280.0 L435.9 280.0 L436.4 280.0 L436.9 280.0 L437.4 280.0 L437.9 280.0 L438.4 280.0 L438.9 280.0 L439.3 280.0 L439.8 280.0 L440.3 280.0 L440.8 280.0 L441.3 280.0 L441.8 280.0 L442.2 280.0 L442.7 280.0 L443.2 280.0 L443.7 280.0 L444.2 280.0 L444.6 280.0 L445.1 280.0 L445.6 280.0 L446.1 280.0 L446.6 280.0 L447.1 280.0 L447.6 280.0 L448.0 280.0 L448.5 280.0 L449.0 280.0 L449.5 280.0 L450.0 280.0 L450.4 280.0 L450.9 280.0 L451.4 280.0 L451.9 280.0 L452.4 280.0 L452.9 280.0 L453.4 280.0 L453.8 280.0 L454.3 280.0 L454.8 280.0 L455.3 280.0 L455.8 280.0 L456.2 280.0 L456.7 280.0 L457.2 280.0 L457.7 280.0 L458.2 280.0 L458.7 280.0 L459.1 280.0 L459.6 280.0 L460.1 280.0 L460.6 280.0 L461.1 280.0 L461.6 280.0 L462.1 280.0 L462.5 280.0 L463.0 280.0 L463.5 280.0 L464.0 280.0 L464.5 280.0 L464.9 280.0 L465.4 280.0 L465.9 280.0 L466.4 280.0 L466.9 280.0 L467.4 280.0 L467.9 280.0 L468.3 280.0 L468.8 280.0 L469.3 280.0 L469.3 350.0 L469.8 350.0 L470.3 350.0 L470.8 350.0 L471.2 350.0 L471.7 350.0 L472.2 350.0 L472.7 350.0 L473.2 350.0 L473.6 350.0 L474.1 350.0 L474.6 350.0 L475.1 350.0 L475.6 350.0 L476.1 350.0 L476.6 350.0 L477.0 350.0 L477.5 350.0 L478.0 350.0 L478.5 350.0 L479.0 350.0 L479.4 350.0 L479.9 350.0 L480.4 350.0 L480.9 350.0 L481.4 350.0 L481.9 350.0 L482.4 350.0 L482.8 350.0 L483.3 350.0 L483.8 350.0 L484.3 350.0 L484.8 350.0 L485.2 350.0 L485.7 350.0 L486.2 350.0 L486.7 350.0 L487.2 350.0 L487.7 350.0 L488.1 350.0 L488.6 350.0 L489.1 350.0 L489.6 350.0 L490.1 350.0 L490.6 350.0 L491.1 350.0 L491.5 350.0 L492.0 350.0 L492.5 350.0 L493.0 350.0 L493.5 350.0 L493.9 350.0 L494.4 350.0 L494.9 350.0 L495.4 350.0 L495.9 350.0 L496.4 350.0 L496.9 350.0 L497.3 350.0 L497.8 350.0 L498.3 350.0 L498.8 350.0 L499.3 350.0 L499.8 350.0 L500.2 350.0 L500.7 350.0 L501.2 350.0 L501.7 350.0 L502.2 350.0 L502.6 350.0 L503.1 350.0 L503.6 350.0 L504.1 350.0 L504.6 350.0 L505.1 350.0 L505.6 350.0 L506.0 350.0 L506.5 350.0 L507.0 350.0 L507.5 350.0 L508.0 350.0 L508.4 350.0 L508.9 350.0 L509.4 350.0 L509.9 350.0 L510.4 350.0 L510.9 350.0 L511.4 350.0 L511.8 350.0 L512.3 350.0 L512.8 350.0 L513.3 350.0 L513.8 350.0 L514.2 350.0 L514.7 350.0 L515.2 350.0 L515.7 350.0 L516.2 350.0 L516.7 350.0 L516.7 280.0 L517.1 280.0 L517.6 280.0 L518.1 280.0 L518.6 280.0 L519.1 280.0 L519.6 280.0 L520.0 280.0 L520.5 280.0 L521.0 280.0 L521.5 280.0 L522.0 280.0 L522.5 280.0 L523.0 280.0 L523.4 280.0 L523.9 280.0 L524.4 280.0 L524.9 280.0 L525.4 280.0 L525.9 280.0 L526.3 280.0 L526.8 280.0 L527.3 280.0 L527.8 280.0 L528.3 280.0 L528.8 280.0 L529.2 280.0 L529.7 280.0 L530.2 280.0 L530.7 280.0 L531.2 280.0 L531.6 280.0 L532.1 280.0 L532.6 280.0 L533.1 280.0 L533.6 280.0 L534.1 280.0 L534.5 280.0 L535.0 280.0 L535.5 280.0 L536.0 280.0 L536.5 280.0 L537.0 280.0 L537.5 280.0 L537.9 280.0 L538.4 280.0 L538.9 280.0 L539.4 280.0 L539.9 280.0 L540.4 280.0 L540.8 280.0 L541.3 280.0 L541.8 280.0 L542.3 280.0 L542.8 280.0 L543.2 280.0 L543.7 280.0 L544.2 280.0 L544.7 280.0 L545.2 280.0 L545.7 280.0 L546.1 280.0 L546.6 280.0 L547.1 280.0 L547.6 280.0 L548.1 280.0 L548.6 280.0 L549.0 280.0 L549.5 280.0 L550.0 280.0 L550.5 280.0 L551.0 280.0 L551.5 280.0 L552.0 280.0 L552.4 280.0 L552.9 280.0 L553.4 280.0 L553.9 280.0 L554.4 280.0 L554.9 280.0 L555.3 280.0 L555.8 280.0 L556.3 280.0 L556.8 280.0 L557.3 280.0 L557.8 280.0 L558.2 280.0 L558.7 280.0 L559.2 280.0 L559.7 280.0 L560.2 280.0 L560.6 280.0 L561.1 280.0 L561.6 280.0 L562.1 280.0 L562.6 280.0 L563.1 280.0 L563.5 280.0 L564.0 280.0 L564.5 280.0 L565.0 280.0 L565.5 280.0 L566.0 280.0 L566.0 350.0 L566.5 350.0 L566.9 350.0 L567.4 350.0 L567.9 350.0 L568.4 350.0 L568.9 350.0 L569.4 350.0 L569.8 350.0 L570.3 350.0 L570.8 350.0 L571.3 350.0 L571.8 350.0 L572.2 350.0 L572.7 350.0 L573.2 350.0 L573.7 350.0 L574.2 350.0 L574.7 350.0 L575.1 350.0 L575.6 350.0 L576.1 350.0 L576.6 350.0 L577.1 350.0 L577.6 350.0 L578.0 350.0 L578.5 350.0 L579.0 350.0 L579.5 350.0 L580.0 350.0 L580.5 350.0 L581.0 350.0 L581.4 350.0 L581.9 350.0 L582.4 350.0 L582.9 350.0 L583.4 350.0 L583.9 350.0 L584.3 350.0 L584.8 350.0 L585.3 350.0 L585.8 350.0 L586.3 350.0 L586.8 350.0 L587.2 350.0 L587.7 350.0 L588.2 350.0 L588.7 350.0 L589.2 350.0 L589.6 350.0 L590.1 350.0 L590.6 350.0 L591.1 350.0 L591.6 350.0 L592.1 350.0 L592.5 350.0 L593.0 350.0 L593.5 350.0 L594.0 350.0 L594.5 350.0 L595.0 350.0 L595.5 350.0 L595.9 350.0 L596.4 350.0 L596.9 350.0 L597.4 350.0 L597.9 350.0 L598.4 350.0 L598.8 350.0 L599.3 350.0 L599.8 350.0 L600.3 350.0 L600.8 350.0 L601.2 350.0 L601.7 350.0 L602.2 350.0 L602.7 350.0 L603.2 350.0 L603.7 350.0 L604.1 350.0 L604.6 350.0 L605.1 350.0 L605.6 350.0 L606.1 350.0 L606.6 350.0 L607.0 350.0 L607.5 350.0 L608.0 350.0 L608.5 350.0 L609.0 350.0 L609.5 350.0 L610.0 350.0 L610.4 350.0 L610.9 350.0 L611.4 350.0 L611.9 350.0 L612.4 350.0 L612.9 350.0 L613.3 350.0 L613.3 280.0 L613.8 280.0 L614.3 280.0 L614.8 280.0 L615.3 280.0 L615.8 280.0 L616.2 280.0 L616.7 280.0 L617.2 280.0 L617.7 280.0 L618.2 280.0 L618.6 280.0 L619.1 280.0 L619.6 280.0 L620.1 280.0 L620.6 280.0 L621.1 280.0 L621.5 280.0 L622.0 280.0 L622.5 280.0 L623.0 280.0 L623.5 280.0 L624.0 280.0 L624.5 280.0 L624.9 280.0 L625.4 280.0 L625.9 280.0 L626.4 280.0 L626.9 280.0 L627.4 280.0 L627.8 280.0 L628.3 280.0 L628.8 280.0 L629.3 280.0 L629.8 280.0 L630.2 280.0 L630.7 280.0 L631.2 280.0 L631.7 280.0 L632.2 280.0 L632.7 280.0 L633.1 280.0 L633.6 280.0 L634.1 280.0 L634.6 280.0 L635.1 280.0 L635.6 280.0 L636.0 280.0 L636.5 280.0 L637.0 280.0 L637.5 280.0 L638.0 280.0 L638.5 280.0 L639.0 280.0 L639.4 280.0 L639.9 280.0 L640.4 280.0 L640.9 280.0 L641.4 280.0 L641.9 280.0 L642.3 280.0 L642.8 280.0 L643.3 280.0 L643.8 280.0 L644.3 280.0 L644.8 280.0 L645.2 280.0 L645.7 280.0 L646.2 280.0 L646.7 280.0 L647.2 280.0 L647.6 280.0 L648.1 280.0 L648.6 280.0 L649.1 280.0 L649.6 280.0 L650.1 280.0 L650.5 280.0 L651.0 280.0 L651.5 280.0 L652.0 280.0 L652.5 280.0 L653.0 280.0 L653.5 280.0 L653.9 280.0 L654.4 280.0 L654.9 280.0 L655.4 280.0 L655.9 280.0 L656.4 280.0 L656.8 280.0 L657.3 280.0 L657.8 280.0 L658.3 280.0 L658.8 280.0 L659.2 280.0 L659.7 280.0 L660.2 280.0 L660.7 280.0 L661.2 280.0 L661.7 280.0 L662.1 280.0 L662.6 280.0 L662.6 350.0 L663.1 350.0 L663.6 350.0 L664.1 350.0 L664.6 350.0 L665.0 350.0 L665.5 350.0 L666.0 350.0 L666.5 350.0 L667.0 350.0 L667.5 350.0 L668.0 350.0 L668.4 350.0 L668.9 350.0 L669.4 350.0 L669.9 350.0 L670.4 350.0 L670.9 350.0 L671.3 350.0 L671.8 350.0 L672.3 350.0 L672.8 350.0 L673.3 350.0 L673.8 350.0 L674.2 350.0 L674.7 350.0 L675.2 350.0 L675.7 350.0 L676.2 350.0 L676.6 350.0 L677.1 350.0 L677.6 350.0 L678.1 350.0 L678.6 350.0 L679.1 350.0 L679.5 350.0 L680.0 350.0 L680.5 350.0 L681.0 350.0 L681.5 350.0 L682.0 350.0 L682.5 350.0 L682.9 350.0 L683.4 350.0 L683.9 350.0 L684.4 350.0 L684.9 350.0 L685.4 350.0 L685.8 350.0 L686.3 350.0 L686.8 350.0 L687.3 350.0 L687.8 350.0 L688.2 350.0 L688.7 350.0 L689.2 350.0 L689.7 350.0 L690.2 350.0 L690.7 350.0 L691.1 350.0 L691.6 350.0 L692.1 350.0 L692.6 350.0 L693.1 350.0 L693.6 350.0 L694.0 350.0 L694.5 350.0 L695.0 350.0 L695.5 350.0 L696.0 350.0 L696.5 350.0 L697.0 350.0 L697.4 350.0 L697.9 350.0 L698.4 350.0 L698.9 350.0 L699.4 350.0 L699.9 350.0 L700.3 350.0 L700.8 350.0 L701.3 350.0 L701.8 350.0 L702.3 350.0 L702.8 350.0 L703.2 350.0 L703.7 350.0 L704.2 350.0 L704.7 350.0 L705.2 350.0 L705.6 350.0 L706.1 350.0 L706.6 350.0 L707.1 350.0 L707.6 350.0 L708.1 350.0 L708.5 350.0 L709.0 350.0 L709.5 350.0 L710.0 350.0 L710.0 280.0" style="stroke:var(--charge-pos)"/>
+<text class="fg-m" x="420" y="268" font-size="11.5">salida (pin 3)</text>
+<text class="fg-t fg-b" x="444.4" y="380" text-anchor="middle" style="fill:var(--accent)" font-size="12">t alto</text><text class="fg-t fg-b" x="492.8" y="380" text-anchor="middle" style="fill:var(--accent)" font-size="12">t bajo</text>
+<path class="fg-dash" d="M468.8 200 V352 M516.7 200 V352"/>
+          </svg>
+          <figcaption><strong>Un oscilador sin partes móviles:</strong> el capacitor se carga y se descarga entre ⅓ y ⅔ de V, y cada vez que cruza un umbral el flip-flop invierte la salida. La frecuencia la fijan R1, R2 y C.</figcaption>
+        </figure>
+
+        <p>El tiempo en alto es siempre mayor que el tiempo en bajo, así que el ciclo de trabajo D es siempre superior al 50 %. Si R<sub>2</sub> es mucho mayor que R<sub>1</sub>, D se acerca a 50 %. Para ciclos de trabajo menores se coloca un diodo en paralelo con R<sub>2</sub> (la carga pasa por el diodo y evita R<sub>2</sub>), y se obtienen anchos de pulso casi arbitrarios, es decir, un PWM (<a class="xref" href="11-osciloscopio.html#pwm">capítulo 11</a>).</p>
+      </section>
+
+      <section id="practica">
+        <h2>En la práctica</h2>
+        <ul>
+          <li><strong>Versiones:</strong> el <strong>NE555</strong> (bipolar, de 4,5 a 16 V, entrega hasta 200 mA a la salida, consume varios mA) y las versiones <strong>CMOS</strong> (TLC555, LMC555, ICM7555: de 2 a 15 V, consumo de microamperes, más rápidas y menos corriente de salida). El <strong>556</strong> trae dos 555 en un chip.</li>
+          <li><strong>Salida:</strong> maneja directamente un LED (con su resistor) o, en el NE555, un relé de 200 mA (con el diodo de protección del <a class="xref" href="19-cargas-inductivas.html">capítulo 19</a>).</li>
+          <li><strong>Precisión:</strong> la frecuencia depende de R y C, así que la exactitud es la de esos componentes (con capacitores cerámicos comunes, ±20 % de tolerancia, y variaciones con la temperatura). Para tiempos más largos conviene un capacitor de poca fuga (no electrolítico) y un resistor de valor alto; los electrolíticos hasta 100 µF se usan en temporizadores lentos.</li>
+          <li><strong>Desacople:</strong> un capacitor de 100 nF entre +V y masa, cerca del chip (capítulo <a class="xref" href="29-seguridad-masa-desacople.html">29</a>), evita que los picos de corriente de la salida alteren los umbrales.</li>
+        </ul>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Aplicaciones típicas</caption>
+            <thead><tr><th>Aplicación</th><th>Modo</th><th>Cómo</th></tr></thead>
+            <tbody>
+              <tr><td>LED intermitente</td><td>Astable</td><td>Frecuencia de 1–2 Hz con C de decenas de µF</td></tr>
+              <tr><td>Generador de tonos / sirena</td><td>Astable</td><td>Frecuencia de cientos de Hz o kHz hacia un parlante (con un transistor o un capacitor en serie)</td></tr>
+              <tr><td>Luz de escalera / retardo</td><td>Monoestable</td><td>T = 1,1·R·C de segundos a minutos</td></tr>
+              <tr><td>Regulador de luz o de velocidad (PWM)</td><td>Astable con diodo</td><td>Se varía R para cambiar el ciclo de trabajo</td></tr>
+              <tr><td>Antirrebote de un pulsador</td><td>Monoestable</td><td>El pulso de unos 20 ms «ignora» los rebotes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Juguetes, alarmas y luces intermitentes</span>
+          <p>Las luces de baliza, las sirenas de alarma y muchos juguetes que hacen sonidos usan un 555 (o su equivalente interno en un chip mayor). Sin microcontrolador, con un puñado de componentes, hacen una tarea periódica.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un temporizador de pasillo</span>
+          <p>Un 555 monoestable disparado por un pulsador enciende, a través de un transistor y un relé (capítulos <a class="xref" href="15-transistor-interruptor.html">15</a> y <a class="xref" href="18-rele.html">18</a>), una luz durante un tiempo fijo y luego la apaga: el sistema completo con todo lo visto hasta ahora.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un LED intermitente</span>
+          <p>R<sub>1</sub> = 1 kΩ, R<sub>2</sub> = 47 kΩ, C = 10 µF.</p>
+          <ol>
+            <li><span class="eq">t<sub>alto</sub> = 0,693 · (1 k + 47 k) · 10 µF ≈ 0,333 s</span> y <span class="eq">t<sub>bajo</sub> = 0,693 · 47 k · 10 µF ≈ 0,326 s</span>.</li>
+            <li>Período: <span class="eq">T ≈ 0,659 s</span>, frecuencia <span class="eq">f ≈ 1,52 Hz</span> (comprobación: 1,44 / ((1 k + 94 k) · 10 µF) = 1,52 Hz).</li>
+            <li>Ciclo de trabajo: <span class="eq">D = 48 / 95 ≈ 50,5 %</span>. El LED enciende y apaga casi con la misma duración.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: diseñar un tono de 1 kHz</span>
+          <ol>
+            <li>Se elige C = 10 nF y R<sub>1</sub> = 1 kΩ.</li>
+            <li>De <span class="eq">f = 1,44 / ((R<sub>1</sub> + 2R<sub>2</sub>) · C)</span> se despeja <span class="eq">R<sub>1</sub> + 2R<sub>2</sub> = 1,44 / (1000 · 10<sup>−8</sup>) = 144 kΩ</span>.</li>
+            <li><span class="eq">R<sub>2</sub> = (144 k − 1 k) / 2 ≈ 71,5 kΩ</span>; con el valor comercial de 68 kΩ resulta <span class="eq">f = 1,44 / (137 k · 10 nF) ≈ 1,05 kHz</span>.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un temporizador de 30 segundos</span>
+          <ol>
+            <li>Monoestable: <span class="eq">T = 1,1 · R · C = 30 s</span>, entonces <span class="eq">R · C = 27,3 s</span>.</li>
+            <li>Con C = 100 µF: <span class="eq">R = 27,3 / 100 µF ≈ 273 kΩ</span>; se usa 270 kΩ (T ≈ 29,7 s).</li>
+            <li>Con un potenciómetro de 500 kΩ en lugar de un resistor fijo se podría ajustar entre 0 y casi un minuto.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con R<sub>1</sub> = 1 kΩ, R<sub>2</sub> = 47 kΩ y C = 10 µF, la salida alterna a 1,52 Hz con ciclo de trabajo de ≈ 50,5 %. Mirá el capacitor subir y bajar entre ⅓ y ⅔ de V, y cómo el LED y el transistor de descarga cambian de estado cuando cruza cada umbral.</li>
+        <li>Cambiá C a 100 µF: la frecuencia baja diez veces (0,15 Hz) y cada período tarda ~6,6 s. Con 100 nF sube a 152 Hz. La frecuencia es inversamente proporcional a C.</li>
+        <li>Subí R<sub>1</sub> de 1 kΩ a 10 kΩ con R<sub>2</sub> = 10 kΩ: ahora el tiempo en alto es mucho mayor que el tiempo en bajo (ciclo de trabajo de ≈ 67 %). La carga pasa por R<sub>1</sub> + R<sub>2</sub> y la descarga solo por R<sub>2</sub>.</li>
+        <li>Cambiá la alimentación de 5 a 12 V: las alturas de las ondas cambian, pero <strong>la frecuencia y el ciclo de trabajo no</strong>. Los umbrales (⅓ y ⅔ de V) se mueven con V, y la carga también, así que se compensan.</li>
+        <li>Buscá el ciclo de trabajo más cercano al 50 %: R<sub>2</sub> grande y R<sub>1</sub> chica (1 kΩ y 100 kΩ dan 50,2 %). ¿Es posible bajar de 50 %? No: t<sub>alto</sub> siempre es mayor que t<sub>bajo</sub> en este circuito.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/timer555.js"></script>
+  <script src="../js/quizzes/27-temporizador-555.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

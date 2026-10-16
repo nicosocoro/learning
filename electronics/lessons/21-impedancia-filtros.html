@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impedancia y filtros · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="21-impedancia-filtros" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 21</p>
+        <h1>Impedancia y filtros</h1>
+        <p class="lead">Cómo se combinan la resistencia y las reactancias en corriente alterna, y cómo un par RC o RL se convierte en un filtro que elige qué frecuencias pasan.</p>
+      </header>
+      <section>
+        <h2>Resistencia, reactancia e impedancia</h2>
+        <p>En corriente continua, lo único que frena la corriente es la <strong>resistencia</strong> R. En corriente alterna aparecen, además, los componentes que reaccionan a la frecuencia: el capacitor, con su reactancia <span class="eq">X<sub>C</sub> = 1/(2πfC)</span> (<a class="xref" href="06-capacitores-rc.html#reactancia">capítulo 6</a>), y la bobina, con <span class="eq">X<sub>L</sub> = 2πfL</span> (<a class="xref" href="20-inductor-rl.html#reactancia">capítulo 20</a>). La oposición total a la corriente alterna se llama <strong>impedancia</strong> (<em>Z</em>) y también se mide en ohms.</p>
+        <p>Hay un detalle clave: en un resistor la corriente y la tensión están <em>en fase</em> (suben y bajan juntas), pero en un capacitor o en una bobina están desfasadas un cuarto de ciclo (90°). Por eso la resistencia y la reactancia <em>no se suman</em> de manera directa: se combinan como los lados de un triángulo rectángulo.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 230" role="img" aria-labelledby="g21at g21ad">
+            <title id="g21at">El triángulo de la impedancia</title>
+            <desc id="g21ad">Un triángulo rectángulo con la resistencia como cateto horizontal, la reactancia como cateto vertical y la impedancia como hipotenusa, con el ángulo de fase.</desc>
+            <polygon points="60,190 280,190 280,50" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/>
+            <path class="fg-acc" d="M60 190 H280" style="stroke:var(--charge-pos);stroke-width:4"/>
+            <path class="fg-acc" d="M280 190 V50" style="stroke:var(--charge-neg);stroke-width:4"/>
+            <path class="fg-acc" d="M60 190 L280 50" style="stroke-width:4"/>
+            <path class="fg-thin" d="M268 190 V178 H280"/>
+            <path class="fg-thin" d="M105 190 A45 45 0 0 0 98 168"/>
+            <text class="fg-t fg-c fg-b" x="170" y="214" style="fill:var(--charge-pos)">R (resistencia)</text>
+            <text class="fg-t fg-b" x="292" y="126" style="fill:var(--charge-neg)">X (reactancia)</text>
+            <text class="fg-t fg-b" x="132" y="104" text-anchor="end" style="fill:var(--accent)" font-size="17">Z (impedancia)</text>
+            <text class="fg-t fg-i" x="116" y="172" font-size="15">φ</text>
+            <text class="fg-a fg-b" x="480" y="60" style="fill:var(--accent)" font-size="19">Z = √(R² + X²)</text>
+            <text class="fg-t" x="480" y="94" font-size="16">I = V / Z</text>
+            <text class="fg-t" x="480" y="124" font-size="16">tan φ = X / R</text>
+            <text class="fg-m" x="480" y="156">Ejemplo: R = 300 Ω y X = 400 Ω</text>
+            <text class="fg-m" x="480" y="176">→ Z = √(300² + 400²) = 500 Ω</text>
+            <text class="fg-m" x="480" y="196">→ φ = 53° (la corriente se desfasa)</text>
+          </svg>
+          <figcaption><strong>La resistencia y la reactancia forman un ángulo recto</strong> (están desfasadas 90°), por eso no se suman directamente: se combinan como los lados de un triángulo, con Pitágoras.</figcaption>
+        </figure>
+
+        <p>Para un resistor en serie con un capacitor (o con una bobina), la impedancia y la corriente son:</p>
+        <p class="equation"><span class="eq">|Z| = √(R² + X²)</span> &nbsp;&nbsp; <span class="eq">I = V / |Z|</span></p>
+        <p>El ángulo de fase φ (con <em>tan φ = X/R</em>) dice cuánto se adelanta o se retrasa la corriente respecto de la tensión. Con X = 0 (solo resistor), φ = 0°; si R es despreciable, φ se acerca a 90°.</p>
+      </section>
+
+      <section id="divisor">
+        <h2>Un divisor de tensión que depende de la frecuencia</h2>
+        <p>Un resistor en serie con un capacitor es un <strong>divisor de tensión</strong> (<a class="xref" href="03-resistencias.html">capítulo 3</a>) pero con un integrante que cambia con la frecuencia. A frecuencias bajas, X<sub>C</sub> es enorme y casi toda la tensión cae en el capacitor; a frecuencias altas, X<sub>C</sub> se vuelve pequeña y la tensión cae casi toda en el resistor. Tomando la salida de uno u otro se obtiene un <strong>filtro</strong>: un circuito que deja pasar unas frecuencias y frena otras.</p>
+      </section>
+
+      <section id="rc">
+        <h2>Filtros RC: pasa-bajos y pasa-altos</h2>
+        <p>Si la salida se toma en el <strong>capacitor</strong> (con el resistor en serie), pasan las bajas frecuencias y se frenan las altas: es un <strong>pasa-bajos</strong>. Si se toma en el <strong>resistor</strong> (con el capacitor en serie), ocurre lo contrario: es un <strong>pasa-altos</strong>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 356" role="img" aria-labelledby="g21bt g21bd">
+            <title id="g21bt">Filtro RC pasa-bajos y pasa-altos</title>
+            <desc id="g21bd">Un circuito con resistor en serie y capacitor a masa (pasa-bajos) y otro con capacitor en serie y resistor a masa (pasa-altos), cada uno con la curva de respuesta en frecuencia y la frecuencia de corte.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="20">Pasa-bajos</text>
+            <path class="fg-line" d="M35 70 H70 M136 70 H260 M260 70 V94 M260 126 V170 H35"/><circle cx="30" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><circle cx="30" cy="170" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><text class="fg-m fg-e" x="22" y="124">Ven</text>
+            <path class="fg-line" d="M70 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M245 105 H275 M245 115 H275" style="stroke-width:3"/>
+            <circle cx="260" cy="70" r="4" class="fg-fill-wire"/><circle cx="280" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M260 70 H275 M260 170 H280"/><circle cx="280" cy="170" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/>
+            <text class="fg-m fg-c" x="103" y="52">R</text><text class="fg-m" x="276" y="114">C</text>
+            <path class="fg-line" d="M60 192 V300 H308" style="stroke-width:1.5"/><path class="fg-acc" d="M60.0 200.5 L62.4 200.5 L64.8 200.6 L67.2 200.7 L69.6 200.7 L72.0 200.8 L74.4 200.9 L76.8 200.9 L79.2 201.0 L81.6 201.1 L84.0 201.2 L86.4 201.3 L88.8 201.5 L91.2 201.6 L93.6 201.8 L96.0 201.9 L98.4 202.1 L100.8 202.3 L103.2 202.5 L105.6 202.8 L108.0 203.0 L110.4 203.3 L112.8 203.6 L115.2 203.9 L117.6 204.3 L120.0 204.7 L122.4 205.1 L124.8 205.5 L127.2 206.0 L129.6 206.5 L132.0 207.1 L134.4 207.7 L136.8 208.4 L139.2 209.1 L141.6 209.8 L144.0 210.6 L146.4 211.5 L148.8 212.4 L151.2 213.3 L153.6 214.3 L156.0 215.4 L158.4 216.6 L160.8 217.8 L163.2 219.0 L165.6 220.3 L168.0 221.7 L170.4 223.1 L172.8 224.6 L175.2 226.1 L177.6 227.7 L180.0 229.3 L182.4 230.9 L184.8 232.6 L187.2 234.3 L189.6 236.1 L192.0 237.8 L194.4 239.6 L196.8 241.3 L199.2 243.1 L201.6 244.9 L204.0 246.6 L206.4 248.4 L208.8 250.1 L211.2 251.8 L213.6 253.5 L216.0 255.2 L218.4 256.8 L220.8 258.4 L223.2 260.0 L225.6 261.5 L228.0 263.0 L230.4 264.5 L232.8 265.9 L235.2 267.2 L237.6 268.6 L240.0 269.8 L242.4 271.1 L244.8 272.3 L247.2 273.4 L249.6 274.6 L252.0 275.6 L254.4 276.7 L256.8 277.7 L259.2 278.6 L261.6 279.5 L264.0 280.4 L266.4 281.3 L268.8 282.1 L271.2 282.9 L273.6 283.6 L276.0 284.3 L278.4 285.0 L280.8 285.7 L283.2 286.3 L285.6 286.9 L288.0 287.5 L290.4 288.1 L292.8 288.6 L295.2 289.1 L297.6 289.6 L300.0 290.0" style="stroke:var(--accent)"/><path class="fg-dash" d="M180.0 300 V196"/>
+            <text class="fg-m fg-c" x="180" y="322" font-size="12">frecuencia →</text>
+            <text class="fg-m fg-c" x="180" y="344" font-size="12.5">pasan las bajas, se frenan las altas</text>
+            <text class="fg-m" x="186" y="194" font-size="11.5" style="fill:var(--heat)">f<tspan font-size="9" dy="3">c</tspan></text>
+
+            <text class="fg-t fg-b fg-c" x="530" y="20">Pasa-altos</text>
+            <path class="fg-line" d="M395 70 H465 M610 126 V170 H395"/><circle cx="390" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><circle cx="390" cy="170" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><text class="fg-m fg-e" x="382" y="124">Ven</text>
+            <path class="fg-line" d="M465 55 V85 M475 55 V85" style="stroke-width:3"/>
+            <path class="fg-line" d="M475 70 H610"/>
+            <g transform="translate(610,94) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <circle cx="610" cy="70" r="4" class="fg-fill-wire"/><path class="fg-line" d="M610 70 H630 M610 170 H630"/><circle cx="636" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><circle cx="636" cy="170" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/>
+            <text class="fg-m fg-c" x="470" y="52">C</text><text class="fg-m" x="626" y="114">R</text>
+            <path class="fg-line" d="M410 192 V300 H658" style="stroke-width:1.5"/><path class="fg-acc" d="M410.0 290.0 L412.4 289.6 L414.8 289.1 L417.2 288.6 L419.6 288.1 L422.0 287.5 L424.4 286.9 L426.8 286.3 L429.2 285.7 L431.6 285.0 L434.0 284.3 L436.4 283.6 L438.8 282.9 L441.2 282.1 L443.6 281.3 L446.0 280.4 L448.4 279.5 L450.8 278.6 L453.2 277.7 L455.6 276.7 L458.0 275.6 L460.4 274.6 L462.8 273.4 L465.2 272.3 L467.6 271.1 L470.0 269.8 L472.4 268.6 L474.8 267.2 L477.2 265.9 L479.6 264.5 L482.0 263.0 L484.4 261.5 L486.8 260.0 L489.2 258.4 L491.6 256.8 L494.0 255.2 L496.4 253.5 L498.8 251.8 L501.2 250.1 L503.6 248.4 L506.0 246.6 L508.4 244.9 L510.8 243.1 L513.2 241.3 L515.6 239.6 L518.0 237.8 L520.4 236.1 L522.8 234.3 L525.2 232.6 L527.6 230.9 L530.0 229.3 L532.4 227.7 L534.8 226.1 L537.2 224.6 L539.6 223.1 L542.0 221.7 L544.4 220.3 L546.8 219.0 L549.2 217.8 L551.6 216.6 L554.0 215.4 L556.4 214.3 L558.8 213.3 L561.2 212.4 L563.6 211.5 L566.0 210.6 L568.4 209.8 L570.8 209.1 L573.2 208.4 L575.6 207.7 L578.0 207.1 L580.4 206.5 L582.8 206.0 L585.2 205.5 L587.6 205.1 L590.0 204.7 L592.4 204.3 L594.8 203.9 L597.2 203.6 L599.6 203.3 L602.0 203.0 L604.4 202.8 L606.8 202.5 L609.2 202.3 L611.6 202.1 L614.0 201.9 L616.4 201.8 L618.8 201.6 L621.2 201.5 L623.6 201.3 L626.0 201.2 L628.4 201.1 L630.8 201.0 L633.2 200.9 L635.6 200.9 L638.0 200.8 L640.4 200.7 L642.8 200.7 L645.2 200.6 L647.6 200.5 L650.0 200.5" style="stroke:var(--charge-neg)"/><path class="fg-dash" d="M530.0 300 V196"/>
+            <text class="fg-m fg-c" x="530" y="322" font-size="12">frecuencia →</text>
+            <text class="fg-m fg-c" x="530" y="344" font-size="12.5">pasan las altas, se frenan las bajas</text>
+            <text class="fg-m" x="536" y="194" font-size="11.5" style="fill:var(--heat)">f<tspan font-size="9" dy="3">c</tspan></text>
+          </svg>
+          <figcaption><strong>Mismos dos componentes, posiciones intercambiadas.</strong> En el pasa-bajos, el capacitor deriva a masa las altas frecuencias; en el pasa-altos, el capacitor en serie bloquea las bajas.</figcaption>
+        </figure>
+
+        <p>La frontera entre «pasa» y «se frena» es la <strong>frecuencia de corte</strong>, la frecuencia a la que la reactancia del capacitor iguala a la resistencia (X<sub>C</sub> = R):</p>
+        <p class="equation"><span class="eq">f<sub>c</sub> = 1 / (2π · R · C)</span></p>
+        <p>Es la misma frecuencia asociada a la constante de tiempo, <em>f<sub>c</sub> = 1/(2πτ)</em>, con τ = R·C. A esa frecuencia, la salida cae a <strong>0,707</strong> de la entrada (−3 dB) y la fase vale 45°. La ganancia (cociente entre las amplitudes de salida y de entrada) del pasa-bajos es:</p>
+        <p class="equation"><span class="eq">|V<sub>sal</sub>/V<sub>en</sub>| = 1 / √(1 + (f / f<sub>c</sub>)²)</span></p>
+        <p>y la del pasa-altos, <span class="eq">(f/f<sub>c</sub>) / √(1 + (f/f<sub>c</sub>)²)</span>. Un filtro RC simple frena <strong>20 dB por década</strong> (cada vez que la frecuencia se multiplica por 10, la salida se divide por 10) o, lo que es lo mismo, 6 dB por octava.</p>
+      </section>
+
+      <section id="decibeles">
+        <h2>El decibel</h2>
+        <p>Como las ganancias pueden abarcar rangos enormes, se las expresa en <strong>decibeles</strong>:</p>
+        <p class="equation"><span class="eq">ganancia(dB) = 20 · log<sub>10</sub>(V<sub>sal</sub> / V<sub>en</sub>)</span></p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Cociente V<sub>sal</sub>/V<sub>en</sub></th><th>Decibeles</th><th>Significado</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0 dB</td><td>Pasa sin cambio</td></tr>
+              <tr><td>0,707</td><td>−3 dB</td><td>Frecuencia de corte (la potencia cae a la mitad)</td></tr>
+              <tr><td>0,5</td><td>−6 dB</td><td>La mitad de la amplitud</td></tr>
+              <tr><td>0,1</td><td>−20 dB</td><td>La décima parte</td></tr>
+              <tr><td>0,01</td><td>−40 dB</td><td>La centésima parte</td></tr>
+              <tr><td>10</td><td>+20 dB</td><td>Amplificada 10 veces</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Las curvas de respuesta se dibujan con la frecuencia en escala <em>logarítmica</em> (iguales distancias para cada multiplicación por 10) y la ganancia en dB. Ese gráfico se llama <strong>diagrama de Bode</strong>.</p>
+      </section>
+
+      <section id="rl">
+        <h2>Otros filtros: con bobinas y de más tipos</h2>
+        <p>El mismo razonamiento vale con una bobina. Con un resistor en serie con una bobina, la bobina deja pasar las bajas y frena las altas, al revés que el capacitor: si la salida se toma en el resistor, es un pasa-bajos; si se toma en la bobina, es un pasa-altos. La frecuencia de corte es <span class="eq">f<sub>c</sub> = R / (2π · L)</span>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 205" role="img" aria-labelledby="g21ct g21cd">
+            <title id="g21ct">Los cuatro tipos de filtro</title>
+            <desc id="g21cd">Cuatro curvas de ganancia contra frecuencia: pasa-bajos, pasa-altos, pasa-banda y rechaza-banda, con ejemplos de uso.</desc>
+<text class="fg-t fg-b fg-c" x="110.0" y="26">Pasa-bajos</text><path class="fg-line" d="M20 42 V130 H208" style="stroke-width:1.5"/><path class="fg-acc" d="M20.0 50.1 L21.8 50.2 L23.6 50.2 L25.4 50.2 L27.2 50.3 L29.0 50.3 L30.8 50.3 L32.6 50.4 L34.4 50.4 L36.2 50.5 L38.0 50.6 L39.8 50.7 L41.6 50.8 L43.4 50.9 L45.2 51.0 L47.0 51.2 L48.8 51.4 L50.6 51.6 L52.4 51.8 L54.2 52.0 L56.0 52.3 L57.8 52.7 L59.6 53.1 L61.4 53.5 L63.2 54.0 L65.0 54.6 L66.8 55.2 L68.6 56.0 L70.4 56.8 L72.2 57.7 L74.0 58.7 L75.8 59.9 L77.6 61.2 L79.4 62.6 L81.2 64.1 L83.0 65.8 L84.8 67.7 L86.6 69.7 L88.4 71.8 L90.2 74.1 L92.0 76.5 L93.8 79.1 L95.6 81.7 L97.4 84.4 L99.2 87.2 L101.0 90.0 L102.8 92.8 L104.6 95.6 L106.4 98.3 L108.2 100.9 L110.0 103.5 L111.8 105.9 L113.6 108.2 L115.4 110.3 L117.2 112.3 L119.0 114.2 L120.8 115.9 L122.6 117.4 L124.4 118.8 L126.2 120.1 L128.0 121.3 L129.8 122.3 L131.6 123.2 L133.4 124.0 L135.2 124.8 L137.0 125.4 L138.8 126.0 L140.6 126.5 L142.4 126.9 L144.2 127.3 L146.0 127.7 L147.8 128.0 L149.6 128.2 L151.4 128.4 L153.2 128.6 L155.0 128.8 L156.8 129.0 L158.6 129.1 L160.4 129.2 L162.2 129.3 L164.0 129.4 L165.8 129.5 L167.6 129.6 L169.4 129.6 L171.2 129.7 L173.0 129.7 L174.8 129.7 L176.6 129.8 L178.4 129.8 L180.2 129.8 L182.0 129.9 L183.8 129.9 L185.6 129.9 L187.4 129.9 L189.2 129.9 L191.0 129.9 L192.8 129.9 L194.6 129.9 L196.4 130.0 L198.2 130.0 L200.0 130.0"/><text class="fg-m fg-c" x="110.0" y="150" font-size="12">f →</text><text class="fg-m fg-c" x="110.0" y="172" font-size="11.5">quita ruido agudo,</text><text class="fg-m fg-c" x="110.0" y="188" font-size="11.5">convierte PWM en continua</text><text class="fg-t fg-b fg-c" x="280.0" y="26">Pasa-altos</text><path class="fg-line" d="M190 42 V130 H378" style="stroke-width:1.5"/><path class="fg-acc" d="M190.0 129.9 L191.8 129.8 L193.6 129.8 L195.4 129.8 L197.2 129.7 L199.0 129.7 L200.8 129.7 L202.6 129.6 L204.4 129.6 L206.2 129.5 L208.0 129.4 L209.8 129.3 L211.6 129.2 L213.4 129.1 L215.2 129.0 L217.0 128.8 L218.8 128.6 L220.6 128.4 L222.4 128.2 L224.2 128.0 L226.0 127.7 L227.8 127.3 L229.6 126.9 L231.4 126.5 L233.2 126.0 L235.0 125.4 L236.8 124.8 L238.6 124.0 L240.4 123.2 L242.2 122.3 L244.0 121.3 L245.8 120.1 L247.6 118.8 L249.4 117.4 L251.2 115.9 L253.0 114.2 L254.8 112.3 L256.6 110.3 L258.4 108.2 L260.2 105.9 L262.0 103.5 L263.8 100.9 L265.6 98.3 L267.4 95.6 L269.2 92.8 L271.0 90.0 L272.8 87.2 L274.6 84.4 L276.4 81.7 L278.2 79.1 L280.0 76.5 L281.8 74.1 L283.6 71.8 L285.4 69.7 L287.2 67.7 L289.0 65.8 L290.8 64.1 L292.6 62.6 L294.4 61.2 L296.2 59.9 L298.0 58.7 L299.8 57.7 L301.6 56.8 L303.4 56.0 L305.2 55.2 L307.0 54.6 L308.8 54.0 L310.6 53.5 L312.4 53.1 L314.2 52.7 L316.0 52.3 L317.8 52.0 L319.6 51.8 L321.4 51.6 L323.2 51.4 L325.0 51.2 L326.8 51.0 L328.6 50.9 L330.4 50.8 L332.2 50.7 L334.0 50.6 L335.8 50.5 L337.6 50.4 L339.4 50.4 L341.2 50.3 L343.0 50.3 L344.8 50.3 L346.6 50.2 L348.4 50.2 L350.2 50.2 L352.0 50.1 L353.8 50.1 L355.6 50.1 L357.4 50.1 L359.2 50.1 L361.0 50.1 L362.8 50.1 L364.6 50.1 L366.4 50.0 L368.2 50.0 L370.0 50.0"/><text class="fg-m fg-c" x="280.0" y="150" font-size="12">f →</text><text class="fg-m fg-c" x="280.0" y="172" font-size="11.5">bloquea la continua,</text><text class="fg-m fg-c" x="280.0" y="188" font-size="11.5">separa agudos (tweeter)</text><text class="fg-t fg-b fg-c" x="450.0" y="26">Pasa-banda</text><path class="fg-line" d="M360 42 V130 H548" style="stroke-width:1.5"/><path class="fg-acc" d="M360.0 130.0 L361.8 130.0 L363.6 130.0 L365.4 130.0 L367.2 130.0 L369.0 130.0 L370.8 129.9 L372.6 129.9 L374.4 129.9 L376.2 129.9 L378.0 129.8 L379.8 129.7 L381.6 129.6 L383.4 129.5 L385.2 129.3 L387.0 129.1 L388.8 128.8 L390.6 128.4 L392.4 127.9 L394.2 127.2 L396.0 126.2 L397.8 125.0 L399.6 123.3 L401.4 121.3 L403.2 118.7 L405.0 115.4 L406.8 111.5 L408.6 106.9 L410.4 101.7 L412.2 96.0 L414.0 90.0 L415.8 84.0 L417.6 78.3 L419.4 73.1 L421.2 68.5 L423.0 64.6 L424.8 61.4 L426.6 58.7 L428.4 56.7 L430.2 55.0 L432.0 53.8 L433.8 52.9 L435.6 52.1 L437.4 51.6 L439.2 51.2 L441.0 50.9 L442.8 50.7 L444.6 50.6 L446.4 50.5 L448.2 50.4 L450.0 50.4 L451.8 50.4 L453.6 50.5 L455.4 50.6 L457.2 50.7 L459.0 50.9 L460.8 51.2 L462.6 51.6 L464.4 52.1 L466.2 52.9 L468.0 53.8 L469.8 55.0 L471.6 56.7 L473.4 58.7 L475.2 61.4 L477.0 64.6 L478.8 68.5 L480.6 73.1 L482.4 78.3 L484.2 84.0 L486.0 90.0 L487.8 96.0 L489.6 101.7 L491.4 106.9 L493.2 111.5 L495.0 115.4 L496.8 118.7 L498.6 121.3 L500.4 123.3 L502.2 125.0 L504.0 126.2 L505.8 127.2 L507.6 127.9 L509.4 128.4 L511.2 128.8 L513.0 129.1 L514.8 129.3 L516.6 129.5 L518.4 129.6 L520.2 129.7 L522.0 129.8 L523.8 129.9 L525.6 129.9 L527.4 129.9 L529.2 129.9 L531.0 130.0 L532.8 130.0 L534.6 130.0 L536.4 130.0 L538.2 130.0 L540.0 130.0"/><text class="fg-m fg-c" x="450.0" y="150" font-size="12">f →</text><text class="fg-m fg-c" x="450.0" y="172" font-size="11.5">elige una emisora,</text><text class="fg-m fg-c" x="450.0" y="188" font-size="11.5">selecciona un tono</text><text class="fg-t fg-b fg-c" x="620.0" y="26">Rechaza-banda</text><path class="fg-line" d="M530 42 V130 H718" style="stroke-width:1.5"/><path class="fg-acc" d="M530.0 50.0 L531.8 50.0 L533.6 50.0 L535.4 50.0 L537.2 50.0 L539.0 50.0 L540.8 50.0 L542.6 50.0 L544.4 50.0 L546.2 50.0 L548.0 50.0 L549.8 50.0 L551.6 50.0 L553.4 50.0 L555.2 50.0 L557.0 50.0 L558.8 50.1 L560.6 50.1 L562.4 50.1 L564.2 50.1 L566.0 50.2 L567.8 50.3 L569.6 50.3 L571.4 50.5 L573.2 50.6 L575.0 50.8 L576.8 51.1 L578.6 51.5 L580.4 52.0 L582.2 52.7 L584.0 53.6 L585.8 54.8 L587.6 56.3 L589.4 58.3 L591.2 60.8 L593.0 63.9 L594.8 67.6 L596.6 71.9 L598.4 76.9 L600.2 82.3 L602.0 87.9 L603.8 93.5 L605.6 98.8 L607.4 103.7 L609.2 107.9 L611.0 111.5 L612.8 114.3 L614.6 116.4 L616.4 117.8 L618.2 118.7 L620.0 119.0 L621.8 118.7 L623.6 117.8 L625.4 116.4 L627.2 114.3 L629.0 111.5 L630.8 107.9 L632.6 103.7 L634.4 98.8 L636.2 93.5 L638.0 87.9 L639.8 82.3 L641.6 76.9 L643.4 71.9 L645.2 67.6 L647.0 63.9 L648.8 60.8 L650.6 58.3 L652.4 56.3 L654.2 54.8 L656.0 53.6 L657.8 52.7 L659.6 52.0 L661.4 51.5 L663.2 51.1 L665.0 50.8 L666.8 50.6 L668.6 50.5 L670.4 50.3 L672.2 50.3 L674.0 50.2 L675.8 50.1 L677.6 50.1 L679.4 50.1 L681.2 50.1 L683.0 50.0 L684.8 50.0 L686.6 50.0 L688.4 50.0 L690.2 50.0 L692.0 50.0 L693.8 50.0 L695.6 50.0 L697.4 50.0 L699.2 50.0 L701.0 50.0 L702.8 50.0 L704.6 50.0 L706.4 50.0 L708.2 50.0 L710.0 50.0"/><text class="fg-m fg-c" x="620.0" y="150" font-size="12">f →</text><text class="fg-m fg-c" x="620.0" y="172" font-size="11.5">elimina el zumbido</text><text class="fg-m fg-c" x="620.0" y="188" font-size="11.5">de 50 Hz</text>
+          </svg>
+          <figcaption>Combinando un pasa-bajos y un pasa-altos se arma un pasa-banda (la sintonía de una radio) o un rechaza-banda (para eliminar el zumbido de la red).</figcaption>
+        </figure>
+
+        <p>Los <strong>filtros de orden superior</strong> (varias etapas en cadena) frenan con más pendiente: 40, 60 dB por década. Combinando bobinas y capacitores (filtros LC) se consiguen cortes más abruptos; en el <a class="xref" href="22-resonancia.html">capítulo 22</a> se ve el caso especial de la resonancia. Los filtros <strong>activos</strong>, con amplificadores operacionales, se ven en el capítulo <a class="xref" href="24-aplicaciones-operacional.html">24</a>.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Parlantes de dos vías</span>
+          <p>Un parlante con woofer y tweeter lleva un «crossover»: un pasa-bajos que manda solo los graves al woofer y un pasa-altos que manda solo los agudos al tweeter, con una frecuencia de cruce de unos 2–3 kHz.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Acoplamiento y desacople</span>
+          <p>Los capacitores de acople de un amplificador (<a class="xref" href="16-transistor-amplificador.html">capítulo 16</a>) forman, con la resistencia de entrada, un pasa-altos que deja pasar el audio y bloquea la continua. Un capacitor en la salida de una fuente es un pasa-bajos que quita ruido.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Del PWM a una tensión continua</span>
+          <p>Un pasa-bajos RC convierte una señal PWM (<a class="xref" href="11-osciloscopio.html#pwm">capítulo 11</a>) en una tensión continua proporcional al ciclo de trabajo: así un microcontrolador «genera» tensiones analógicas (capítulo <a class="xref" href="26-entradas-adc.html">26</a>).</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un pasa-bajos</span>
+          <p>R = 1 kΩ y C = 100 nF.</p>
+          <ol>
+            <li>Frecuencia de corte: <span class="eq">f<sub>c</sub> = 1 / (2π · 1000 · 10<sup>−7</sup>) ≈ 1,59 kHz</span>.</li>
+            <li>A 159 Hz (una décima de f<sub>c</sub>): <span class="eq">ganancia = 1/√(1 + 0,1²) ≈ 0,995</span> (−0,04 dB): pasa casi sin cambios.</li>
+            <li>A 15,9 kHz (diez veces f<sub>c</sub>): <span class="eq">ganancia = 1/√(1 + 100) ≈ 0,0995</span> (−20 dB): llega a una décima.</li>
+            <li>Con una entrada de 5 V pico a 15,9 kHz, la salida es de unos 0,5 V.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: el pasa-altos de una entrada de audio</span>
+          <p>Se quiere que una entrada de audio de 10 kΩ pase desde 20 Hz hacia arriba y bloquee la continua.</p>
+          <ol>
+            <li>Se pide <span class="eq">f<sub>c</sub> ≈ 20 Hz</span>, entonces <span class="eq">C = 1 / (2π · 20 · 10 000) ≈ 0,8 µF</span>.</li>
+            <li>Con el valor comercial de 1 µF queda <span class="eq">f<sub>c</sub> = 1 / (2π · 10 000 · 10<sup>−6</sup>) ≈ 16 Hz</span>.</li>
+            <li>A 1 kHz la reactancia del capacitor es <span class="eq">159 Ω</span>, despreciable frente a 10 kΩ: el audio pasa casi sin pérdida.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con R = 1 kΩ y C = 100 nF, el filtro pasa-bajos tiene f<sub>c</sub> = 1,59 kHz. A 100 Hz la salida es casi igual que la entrada (ganancia ≈ 1). Subí la frecuencia: la amplitud de salida cae y la onda se retrasa.</li>
+        <li>Poné la frecuencia en 2 kHz (la más cercana a f<sub>c</sub>): la ganancia es ≈ 0,62 y la fase cercana a −51°. Con exactamente f<sub>c</sub> serían 0,707 (−3 dB) y −45°.</li>
+        <li>Subí a 20 kHz y 100 kHz: la salida se vuelve diminuta, cae 20 dB por cada multiplicación por 10 de la frecuencia. Mirá el punto en la gráfica siguiendo la curva hacia abajo.</li>
+        <li>Pasá a <strong>Pasa-altos</strong>: ahora las bajas frecuencias se frenan y las altas pasan. A 100 Hz la salida es chica y adelantada en fase; a 20 kHz, casi igual que la entrada.</li>
+        <li>Con la frecuencia fija en 1 kHz, mové C: f<sub>c</sub> cambia y la curva se desplaza. Con C = 1 µF (f<sub>c</sub> = 159 Hz), 1 kHz queda bien arriba de la frecuencia de corte.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/filter.js"></script>
+  <script src="../js/quizzes/21-impedancia-filtros.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+/* Componentes: cajas de texto, figura del laboratorio, controles, cuaderno de fórmulas */
+
+/* Cajas dentro del texto */
+.note,
+.example,
+.worked {
+  margin: 1.5em 0;
+  padding: 14px 20px;
+  max-width: 72ch;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.note > :last-child,
+.example > :last-child,
+.worked > :last-child {
+  margin-bottom: 0;
+}
+
+.note {
+  border-left: 4px solid var(--accent);
+}
+
+.box-title {
+  display: block;
+  margin-bottom: 0.4em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.example {
+  border-top: 4px solid var(--charge-pos);
+}
+
+.worked {
+  border-top: 4px solid var(--charge-neg);
+}
+
+.worked .box-title {
+  color: var(--charge-neg);
+}
+
+.worked ol,
+.worked ul {
+  padding-left: 1.3em;
+}
+
+/* Tabla de datos */
+.data-table {
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.95rem;
+}
+
+.data-table caption {
+  text-align: left;
+  font-style: italic;
+  color: var(--muted);
+  padding-bottom: 6px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 6px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+  border-bottom: 2px solid var(--text);
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.btn {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 4px 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--text);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* Figura del laboratorio */
+.sim {
+  background: var(--surface);
+  border: 1px solid var(--text);
+  margin: 1.2em 0 0.4em;
+  overflow: hidden;
+}
+
+.sim-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 14px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sim-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+}
+
+.sim-stage--chart {
+  aspect-ratio: 16 / 5;
+  border-top: 1px solid var(--border);
+}
+
+.sim-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sim-caption {
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.sim-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.sim-toolbar .spacer {
+  flex: 1;
+}
+
+.sim-toolbar .speed-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.sim-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border);
+}
+
+.controls,
+.formulas {
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+/* El cuaderno de cálculo: hoja rayada */
+.formulas {
+  border-left: 1px solid var(--border);
+  background: repeating-linear-gradient(to bottom, transparent 0 27px, var(--grid) 27px 28px);
+}
+
+.panel-title {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Controles */
+.control {
+  margin-bottom: 14px;
+}
+
+.control-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.control-head output {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.control input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--text);
+}
+
+.segmented button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 3px 12px;
+  background: var(--surface);
+  color: var(--text);
+  border: 0;
+  cursor: pointer;
+}
+
+.segmented button + button {
+  border-left: 1px solid var(--text);
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* Fórmulas en vivo */
+.formula {
+  margin-bottom: 10px;
+}
+
+.formula-name {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.formula-sym {
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.formula-val {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+/* Pantallas táctiles: botones y selectores con tamaño cómodo para el dedo */
+@media (pointer: coarse) {
+  .btn,
+  .segmented button {
+    padding: 9px 14px;
+  }
+
+  .control input[type="range"] {
+    height: 28px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sim-head {
+    flex-direction: column;
+    gap: 0;
+    font-size: 0.78rem;
+  }
+
+  .note,
+  .example,
+  .worked {
+    padding: 12px 14px;
+  }
+
+  .sim-stage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .sim-stage--chart {
+    aspect-ratio: 16 / 9;
+  }
+
+  .sim-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .formulas {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* Referencias cruzadas entre capítulos */
+.xref {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+h2[id],
+h3[id] {
+  scroll-margin-top: 1rem;
+}

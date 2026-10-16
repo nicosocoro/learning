@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voltaje, corriente y carga · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="01-voltaje-corriente" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 1</p>
+        <h1>Voltaje, corriente y carga</h1>
+        <p class="lead">Tres ideas que sostienen toda la electrónica: la carga que se mueve, la energía que lleva cada carga y la cantidad de carga que pasa por segundo.</p>
+      </header>
+      <section>
+        <h2>La carga eléctrica</h2>
+        <p>La <strong>carga</strong> (<em>q</em> o <em>Q</em>) es una propiedad de la materia. Se mide en <strong>coulombs (C)</strong>. Un electrón tiene una carga negativa muy pequeña, de unos <span class="eq">−1,6 × 10<sup>−19</sup> C</span>, así que 1 C equivale a unos 6,24 × 10<sup>18</sup> electrones.</p>
+      </section>
+
+      <section>
+        <h2>Voltaje: energía por cada unidad de carga</h2>
+        <p>El <strong>voltaje</strong> o <strong>diferencia de potencial</strong> entre dos puntos indica cuánta energía gana o entrega cada coulomb al ir de uno al otro:</p>
+        <p class="equation"><span class="eq">ΔV = W / q</span> &nbsp;⇒&nbsp; <span class="eq">W = q · ΔV</span></p>
+        <p>Se mide en <strong>volts (V)</strong>, donde 1 V = 1 J/C. Un punto no tiene un voltaje “absoluto”: siempre se mide <em>respecto de otro</em>, por eso se elige una referencia de 0 V.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 250" role="img" aria-labelledby="f1t f1d">
+            <title id="f1t">Analogía de la rampa</title>
+            <desc id="f1d">Una carga positiva en lo alto de una rampa y otra abajo; la diferencia de altura es el voltaje.</desc>
+            <polygon class="fg-fill-soft" points="70,70 570,200 70,200"/>
+            <line class="fg-line" x1="70" y1="70" x2="570" y2="200"/>
+            <line class="fg-line" x1="40" y1="200" x2="610" y2="200"/>
+            <line class="fg-dash" x1="40" y1="70" x2="200" y2="70"/>
+            <line class="fg-thin" x1="40" y1="70" x2="40" y2="200"/>
+            <path class="fg-thin" d="M35 78 L40 70 L45 78 M35 192 L40 200 L45 192"/>
+            <text class="fg-t fg-i" x="50" y="140">ΔV</text>
+            <text class="fg-m" x="50" y="62">V<tspan font-size="10" dy="3">A</tspan><tspan dy="-3"> (alto)</tspan></text>
+            <text class="fg-m" x="560" y="222" text-anchor="end">V<tspan font-size="10" dy="3">B</tspan><tspan dy="-3"> (bajo, referencia 0 V)</tspan></text>
+            <circle class="fg-fill-pos" cx="128" cy="72" r="13"/>
+            <text class="fg-c" x="128" y="77" fill="#fff" font-size="15" font-weight="700">+</text>
+            <text class="fg-t fg-i" x="128" y="48" text-anchor="middle">q</text>
+            <path class="fg-acc" d="M150 85 L260 118" stroke-dasharray="6 5"/>
+            <path class="fg-acc" d="M254 109 L264 120 L250 122"/>
+            <text class="fg-a" x="250" y="100">cae y libera W = q · ΔV</text>
+            <circle class="fg-fill-pos" cx="520" cy="177" r="13" opacity=".45"/>
+            <text class="fg-m" x="520" y="156" text-anchor="middle">sin energía sobrante</text>
+          </svg>
+          <figcaption><strong>Voltaje = altura de la rampa.</strong> Cuanto mayor es la diferencia entre A y B, más energía entrega cada coulomb al “caer”. Si las alturas son iguales, no hay pendiente y no hay movimiento.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">Analogía</span>
+          <p>Pensá en una bola en una rampa. La diferencia de altura entre arriba y abajo es el voltaje; el peso de la bola es la carga; la energía que libera al caer es <span class="eq">W = q · ΔV</span>. Sin diferencia de altura, la bola no rueda.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Corriente: carga por unidad de tiempo</h2>
+        <p>La <strong>corriente</strong> es cuánta carga cruza una sección del conductor en cada segundo:</p>
+        <p class="equation"><span class="eq">I = Q / t</span></p>
+        <p>Se mide en <strong>amperes (A)</strong>: 1 A = 1 C/s. Por convención, el sentido de la corriente es el que seguirían las cargas <em>positivas</em> (del potencial alto al bajo), aunque en los metales en realidad se mueven los electrones, en sentido contrario.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 260" role="img" aria-labelledby="f2t f2d">
+            <title id="f2t">Corriente en un conductor</title>
+            <desc id="f2d">Electrones que se mueven hacia la izquierda por un cable y la corriente convencional hacia la derecha.</desc>
+            <rect class="fg-box" x="40" y="80" width="560" height="90" rx="6"/>
+            <line class="fg-dash" x1="320" y1="62" x2="320" y2="188"/>
+            <text class="fg-m fg-c" x="320" y="206">sección del conductor</text>
+            <g class="fg-fill-neg">
+              <circle cx="90" cy="105" r="9"/><circle cx="170" cy="145" r="9"/><circle cx="235" cy="110" r="9"/>
+              <circle cx="300" cy="148" r="9"/><circle cx="385" cy="108" r="9"/><circle cx="450" cy="146" r="9"/><circle cx="530" cy="112" r="9"/>
+            </g>
+            <g fill="#fff" font-size="13" font-weight="700" text-anchor="middle">
+              <text x="90" y="109">−</text><text x="170" y="149">−</text><text x="235" y="114">−</text><text x="300" y="152">−</text>
+              <text x="385" y="112">−</text><text x="450" y="150">−</text><text x="530" y="116">−</text>
+            </g>
+            <path class="fg-neg" d="M520 50 L120 50 M134 42 L120 50 L134 58"/>
+            <text class="fg-t" x="520" y="38" text-anchor="end" style="fill:var(--charge-neg);">electrones (movimiento real)</text>
+            <path class="fg-pos" d="M120 236 L520 236 M506 228 L520 236 L506 244"/>
+            <text class="fg-t" x="120" y="226" style="fill:var(--charge-pos);">corriente convencional I (sentido de las cargas +)</text>
+          </svg>
+          <figcaption><strong>I = Q / t.</strong> Se cuenta cuántos coulombs atraviesan la sección en un segundo. Los electrones van en un sentido y, por convención, la corriente se dibuja en el contrario.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Potencia: energía por segundo</h2>
+        <p>Si cada carga entrega <span class="eq">q · ΔV</span> y pasan <span class="eq">I</span> coulombs por segundo, la energía por segundo es:</p>
+        <p class="equation"><span class="eq">P = I · ΔV</span> &nbsp;(en <strong>watts</strong>, 1 W = 1 J/s)</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 230" role="img" aria-labelledby="f3t f3d">
+            <title id="f3t">Voltaje, corriente y potencia en un circuito</title>
+            <desc id="f3d">Una fuente alimenta una carga: el voltaje empuja, la corriente circula y el producto de ambos es la potencia.</desc>
+            <path class="fg-line" d="M150 60 H 500 V 170 H 150"/>
+            <line class="fg-line" x1="150" y1="60" x2="150" y2="98"/>
+            <line class="fg-line" x1="150" y1="132" x2="150" y2="170"/>
+            <line class="fg-line" x1="128" y1="98" x2="172" y2="98"/>
+            <line class="fg-line" x1="138" y1="115" x2="162" y2="115" stroke-width="4"/>
+            <line class="fg-line" x1="128" y1="132" x2="172" y2="132"/>
+            <text class="fg-t fg-b" x="108" y="106" text-anchor="end">+</text>
+            <text class="fg-t fg-b" x="108" y="140" text-anchor="end">−</text>
+            <text class="fg-t" x="30" y="122">Fuente</text>
+            <text class="fg-m" x="30" y="140">ΔV (V)</text>
+            <rect class="fg-box" x="450" y="88" width="100" height="54" rx="4"/>
+            <text class="fg-t fg-c" x="500" y="112">Carga</text>
+            <text class="fg-m fg-c" x="500" y="130">(LED, motor…)</text>
+            <path class="fg-pos" d="M250 60 H 340 M328 52 L340 60 L328 68"/>
+            <text class="fg-t fg-c" x="295" y="44" style="fill:var(--charge-pos);">I (A)</text>
+            <text class="fg-a fg-c fg-b" x="325" y="205">P = I · ΔV  (W)</text>
+            <text class="fg-m fg-c" x="325" y="222">energía entregada a la carga por segundo</text>
+          </svg>
+          <figcaption>La fuente “sube” cada carga ΔV volts, la carga la devuelve entregando energía, y la corriente dice cuántas cargas por segundo hacen el recorrido.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Una pila AA</span>
+          <p>Una pila alcalina de 1,5 V entrega 1,5 J por cada coulomb que la atraviesa. Con una capacidad típica de unos 2,5 Ah, almacena 2,5 A · 3600 s = 9000 C, es decir, alrededor de <span class="eq">1,5 V · 9000 C ≈ 13,5 kJ</span> (unos 3,75 Wh).</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El cargador del celular</span>
+          <p>Un cargador USB de 5 V y 2 A hace circular 2 C cada segundo y entrega <span class="eq">5 V · 2 A = 10 W</span>. Cada coulomb que pasa se lleva 5 J.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un rayo</span>
+          <p>Es el mismo fenómeno a otra escala: una descarga entre nube y tierra mueve cargas con diferencias de potencial de cientos de millones de volts y corrientes de decenas de miles de amperes, durante fracciones de milisegundo. Por eso libera tanta energía en tan poco tiempo.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Un <a class="xref" href="07-diodos-led.html#led">LED</a> consume 20 mA durante 1 hora, alimentado con 3 V. ¿Cuánta carga lo atraviesa y cuánta energía recibe?</p>
+          <ol>
+            <li>Carga: <span class="eq">Q = I · t = 0,02 A · 3600 s = 72 C</span></li>
+            <li>Energía: <span class="eq">W = Q · V = 72 C · 3 V = 216 J</span></li>
+            <li>Potencia: <span class="eq">P = I · V = 0,02 A · 3 V = 60 mW</span> (y 60 mW · 3600 s = 216 J ✓)</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Poné V<sub>A</sub> igual a V<sub>B</sub>: no hay diferencia de potencial y no hay movimiento.</li>
+        <li>Subí V<sub>A</sub> manteniendo V<sub>B</sub>: la rampa es más empinada, cada carga entrega más energía (<em>W = q·ΔV</em>) y la potencia sube.</li>
+        <li>Duplicá las partículas por segundo: la corriente medida se duplica, pero la energía por carga no cambia.</li>
+        <li>Poné V<sub>B</sub> mayor que V<sub>A</sub>: las cargas “caen” ahora de B a A. La corriente convencional cambió de sentido.</li>
+        <li>Variá <em>q</em> con ΔV constante: ¿qué pasa con <em>W</em> y con <em>I</em>?</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/voltage.js"></script>
+  <script src="../js/quizzes/01-voltaje-corriente.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

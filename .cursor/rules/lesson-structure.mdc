@@ -1,0 +1,42 @@
+---
+description: Estructura obligatoria de cada lección: teoría, imágenes, laboratorio y cuestionario
+globs: lessons/*.html
+alwaysApply: false
+---
+
+# Estructura de una lección (`lessons/NN-nombre.html`)
+
+Toda lección tiene **cuatro partes**, en este orden. Si falta una, la lección está incompleta.
+
+## 1. Teoría (`<section>` con `<h2>`)
+- Encabezado `chapter-head` con `chapter-kicker` ("Capítulo N"), `<h1>` y `<p class="lead">`.
+- Una `<section>` por idea, con título `<h2>` (con `id` si otros capítulos la enlazan).
+- Cada fórmula en `<p class="equation"><span class="eq">…</span></p>`; subíndices con `<sub>`.
+- Definiciones con `<strong>`, analogías en `<div class="note">`, ejemplos cotidianos en `<div class="example">`, problemas con pasos en `<div class="worked">`.
+- Sección "En la vida real" con ejemplos concretos y al menos un ejemplo resuelto con números.
+- Referencias a otros capítulos con `<a class="xref" href="NN-nombre.html#ancla">`.
+
+## 2. Imágenes
+- **Mínimo dos figuras** por lección (idealmente 3 o 4), cada una pegada al párrafo que ilustra, no amontonadas.
+- Formato: `<figure class="figure"><svg viewBox="…" role="img" aria-labelledby="idt idd"><title id="idt">…</title><desc id="idd">…</desc>…</svg><figcaption>…</figcaption></figure>`.
+- Cumplir `svg-figures.mdc` (clases `fg-*`, nada de colores fijos, nada de `var()` en atributos).
+- Cada figura enseña algo que el texto solo describe: un esquema con corrientes y tensiones, una curva, una comparación lado a lado. No decorativas.
+
+## 3. Laboratorio
+- `<section><h2>Laboratorio</h2><div data-sim></div><h3>Qué probar</h3><ol class="experiments">…</ol></section>`.
+- 4 o 5 experimentos con consigna concreta ("Poné X en Y: ¿qué pasa con Z?") y la respuesta esperada en la misma línea.
+- La simulación vive en `js/sims/<nombre>.js` y cumple `sims-and-quizzes.mdc`.
+
+## 4. Cuestionario
+- `<section data-quiz></section>` seguido de `<div data-pager></div>`.
+- Preguntas en `js/quizzes/<id>.js` (5 a 7, conceptuales).
+
+## Scripts (orden fijo, al final del `<body>`)
+`lessons-data` → `progress` → `site` → `units` → `theme` → `sim-loop` → `canvas` → `flow` → (`parts` si dibuja transistores, relés, lámparas o bobinas) → `controls` → `formula-panel` → `chart` → `audio` → `sim` → `sims/<nombre>.js` → `quizzes/<id>.js` → `quiz`.
+
+## Checklist antes de dar la lección por terminada
+- [ ] Teoría, ≥ 2 figuras, laboratorio y cuestionario presentes.
+- [ ] Capítulo agregado a `js/core/lessons-data.js` (LESSONS y PARTS).
+- [ ] `data-lesson="<id>"` en el `<body>` coincide con el id y con `Elec.QUIZZES[id]`.
+- [ ] Enlaces cruzados desde y hacia capítulos relacionados.
+- [ ] Probada en Chrome y Firefox, tema claro y oscuro, ancho de celular.

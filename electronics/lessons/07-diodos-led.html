@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diodos, LED y rectificación · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="07-diodos-led" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 7</p>
+        <h1>Diodos, LED y rectificación</h1>
+        <p class="lead">Un diodo es una válvula de una sola vía para la corriente. Con ella se enciende un LED, se protege un circuito y se convierte la corriente alterna de la red en continua.</p>
+      </header>
+      <section>
+        <h2 id="diodo">Una válvula de una sola vía</h2>
+        <p>Un <strong>diodo</strong> es un componente que deja pasar la corriente en un sentido y la bloquea en el otro, como una válvula antirretorno en una cañería. Tiene dos terminales: el <strong>ánodo</strong> (+) y el <strong>cátodo</strong> (−, el lado de la barra en el símbolo). La corriente circula del ánodo al cátodo, en el sentido de la “flecha” del triángulo.</p>
+        <p>Los diodos están hechos de <strong>semiconductores</strong>, materiales (como el silicio) que no son buenos conductores ni aislantes y cuya conductividad se puede controlar. Se les agregan impurezas para obtener dos tipos: el tipo <em>N</em> (con electrones libres de sobra) y el tipo <em>P</em> (con “huecos”, lugares donde falta un electrón). La unión de ambos, la <strong>juntura P-N</strong>, forma una pequeña barrera de potencial: la corriente solo puede pasar si la tensión aplicada la supera.</p>
+        <ul>
+          <li><strong>Polarización directa</strong> (ánodo más positivo que el cátodo): si la tensión supera unos 0,6–0,7 V (en silicio), el diodo conduce y su tensión queda casi fija en ese valor.</li>
+          <li><strong>Polarización inversa</strong> (ánodo más negativo): el diodo bloquea; solo pasa una corriente minúscula, hasta que se alcanza la tensión de ruptura (cientos de volts en un diodo común).</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g7at g7ad">
+            <title id="g7at">Símbolo y curva del diodo</title>
+            <desc id="g7ad">El símbolo del diodo y su curva de corriente contra tensión, con el codo en 0,7 V.</desc>
+            <path class="fg-line" d="M30 120 H90 M150 120 H210"/>
+            <polygon class="fg-box" points="90,88 90,152 150,120"/>
+            <line class="fg-line" x1="150" y1="86" x2="150" y2="154" stroke-width="3"/>
+            <text class="fg-t fg-c" x="70" y="76">ánodo (+)</text><text class="fg-t fg-c" x="170" y="76">cátodo (−)</text>
+            <path class="fg-pos" d="M60 190 H170 M158 182 L170 190 L158 198" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="115" y="216">la corriente va del ánodo al cátodo</text>
+            <text class="fg-m fg-c" x="115" y="236">(sentido de la flecha del triángulo)</text>
+            <path class="fg-line" d="M300 170 H660 M652 164 L660 170 L652 176 M420 190 V30 M414 38 L420 30 L426 38"/>
+            <path class="fg-acc" d="M420.0 170.0 L421.1 170.0 L422.3 170.0 L423.4 170.0 L424.6 170.0 L425.7 170.0 L426.8 170.0 L428.0 170.0 L429.1 170.0 L430.3 170.0 L431.4 170.0 L432.5 170.0 L433.7 170.0 L434.8 170.0 L436.0 170.0 L437.1 170.0 L438.2 170.0 L439.4 170.0 L440.5 170.0 L441.7 170.0 L442.8 170.0 L443.9 170.0 L445.1 170.0 L446.2 170.0 L447.4 170.0 L448.5 170.0 L449.6 170.0 L450.8 170.0 L451.9 170.0 L453.1 170.0 L454.2 170.0 L455.3 170.0 L456.5 170.0 L457.6 170.0 L458.8 170.0 L459.9 170.0 L461.0 170.0 L462.2 170.0 L463.3 170.0 L464.5 170.0 L465.6 170.0 L466.7 170.0 L467.9 170.0 L469.0 170.0 L470.2 170.0 L471.3 170.0 L472.4 170.0 L473.6 170.0 L474.7 170.0 L475.9 170.0 L477.0 170.0 L478.1 169.2 L479.3 168.4 L480.4 167.4 L481.6 166.2 L482.7 164.9 L483.8 163.4 L485.0 161.7 L486.1 159.7 L487.3 157.4 L488.4 154.7 L489.5 151.7 L490.7 148.2 L491.8 144.1 L493.0 139.5 L494.1 134.2 L495.2 128.0 L496.4 121.0 L497.5 112.9 L498.7 103.5 L499.8 92.8 L500.9 80.4 L502.1 66.2 L503.2 49.9 L504.4 31.1 L505.5 30.0 L506.6 30.0 L507.8 30.0"/><line class="fg-acc" x1="420" y1="170" x2="340" y2="170"/>
+            <line class="fg-dash" x1="500" y1="170" x2="500" y2="60"/>
+            <text class="fg-t fg-c" x="500" y="190">≈ 0,7 V</text>
+            <text class="fg-t fg-i" x="664" y="188">V</text><text class="fg-t fg-i" x="430" y="38">I</text>
+            <text class="fg-m fg-c" x="360" y="156">inversa: bloquea</text>
+            <text class="fg-m" x="530" y="100">directa: conduce</text>
+            <text class="fg-m" x="530" y="118">y V queda ≈ 0,7 V</text>
+          </svg>
+          <figcaption><strong>Una válvula con una “propina”:</strong> hacia atrás no pasa nada; hacia adelante no pasa nada hasta que se alcanzan unos 0,7 V, y entonces la corriente se dispara.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">Un modelo simple para calcular</span>
+          <p>Un diodo que conduce se comporta, aproximadamente, como una pequeña pila opuesta de unos 0,7 V: queda con esa caída casi constante sea cual sea la corriente. Por eso <strong>nunca se conecta un diodo directamente a una fuente</strong>: sin algo que limite la corriente, ésta se dispara hasta que el diodo se quema. Se usa siempre un resistor en serie (como en el capítulo <a class="xref" href="02-ley-de-ohm.html">2</a>).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="led">El LED</h2>
+        <p>El <strong>LED</strong> (<em>Light Emitting Diode</em>, diodo emisor de luz) es un diodo que, además, emite luz cuando conduce: la energía que pierden los electrones al cruzar la juntura sale en forma de luz en lugar de calor. Como cualquier diodo, tiene polaridad (en el LED, la pata más larga es el ánodo) y una tensión directa característica que depende del color:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Tensión directa típica (V<sub>f</sub>) de distintos diodos</caption>
+            <thead><tr><th>Tipo</th><th>V<sub>f</sub> aproximada</th><th>Comentario</th></tr></thead>
+            <tbody>
+              <tr><td>Diodo de silicio (1N4007, 1N4148)</td><td>0,6 – 0,7 V</td><td>Uso general, rectificación</td></tr>
+              <tr><td>Diodo Schottky</td><td>0,2 – 0,4 V</td><td>Menos pérdida, muy rápido</td></tr>
+              <tr><td>LED rojo / amarillo</td><td>1,8 – 2,1 V</td><td></td></tr>
+              <tr><td>LED verde</td><td>2,0 – 3,0 V</td><td>Varía según el tipo</td></tr>
+              <tr><td>LED azul / blanco</td><td>3,0 – 3,3 V</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>El brillo del LED depende de la <em>corriente</em>, no de la tensión: un LED común se usa con unos 5–20 mA. Para fijarla se coloca un resistor en serie, que absorbe la tensión sobrante:</p>
+        <p class="equation"><span class="eq">R = (V<sub>fuente</sub> − V<sub>f</sub>) / I</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 180" role="img" aria-labelledby="g7bt g7bd">
+            <title id="g7bt">LED con resistor en serie</title>
+            <desc id="g7bd">Una batería de 9 V, un resistor y un LED en serie; la tensión se reparte entre el resistor y el LED.</desc>
+            <path class="fg-line" d="M40 40 H100 M166 40 H280 V80 M280 120 V160 H40 V114 M40 80 V40"/>
+            <path class="fg-line" d="M100 40 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M40 80 v10 M40 104 v10"/><line class="fg-line" x1="26" y1="90" x2="54" y2="90"/><line class="fg-line" x1="32" y1="104" x2="48" y2="104" stroke-width="4"/>
+            <polygon class="fg-box" points="262,80 298,80 280,112" style="fill:var(--heat);opacity:.9"/>
+            <line class="fg-line" x1="260" y1="112" x2="300" y2="112" stroke-width="3"/>
+            <path class="fg-acc" d="M306 84 L328 62 M320 62 H328 V70 M316 98 L338 76 M330 76 H338 V84" style="stroke-width:2"/>
+            <text class="fg-t fg-c fg-i" x="133" y="26">R</text>
+            <text class="fg-m fg-c" x="133" y="70">6,9 V</text>
+            <text class="fg-m" x="344" y="108">LED: 2,1 V</text>
+            <text class="fg-t fg-e" x="22" y="102">9 V</text>
+            <path class="fg-pos" d="M190 22 H235 M225 16 L235 22 L225 28" style="stroke-width:2"/>
+            <text class="fg-t fg-i" x="196" y="16" style="fill:var(--charge-pos);">I = 10 mA</text>
+            <text class="fg-a fg-b" x="420" y="60">9 V = 6,9 V + 2,1 V</text>
+            <text class="fg-m" x="420" y="84">el resistor “se come” la tensión sobrante</text>
+            <text class="fg-t" x="420" y="118">R = (9 V − 2,1 V) / 10 mA</text>
+            <text class="fg-t fg-b" x="420" y="142">R = 690 Ω  → comercial: 680 Ω</text>
+          </svg>
+          <figcaption><strong>El resistor fija la corriente.</strong> El LED se queda con su Vf y todo el resto de la tensión cae sobre el resistor.</figcaption>
+        </figure>
+        <p>Los LED convierten mucha más energía en luz que una lámpara incandescente (que desperdicia más del 90 % como calor), y duran decenas de miles de horas.</p>
+      </section>
+
+      <section>
+        <h2 id="rectificacion">Rectificación: de alterna a continua</h2>
+        <p>Como el diodo solo deja pasar corriente en un sentido, sirve para “recortar” la parte negativa de una señal alterna. Eso es <strong>rectificar</strong>, el primer paso de cualquier fuente que convierte la corriente alterna de la red (capítulo <a class="xref" href="08-cc-vs-ca.html">8</a>) en continua.</p>
+        <ul>
+          <li><strong>Rectificador de media onda:</strong> un solo diodo. Pasa los semiciclos positivos y bloquea los negativos. Se aprovecha la mitad de la señal. La salida tiene un pulso por ciclo (50 por segundo en una red de 50 Hz) y un valor medio de <em>V<sub>p</sub>/π ≈ 0,32 · V<sub>p</sub></em>.</li>
+          <li><strong>Rectificador de onda completa (puente de diodos):</strong> cuatro diodos conectados de modo que, en cada semiciclo, la corriente atraviesa la carga <em>siempre en el mismo sentido</em>. Se invierte el semiciclo negativo en lugar de eliminarlo: dos pulsos por ciclo (100 por segundo) y valor medio de <em>2·V<sub>p</sub>/π ≈ 0,64 · V<sub>p</sub></em>.</li>
+        </ul>
+        <p>En cada caso se pierde la caída de los diodos que conducen: 0,7 V en media onda y 1,4 V en un puente (siempre conducen dos de los cuatro diodos a la vez). La salida es continua porque nunca cambia de signo, pero <em>pulsante</em>, y sigue sin ser apta para alimentar electrónica.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 300" role="img" aria-labelledby="g7ct g7cd">
+            <title id="g7ct">Etapas de la rectificación</title>
+            <desc id="g7cd">Cuatro gráficas de tensión: entrada alterna, media onda, onda completa y onda alisada por un capacitor.</desc>
+            <text class="fg-t fg-b fg-c" x="180" y="14">Entrada: alterna</text>
+            <line class="fg-grid" x1="30" y1="34" x2="330" y2="34" style="stroke-dasharray:4 4"/>
+            <path class="fg-thin" d="M30 118 H330"/><path class="fg-thin" d="M30 30 V122"/>
+            <path class="fg-thin" d="M30 76 H330"/><path class="fg-acc" d="M30.0 76.0 L31.2 72.7 L32.5 69.4 L33.8 66.2 L35.0 63.0 L36.2 59.9 L37.5 56.9 L38.8 54.1 L40.0 51.3 L41.2 48.7 L42.5 46.3 L43.8 44.1 L45.0 42.0 L46.2 40.2 L47.5 38.6 L48.8 37.2 L50.0 36.1 L51.2 35.2 L52.5 34.5 L53.8 34.1 L55.0 34.0 L56.2 34.1 L57.5 34.5 L58.8 35.2 L60.0 36.1 L61.2 37.2 L62.5 38.6 L63.8 40.2 L65.0 42.0 L66.2 44.1 L67.5 46.3 L68.8 48.7 L70.0 51.3 L71.2 54.1 L72.5 56.9 L73.8 59.9 L75.0 63.0 L76.2 66.2 L77.5 69.4 L78.8 72.7 L80.0 76.0 L81.2 79.3 L82.5 82.6 L83.8 85.8 L85.0 89.0 L86.2 92.1 L87.5 95.1 L88.8 97.9 L90.0 100.7 L91.2 103.3 L92.5 105.7 L93.8 107.9 L95.0 110.0 L96.2 111.8 L97.5 113.4 L98.8 114.8 L100.0 115.9 L101.2 116.8 L102.5 117.5 L103.8 117.9 L105.0 118.0 L106.2 117.9 L107.5 117.5 L108.8 116.8 L110.0 115.9 L111.2 114.8 L112.5 113.4 L113.8 111.8 L115.0 110.0 L116.2 107.9 L117.5 105.7 L118.8 103.3 L120.0 100.7 L121.2 97.9 L122.5 95.1 L123.8 92.1 L125.0 89.0 L126.3 85.8 L127.5 82.6 L128.8 79.3 L130.0 76.0 L131.2 72.7 L132.5 69.4 L133.8 66.2 L135.0 63.0 L136.2 59.9 L137.5 56.9 L138.8 54.1 L140.0 51.3 L141.2 48.7 L142.5 46.3 L143.8 44.1 L145.0 42.0 L146.2 40.2 L147.5 38.6 L148.8 37.2 L150.0 36.1 L151.2 35.2 L152.5 34.5 L153.8 34.1 L155.0 34.0 L156.2 34.1 L157.5 34.5 L158.8 35.2 L160.0 36.1 L161.2 37.2 L162.5 38.6 L163.8 40.2 L165.0 42.0 L166.2 44.1 L167.5 46.3 L168.8 48.7 L170.0 51.3 L171.2 54.1 L172.5 56.9 L173.8 59.9 L175.0 63.0 L176.2 66.2 L177.5 69.4 L178.8 72.7 L180.0 76.0 L181.2 79.3 L182.5 82.6 L183.8 85.8 L185.0 89.0 L186.2 92.1 L187.5 95.1 L188.8 97.9 L190.0 100.7 L191.2 103.3 L192.5 105.7 L193.7 107.9 L195.0 110.0 L196.2 111.8 L197.5 113.4 L198.8 114.8 L200.0 115.9 L201.2 116.8 L202.5 117.5 L203.8 117.9 L205.0 118.0 L206.2 117.9 L207.5 117.5 L208.8 116.8 L210.0 115.9 L211.2 114.8 L212.5 113.4 L213.8 111.8 L215.0 110.0 L216.2 107.9 L217.5 105.7 L218.8 103.3 L220.0 100.7 L221.2 97.9 L222.5 95.1 L223.8 92.1 L225.0 89.0 L226.2 85.8 L227.5 82.6 L228.8 79.3 L230.0 76.0 L231.2 72.7 L232.5 69.4 L233.8 66.2 L235.0 63.0 L236.2 59.9 L237.5 56.9 L238.8 54.1 L240.0 51.3 L241.3 48.7 L242.5 46.3 L243.8 44.1 L245.0 42.0 L246.2 40.2 L247.5 38.6 L248.8 37.2 L250.0 36.1 L251.2 35.2 L252.5 34.5 L253.8 34.1 L255.0 34.0 L256.2 34.1 L257.5 34.5 L258.8 35.2 L260.0 36.1 L261.2 37.2 L262.5 38.6 L263.8 40.2 L265.0 42.0 L266.2 44.1 L267.5 46.3 L268.8 48.7 L270.0 51.3 L271.2 54.1 L272.5 56.9 L273.8 59.9 L275.0 63.0 L276.2 66.2 L277.5 69.4 L278.8 72.7 L280.0 76.0 L281.2 79.3 L282.5 82.6 L283.8 85.8 L285.0 89.0 L286.2 92.1 L287.5 95.1 L288.8 97.9 L290.0 100.7 L291.2 103.3 L292.5 105.7 L293.8 107.9 L295.0 110.0 L296.2 111.8 L297.5 113.4 L298.8 114.8 L300.0 115.9 L301.2 116.8 L302.5 117.5 L303.8 117.9 L305.0 118.0 L306.2 117.9 L307.5 117.5 L308.8 116.8 L310.0 115.9 L311.2 114.8 L312.5 113.4 L313.8 111.8 L315.0 110.0 L316.2 107.9 L317.5 105.7 L318.8 103.3 L320.0 100.7 L321.2 97.9 L322.5 95.1 L323.8 92.1 L325.0 89.0 L326.2 85.8 L327.5 82.6 L328.8 79.3 L330.0 76.0"/>            <text class="fg-t fg-b fg-c" x="520" y="14">Media onda: 1 diodo</text>
+            <line class="fg-grid" x1="370" y1="34" x2="670" y2="34" style="stroke-dasharray:4 4"/>
+            <path class="fg-thin" d="M370 118 H670"/><path class="fg-thin" d="M370 30 V122"/>
+            <path class="fg-acc" d="M370.0 118.0 L371.2 111.4 L372.5 104.9 L373.8 98.4 L375.0 92.0 L376.2 85.9 L377.5 79.9 L378.8 74.1 L380.0 68.6 L381.2 63.4 L382.5 58.6 L383.8 54.1 L385.0 50.0 L386.2 46.4 L387.5 43.2 L388.8 40.4 L390.0 38.1 L391.2 36.3 L392.5 35.0 L393.8 34.3 L395.0 34.0 L396.2 34.3 L397.5 35.0 L398.8 36.3 L400.0 38.1 L401.2 40.4 L402.5 43.2 L403.8 46.4 L405.0 50.0 L406.2 54.1 L407.5 58.6 L408.8 63.4 L410.0 68.6 L411.2 74.1 L412.5 79.9 L413.8 85.9 L415.0 92.0 L416.2 98.4 L417.5 104.9 L418.8 111.4 L420.0 118.0 L421.2 118.0 L422.5 118.0 L423.8 118.0 L425.0 118.0 L426.2 118.0 L427.5 118.0 L428.8 118.0 L430.0 118.0 L431.2 118.0 L432.5 118.0 L433.8 118.0 L435.0 118.0 L436.2 118.0 L437.5 118.0 L438.8 118.0 L440.0 118.0 L441.2 118.0 L442.5 118.0 L443.8 118.0 L445.0 118.0 L446.2 118.0 L447.5 118.0 L448.8 118.0 L450.0 118.0 L451.2 118.0 L452.5 118.0 L453.8 118.0 L455.0 118.0 L456.2 118.0 L457.5 118.0 L458.8 118.0 L460.0 118.0 L461.2 118.0 L462.5 118.0 L463.8 118.0 L465.0 118.0 L466.2 118.0 L467.5 118.0 L468.8 118.0 L470.0 118.0 L471.2 111.4 L472.5 104.9 L473.8 98.4 L475.0 92.0 L476.2 85.9 L477.5 79.9 L478.8 74.1 L480.0 68.6 L481.2 63.4 L482.5 58.6 L483.8 54.1 L485.0 50.0 L486.2 46.4 L487.5 43.2 L488.8 40.4 L490.0 38.1 L491.2 36.3 L492.5 35.0 L493.8 34.3 L495.0 34.0 L496.2 34.3 L497.5 35.0 L498.8 36.3 L500.0 38.1 L501.2 40.4 L502.5 43.2 L503.8 46.4 L505.0 50.0 L506.2 54.1 L507.5 58.6 L508.8 63.4 L510.0 68.6 L511.2 74.1 L512.5 79.9 L513.8 85.9 L515.0 92.0 L516.2 98.4 L517.5 104.9 L518.8 111.4 L520.0 118.0 L521.2 118.0 L522.5 118.0 L523.8 118.0 L525.0 118.0 L526.2 118.0 L527.5 118.0 L528.8 118.0 L530.0 118.0 L531.2 118.0 L532.5 118.0 L533.8 118.0 L535.0 118.0 L536.2 118.0 L537.5 118.0 L538.8 118.0 L540.0 118.0 L541.2 118.0 L542.5 118.0 L543.8 118.0 L545.0 118.0 L546.2 118.0 L547.5 118.0 L548.8 118.0 L550.0 118.0 L551.2 118.0 L552.5 118.0 L553.8 118.0 L555.0 118.0 L556.2 118.0 L557.5 118.0 L558.8 118.0 L560.0 118.0 L561.2 118.0 L562.5 118.0 L563.8 118.0 L565.0 118.0 L566.2 118.0 L567.5 118.0 L568.8 118.0 L570.0 118.0 L571.2 111.4 L572.5 104.9 L573.8 98.4 L575.0 92.0 L576.2 85.9 L577.5 79.9 L578.8 74.1 L580.0 68.6 L581.2 63.4 L582.5 58.6 L583.8 54.1 L585.0 50.0 L586.2 46.4 L587.5 43.2 L588.8 40.4 L590.0 38.1 L591.2 36.3 L592.5 35.0 L593.8 34.3 L595.0 34.0 L596.2 34.3 L597.5 35.0 L598.8 36.3 L600.0 38.1 L601.2 40.4 L602.5 43.2 L603.8 46.4 L605.0 50.0 L606.2 54.1 L607.5 58.6 L608.8 63.4 L610.0 68.6 L611.2 74.1 L612.5 79.9 L613.8 85.9 L615.0 92.0 L616.2 98.4 L617.5 104.9 L618.8 111.4 L620.0 118.0 L621.2 118.0 L622.5 118.0 L623.8 118.0 L625.0 118.0 L626.2 118.0 L627.5 118.0 L628.8 118.0 L630.0 118.0 L631.2 118.0 L632.5 118.0 L633.8 118.0 L635.0 118.0 L636.2 118.0 L637.5 118.0 L638.8 118.0 L640.0 118.0 L641.2 118.0 L642.5 118.0 L643.8 118.0 L645.0 118.0 L646.2 118.0 L647.5 118.0 L648.8 118.0 L650.0 118.0 L651.2 118.0 L652.5 118.0 L653.8 118.0 L655.0 118.0 L656.2 118.0 L657.5 118.0 L658.8 118.0 L660.0 118.0 L661.2 118.0 L662.5 118.0 L663.8 118.0 L665.0 118.0 L666.2 118.0 L667.5 118.0 L668.8 118.0 L670.0 118.0"/>            <text class="fg-t fg-b fg-c" x="180" y="164">Onda completa: puente</text>
+            <line class="fg-grid" x1="30" y1="184" x2="330" y2="184" style="stroke-dasharray:4 4"/>
+            <path class="fg-thin" d="M30 268 H330"/><path class="fg-thin" d="M30 180 V272"/>
+            <path class="fg-acc" d="M30.0 268.0 L31.2 261.4 L32.5 254.9 L33.8 248.4 L35.0 242.0 L36.2 235.9 L37.5 229.9 L38.8 224.1 L40.0 218.6 L41.2 213.4 L42.5 208.6 L43.8 204.1 L45.0 200.0 L46.2 196.4 L47.5 193.2 L48.8 190.4 L50.0 188.1 L51.2 186.3 L52.5 185.0 L53.8 184.3 L55.0 184.0 L56.2 184.3 L57.5 185.0 L58.8 186.3 L60.0 188.1 L61.2 190.4 L62.5 193.2 L63.8 196.4 L65.0 200.0 L66.2 204.1 L67.5 208.6 L68.8 213.4 L70.0 218.6 L71.2 224.1 L72.5 229.9 L73.8 235.9 L75.0 242.0 L76.2 248.4 L77.5 254.9 L78.8 261.4 L80.0 268.0 L81.2 261.4 L82.5 254.9 L83.8 248.4 L85.0 242.0 L86.2 235.9 L87.5 229.9 L88.8 224.1 L90.0 218.6 L91.2 213.4 L92.5 208.6 L93.8 204.1 L95.0 200.0 L96.2 196.4 L97.5 193.2 L98.8 190.4 L100.0 188.1 L101.2 186.3 L102.5 185.0 L103.8 184.3 L105.0 184.0 L106.2 184.3 L107.5 185.0 L108.8 186.3 L110.0 188.1 L111.2 190.4 L112.5 193.2 L113.8 196.4 L115.0 200.0 L116.2 204.1 L117.5 208.6 L118.8 213.4 L120.0 218.6 L121.2 224.1 L122.5 229.9 L123.8 235.9 L125.0 242.0 L126.3 248.4 L127.5 254.9 L128.8 261.4 L130.0 268.0 L131.2 261.4 L132.5 254.9 L133.8 248.4 L135.0 242.0 L136.2 235.9 L137.5 229.9 L138.8 224.1 L140.0 218.6 L141.2 213.4 L142.5 208.6 L143.8 204.1 L145.0 200.0 L146.2 196.4 L147.5 193.2 L148.8 190.4 L150.0 188.1 L151.2 186.3 L152.5 185.0 L153.8 184.3 L155.0 184.0 L156.2 184.3 L157.5 185.0 L158.8 186.3 L160.0 188.1 L161.2 190.4 L162.5 193.2 L163.8 196.4 L165.0 200.0 L166.2 204.1 L167.5 208.6 L168.8 213.4 L170.0 218.6 L171.2 224.1 L172.5 229.9 L173.8 235.9 L175.0 242.0 L176.2 248.4 L177.5 254.9 L178.8 261.4 L180.0 268.0 L181.2 261.4 L182.5 254.9 L183.8 248.4 L185.0 242.0 L186.2 235.9 L187.5 229.9 L188.8 224.1 L190.0 218.6 L191.2 213.4 L192.5 208.6 L193.7 204.1 L195.0 200.0 L196.2 196.4 L197.5 193.2 L198.8 190.4 L200.0 188.1 L201.2 186.3 L202.5 185.0 L203.8 184.3 L205.0 184.0 L206.2 184.3 L207.5 185.0 L208.8 186.3 L210.0 188.1 L211.2 190.4 L212.5 193.2 L213.8 196.4 L215.0 200.0 L216.2 204.1 L217.5 208.6 L218.8 213.4 L220.0 218.6 L221.2 224.1 L222.5 229.9 L223.8 235.9 L225.0 242.0 L226.2 248.4 L227.5 254.9 L228.8 261.4 L230.0 268.0 L231.2 261.4 L232.5 254.9 L233.8 248.4 L235.0 242.0 L236.2 235.9 L237.5 229.9 L238.8 224.1 L240.0 218.6 L241.3 213.4 L242.5 208.6 L243.8 204.1 L245.0 200.0 L246.2 196.4 L247.5 193.2 L248.8 190.4 L250.0 188.1 L251.2 186.3 L252.5 185.0 L253.8 184.3 L255.0 184.0 L256.2 184.3 L257.5 185.0 L258.8 186.3 L260.0 188.1 L261.2 190.4 L262.5 193.2 L263.8 196.4 L265.0 200.0 L266.2 204.1 L267.5 208.6 L268.8 213.4 L270.0 218.6 L271.2 224.1 L272.5 229.9 L273.8 235.9 L275.0 242.0 L276.2 248.4 L277.5 254.9 L278.8 261.4 L280.0 268.0 L281.2 261.4 L282.5 254.9 L283.8 248.4 L285.0 242.0 L286.2 235.9 L287.5 229.9 L288.8 224.1 L290.0 218.6 L291.2 213.4 L292.5 208.6 L293.8 204.1 L295.0 200.0 L296.2 196.4 L297.5 193.2 L298.8 190.4 L300.0 188.1 L301.2 186.3 L302.5 185.0 L303.8 184.3 L305.0 184.0 L306.2 184.3 L307.5 185.0 L308.8 186.3 L310.0 188.1 L311.2 190.4 L312.5 193.2 L313.8 196.4 L315.0 200.0 L316.2 204.1 L317.5 208.6 L318.8 213.4 L320.0 218.6 L321.2 224.1 L322.5 229.9 L323.8 235.9 L325.0 242.0 L326.2 248.4 L327.5 254.9 L328.8 261.4 L330.0 268.0"/>            <text class="fg-t fg-b fg-c" x="520" y="164">Con capacitor: casi continua</text>
+            <line class="fg-grid" x1="370" y1="184" x2="670" y2="184" style="stroke-dasharray:4 4"/>
+            <path class="fg-thin" d="M370 268 H670"/><path class="fg-thin" d="M370 180 V272"/>
+            <path class="fg-dash" d="M370.0 268.0 L371.2 261.4 L372.5 254.9 L373.8 248.4 L375.0 242.0 L376.2 235.9 L377.5 229.9 L378.8 224.1 L380.0 218.6 L381.2 213.4 L382.5 208.6 L383.8 204.1 L385.0 200.0 L386.2 196.4 L387.5 193.2 L388.8 190.4 L390.0 188.1 L391.2 186.3 L392.5 185.0 L393.8 184.3 L395.0 184.0 L396.2 184.3 L397.5 185.0 L398.8 186.3 L400.0 188.1 L401.2 190.4 L402.5 193.2 L403.8 196.4 L405.0 200.0 L406.2 204.1 L407.5 208.6 L408.8 213.4 L410.0 218.6 L411.2 224.1 L412.5 229.9 L413.8 235.9 L415.0 242.0 L416.2 248.4 L417.5 254.9 L418.8 261.4 L420.0 268.0 L421.2 261.4 L422.5 254.9 L423.8 248.4 L425.0 242.0 L426.2 235.9 L427.5 229.9 L428.8 224.1 L430.0 218.6 L431.2 213.4 L432.5 208.6 L433.8 204.1 L435.0 200.0 L436.2 196.4 L437.5 193.2 L438.8 190.4 L440.0 188.1 L441.2 186.3 L442.5 185.0 L443.8 184.3 L445.0 184.0 L446.2 184.3 L447.5 185.0 L448.8 186.3 L450.0 188.1 L451.2 190.4 L452.5 193.2 L453.8 196.4 L455.0 200.0 L456.2 204.1 L457.5 208.6 L458.8 213.4 L460.0 218.6 L461.2 224.1 L462.5 229.9 L463.8 235.9 L465.0 242.0 L466.2 248.4 L467.5 254.9 L468.8 261.4 L470.0 268.0 L471.2 261.4 L472.5 254.9 L473.8 248.4 L475.0 242.0 L476.2 235.9 L477.5 229.9 L478.8 224.1 L480.0 218.6 L481.2 213.4 L482.5 208.6 L483.8 204.1 L485.0 200.0 L486.2 196.4 L487.5 193.2 L488.8 190.4 L490.0 188.1 L491.2 186.3 L492.5 185.0 L493.8 184.3 L495.0 184.0 L496.2 184.3 L497.5 185.0 L498.8 186.3 L500.0 188.1 L501.2 190.4 L502.5 193.2 L503.8 196.4 L505.0 200.0 L506.2 204.1 L507.5 208.6 L508.8 213.4 L510.0 218.6 L511.2 224.1 L512.5 229.9 L513.8 235.9 L515.0 242.0 L516.2 248.4 L517.5 254.9 L518.8 261.4 L520.0 268.0 L521.2 261.4 L522.5 254.9 L523.8 248.4 L525.0 242.0 L526.2 235.9 L527.5 229.9 L528.8 224.1 L530.0 218.6 L531.2 213.4 L532.5 208.6 L533.8 204.1 L535.0 200.0 L536.2 196.4 L537.5 193.2 L538.8 190.4 L540.0 188.1 L541.2 186.3 L542.5 185.0 L543.8 184.3 L545.0 184.0 L546.2 184.3 L547.5 185.0 L548.8 186.3 L550.0 188.1 L551.2 190.4 L552.5 193.2 L553.8 196.4 L555.0 200.0 L556.2 204.1 L557.5 208.6 L558.8 213.4 L560.0 218.6 L561.2 224.1 L562.5 229.9 L563.8 235.9 L565.0 242.0 L566.2 248.4 L567.5 254.9 L568.8 261.4 L570.0 268.0 L571.2 261.4 L572.5 254.9 L573.8 248.4 L575.0 242.0 L576.2 235.9 L577.5 229.9 L578.8 224.1 L580.0 218.6 L581.2 213.4 L582.5 208.6 L583.8 204.1 L585.0 200.0 L586.2 196.4 L587.5 193.2 L588.8 190.4 L590.0 188.1 L591.2 186.3 L592.5 185.0 L593.8 184.3 L595.0 184.0 L596.2 184.3 L597.5 185.0 L598.8 186.3 L600.0 188.1 L601.2 190.4 L602.5 193.2 L603.8 196.4 L605.0 200.0 L606.2 204.1 L607.5 208.6 L608.8 213.4 L610.0 218.6 L611.2 224.1 L612.5 229.9 L613.8 235.9 L615.0 242.0 L616.2 248.4 L617.5 254.9 L618.8 261.4 L620.0 268.0 L621.2 261.4 L622.5 254.9 L623.8 248.4 L625.0 242.0 L626.2 235.9 L627.5 229.9 L628.8 224.1 L630.0 218.6 L631.2 213.4 L632.5 208.6 L633.8 204.1 L635.0 200.0 L636.2 196.4 L637.5 193.2 L638.8 190.4 L640.0 188.1 L641.2 186.3 L642.5 185.0 L643.8 184.3 L645.0 184.0 L646.2 184.3 L647.5 185.0 L648.8 186.3 L650.0 188.1 L651.2 190.4 L652.5 193.2 L653.8 196.4 L655.0 200.0 L656.2 204.1 L657.5 208.6 L658.8 213.4 L660.0 218.6 L661.2 224.1 L662.5 229.9 L663.8 235.9 L665.0 242.0 L666.2 248.4 L667.5 254.9 L668.8 261.4 L670.0 268.0"/><path class="fg-acc" d="M370.0 268.0 L370.8 263.6 L371.7 259.2 L372.5 254.9 L373.3 250.5 L374.2 246.3 L375.0 242.0 L375.8 237.9 L376.7 233.8 L377.5 229.9 L378.3 226.0 L379.2 222.3 L380.0 218.6 L380.8 215.1 L381.7 211.8 L382.5 208.6 L383.3 205.6 L384.2 202.7 L385.0 200.0 L385.8 197.6 L386.7 195.3 L387.5 193.2 L388.3 191.3 L389.2 189.6 L390.0 188.1 L390.8 186.9 L391.7 185.8 L392.5 185.0 L393.3 184.5 L394.2 184.1 L395.0 184.0 L395.8 184.1 L396.7 184.5 L397.5 185.0 L398.3 185.7 L399.2 186.4 L400.0 187.0 L400.8 187.7 L401.7 188.3 L402.5 188.9 L403.3 189.6 L404.2 190.2 L405.0 190.8 L405.8 191.4 L406.7 192.1 L407.5 192.7 L408.3 193.3 L409.2 193.9 L410.0 194.5 L410.8 195.0 L411.7 195.6 L412.5 196.2 L413.3 196.8 L414.2 197.3 L415.0 197.9 L415.8 198.5 L416.7 199.0 L417.5 199.6 L418.3 200.1 L419.2 200.7 L420.0 201.2 L420.8 201.7 L421.7 202.3 L422.5 202.8 L423.3 203.3 L424.2 203.8 L425.0 204.4 L425.8 204.9 L426.7 205.4 L427.5 205.9 L428.3 206.4 L429.2 206.9 L430.0 207.3 L430.8 207.8 L431.7 208.3 L432.5 208.6 L433.3 205.6 L434.2 202.7 L435.0 200.0 L435.8 197.6 L436.7 195.3 L437.5 193.2 L438.3 191.3 L439.2 189.6 L440.0 188.1 L440.8 186.9 L441.7 185.8 L442.5 185.0 L443.3 184.5 L444.2 184.1 L445.0 184.0 L445.8 184.1 L446.7 184.5 L447.5 185.0 L448.3 185.7 L449.2 186.4 L450.0 187.0 L450.8 187.7 L451.7 188.3 L452.5 188.9 L453.3 189.6 L454.2 190.2 L455.0 190.8 L455.8 191.4 L456.7 192.1 L457.5 192.7 L458.3 193.3 L459.2 193.9 L460.0 194.5 L460.8 195.0 L461.7 195.6 L462.5 196.2 L463.3 196.8 L464.2 197.3 L465.0 197.9 L465.8 198.5 L466.7 199.0 L467.5 199.6 L468.3 200.1 L469.2 200.7 L470.0 201.2 L470.8 201.7 L471.7 202.3 L472.5 202.8 L473.3 203.3 L474.2 203.8 L475.0 204.4 L475.8 204.9 L476.7 205.4 L477.5 205.9 L478.3 206.4 L479.2 206.9 L480.0 207.3 L480.8 207.8 L481.7 208.3 L482.5 208.6 L483.3 205.6 L484.2 202.7 L485.0 200.0 L485.8 197.6 L486.7 195.3 L487.5 193.2 L488.3 191.3 L489.2 189.6 L490.0 188.1 L490.8 186.9 L491.7 185.8 L492.5 185.0 L493.3 184.5 L494.2 184.1 L495.0 184.0 L495.8 184.1 L496.7 184.5 L497.5 185.0 L498.3 185.7 L499.2 186.4 L500.0 187.0 L500.8 187.7 L501.7 188.3 L502.5 188.9 L503.3 189.6 L504.2 190.2 L505.0 190.8 L505.8 191.4 L506.7 192.1 L507.5 192.7 L508.3 193.3 L509.2 193.9 L510.0 194.5 L510.8 195.0 L511.7 195.6 L512.5 196.2 L513.3 196.8 L514.2 197.3 L515.0 197.9 L515.8 198.5 L516.7 199.0 L517.5 199.6 L518.3 200.1 L519.2 200.7 L520.0 201.2 L520.8 201.7 L521.7 202.3 L522.5 202.8 L523.3 203.3 L524.2 203.8 L525.0 204.4 L525.8 204.9 L526.7 205.4 L527.5 205.9 L528.3 206.4 L529.2 206.9 L530.0 207.3 L530.8 207.8 L531.7 208.3 L532.5 208.6 L533.3 205.6 L534.2 202.7 L535.0 200.0 L535.8 197.6 L536.7 195.3 L537.5 193.2 L538.3 191.3 L539.2 189.6 L540.0 188.1 L540.8 186.9 L541.7 185.8 L542.5 185.0 L543.3 184.5 L544.2 184.1 L545.0 184.0 L545.8 184.1 L546.7 184.5 L547.5 185.0 L548.3 185.7 L549.2 186.4 L550.0 187.0 L550.8 187.7 L551.7 188.3 L552.5 188.9 L553.3 189.6 L554.2 190.2 L555.0 190.8 L555.8 191.4 L556.7 192.1 L557.5 192.7 L558.3 193.3 L559.2 193.9 L560.0 194.5 L560.8 195.0 L561.7 195.6 L562.5 196.2 L563.3 196.8 L564.2 197.3 L565.0 197.9 L565.8 198.5 L566.7 199.0 L567.5 199.6 L568.3 200.1 L569.2 200.7 L570.0 201.2 L570.8 201.7 L571.7 202.3 L572.5 202.8 L573.3 203.3 L574.2 203.8 L575.0 204.4 L575.8 204.9 L576.7 205.4 L577.5 205.9 L578.3 206.4 L579.2 206.9 L580.0 207.3 L580.8 207.8 L581.7 208.3 L582.5 208.6 L583.3 205.6 L584.2 202.7 L585.0 200.0 L585.8 197.6 L586.7 195.3 L587.5 193.2 L588.3 191.3 L589.2 189.6 L590.0 188.1 L590.8 186.9 L591.7 185.8 L592.5 185.0 L593.3 184.5 L594.2 184.1 L595.0 184.0 L595.8 184.1 L596.7 184.5 L597.5 185.0 L598.3 185.7 L599.2 186.4 L600.0 187.0 L600.8 187.7 L601.7 188.3 L602.5 188.9 L603.3 189.6 L604.2 190.2 L605.0 190.8 L605.8 191.4 L606.7 192.1 L607.5 192.7 L608.3 193.3 L609.2 193.9 L610.0 194.5 L610.8 195.0 L611.7 195.6 L612.5 196.2 L613.3 196.8 L614.2 197.3 L615.0 197.9 L615.8 198.5 L616.7 199.0 L617.5 199.6 L618.3 200.1 L619.2 200.7 L620.0 201.2 L620.8 201.7 L621.7 202.3 L622.5 202.8 L623.3 203.3 L624.2 203.8 L625.0 204.4 L625.8 204.9 L626.7 205.4 L627.5 205.9 L628.3 206.4 L629.2 206.9 L630.0 207.3 L630.8 207.8 L631.7 208.3 L632.5 208.6 L633.3 205.6 L634.2 202.7 L635.0 200.0 L635.8 197.6 L636.7 195.3 L637.5 193.2 L638.3 191.3 L639.2 189.6 L640.0 188.1 L640.8 186.9 L641.7 185.8 L642.5 185.0 L643.3 184.5 L644.2 184.1 L645.0 184.0 L645.8 184.1 L646.7 184.5 L647.5 185.0 L648.3 185.7 L649.2 186.4 L650.0 187.0 L650.8 187.7 L651.7 188.3 L652.5 188.9 L653.3 189.6 L654.2 190.2 L655.0 190.8 L655.8 191.4 L656.7 192.1 L657.5 192.7 L658.3 193.3 L659.2 193.9 L660.0 194.5 L660.8 195.0 L661.7 195.6 L662.5 196.2 L663.3 196.8 L664.2 197.3 L665.0 197.9 L665.8 198.5 L666.7 199.0 L667.5 199.6 L668.3 200.1 L669.2 200.7 L670.0 201.2"/>
+          </svg>
+          <figcaption>La línea punteada marca el valor pico. Cada etapa se acerca más a una tensión continua: primero se elimina o invierte el semiciclo negativo, y después el capacitor rellena los valles.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="alisado">Alisar con un capacitor</h2>
+        <p>Para suavizar los pulsos se coloca un <a class="xref" href="06-capacitores-rc.html">capacitor</a> en paralelo con la carga. Durante cada pico, el diodo conduce y el capacitor se carga hasta el valor máximo. Cuando la tensión de entrada baja, los diodos se bloquean y el capacitor entrega energía a la carga, descargándose despacio (con constante de tiempo <em>τ = R·C</em>). La tensión de salida queda casi constante, con una pequeña oscilación llamada <strong>rizado</strong> (<em>ripple</em>):</p>
+        <p class="equation"><span class="eq">ΔV ≈ I / (f<sub>r</sub> · C)</span></p>
+        <p>donde <em>I</em> es la corriente que consume la carga y <em>f<sub>r</sub></em> la frecuencia del rizado (50 Hz en media onda, 100 Hz en onda completa con una red de 50 Hz). A mayor capacidad, a mayor frecuencia de rizado o a menor consumo, el rizado es menor. Por eso el puente es mejor que la media onda: con el mismo capacitor, el rizado se reduce a la mitad.</p>
+      </section>
+
+      <section>
+        <h2>Otros diodos útiles</h2>
+        <ul>
+          <li><strong>Diodo Zener:</strong> está diseñado para conducir en polarización <em>inversa</em> a una tensión precisa (por ejemplo 5,1 V). Se usa como referencia y para regular tensiones simples.</li>
+          <li><strong>Diodo de protección (<em>flyback</em>):</strong> se coloca en paralelo con un motor o un relé, en inverso. Cuando se corta la corriente, la bobina produce un pico de tensión (capítulo <a class="xref" href="12-induccion.html#inductancia">12</a>) y el diodo le da un camino por el que descargarse, en lugar de dañar el circuito. Se explica en detalle en el capítulo <a class="xref" href="19-cargas-inductivas.html">19</a>.</li>
+          <li><strong>Protección contra polaridad invertida:</strong> un diodo en serie con la alimentación evita daños si se conecta la batería al revés (a costa de perder 0,7 V).</li>
+          <li><strong>Fotodiodos y celdas solares:</strong> son diodos que, al recibir luz, generan corriente. Un panel solar es una gran juntura P-N.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El indicador de encendido</span>
+          <p>El pequeño LED de un cargador, una consola o un router es un LED con un resistor en serie. Consume 5–10 mA para que sea visible sin gastar casi nada.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El adaptador de pared y el alternador del auto</span>
+          <p>El adaptador de un aparato usa un transformador (capítulo <a class="xref" href="13-transformadores.html">13</a>), un puente de diodos y un capacitor para convertir los 220 V alternos en continua. El alternador de un auto genera corriente alterna (capítulo 12) que se rectifica con diodos para cargar la batería de 12 V.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Una pila puesta al revés</span>
+          <p>En muchos aparatos hay un diodo justo después del conector de batería. Si se coloca la batería al revés, el diodo queda en inverso y bloquea la corriente: el aparato no enciende, pero no se rompe.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un LED con una batería de 9 V</span>
+          <p>Un LED verde (V<sub>f</sub> ≈ 2,1 V) debe funcionar con 10 mA.</p>
+          <ol>
+            <li>Tensión sobrante: 9 V − 2,1 V = 6,9 V</li>
+            <li><span class="eq">R = 6,9 V / 0,010 A = 690 Ω</span>; se usa el valor comercial más cercano, 680 Ω.</li>
+            <li>Con 680 Ω la corriente real es 6,9 / 680 ≈ 10,1 mA, y el resistor disipa <span class="eq">6,9 V · 10,1 mA ≈ 70 mW</span>: un resistor de ¼ W sobra.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: fuente con puente y capacitor</span>
+          <p>Un transformador entrega 12 V eficaces. Se rectifica con un puente y se filtra con 2200 µF para alimentar una carga de 100 mA.</p>
+          <ol>
+            <li>Pico del secundario: <span class="eq">V<sub>p</sub> = 12 · √2 ≈ 17 V</span></li>
+            <li>Pico a la salida: <span class="eq">17 V − 1,4 V ≈ 15,6 V</span></li>
+            <li>Rizado: <span class="eq">ΔV ≈ 0,1 A / (100 Hz · 0,0022 F) ≈ 0,45 V</span></li>
+            <li>La salida queda entre unos 15,1 V y 15,6 V: casi continua. Con un capacitor de 470 µF el rizado subiría a unos 2,1 V.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>En <strong>media onda sin capacitor</strong>, la salida es una serie de “jorobas” positivas con huecos de 0 V entre ellas. Mirá cómo se ilumina el diodo solo durante los picos.</li>
+          <li>Pasá a <strong>onda completa</strong>: la parte negativa se invierte, y hay dos pulsos por ciclo en vez de uno. Mirá también el valor medio en el cuaderno: se duplica.</li>
+          <li>Agregá un capacitor de filtro y subí su valor: el rizado se reduce y la salida se acerca a una continua. Compará el rizado medido con la estimación ΔV ≈ I/(f·C).</li>
+          <li>Bajá la resistencia de la carga (más corriente): el capacitor se descarga más rápido entre picos y el rizado aumenta.</li>
+          <li>Observá que el pico de salida es siempre menor que el pico de entrada, por lo que se pierde en los diodos (0,7 V en media onda, 1,4 V en el puente).</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/rectifier.js"></script>
+  <script src="../js/quizzes/07-diodos-led.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

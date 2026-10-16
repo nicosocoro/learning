@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resonancia y circuitos LC · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="22-resonancia" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 22</p>
+        <h1>Resonancia y circuitos LC</h1>
+        <p class="lead">Cuando la reactancia de la bobina y la del capacitor se cancelan, el circuito responde con fuerza a una sola frecuencia: así se sintoniza una radio y así oscila un reloj.</p>
+      </header>
+      <section>
+        <h2>Dos almacenes de energía que se la pasan</h2>
+        <p>En los capítulos anteriores vimos que un capacitor guarda energía en un campo eléctrico (<span class="eq">½·C·V²</span>) y una bobina en un campo magnético (<span class="eq">½·L·I²</span>). Si se conectan entre sí, ocurre algo notable: la energía <strong>va y viene</strong> de uno a otro. El capacitor cargado empuja una corriente por la bobina; la bobina, que se opone a que esa corriente cambie, sigue empujando hasta cargar el capacitor al revés; y el proceso se repite. Es un <strong>oscilador</strong>, el equivalente eléctrico de un péndulo o de una masa colgada de un resorte.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 282" role="img" aria-labelledby="g22at g22ad">
+            <title id="g22at">La energía va y viene entre el capacitor y la bobina</title>
+            <desc id="g22ad">Cuatro instantes de un circuito LC: la energía pasa del capacitor cargado a la bobina con corriente, luego al capacitor cargado al revés, y vuelve.</desc>
+<text class="fg-t fg-b fg-c" x="85" y="20" font-size="13">Instante 0</text><path class="fg-line" d="M40 52 H130 V140 H40 V52"/><rect x="70" y="46" width="30" height="12" style="fill:var(--surface);stroke:none"/><path class="fg-line" d="M78 40 V64 M92 40 V64" style="stroke-width:3"/><rect x="70" y="130" width="30" height="20" style="fill:var(--surface);stroke:none"/><ellipse cx="72" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="81" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="90" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="99" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><text class="fg-m fg-c" x="85" y="34" font-size="11.5">C</text><text class="fg-m fg-c" x="85" y="170" font-size="11.5">L</text><rect x="30" y="172" width="30" height="60" style="fill:var(--charge-neg)"/><rect x="110" y="232" width="30" height="0" style="fill:var(--heat)"/><path class="fg-line" d="M24 232 H146" style="stroke-width:1.5"/><text class="fg-m fg-c" x="45" y="248" font-size="11.5">E en C</text><text class="fg-m fg-c" x="125" y="248" font-size="11.5">E en L</text><text class="fg-t fg-c" x="85" y="270" font-size="12" style="fill:var(--accent)">capacitor cargado</text><text class="fg-t fg-b fg-c" x="260" y="20" font-size="13">1/4 de ciclo</text><path class="fg-line" d="M215 52 H305 V140 H215 V52"/><rect x="245" y="46" width="30" height="12" style="fill:var(--surface);stroke:none"/><path class="fg-line" d="M253 40 V64 M267 40 V64" style="stroke-width:3"/><rect x="245" y="130" width="30" height="20" style="fill:var(--surface);stroke:none"/><ellipse cx="247" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="256" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="265" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="274" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><text class="fg-m fg-c" x="260" y="34" font-size="11.5">C</text><text class="fg-m fg-c" x="260" y="170" font-size="11.5">L</text><rect x="205" y="232" width="30" height="0" style="fill:var(--charge-neg)"/><rect x="285" y="172" width="30" height="60" style="fill:var(--heat)"/><path class="fg-line" d="M199 232 H321" style="stroke-width:1.5"/><text class="fg-m fg-c" x="220" y="248" font-size="11.5">E en C</text><text class="fg-m fg-c" x="300" y="248" font-size="11.5">E en L</text><text class="fg-t fg-c" x="260" y="270" font-size="12" style="fill:var(--accent)">corriente máxima</text><path class="fg-pos" d="M305 70 V122 M299 114 L305 122 L311 114" style="stroke-width:3"/><text class="fg-t fg-b fg-c" x="435" y="20" font-size="13">1/2 ciclo</text><path class="fg-line" d="M390 52 H480 V140 H390 V52"/><rect x="420" y="46" width="30" height="12" style="fill:var(--surface);stroke:none"/><path class="fg-line" d="M428 40 V64 M442 40 V64" style="stroke-width:3"/><rect x="420" y="130" width="30" height="20" style="fill:var(--surface);stroke:none"/><ellipse cx="422" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="431" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="440" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="449" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><text class="fg-m fg-c" x="435" y="34" font-size="11.5">C</text><text class="fg-m fg-c" x="435" y="170" font-size="11.5">L</text><rect x="380" y="172" width="30" height="60" style="fill:var(--charge-neg)"/><rect x="460" y="232" width="30" height="0" style="fill:var(--heat)"/><path class="fg-line" d="M374 232 H496" style="stroke-width:1.5"/><text class="fg-m fg-c" x="395" y="248" font-size="11.5">E en C</text><text class="fg-m fg-c" x="475" y="248" font-size="11.5">E en L</text><text class="fg-t fg-c" x="435" y="270" font-size="12" style="fill:var(--accent)">cargado al revés</text><text class="fg-t fg-b fg-c" x="610" y="20" font-size="13">3/4 de ciclo</text><path class="fg-line" d="M565 52 H655 V140 H565 V52"/><rect x="595" y="46" width="30" height="12" style="fill:var(--surface);stroke:none"/><path class="fg-line" d="M603 40 V64 M617 40 V64" style="stroke-width:3"/><rect x="595" y="130" width="30" height="20" style="fill:var(--surface);stroke:none"/><ellipse cx="597" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="606" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="615" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="624" cy="140" rx="5" ry="10" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><text class="fg-m fg-c" x="610" y="34" font-size="11.5">C</text><text class="fg-m fg-c" x="610" y="170" font-size="11.5">L</text><rect x="555" y="232" width="30" height="0" style="fill:var(--charge-neg)"/><rect x="635" y="172" width="30" height="60" style="fill:var(--heat)"/><path class="fg-line" d="M549 232 H671" style="stroke-width:1.5"/><text class="fg-m fg-c" x="570" y="248" font-size="11.5">E en C</text><text class="fg-m fg-c" x="650" y="248" font-size="11.5">E en L</text><text class="fg-t fg-c" x="610" y="270" font-size="12" style="fill:var(--accent)">corriente inversa</text><path class="fg-pos" d="M655 122 V70 M649 78 L655 70 L661 78" style="stroke-width:3"/>
+          </svg>
+          <figcaption><strong>Un columpio eléctrico.</strong> La energía oscila entre el campo eléctrico del capacitor y el campo magnético de la bobina, como un péndulo entre energía de altura y de movimiento. La resistencia es el rozamiento que lo va frenando.</figcaption>
+        </figure>
+
+        <p>La frecuencia natural de este vaivén depende solo de L y C: cuanto más grandes son, más lento oscila. Esa frecuencia es la de <strong>resonancia</strong>.</p>
+      </section>
+
+      <section id="serie">
+        <h2>Resonancia en serie</h2>
+        <p>Con una fuente alterna en serie con R, L y C, la reactancia de la bobina crece con la frecuencia (<a class="xref" href="20-inductor-rl.html#reactancia">capítulo 20</a>) y la del capacitor decrece (<a class="xref" href="06-capacitores-rc.html#reactancia">capítulo 6</a>). Hay una frecuencia en la que son iguales y, como están en oposición (una adelanta, la otra retrasa), <strong>se cancelan</strong>:</p>
+        <p class="equation"><span class="eq">X<sub>L</sub> = X<sub>C</sub></span> &nbsp;⇒&nbsp; <span class="eq">f<sub>0</sub> = 1 / (2π · √(L · C))</span></p>
+        <p>En esa frecuencia la impedancia es la mínima posible, <span class="eq">Z = R</span>, y la corriente es máxima: <span class="eq">I = V / R</span>. Por debajo de f₀ manda el capacitor (reactancia grande) y la corriente se adelanta; por encima manda la bobina y la corriente se retrasa. En resonancia, corriente y tensión están en fase.</p>
+        <div class="note">
+          <span class="box-title">Tensiones mayores que la de la fuente</span>
+          <p>En resonancia, la corriente es grande y por eso las tensiones <em>en la bobina y en el capacitor</em> pueden ser mucho mayores que la de la fuente: V<sub>L</sub> = V<sub>C</sub> = Q · V. (Las dos se cancelan entre sí, por eso la suma es solo la de R.) Con Q = 50 y una fuente de 5 V, los componentes ven 250 V. Hay que dimensionarlos para eso.</p>
+        </div>
+      </section>
+
+      <section id="q">
+        <h2>El factor de calidad Q</h2>
+        <p>La <strong>resistencia</strong> del circuito es el «rozamiento» que amortigua la oscilación. El <strong>factor de calidad</strong> mide qué tan agudo es el pico de resonancia:</p>
+        <p class="equation"><span class="eq">Q = X<sub>L</sub> / R = (1/R) · √(L / C)</span> &nbsp;&nbsp; <span class="eq">B = f<sub>0</sub> / Q</span></p>
+        <p><em>B</em> es el <strong>ancho de banda</strong>: el rango de frecuencias donde la corriente supera el 70,7 % (−3 dB) de su máximo. Un Q alto (poca resistencia) significa un pico angosto y selectivo; un Q bajo, uno ancho y poco selectivo.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g22bt g22bd">
+            <title id="g22bt">Curvas de resonancia para distintos Q</title>
+            <desc id="g22bd">Tres curvas de corriente contra frecuencia con el mismo máximo y anchos distintos: cuanto mayor es Q, más angosto el pico.</desc>
+<path class="fg-line" d="M70 46 V210 H604 M64 54 L70 46 L76 54 M596 204 L604 210 L596 216"/>
+            <path class="fg-grid" d="M70 60 H590 M70 135.0 H590 M330.0 54 V210"/>
+            <path class="fg-dash" d="M70 103.9 H590" style="stroke:var(--heat)"/><text class="fg-m" x="584" y="97.9" text-anchor="end" style="fill:var(--heat)" font-size="12">0,707 de la corriente máxima</text>
+            <path class="fg-acc" d="M70.0 202.4 L71.3 202.3 L72.6 202.3 L73.9 202.2 L75.2 202.1 L76.5 202.0 L77.8 201.9 L79.1 201.8 L80.4 201.7 L81.7 201.6 L83.0 201.5 L84.3 201.4 L85.6 201.3 L86.9 201.2 L88.2 201.1 L89.5 201.0 L90.8 200.9 L92.1 200.8 L93.4 200.6 L94.7 200.5 L96.0 200.4 L97.3 200.3 L98.6 200.2 L99.9 200.1 L101.2 200.0 L102.5 199.8 L103.8 199.7 L105.1 199.6 L106.4 199.5 L107.7 199.3 L109.0 199.2 L110.3 199.1 L111.6 199.0 L112.9 198.8 L114.2 198.7 L115.5 198.6 L116.8 198.4 L118.1 198.3 L119.4 198.1 L120.7 198.0 L122.0 197.8 L123.3 197.7 L124.6 197.6 L125.9 197.4 L127.2 197.2 L128.5 197.1 L129.8 196.9 L131.1 196.8 L132.4 196.6 L133.7 196.5 L135.0 196.3 L136.3 196.1 L137.6 195.9 L138.9 195.8 L140.2 195.6 L141.5 195.4 L142.8 195.2 L144.1 195.1 L145.4 194.9 L146.7 194.7 L148.0 194.5 L149.3 194.3 L150.6 194.1 L151.9 193.9 L153.2 193.7 L154.5 193.5 L155.8 193.3 L157.1 193.1 L158.4 192.9 L159.7 192.7 L161.0 192.4 L162.3 192.2 L163.6 192.0 L164.9 191.8 L166.2 191.5 L167.5 191.3 L168.8 191.1 L170.1 190.8 L171.4 190.6 L172.7 190.3 L174.0 190.1 L175.3 189.8 L176.6 189.6 L177.9 189.3 L179.2 189.0 L180.5 188.7 L181.8 188.5 L183.1 188.2 L184.4 187.9 L185.7 187.6 L187.0 187.3 L188.3 187.0 L189.6 186.7 L190.9 186.4 L192.2 186.1 L193.5 185.7 L194.8 185.4 L196.1 185.1 L197.4 184.7 L198.7 184.4 L200.0 184.0 L201.3 183.7 L202.6 183.3 L203.9 183.0 L205.2 182.6 L206.5 182.2 L207.8 181.8 L209.1 181.4 L210.4 181.0 L211.7 180.6 L213.0 180.2 L214.3 179.7 L215.6 179.3 L216.9 178.9 L218.2 178.4 L219.5 177.9 L220.8 177.5 L222.1 177.0 L223.4 176.5 L224.7 176.0 L226.0 175.5 L227.3 174.9 L228.6 174.4 L229.9 173.9 L231.2 173.3 L232.5 172.7 L233.8 172.2 L235.1 171.6 L236.4 170.9 L237.7 170.3 L239.0 169.7 L240.3 169.0 L241.6 168.4 L242.9 167.7 L244.2 167.0 L245.5 166.3 L246.8 165.5 L248.1 164.8 L249.4 164.0 L250.7 163.2 L252.0 162.4 L253.3 161.6 L254.6 160.7 L255.9 159.8 L257.2 158.9 L258.5 158.0 L259.8 157.0 L261.1 156.1 L262.4 155.1 L263.7 154.0 L265.0 153.0 L266.3 151.9 L267.6 150.7 L268.9 149.6 L270.2 148.4 L271.5 147.1 L272.8 145.9 L274.1 144.5 L275.4 143.2 L276.7 141.8 L278.0 140.4 L279.3 138.9 L280.6 137.3 L281.9 135.8 L283.2 134.1 L284.5 132.5 L285.8 130.7 L287.1 128.9 L288.4 127.1 L289.7 125.2 L291.0 123.2 L292.3 121.2 L293.6 119.1 L294.9 116.9 L296.2 114.7 L297.5 112.4 L298.8 110.1 L300.1 107.7 L301.4 105.2 L302.7 102.7 L304.0 100.1 L305.3 97.5 L306.6 94.9 L307.9 92.2 L309.2 89.5 L310.5 86.8 L311.8 84.1 L313.1 81.4 L314.4 78.8 L315.7 76.3 L317.0 73.8 L318.3 71.5 L319.6 69.3 L320.9 67.2 L322.2 65.4 L323.5 63.8 L324.8 62.5 L326.1 61.4 L327.4 60.6 L328.7 60.2 L330.0 60.0 L331.3 60.2 L332.6 60.6 L333.9 61.4 L335.2 62.5 L336.5 63.8 L337.8 65.4 L339.1 67.2 L340.4 69.3 L341.7 71.5 L343.0 73.8 L344.3 76.3 L345.6 78.8 L346.9 81.4 L348.2 84.1 L349.5 86.8 L350.8 89.5 L352.1 92.2 L353.4 94.9 L354.7 97.5 L356.0 100.1 L357.3 102.7 L358.6 105.2 L359.9 107.7 L361.2 110.1 L362.5 112.4 L363.8 114.7 L365.1 116.9 L366.4 119.1 L367.7 121.2 L369.0 123.2 L370.3 125.2 L371.6 127.1 L372.9 128.9 L374.2 130.7 L375.5 132.5 L376.8 134.1 L378.1 135.8 L379.4 137.3 L380.7 138.9 L382.0 140.4 L383.3 141.8 L384.6 143.2 L385.9 144.5 L387.2 145.9 L388.5 147.1 L389.8 148.4 L391.1 149.6 L392.4 150.7 L393.7 151.9 L395.0 153.0 L396.3 154.0 L397.6 155.1 L398.9 156.1 L400.2 157.0 L401.5 158.0 L402.8 158.9 L404.1 159.8 L405.4 160.7 L406.7 161.6 L408.0 162.4 L409.3 163.2 L410.6 164.0 L411.9 164.8 L413.2 165.5 L414.5 166.3 L415.8 167.0 L417.1 167.7 L418.4 168.4 L419.7 169.0 L421.0 169.7 L422.3 170.3 L423.6 170.9 L424.9 171.6 L426.2 172.2 L427.5 172.7 L428.8 173.3 L430.1 173.9 L431.4 174.4 L432.7 174.9 L434.0 175.5 L435.3 176.0 L436.6 176.5 L437.9 177.0 L439.2 177.5 L440.5 177.9 L441.8 178.4 L443.1 178.9 L444.4 179.3 L445.7 179.7 L447.0 180.2 L448.3 180.6 L449.6 181.0 L450.9 181.4 L452.2 181.8 L453.5 182.2 L454.8 182.6 L456.1 183.0 L457.4 183.3 L458.7 183.7 L460.0 184.0 L461.3 184.4 L462.6 184.7 L463.9 185.1 L465.2 185.4 L466.5 185.7 L467.8 186.1 L469.1 186.4 L470.4 186.7 L471.7 187.0 L473.0 187.3 L474.3 187.6 L475.6 187.9 L476.9 188.2 L478.2 188.5 L479.5 188.7 L480.8 189.0 L482.1 189.3 L483.4 189.6 L484.7 189.8 L486.0 190.1 L487.3 190.3 L488.6 190.6 L489.9 190.8 L491.2 191.1 L492.5 191.3 L493.8 191.5 L495.1 191.8 L496.4 192.0 L497.7 192.2 L499.0 192.4 L500.3 192.7 L501.6 192.9 L502.9 193.1 L504.2 193.3 L505.5 193.5 L506.8 193.7 L508.1 193.9 L509.4 194.1 L510.7 194.3 L512.0 194.5 L513.3 194.7 L514.6 194.9 L515.9 195.1 L517.2 195.2 L518.5 195.4 L519.8 195.6 L521.1 195.8 L522.4 195.9 L523.7 196.1 L525.0 196.3 L526.3 196.5 L527.6 196.6 L528.9 196.8 L530.2 196.9 L531.5 197.1 L532.8 197.2 L534.1 197.4 L535.4 197.6 L536.7 197.7 L538.0 197.8 L539.3 198.0 L540.6 198.1 L541.9 198.3 L543.2 198.4 L544.5 198.6 L545.8 198.7 L547.1 198.8 L548.4 199.0 L549.7 199.1 L551.0 199.2 L552.3 199.3 L553.6 199.5 L554.9 199.6 L556.2 199.7 L557.5 199.8 L558.8 200.0 L560.1 200.1 L561.4 200.2 L562.7 200.3 L564.0 200.4 L565.3 200.5 L566.6 200.6 L567.9 200.8 L569.2 200.9 L570.5 201.0 L571.8 201.1 L573.1 201.2 L574.4 201.3 L575.7 201.4 L577.0 201.5 L578.3 201.6 L579.6 201.7 L580.9 201.8 L582.2 201.9 L583.5 202.0 L584.8 202.1 L586.1 202.2 L587.4 202.3 L588.7 202.3 L590.0 202.4" style="stroke:var(--charge-neg);stroke-width:3"/><path class="fg-acc" d="M70.0 208.5 L71.3 208.5 L72.6 208.4 L73.9 208.4 L75.2 208.4 L76.5 208.4 L77.8 208.4 L79.1 208.4 L80.4 208.3 L81.7 208.3 L83.0 208.3 L84.3 208.3 L85.6 208.3 L86.9 208.2 L88.2 208.2 L89.5 208.2 L90.8 208.2 L92.1 208.1 L93.4 208.1 L94.7 208.1 L96.0 208.1 L97.3 208.1 L98.6 208.0 L99.9 208.0 L101.2 208.0 L102.5 208.0 L103.8 207.9 L105.1 207.9 L106.4 207.9 L107.7 207.9 L109.0 207.8 L110.3 207.8 L111.6 207.8 L112.9 207.8 L114.2 207.7 L115.5 207.7 L116.8 207.7 L118.1 207.6 L119.4 207.6 L120.7 207.6 L122.0 207.6 L123.3 207.5 L124.6 207.5 L125.9 207.5 L127.2 207.4 L128.5 207.4 L129.8 207.4 L131.1 207.3 L132.4 207.3 L133.7 207.3 L135.0 207.2 L136.3 207.2 L137.6 207.2 L138.9 207.1 L140.2 207.1 L141.5 207.1 L142.8 207.0 L144.1 207.0 L145.4 207.0 L146.7 206.9 L148.0 206.9 L149.3 206.8 L150.6 206.8 L151.9 206.8 L153.2 206.7 L154.5 206.7 L155.8 206.6 L157.1 206.6 L158.4 206.6 L159.7 206.5 L161.0 206.5 L162.3 206.4 L163.6 206.4 L164.9 206.3 L166.2 206.3 L167.5 206.2 L168.8 206.2 L170.1 206.1 L171.4 206.1 L172.7 206.0 L174.0 206.0 L175.3 205.9 L176.6 205.9 L177.9 205.8 L179.2 205.8 L180.5 205.7 L181.8 205.6 L183.1 205.6 L184.4 205.5 L185.7 205.5 L187.0 205.4 L188.3 205.3 L189.6 205.3 L190.9 205.2 L192.2 205.2 L193.5 205.1 L194.8 205.0 L196.1 204.9 L197.4 204.9 L198.7 204.8 L200.0 204.7 L201.3 204.7 L202.6 204.6 L203.9 204.5 L205.2 204.4 L206.5 204.3 L207.8 204.3 L209.1 204.2 L210.4 204.1 L211.7 204.0 L213.0 203.9 L214.3 203.8 L215.6 203.7 L216.9 203.6 L218.2 203.5 L219.5 203.4 L220.8 203.3 L222.1 203.2 L223.4 203.1 L224.7 203.0 L226.0 202.9 L227.3 202.8 L228.6 202.7 L229.9 202.6 L231.2 202.4 L232.5 202.3 L233.8 202.2 L235.1 202.1 L236.4 201.9 L237.7 201.8 L239.0 201.6 L240.3 201.5 L241.6 201.3 L242.9 201.2 L244.2 201.0 L245.5 200.9 L246.8 200.7 L248.1 200.5 L249.4 200.4 L250.7 200.2 L252.0 200.0 L253.3 199.8 L254.6 199.6 L255.9 199.4 L257.2 199.2 L258.5 198.9 L259.8 198.7 L261.1 198.5 L262.4 198.2 L263.7 198.0 L265.0 197.7 L266.3 197.4 L267.6 197.1 L268.9 196.8 L270.2 196.5 L271.5 196.2 L272.8 195.9 L274.1 195.5 L275.4 195.2 L276.7 194.8 L278.0 194.4 L279.3 193.9 L280.6 193.5 L281.9 193.0 L283.2 192.5 L284.5 192.0 L285.8 191.5 L287.1 190.9 L288.4 190.3 L289.7 189.6 L291.0 188.9 L292.3 188.2 L293.6 187.4 L294.9 186.5 L296.2 185.6 L297.5 184.7 L298.8 183.6 L300.1 182.5 L301.4 181.2 L302.7 179.9 L304.0 178.4 L305.3 176.8 L306.6 175.1 L307.9 173.1 L309.2 170.9 L310.5 168.5 L311.8 165.7 L313.1 162.6 L314.4 159.1 L315.7 155.0 L317.0 150.4 L318.3 144.9 L319.6 138.5 L320.9 131.0 L322.2 122.1 L323.5 111.7 L324.8 99.7 L326.1 86.6 L327.4 73.8 L328.7 63.8 L330.0 60.0 L331.3 63.8 L332.6 73.8 L333.9 86.6 L335.2 99.7 L336.5 111.7 L337.8 122.1 L339.1 131.0 L340.4 138.5 L341.7 144.9 L343.0 150.4 L344.3 155.0 L345.6 159.1 L346.9 162.6 L348.2 165.7 L349.5 168.5 L350.8 170.9 L352.1 173.1 L353.4 175.1 L354.7 176.8 L356.0 178.4 L357.3 179.9 L358.6 181.2 L359.9 182.5 L361.2 183.6 L362.5 184.7 L363.8 185.6 L365.1 186.5 L366.4 187.4 L367.7 188.2 L369.0 188.9 L370.3 189.6 L371.6 190.3 L372.9 190.9 L374.2 191.5 L375.5 192.0 L376.8 192.5 L378.1 193.0 L379.4 193.5 L380.7 193.9 L382.0 194.4 L383.3 194.8 L384.6 195.2 L385.9 195.5 L387.2 195.9 L388.5 196.2 L389.8 196.5 L391.1 196.8 L392.4 197.1 L393.7 197.4 L395.0 197.7 L396.3 198.0 L397.6 198.2 L398.9 198.5 L400.2 198.7 L401.5 198.9 L402.8 199.2 L404.1 199.4 L405.4 199.6 L406.7 199.8 L408.0 200.0 L409.3 200.2 L410.6 200.4 L411.9 200.5 L413.2 200.7 L414.5 200.9 L415.8 201.0 L417.1 201.2 L418.4 201.3 L419.7 201.5 L421.0 201.6 L422.3 201.8 L423.6 201.9 L424.9 202.1 L426.2 202.2 L427.5 202.3 L428.8 202.4 L430.1 202.6 L431.4 202.7 L432.7 202.8 L434.0 202.9 L435.3 203.0 L436.6 203.1 L437.9 203.2 L439.2 203.3 L440.5 203.4 L441.8 203.5 L443.1 203.6 L444.4 203.7 L445.7 203.8 L447.0 203.9 L448.3 204.0 L449.6 204.1 L450.9 204.2 L452.2 204.3 L453.5 204.3 L454.8 204.4 L456.1 204.5 L457.4 204.6 L458.7 204.7 L460.0 204.7 L461.3 204.8 L462.6 204.9 L463.9 204.9 L465.2 205.0 L466.5 205.1 L467.8 205.2 L469.1 205.2 L470.4 205.3 L471.7 205.3 L473.0 205.4 L474.3 205.5 L475.6 205.5 L476.9 205.6 L478.2 205.6 L479.5 205.7 L480.8 205.8 L482.1 205.8 L483.4 205.9 L484.7 205.9 L486.0 206.0 L487.3 206.0 L488.6 206.1 L489.9 206.1 L491.2 206.2 L492.5 206.2 L493.8 206.3 L495.1 206.3 L496.4 206.4 L497.7 206.4 L499.0 206.5 L500.3 206.5 L501.6 206.6 L502.9 206.6 L504.2 206.6 L505.5 206.7 L506.8 206.7 L508.1 206.8 L509.4 206.8 L510.7 206.8 L512.0 206.9 L513.3 206.9 L514.6 207.0 L515.9 207.0 L517.2 207.0 L518.5 207.1 L519.8 207.1 L521.1 207.1 L522.4 207.2 L523.7 207.2 L525.0 207.2 L526.3 207.3 L527.6 207.3 L528.9 207.3 L530.2 207.4 L531.5 207.4 L532.8 207.4 L534.1 207.5 L535.4 207.5 L536.7 207.5 L538.0 207.6 L539.3 207.6 L540.6 207.6 L541.9 207.6 L543.2 207.7 L544.5 207.7 L545.8 207.7 L547.1 207.8 L548.4 207.8 L549.7 207.8 L551.0 207.8 L552.3 207.9 L553.6 207.9 L554.9 207.9 L556.2 207.9 L557.5 208.0 L558.8 208.0 L560.1 208.0 L561.4 208.0 L562.7 208.1 L564.0 208.1 L565.3 208.1 L566.6 208.1 L567.9 208.1 L569.2 208.2 L570.5 208.2 L571.8 208.2 L573.1 208.2 L574.4 208.3 L575.7 208.3 L577.0 208.3 L578.3 208.3 L579.6 208.3 L580.9 208.4 L582.2 208.4 L583.5 208.4 L584.8 208.4 L586.1 208.4 L587.4 208.4 L588.7 208.5 L590.0 208.5" style="stroke:var(--accent);stroke-width:3"/><path class="fg-acc" d="M70.0 209.5 L71.3 209.5 L72.6 209.5 L73.9 209.5 L75.2 209.5 L76.5 209.5 L77.8 209.5 L79.1 209.5 L80.4 209.4 L81.7 209.4 L83.0 209.4 L84.3 209.4 L85.6 209.4 L86.9 209.4 L88.2 209.4 L89.5 209.4 L90.8 209.4 L92.1 209.4 L93.4 209.4 L94.7 209.4 L96.0 209.4 L97.3 209.4 L98.6 209.3 L99.9 209.3 L101.2 209.3 L102.5 209.3 L103.8 209.3 L105.1 209.3 L106.4 209.3 L107.7 209.3 L109.0 209.3 L110.3 209.3 L111.6 209.3 L112.9 209.3 L114.2 209.2 L115.5 209.2 L116.8 209.2 L118.1 209.2 L119.4 209.2 L120.7 209.2 L122.0 209.2 L123.3 209.2 L124.6 209.2 L125.9 209.2 L127.2 209.1 L128.5 209.1 L129.8 209.1 L131.1 209.1 L132.4 209.1 L133.7 209.1 L135.0 209.1 L136.3 209.1 L137.6 209.1 L138.9 209.0 L140.2 209.0 L141.5 209.0 L142.8 209.0 L144.1 209.0 L145.4 209.0 L146.7 209.0 L148.0 209.0 L149.3 208.9 L150.6 208.9 L151.9 208.9 L153.2 208.9 L154.5 208.9 L155.8 208.9 L157.1 208.9 L158.4 208.9 L159.7 208.8 L161.0 208.8 L162.3 208.8 L163.6 208.8 L164.9 208.8 L166.2 208.8 L167.5 208.7 L168.8 208.7 L170.1 208.7 L171.4 208.7 L172.7 208.7 L174.0 208.7 L175.3 208.6 L176.6 208.6 L177.9 208.6 L179.2 208.6 L180.5 208.6 L181.8 208.5 L183.1 208.5 L184.4 208.5 L185.7 208.5 L187.0 208.5 L188.3 208.4 L189.6 208.4 L190.9 208.4 L192.2 208.4 L193.5 208.4 L194.8 208.3 L196.1 208.3 L197.4 208.3 L198.7 208.3 L200.0 208.2 L201.3 208.2 L202.6 208.2 L203.9 208.2 L205.2 208.1 L206.5 208.1 L207.8 208.1 L209.1 208.1 L210.4 208.0 L211.7 208.0 L213.0 208.0 L214.3 207.9 L215.6 207.9 L216.9 207.9 L218.2 207.8 L219.5 207.8 L220.8 207.8 L222.1 207.7 L223.4 207.7 L224.7 207.7 L226.0 207.6 L227.3 207.6 L228.6 207.6 L229.9 207.5 L231.2 207.5 L232.5 207.4 L233.8 207.4 L235.1 207.3 L236.4 207.3 L237.7 207.3 L239.0 207.2 L240.3 207.2 L241.6 207.1 L242.9 207.1 L244.2 207.0 L245.5 207.0 L246.8 206.9 L248.1 206.8 L249.4 206.8 L250.7 206.7 L252.0 206.7 L253.3 206.6 L254.6 206.5 L255.9 206.5 L257.2 206.4 L258.5 206.3 L259.8 206.2 L261.1 206.1 L262.4 206.1 L263.7 206.0 L265.0 205.9 L266.3 205.8 L267.6 205.7 L268.9 205.6 L270.2 205.5 L271.5 205.4 L272.8 205.3 L274.1 205.2 L275.4 205.0 L276.7 204.9 L278.0 204.8 L279.3 204.6 L280.6 204.5 L281.9 204.3 L283.2 204.1 L284.5 204.0 L285.8 203.8 L287.1 203.6 L288.4 203.4 L289.7 203.1 L291.0 202.9 L292.3 202.7 L293.6 202.4 L294.9 202.1 L296.2 201.8 L297.5 201.4 L298.8 201.1 L300.1 200.7 L301.4 200.3 L302.7 199.8 L304.0 199.3 L305.3 198.7 L306.6 198.1 L307.9 197.4 L309.2 196.6 L310.5 195.7 L311.8 194.6 L313.1 193.5 L314.4 192.1 L315.7 190.5 L317.0 188.6 L318.3 186.2 L319.6 183.3 L320.9 179.7 L322.2 174.8 L323.5 168.3 L324.8 159.0 L326.1 144.8 L327.4 122.1 L328.7 86.6 L330.0 60.0 L331.3 86.6 L332.6 122.1 L333.9 144.8 L335.2 159.0 L336.5 168.3 L337.8 174.8 L339.1 179.7 L340.4 183.3 L341.7 186.2 L343.0 188.6 L344.3 190.5 L345.6 192.1 L346.9 193.5 L348.2 194.6 L349.5 195.7 L350.8 196.6 L352.1 197.4 L353.4 198.1 L354.7 198.7 L356.0 199.3 L357.3 199.8 L358.6 200.3 L359.9 200.7 L361.2 201.1 L362.5 201.4 L363.8 201.8 L365.1 202.1 L366.4 202.4 L367.7 202.7 L369.0 202.9 L370.3 203.1 L371.6 203.4 L372.9 203.6 L374.2 203.8 L375.5 204.0 L376.8 204.1 L378.1 204.3 L379.4 204.5 L380.7 204.6 L382.0 204.8 L383.3 204.9 L384.6 205.0 L385.9 205.2 L387.2 205.3 L388.5 205.4 L389.8 205.5 L391.1 205.6 L392.4 205.7 L393.7 205.8 L395.0 205.9 L396.3 206.0 L397.6 206.1 L398.9 206.1 L400.2 206.2 L401.5 206.3 L402.8 206.4 L404.1 206.5 L405.4 206.5 L406.7 206.6 L408.0 206.7 L409.3 206.7 L410.6 206.8 L411.9 206.8 L413.2 206.9 L414.5 207.0 L415.8 207.0 L417.1 207.1 L418.4 207.1 L419.7 207.2 L421.0 207.2 L422.3 207.3 L423.6 207.3 L424.9 207.3 L426.2 207.4 L427.5 207.4 L428.8 207.5 L430.1 207.5 L431.4 207.6 L432.7 207.6 L434.0 207.6 L435.3 207.7 L436.6 207.7 L437.9 207.7 L439.2 207.8 L440.5 207.8 L441.8 207.8 L443.1 207.9 L444.4 207.9 L445.7 207.9 L447.0 208.0 L448.3 208.0 L449.6 208.0 L450.9 208.1 L452.2 208.1 L453.5 208.1 L454.8 208.1 L456.1 208.2 L457.4 208.2 L458.7 208.2 L460.0 208.2 L461.3 208.3 L462.6 208.3 L463.9 208.3 L465.2 208.3 L466.5 208.4 L467.8 208.4 L469.1 208.4 L470.4 208.4 L471.7 208.4 L473.0 208.5 L474.3 208.5 L475.6 208.5 L476.9 208.5 L478.2 208.5 L479.5 208.6 L480.8 208.6 L482.1 208.6 L483.4 208.6 L484.7 208.6 L486.0 208.7 L487.3 208.7 L488.6 208.7 L489.9 208.7 L491.2 208.7 L492.5 208.7 L493.8 208.8 L495.1 208.8 L496.4 208.8 L497.7 208.8 L499.0 208.8 L500.3 208.8 L501.6 208.9 L502.9 208.9 L504.2 208.9 L505.5 208.9 L506.8 208.9 L508.1 208.9 L509.4 208.9 L510.7 208.9 L512.0 209.0 L513.3 209.0 L514.6 209.0 L515.9 209.0 L517.2 209.0 L518.5 209.0 L519.8 209.0 L521.1 209.0 L522.4 209.1 L523.7 209.1 L525.0 209.1 L526.3 209.1 L527.6 209.1 L528.9 209.1 L530.2 209.1 L531.5 209.1 L532.8 209.1 L534.1 209.2 L535.4 209.2 L536.7 209.2 L538.0 209.2 L539.3 209.2 L540.6 209.2 L541.9 209.2 L543.2 209.2 L544.5 209.2 L545.8 209.2 L547.1 209.3 L548.4 209.3 L549.7 209.3 L551.0 209.3 L552.3 209.3 L553.6 209.3 L554.9 209.3 L556.2 209.3 L557.5 209.3 L558.8 209.3 L560.1 209.3 L561.4 209.3 L562.7 209.4 L564.0 209.4 L565.3 209.4 L566.6 209.4 L567.9 209.4 L569.2 209.4 L570.5 209.4 L571.8 209.4 L573.1 209.4 L574.4 209.4 L575.7 209.4 L577.0 209.4 L578.3 209.4 L579.6 209.4 L580.9 209.5 L582.2 209.5 L583.5 209.5 L584.8 209.5 L586.1 209.5 L587.4 209.5 L588.7 209.5 L590.0 209.5" style="stroke:var(--good);stroke-width:3"/>
+            <g class="fg-m fg-c"><text x="70" y="228">0,1·f₀</text><text x="330.0" y="228">f₀</text><text x="590" y="228">10·f₀</text></g>
+            <g class="fg-m fg-e"><text x="62" y="64">I máx</text><text x="62" y="214">0</text></g>
+            <text class="fg-t fg-b" x="420.0" y="135.0" style="fill:var(--charge-neg)" font-size="13">Q = 2 (ancho)</text>
+            <text class="fg-t fg-b" x="366.0" y="81.0" style="fill:var(--accent)" font-size="13">Q = 10</text>
+            <text class="fg-t fg-b" x="180.0" y="72.0" style="fill:var(--good)" font-size="13">Q = 30 (agudo)</text>
+            <text class="fg-m fg-c" x="330.0" y="250">frecuencia (escala logarítmica)</text>
+          </svg>
+          <figcaption><strong>Q mide la «selectividad».</strong> Un Q alto (poca resistencia) da un pico angosto: solo responde a una frecuencia muy precisa. Un Q bajo (más resistencia) da un pico ancho. El ancho de banda es B = f₀ / Q.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="paralelo">
+        <h2>Resonancia en paralelo</h2>
+        <p>Con la bobina y el capacitor en <em>paralelo</em>, la resonancia ocurre en la misma frecuencia, pero el efecto es el opuesto: la impedancia del conjunto es <strong>máxima</strong> y la corriente que se toma de la fuente es mínima, porque la energía circula dentro del lazo L–C («circuito tanque») y solo hay que reponer la que pierde la resistencia. Se usa para <em>rechazar</em> o para <em>seleccionar</em> una frecuencia: por ejemplo, un circuito tanque en la entrada de una radio deja pasar la señal de la emisora elegida y desvía el resto.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g22ct g22cd">
+            <title id="g22ct">Circuitos resonantes en serie, en paralelo y la sintonía de una radio</title>
+            <desc id="g22cd">Un circuito RLC en serie con impedancia mínima, un circuito LC en paralelo con impedancia máxima y el circuito de una radio con antena, bobina y capacitor variable.</desc>
+<text class="fg-t fg-b fg-c" x="115" y="20">Serie: Z mínima</text>
+            <path class="fg-line" d="M25 70 H40 M90 70 H100 M100 70 H110 M184 70 H200 V140 H25 V70"/>
+            <path class="fg-line" d="M24 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/>
+            <path class="fg-line" d="M90 70 H108"/><path class="fg-line" d="M108 70 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 "/><path class="fg-line" d="M172 70 H176"/>
+            <text class="fg-m fg-c" x="57" y="52">R</text><text class="fg-m fg-c" x="140" y="52">L</text>
+            <path class="fg-line" d="M200 70 V84"/><text class="fg-m" x="206" y="108">C</text>
+            <path class="fg-line" d="M186 98 H214 M186 108 H214" style="stroke-width:3"/>
+            <text class="fg-m fg-c" x="115" y="178" font-size="12.5">en f₀: Z = R, la corriente</text><text class="fg-m fg-c" x="115" y="196" font-size="12.5">es máxima</text>
+            <text class="fg-t fg-b fg-c" x="365" y="20">Paralelo: Z máxima</text>
+            <path class="fg-line" d="M290 56 H440 M290 140 H440 M335 56 V86 M335 140 V112 M395 56 V80 M395 140 V120"/>
+            <path class="fg-line" d="M320 98 H350 M320 108 H350" style="stroke-width:3"/>
+            <path class="fg-line" d="M395 80 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16"/>
+            <text class="fg-m fg-c" x="335" y="40">C</text><text class="fg-m fg-c" x="395" y="40">L</text>
+            <text class="fg-m fg-c" x="365" y="178" font-size="12.5">en f₀: Z es enorme,</text><text class="fg-m fg-c" x="365" y="196" font-size="12.5">la corriente de línea es mínima</text>
+            <text class="fg-t fg-b fg-c" x="585" y="20">Radio sintonizada</text>
+            <path class="fg-line" d="M535 50 L545 34 L555 50 M545 34 V70 M545 70 V84 M545 126 V140 M545 140 H600 M545 84 H560"/>
+            <path class="fg-line" d="M545 84 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16"/>
+            <path class="fg-line" d="M590 84 V94 M582 94 H598 M582 102 H598 M590 102 V140" style="stroke-width:2.5"/>
+            <path class="fg-line" d="M545 84 H590"/>
+            <text class="fg-m" x="566" y="50" font-size="11.5">antena</text><text class="fg-m" x="603" y="102" font-size="11.5">C variable</text><text class="fg-m" x="526" y="112" text-anchor="end" font-size="11.5">L</text>
+            <text class="fg-m fg-c" x="585" y="178" font-size="12.5">cambiar C mueve f₀ hasta</text><text class="fg-m fg-c" x="585" y="196" font-size="12.5">captar una emisora</text>
+          </svg>
+          <figcaption>La sintonía de una radio es un circuito resonante cuya frecuencia se cambia girando un capacitor variable: solo la emisora que coincide con f₀ genera una señal grande.</figcaption>
+        </figure>
+
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Sintonizar una emisora</span>
+          <p>La antena de una radio recibe señales de miles de emisoras. Un circuito LC con un capacitor variable se «sintoniza» a la frecuencia de la emisora que querés (<a class="xref" href="10-frecuencia.html#electromagneticas">capítulo 10</a>): cambiando C se mueve f₀ y solo esa emisora resuena con fuerza. El Q determina cuánto se separan las emisoras vecinas.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Relojes, cristales y osciladores</span>
+          <p>El cristal de cuarzo de un reloj o de un microcontrolador es un resonador mecánico con un Q altísimo (del orden de decenas de miles) que fija con gran precisión la frecuencia, como los 32 768 Hz de un reloj de pulsera.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Detectores de metales y carga inalámbrica</span>
+          <p>Un detector de metales tiene una bobina cuya inductancia cambia cuando se acerca un metal, y eso desplaza f₀. La carga inalámbrica de un celular y las etiquetas NFC (13,56 MHz) usan bobinas resonantes para transferir energía con buen rendimiento.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: frecuencia, Q y tensiones</span>
+          <p>L = 10 mH, C = 1 µF, R = 10 Ω, fuente de 1 V.</p>
+          <ol>
+            <li>Resonancia: <span class="eq">f<sub>0</sub> = 1 / (2π · √(0,01 · 10<sup>−6</sup>)) ≈ 1,59 kHz</span>.</li>
+            <li>Reactancias en f₀: <span class="eq">X<sub>L</sub> = X<sub>C</sub> = 2π · 1590 · 0,01 ≈ 100 Ω</span>. Impedancia = R = 10 Ω.</li>
+            <li>Corriente máxima: <span class="eq">I = 1 / 10 = 100 mA</span>.</li>
+            <li>Factor de calidad: <span class="eq">Q = 100 / 10 = 10</span> y ancho de banda <span class="eq">B = 1590 / 10 ≈ 159 Hz</span>.</li>
+            <li>Tensión en la bobina: <span class="eq">V<sub>L</sub> = I · X<sub>L</sub> = 0,1 · 100 = 10 V</span>: diez veces más que la fuente.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: sintonizar AM</span>
+          <p>Una radio de AM tiene una bobina de 240 µH y quiere captar una emisora de 1000 kHz.</p>
+          <ol>
+            <li>Se despeja C de la resonancia: <span class="eq">C = 1 / ((2π · f)² · L)</span>.</li>
+            <li><span class="eq">C = 1 / ((2π · 10<sup>6</sup>)² · 240 · 10<sup>−6</sup>) ≈ 105 pF</span>.</li>
+            <li>Para cubrir toda la banda de AM (530 a 1700 kHz) el capacitor variable debe barrer unos 36 a 375 pF: es el típico condensador variable de las radios antiguas.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con L = 10 mH y C = 1 µF, f₀ = 1,59 kHz. Poné la frecuencia en <strong>1 · f₀</strong>: las reactancias se igualan (≈ 100 Ω), la impedancia baja a R = 10 Ω y la corriente es la máxima, en fase con la tensión (φ ≈ 0°). La figura marca «¡RESONANCIA!».</li>
+        <li>Alejate de f₀ hacia abajo (0,5 · f₀) y hacia arriba (2 · f₀): la corriente cae mucho. Por debajo, domina el capacitor (corriente adelantada); por encima, la bobina (corriente retrasada).</li>
+        <li>En resonancia, mirá las tensiones del panel: V<sub>L</sub> y V<sub>C</sub> valen ≈ 10 V, ¡diez veces la de la fuente de 1 V! Es el factor de calidad Q = 10.</li>
+        <li>Aumentá R de 10 Ω a 100 Ω: el pico de la curva baja y se ensancha, Q cae a 1 y las tensiones en L y C ya no superan a la de la fuente. Probá con R = 5 Ω: el pico se vuelve muy agudo.</li>
+        <li>Cambiá C a 10 µF: f₀ baja a 503 Hz (más L o C significan más lento). Cambiá L a 1 mH con C = 0,1 µF: f₀ sube a 15,9 kHz.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/resonance.js"></script>
+  <script src="../js/quizzes/22-resonancia.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

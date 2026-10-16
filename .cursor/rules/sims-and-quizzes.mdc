@@ -1,0 +1,35 @@
+---
+description: Cómo escribir la simulación (laboratorio) y el cuestionario de un capítulo
+globs: js/sims/*.js, js/quizzes/*.js, js/core/*.js
+alwaysApply: false
+---
+
+# Laboratorio (`js/sims/<nombre>.js`)
+
+Usa `mountSim(document.querySelector('[data-sim]'), { title, label, caption, controls, chart?, setup })` (ver `js/core/sim.js` y el README).
+
+- **Ver y tocar**: al menos 2 controles (sliders o `choice`) que cambien algo visible, y el resultado dibujado en el canvas (corrientes con `FlowPath`/`visualSpeed`, componentes con `canvas.js` y `parts.js`).
+- **Fórmulas en vivo**: `formulas()` devuelve filas `{ name, sym, val }` con la fórmula simbólica y la misma con los valores sustituidos (`si()` / `num()` de `units.js`).
+- **Gráfica** (`chart: true`) cuando el concepto tiene una curva (carga RC, característica del transistor, forma de onda) con el punto de operación marcado.
+- **Física simple pero correcta**: la simulación tiene que dar los mismos números que los ejemplos resueltos del capítulo. Declarar las constantes (0,7 V, β, etc.) arriba del archivo con comentario.
+- Colores solo desde `c = colors()` (`c.accent`, `c.chargePos`, `c.good`, `c.bad`, ...). Nada de colores fijos.
+- Dibujar en coordenadas relativas a `view.w` / `view.h`: tiene que verse bien en pantallas angostas.
+- Un archivo = una función autoejecutable. Si hace falta un símbolo nuevo, va a `js/core/parts.js` o `canvas.js`, no se copia dentro de la simulación.
+- **`step(dt)` es obligatorio** aunque la simulación no tenga dinámica (si falta, el bucle de animación se detiene con un error y el canvas queda congelado). Usar `Math.max(0, dt)` si se acumula tiempo.
+- Los valores de los controles `choice` conservan su tipo original (número o texto); los sliders de lista (`values`) también. Aun así, comparar siempre con `===` contra el mismo tipo declarado en `options`.
+- Si el fenómeno es muy rápido o muy lento (microsegundos, horas), animar en «cámara lenta» o recorrer una ventana analítica con un cursor, y decirlo en el `caption`.
+- Comprobar con una captura (Chrome headless) que el canvas, la gráfica y el panel de fórmulas se ven completos. Para ver la animación avanzar en una captura, sobreescribir `requestAnimationFrame` y `performance.now`.
+
+# Cuestionario (`js/quizzes/<id>.js`)
+
+```js
+(window.Elec ??= {}).QUIZZES = { ...(window.Elec.QUIZZES ?? {}), '<id>': [
+  { "q": "...", "correct": "...", "wrong": ["...", "...", "..."], "explain": "..." },
+] };
+```
+
+- 5 a 7 preguntas **conceptuales** (predecir qué pasa, elegir la causa, detectar el error), no recitar fórmulas.
+- 1 correcta + 3 incorrectas **plausibles** (errores típicos de principiantes), de largo parecido a la correcta.
+- `explain` dice por qué la correcta lo es y qué error evita; 1 o 2 frases.
+- Al menos una pregunta numérica sencilla por capítulo, resoluble de cabeza.
+- Cubrir: la idea central, un error común, una aplicación real y la relación con capítulos anteriores.

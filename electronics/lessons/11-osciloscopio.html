@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El osciloscopio · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="11-osciloscopio" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 11</p>
+        <h1>El osciloscopio</h1>
+        <p class="lead">El multímetro da un número. El osciloscopio muestra la señal completa, cuadro a cuadro, y permite medir tensión, período y frecuencia mirando una pantalla.</p>
+      </header>
+      <section>
+        <h2>Cómo se lee la pantalla</h2>
+        <p>Un <strong>osciloscopio</strong> dibuja la tensión de una señal en función del tiempo. El eje horizontal es el tiempo, el vertical es la tensión, y la pantalla está dividida en cuadros llamados <strong>divisiones</strong>. Dos perillas fijan la escala:</p>
+        <ul>
+          <li><strong>V/div</strong> (escala vertical): cuántos volts vale cada cuadro hacia arriba.</li>
+          <li><strong>T/div</strong> (base de tiempo): cuántos segundos vale cada cuadro hacia la derecha.</li>
+        </ul>
+        <p>Para medir se cuentan cuadros y se multiplica por la escala:</p>
+        <p class="equation"><span class="eq">V<sub>pp</sub> = (alto en div) · (V/div)</span> &nbsp;&nbsp; <span class="eq">T = (ancho de un ciclo en div) · (T/div)</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 365" role="img" aria-labelledby="g11at g11ad">
+            <title id="g11at">Pantalla de osciloscopio</title>
+            <desc id="g11ad">Una senoide sobre la cuadrícula, con su alto medido en divisiones y su ancho de un ciclo.</desc>
+            <rect x="30" y="40" width="340" height="272" rx="4" style="fill:#0d1a14;stroke:var(--wire);stroke-width:2"/>
+            <g stroke="#2e5a44" stroke-width="1"><line x1="64" y1="40" x2="64" y2="312"/><line x1="98" y1="40" x2="98" y2="312"/><line x1="132" y1="40" x2="132" y2="312"/><line x1="166" y1="40" x2="166" y2="312"/><line x1="200" y1="40" x2="200" y2="312"/><line x1="234" y1="40" x2="234" y2="312"/><line x1="268" y1="40" x2="268" y2="312"/><line x1="302" y1="40" x2="302" y2="312"/><line x1="336" y1="40" x2="336" y2="312"/><line x1="30" y1="74" x2="370" y2="74"/><line x1="30" y1="108" x2="370" y2="108"/><line x1="30" y1="142" x2="370" y2="142"/><line x1="30" y1="176" x2="370" y2="176"/><line x1="30" y1="210" x2="370" y2="210"/><line x1="30" y1="244" x2="370" y2="244"/><line x1="30" y1="278" x2="370" y2="278"/></g>
+            <path d="M30 176.0 H370" stroke="#4a8a6a" stroke-width="1.8"/>
+            <path d="M30.0 176.0 L31.1 173.3 L32.3 170.7 L33.4 168.0 L34.5 165.4 L35.7 162.8 L36.8 160.2 L37.9 157.7 L39.1 155.3 L40.2 152.8 L41.3 150.5 L42.5 148.2 L43.6 146.0 L44.7 143.9 L45.9 141.9 L47.0 139.9 L48.1 138.1 L49.3 136.4 L50.4 134.7 L51.5 133.2 L52.7 131.8 L53.8 130.6 L54.9 129.4 L56.1 128.4 L57.2 127.5 L58.3 126.7 L59.5 126.1 L60.6 125.6 L61.7 125.3 L62.9 125.1 L64.0 125.0 L65.1 125.1 L66.3 125.3 L67.4 125.6 L68.5 126.1 L69.7 126.7 L70.8 127.5 L71.9 128.4 L73.1 129.4 L74.2 130.6 L75.3 131.8 L76.5 133.2 L77.6 134.7 L78.7 136.4 L79.9 138.1 L81.0 139.9 L82.1 141.9 L83.3 143.9 L84.4 146.0 L85.5 148.2 L86.7 150.5 L87.8 152.8 L88.9 155.3 L90.1 157.7 L91.2 160.2 L92.3 162.8 L93.5 165.4 L94.6 168.0 L95.7 170.7 L96.9 173.3 L98.0 176.0 L99.1 178.7 L100.3 181.3 L101.4 184.0 L102.5 186.6 L103.7 189.2 L104.8 191.8 L105.9 194.3 L107.1 196.7 L108.2 199.2 L109.3 201.5 L110.5 203.8 L111.6 206.0 L112.7 208.1 L113.9 210.1 L115.0 212.1 L116.1 213.9 L117.3 215.6 L118.4 217.3 L119.5 218.8 L120.7 220.2 L121.8 221.4 L122.9 222.6 L124.1 223.6 L125.2 224.5 L126.3 225.3 L127.5 225.9 L128.6 226.4 L129.7 226.7 L130.9 226.9 L132.0 227.0 L133.1 226.9 L134.3 226.7 L135.4 226.4 L136.5 225.9 L137.7 225.3 L138.8 224.5 L139.9 223.6 L141.1 222.6 L142.2 221.4 L143.3 220.2 L144.5 218.8 L145.6 217.3 L146.7 215.6 L147.9 213.9 L149.0 212.1 L150.1 210.1 L151.3 208.1 L152.4 206.0 L153.5 203.8 L154.7 201.5 L155.8 199.2 L156.9 196.7 L158.1 194.3 L159.2 191.8 L160.3 189.2 L161.5 186.6 L162.6 184.0 L163.7 181.3 L164.9 178.7 L166.0 176.0 L167.1 173.3 L168.3 170.7 L169.4 168.0 L170.5 165.4 L171.7 162.8 L172.8 160.2 L173.9 157.7 L175.1 155.3 L176.2 152.8 L177.3 150.5 L178.5 148.2 L179.6 146.0 L180.7 143.9 L181.9 141.9 L183.0 139.9 L184.1 138.1 L185.3 136.4 L186.4 134.7 L187.5 133.2 L188.7 131.8 L189.8 130.6 L190.9 129.4 L192.1 128.4 L193.2 127.5 L194.3 126.7 L195.5 126.1 L196.6 125.6 L197.7 125.3 L198.9 125.1 L200.0 125.0 L201.1 125.1 L202.3 125.3 L203.4 125.6 L204.5 126.1 L205.7 126.7 L206.8 127.5 L207.9 128.4 L209.1 129.4 L210.2 130.6 L211.3 131.8 L212.5 133.2 L213.6 134.7 L214.7 136.4 L215.9 138.1 L217.0 139.9 L218.1 141.9 L219.3 143.9 L220.4 146.0 L221.5 148.2 L222.7 150.5 L223.8 152.8 L224.9 155.3 L226.1 157.7 L227.2 160.2 L228.3 162.8 L229.5 165.4 L230.6 168.0 L231.7 170.7 L232.9 173.3 L234.0 176.0 L235.1 178.7 L236.3 181.3 L237.4 184.0 L238.5 186.6 L239.7 189.2 L240.8 191.8 L241.9 194.3 L243.1 196.7 L244.2 199.2 L245.3 201.5 L246.5 203.8 L247.6 206.0 L248.7 208.1 L249.9 210.1 L251.0 212.1 L252.1 213.9 L253.3 215.6 L254.4 217.3 L255.5 218.8 L256.7 220.2 L257.8 221.4 L258.9 222.6 L260.1 223.6 L261.2 224.5 L262.3 225.3 L263.5 225.9 L264.6 226.4 L265.7 226.7 L266.9 226.9 L268.0 227.0 L269.1 226.9 L270.3 226.7 L271.4 226.4 L272.5 225.9 L273.7 225.3 L274.8 224.5 L275.9 223.6 L277.1 222.6 L278.2 221.4 L279.3 220.2 L280.5 218.8 L281.6 217.3 L282.7 215.6 L283.9 213.9 L285.0 212.1 L286.1 210.1 L287.3 208.1 L288.4 206.0 L289.5 203.8 L290.7 201.5 L291.8 199.2 L292.9 196.7 L294.1 194.3 L295.2 191.8 L296.3 189.2 L297.5 186.6 L298.6 184.0 L299.7 181.3 L300.9 178.7 L302.0 176.0 L303.1 173.3 L304.3 170.7 L305.4 168.0 L306.5 165.4 L307.7 162.8 L308.8 160.2 L309.9 157.7 L311.1 155.3 L312.2 152.8 L313.3 150.5 L314.5 148.2 L315.6 146.0 L316.7 143.9 L317.9 141.9 L319.0 139.9 L320.1 138.1 L321.3 136.4 L322.4 134.7 L323.5 133.2 L324.7 131.8 L325.8 130.6 L326.9 129.4 L328.1 128.4 L329.2 127.5 L330.3 126.7 L331.5 126.1 L332.6 125.6 L333.7 125.3 L334.9 125.1 L336.0 125.0 L337.1 125.1 L338.3 125.3 L339.4 125.6 L340.5 126.1 L341.7 126.7 L342.8 127.5 L343.9 128.4 L345.1 129.4 L346.2 130.6 L347.3 131.8 L348.5 133.2 L349.6 134.7 L350.7 136.4 L351.9 138.1 L353.0 139.9 L354.1 141.9 L355.3 143.9 L356.4 146.0 L357.5 148.2 L358.7 150.5 L359.8 152.8 L360.9 155.3 L362.1 157.7 L363.2 160.2 L364.3 162.8 L365.5 165.4 L366.6 168.0 L367.7 170.7 L368.9 173.3 L370.0 176.0" fill="none" stroke="#6dff9c" stroke-width="2.4" stroke-linejoin="round"/>
+            <path class="fg-acc" d="M386 125.0 V227.0 M381 132.0 L386 125.0 L391 132.0 M381 220.0 L386 227.0 L391 220.0" style="stroke-width:1.8"/>
+            <text class="fg-a fg-b" x="398" y="172.0">3 div</text><text class="fg-m" x="398" y="190.0">Vpp = 3 · 2 V = 6 V</text>
+            <path class="fg-acc" d="M30.0 328 H166 M36 323 L30 328 L36 333 M160 323 L166 328 L160 333" style="stroke-width:1.8"/>
+            <text class="fg-a fg-b" x="98" y="348" text-anchor="middle">4 div = 1 ciclo</text>
+            <text class="fg-m" x="180" y="348">T = 4 · 5 ms = 20 ms → f = 50 Hz</text>
+            <text class="fg-m fg-c" x="200.0" y="28">pantalla: 10 × 8 divisiones</text>
+          </svg>
+          <figcaption>Se cuentan divisiones y se multiplica por la escala: con 2 V/div y 5 ms/div, esta señal es de 6 V pico a pico y 50 Hz.</figcaption>
+        </figure>
+        <p>Con T se obtiene la frecuencia: <span class="eq">f = 1 / T</span>.</p>
+      </section>
+
+      <section>
+        <h2>Otras perillas importantes</h2>
+        <ul>
+          <li><strong>Disparo (trigger):</strong> hace que la traza arranque siempre en el mismo punto de la onda (por ejemplo, cuando sube por 0 V), de modo que la imagen quede quieta. Sin disparo, la señal “corre” por la pantalla.</li>
+          <li><strong>Acoplamiento DC / AC:</strong> en DC se ve la señal completa, incluido su nivel continuo; en AC se bloquea la continua y solo se ve la variación. Sirve para ver un pequeño rizado montado sobre una tensión grande.</li>
+          <li><strong>Sonda x1 / x10:</strong> una sonda x10 atenúa la señal diez veces y carga menos al circuito; hay que recordar multiplicar la lectura por 10.</li>
+
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 200" role="img" aria-labelledby="g11ct g11cd">
+            <title id="g11ct">Acoplamiento DC y AC</title>
+            <desc id="g11cd">La misma señal de 5 V con un pequeño rizado vista con acoplamiento DC y con acoplamiento AC.</desc>
+            <text class="fg-t fg-b fg-c" x="190" y="20">Acoplamiento DC</text>
+            <path class="fg-thin" d="M40 150 H340"/><text class="fg-m fg-e" x="34" y="154">0 V</text>
+            <path class="fg-acc" d="M40.0 80.0 L41.0 79.2 L42.0 78.5 L43.0 77.8 L44.0 77.1 L45.0 76.5 L46.0 75.9 L47.0 75.4 L48.0 74.9 L49.0 74.6 L50.0 74.3 L51.0 74.1 L52.0 74.0 L53.0 74.0 L54.0 74.1 L55.0 74.3 L56.0 74.6 L57.0 74.9 L58.0 75.4 L59.0 75.9 L60.0 76.5 L61.0 77.1 L62.0 77.8 L63.0 78.5 L64.0 79.2 L65.0 80.0 L66.0 80.8 L67.0 81.5 L68.0 82.2 L69.0 82.9 L70.0 83.5 L71.0 84.1 L72.0 84.6 L73.0 85.1 L74.0 85.4 L75.0 85.7 L76.0 85.9 L77.0 86.0 L78.0 86.0 L79.0 85.9 L80.0 85.7 L81.0 85.4 L82.0 85.1 L83.0 84.6 L84.0 84.1 L85.0 83.5 L86.0 82.9 L87.0 82.2 L88.0 81.5 L89.0 80.8 L90.0 80.0 L91.0 79.2 L92.0 78.5 L93.0 77.8 L94.0 77.1 L95.0 76.5 L96.0 75.9 L97.0 75.4 L98.0 74.9 L99.0 74.6 L100.0 74.3 L101.0 74.1 L102.0 74.0 L103.0 74.0 L104.0 74.1 L105.0 74.3 L106.0 74.6 L107.0 74.9 L108.0 75.4 L109.0 75.9 L110.0 76.5 L111.0 77.1 L112.0 77.8 L113.0 78.5 L114.0 79.2 L115.0 80.0 L116.0 80.8 L117.0 81.5 L118.0 82.2 L119.0 82.9 L120.0 83.5 L121.0 84.1 L122.0 84.6 L123.0 85.1 L124.0 85.4 L125.0 85.7 L126.0 85.9 L127.0 86.0 L128.0 86.0 L129.0 85.9 L130.0 85.7 L131.0 85.4 L132.0 85.1 L133.0 84.6 L134.0 84.1 L135.0 83.5 L136.0 82.9 L137.0 82.2 L138.0 81.5 L139.0 80.8 L140.0 80.0 L141.0 79.2 L142.0 78.5 L143.0 77.8 L144.0 77.1 L145.0 76.5 L146.0 75.9 L147.0 75.4 L148.0 74.9 L149.0 74.6 L150.0 74.3 L151.0 74.1 L152.0 74.0 L153.0 74.0 L154.0 74.1 L155.0 74.3 L156.0 74.6 L157.0 74.9 L158.0 75.4 L159.0 75.9 L160.0 76.5 L161.0 77.1 L162.0 77.8 L163.0 78.5 L164.0 79.2 L165.0 80.0 L166.0 80.8 L167.0 81.5 L168.0 82.2 L169.0 82.9 L170.0 83.5 L171.0 84.1 L172.0 84.6 L173.0 85.1 L174.0 85.4 L175.0 85.7 L176.0 85.9 L177.0 86.0 L178.0 86.0 L179.0 85.9 L180.0 85.7 L181.0 85.4 L182.0 85.1 L183.0 84.6 L184.0 84.1 L185.0 83.5 L186.0 82.9 L187.0 82.2 L188.0 81.5 L189.0 80.8 L190.0 80.0 L191.0 79.2 L192.0 78.5 L193.0 77.8 L194.0 77.1 L195.0 76.5 L196.0 75.9 L197.0 75.4 L198.0 74.9 L199.0 74.6 L200.0 74.3 L201.0 74.1 L202.0 74.0 L203.0 74.0 L204.0 74.1 L205.0 74.3 L206.0 74.6 L207.0 74.9 L208.0 75.4 L209.0 75.9 L210.0 76.5 L211.0 77.1 L212.0 77.8 L213.0 78.5 L214.0 79.2 L215.0 80.0 L216.0 80.8 L217.0 81.5 L218.0 82.2 L219.0 82.9 L220.0 83.5 L221.0 84.1 L222.0 84.6 L223.0 85.1 L224.0 85.4 L225.0 85.7 L226.0 85.9 L227.0 86.0 L228.0 86.0 L229.0 85.9 L230.0 85.7 L231.0 85.4 L232.0 85.1 L233.0 84.6 L234.0 84.1 L235.0 83.5 L236.0 82.9 L237.0 82.2 L238.0 81.5 L239.0 80.8 L240.0 80.0 L241.0 79.2 L242.0 78.5 L243.0 77.8 L244.0 77.1 L245.0 76.5 L246.0 75.9 L247.0 75.4 L248.0 74.9 L249.0 74.6 L250.0 74.3 L251.0 74.1 L252.0 74.0 L253.0 74.0 L254.0 74.1 L255.0 74.3 L256.0 74.6 L257.0 74.9 L258.0 75.4 L259.0 75.9 L260.0 76.5 L261.0 77.1 L262.0 77.8 L263.0 78.5 L264.0 79.2 L265.0 80.0 L266.0 80.8 L267.0 81.5 L268.0 82.2 L269.0 82.9 L270.0 83.5 L271.0 84.1 L272.0 84.6 L273.0 85.1 L274.0 85.4 L275.0 85.7 L276.0 85.9 L277.0 86.0 L278.0 86.0 L279.0 85.9 L280.0 85.7 L281.0 85.4 L282.0 85.1 L283.0 84.6 L284.0 84.1 L285.0 83.5 L286.0 82.9 L287.0 82.2 L288.0 81.5 L289.0 80.8 L290.0 80.0 L291.0 79.2 L292.0 78.5 L293.0 77.8 L294.0 77.1 L295.0 76.5 L296.0 75.9 L297.0 75.4 L298.0 74.9 L299.0 74.6 L300.0 74.3 L301.0 74.1 L302.0 74.0 L303.0 74.0 L304.0 74.1 L305.0 74.3 L306.0 74.6 L307.0 74.9 L308.0 75.4 L309.0 75.9 L310.0 76.5 L311.0 77.1 L312.0 77.8 L313.0 78.5 L314.0 79.2 L315.0 80.0 L316.0 80.8 L317.0 81.5 L318.0 82.2 L319.0 82.9 L320.0 83.5 L321.0 84.1 L322.0 84.6 L323.0 85.1 L324.0 85.4 L325.0 85.7 L326.0 85.9 L327.0 86.0 L328.0 86.0 L329.0 85.9 L330.0 85.7 L331.0 85.4 L332.0 85.1 L333.0 84.6 L334.0 84.1 L335.0 83.5 L336.0 82.9 L337.0 82.2 L338.0 81.5 L339.0 80.8 L340.0 80.0"/>
+            <text class="fg-m fg-e" x="34" y="84">5 V</text>
+            <text class="fg-m fg-c" x="190" y="186">se ve todo: el nivel de 5 V y el rizado casi plano</text>
+            <text class="fg-t fg-b fg-c" x="530" y="20">Acoplamiento AC</text>
+            <path class="fg-thin" d="M380 85 H680"/><text class="fg-m fg-e" x="374" y="89">0 V</text>
+            <path class="fg-acc" d="M380.0 85.0 L381.0 82.0 L382.0 79.0 L383.0 76.2 L384.0 73.4 L385.0 70.9 L386.0 68.6 L387.0 66.5 L388.0 64.7 L389.0 63.3 L390.0 62.2 L391.0 61.4 L392.0 61.0 L393.0 61.0 L394.0 61.4 L395.0 62.2 L396.0 63.3 L397.0 64.7 L398.0 66.5 L399.0 68.6 L400.0 70.9 L401.0 73.4 L402.0 76.2 L403.0 79.0 L404.0 82.0 L405.0 85.0 L406.0 88.0 L407.0 91.0 L408.0 93.8 L409.0 96.6 L410.0 99.1 L411.0 101.4 L412.0 103.5 L413.0 105.3 L414.0 106.7 L415.0 107.8 L416.0 108.6 L417.0 109.0 L418.0 109.0 L419.0 108.6 L420.0 107.8 L421.0 106.7 L422.0 105.3 L423.0 103.5 L424.0 101.4 L425.0 99.1 L426.0 96.6 L427.0 93.8 L428.0 91.0 L429.0 88.0 L430.0 85.0 L431.0 82.0 L432.0 79.0 L433.0 76.2 L434.0 73.4 L435.0 70.9 L436.0 68.6 L437.0 66.5 L438.0 64.7 L439.0 63.3 L440.0 62.2 L441.0 61.4 L442.0 61.0 L443.0 61.0 L444.0 61.4 L445.0 62.2 L446.0 63.3 L447.0 64.7 L448.0 66.5 L449.0 68.6 L450.0 70.9 L451.0 73.4 L452.0 76.2 L453.0 79.0 L454.0 82.0 L455.0 85.0 L456.0 88.0 L457.0 91.0 L458.0 93.8 L459.0 96.6 L460.0 99.1 L461.0 101.4 L462.0 103.5 L463.0 105.3 L464.0 106.7 L465.0 107.8 L466.0 108.6 L467.0 109.0 L468.0 109.0 L469.0 108.6 L470.0 107.8 L471.0 106.7 L472.0 105.3 L473.0 103.5 L474.0 101.4 L475.0 99.1 L476.0 96.6 L477.0 93.8 L478.0 91.0 L479.0 88.0 L480.0 85.0 L481.0 82.0 L482.0 79.0 L483.0 76.2 L484.0 73.4 L485.0 70.9 L486.0 68.6 L487.0 66.5 L488.0 64.7 L489.0 63.3 L490.0 62.2 L491.0 61.4 L492.0 61.0 L493.0 61.0 L494.0 61.4 L495.0 62.2 L496.0 63.3 L497.0 64.7 L498.0 66.5 L499.0 68.6 L500.0 70.9 L501.0 73.4 L502.0 76.2 L503.0 79.0 L504.0 82.0 L505.0 85.0 L506.0 88.0 L507.0 91.0 L508.0 93.8 L509.0 96.6 L510.0 99.1 L511.0 101.4 L512.0 103.5 L513.0 105.3 L514.0 106.7 L515.0 107.8 L516.0 108.6 L517.0 109.0 L518.0 109.0 L519.0 108.6 L520.0 107.8 L521.0 106.7 L522.0 105.3 L523.0 103.5 L524.0 101.4 L525.0 99.1 L526.0 96.6 L527.0 93.8 L528.0 91.0 L529.0 88.0 L530.0 85.0 L531.0 82.0 L532.0 79.0 L533.0 76.2 L534.0 73.4 L535.0 70.9 L536.0 68.6 L537.0 66.5 L538.0 64.7 L539.0 63.3 L540.0 62.2 L541.0 61.4 L542.0 61.0 L543.0 61.0 L544.0 61.4 L545.0 62.2 L546.0 63.3 L547.0 64.7 L548.0 66.5 L549.0 68.6 L550.0 70.9 L551.0 73.4 L552.0 76.2 L553.0 79.0 L554.0 82.0 L555.0 85.0 L556.0 88.0 L557.0 91.0 L558.0 93.8 L559.0 96.6 L560.0 99.1 L561.0 101.4 L562.0 103.5 L563.0 105.3 L564.0 106.7 L565.0 107.8 L566.0 108.6 L567.0 109.0 L568.0 109.0 L569.0 108.6 L570.0 107.8 L571.0 106.7 L572.0 105.3 L573.0 103.5 L574.0 101.4 L575.0 99.1 L576.0 96.6 L577.0 93.8 L578.0 91.0 L579.0 88.0 L580.0 85.0 L581.0 82.0 L582.0 79.0 L583.0 76.2 L584.0 73.4 L585.0 70.9 L586.0 68.6 L587.0 66.5 L588.0 64.7 L589.0 63.3 L590.0 62.2 L591.0 61.4 L592.0 61.0 L593.0 61.0 L594.0 61.4 L595.0 62.2 L596.0 63.3 L597.0 64.7 L598.0 66.5 L599.0 68.6 L600.0 70.9 L601.0 73.4 L602.0 76.2 L603.0 79.0 L604.0 82.0 L605.0 85.0 L606.0 88.0 L607.0 91.0 L608.0 93.8 L609.0 96.6 L610.0 99.1 L611.0 101.4 L612.0 103.5 L613.0 105.3 L614.0 106.7 L615.0 107.8 L616.0 108.6 L617.0 109.0 L618.0 109.0 L619.0 108.6 L620.0 107.8 L621.0 106.7 L622.0 105.3 L623.0 103.5 L624.0 101.4 L625.0 99.1 L626.0 96.6 L627.0 93.8 L628.0 91.0 L629.0 88.0 L630.0 85.0 L631.0 82.0 L632.0 79.0 L633.0 76.2 L634.0 73.4 L635.0 70.9 L636.0 68.6 L637.0 66.5 L638.0 64.7 L639.0 63.3 L640.0 62.2 L641.0 61.4 L642.0 61.0 L643.0 61.0 L644.0 61.4 L645.0 62.2 L646.0 63.3 L647.0 64.7 L648.0 66.5 L649.0 68.6 L650.0 70.9 L651.0 73.4 L652.0 76.2 L653.0 79.0 L654.0 82.0 L655.0 85.0 L656.0 88.0 L657.0 91.0 L658.0 93.8 L659.0 96.6 L660.0 99.1 L661.0 101.4 L662.0 103.5 L663.0 105.3 L664.0 106.7 L665.0 107.8 L666.0 108.6 L667.0 109.0 L668.0 109.0 L669.0 108.6 L670.0 107.8 L671.0 106.7 L672.0 105.3 L673.0 103.5 L674.0 101.4 L675.0 99.1 L676.0 96.6 L677.0 93.8 L678.0 91.0 L679.0 88.0 L680.0 85.0"/>
+            <text class="fg-m fg-c" x="530" y="186">se bloquea la continua: el rizado se puede ampliar</text>
+          </svg>
+          <figcaption><strong>AC quita el nivel continuo</strong> para poder usar una escala más sensible y ver el rizado que va montado sobre los 5 V.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="pwm">Señales cuadradas, ciclo de trabajo y PWM</h2>
+        <p>Una <strong>señal cuadrada</strong> alterna entre dos niveles (por ejemplo, 0 V y 5 V). Además de su frecuencia, se caracteriza por su <strong>ciclo de trabajo</strong> (<em>duty cycle</em>, <em>D</em>): la fracción de cada período durante la cual la señal está en nivel alto.</p>
+        <p class="equation"><span class="eq">D = t<sub>alto</sub> / T</span> &nbsp;&nbsp; <span class="eq">V<sub>medio</sub> = D · V<sub>alto</sub></span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 290" role="img" aria-labelledby="g11bt g11bd">
+            <title id="g11bt">Ciclo de trabajo</title>
+            <desc id="g11bd">Tres ondas cuadradas con ciclos de trabajo de 25, 50 y 75 por ciento y su tensión media.</desc>
+            <path class="fg-thin" d="M40 64 H340"/>
+            <path class="fg-dash" d="M40 53.0 H340" style="stroke:var(--heat);stroke-width:1.8"/>
+            <path class="fg-acc" d="M40.0 64.0 L40.0 20.0 L58.8 20.0 L58.8 64.0 L115.0 64.0 L115.0 20.0 L133.8 20.0 L133.8 64.0 L190.0 64.0 L190.0 20.0 L208.8 20.0 L208.8 64.0 L265.0 64.0 L265.0 20.0 L283.8 20.0 L283.8 64.0 L340.0 64.0"/>
+            <text class="fg-t fg-b" x="372" y="46">D = 25 %</text>
+            <text class="fg-m" x="372" y="66">V medio = 1,25 V</text>            <path class="fg-thin" d="M40 150 H340"/>
+            <path class="fg-dash" d="M40 128.0 H340" style="stroke:var(--heat);stroke-width:1.8"/>
+            <path class="fg-acc" d="M40.0 150.0 L40.0 106.0 L77.5 106.0 L77.5 150.0 L115.0 150.0 L115.0 106.0 L152.5 106.0 L152.5 150.0 L190.0 150.0 L190.0 106.0 L227.5 106.0 L227.5 150.0 L265.0 150.0 L265.0 106.0 L302.5 106.0 L302.5 150.0 L340.0 150.0"/>
+            <text class="fg-t fg-b" x="372" y="132">D = 50 %</text>
+            <text class="fg-m" x="372" y="152">V medio = 2,5 V</text>            <path class="fg-thin" d="M40 236 H340"/>
+            <path class="fg-dash" d="M40 203.0 H340" style="stroke:var(--heat);stroke-width:1.8"/>
+            <path class="fg-acc" d="M40.0 236.0 L40.0 192.0 L96.2 192.0 L96.2 236.0 L115.0 236.0 L115.0 192.0 L171.2 192.0 L171.2 236.0 L190.0 236.0 L190.0 192.0 L246.2 192.0 L246.2 236.0 L265.0 236.0 L265.0 192.0 L321.2 192.0 L321.2 236.0 L340.0 236.0"/>
+            <text class="fg-t fg-b" x="372" y="218">D = 75 %</text>
+            <text class="fg-m" x="372" y="238">V medio = 3,75 V</text>
+            <text class="fg-m" x="372" y="14" style="fill:var(--heat)">- - -  tensión media (con 5 V de nivel alto)</text>
+          </svg>
+          <figcaption>Con la misma frecuencia y el mismo nivel alto, cuanto más ancho el pulso, mayor la tensión media y más potencia recibe la carga.</figcaption>
+        </figure>
+        <p>La <strong>modulación por ancho de pulso</strong> (<em>PWM</em>, <em>Pulse Width Modulation</em>) aprovecha esto: enciende y apaga una carga muy rápido, y variando el ciclo de trabajo cambia la <em>potencia promedio</em> que recibe, sin desperdiciar energía en una resistencia. Un LED con D = 25 % brilla aproximadamente como si recibiera una cuarta parte de la corriente; un motor gira más lento; un regulador de luz (<em>dimmer</em>) varía el brillo. La carga no percibe el parpadeo porque es demasiado rápido para el ojo o porque su inercia lo promedia (una fuente conmutada, capítulo <a class="xref" href="08-cc-vs-ca.html#reguladores">8</a>, usa el mismo principio).</p>
+        <p>En el osciloscopio, una señal PWM se ve como una onda cuadrada de ancho variable. Midiendo el ancho del pulso alto y el período total (en divisiones × T/div) se obtiene el ciclo de trabajo directamente. Un temporizador 555 genera esta señal sin microcontrolador (capítulo <a class="xref" href="27-temporizador-555.html">27</a>).</p>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una salida PWM de 5 V trabaja a 490 Hz con un ciclo de trabajo del 25 %.</p>
+          <ol>
+            <li>Período: <span class="eq">T = 1 / 490 ≈ 2,04 ms</span></li>
+            <li>Tiempo en nivel alto: <span class="eq">t<sub>alto</sub> = 0,25 · 2,04 ≈ 0,51 ms</span></li>
+            <li>Tensión media: <span class="eq">V<sub>medio</sub> = 0,25 · 5 V = 1,25 V</span></li>
+            <li>Con 2 ms/div, en la pantalla se vería un pulso alto de casi 0,25 divisiones y un período de poco más de 1 división.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Ver una salida PWM</span>
+          <p>Las placas tipo Arduino controlan el brillo de un LED o la velocidad de un motor con una señal cuadrada (<a class="xref" href="#pwm">PWM</a>) de unos 490 Hz. Con el osciloscopio se ve el ancho del pulso y se confirma la frecuencia, algo que un multímetro promedia y no muestra.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El rizado de una fuente</span>
+          <p>Con acoplamiento AC y una escala sensible (por ejemplo 50 mV/div) se mide el pequeño “rizado” que queda sobre los 5 V de una fuente: si es grande, el capacitor de filtro es insuficiente o está fallando.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: leer una pantalla</span>
+          <p>Con la escala en 2 V/div y 5 ms/div, la señal ocupa 3 cuadros de alto (de pico a pico) y un ciclo completo abarca 4 cuadros de ancho.</p>
+          <ol>
+            <li><span class="eq">V<sub>pp</sub> = 3 div · 2 V/div = 6 V</span> → <span class="eq">V<sub>p</sub> = 3 V</span></li>
+            <li><span class="eq">T = 4 div · 5 ms/div = 20 ms</span></li>
+            <li><span class="eq">f = 1 / 20 ms = 50 Hz</span> (tal vez una señal tomada de un transformador de la red).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con 1 V/div y 1 ms/div, contá los cuadros: alto pico a pico y ancho de un ciclo. Compará con el cálculo que hace el cuaderno de la derecha.</li>
+        <li>Activá los <strong>cursores</strong>: las líneas punteadas marcan dónde medir el pico a pico y el período.</li>
+        <li>Subí la frecuencia sin tocar la base de tiempo: entran más ciclos y la onda se aprieta. Ajustá T/div para volver a ver un ciclo cómodo.</li>
+        <li>Agregá 2 V de continua (offset): con acoplamiento <strong>DC</strong> la onda sube; con <strong>AC</strong> vuelve al centro.</li>
+        <li>Subí la amplitud hasta que la señal se salga de la pantalla y arreglalo con V/div.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/scope.js"></script>
+  <script src="../js/quizzes/11-osciloscopio.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

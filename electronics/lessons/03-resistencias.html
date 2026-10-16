@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resistencias en serie y en paralelo · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="03-resistencias" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 3</p>
+        <h1>Resistencias en serie y en paralelo</h1>
+        <p class="lead">Cómo se combinan varias resistencias y cómo se reparten la tensión y la corriente entre ellas.</p>
+      </header>
+      <section>
+        <h2>En serie: un solo camino</h2>
+        <p>Los componentes están uno a continuación del otro. Por todos pasa <strong>la misma corriente</strong> y la tensión de la fuente se <strong>reparte</strong> entre ellos.</p>
+        <p class="equation"><span class="eq">R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub></span></p>
+        <p>La corriente es <span class="eq">I = V / R<sub>eq</sub></span> y la caída en cada resistencia es <span class="eq">V<sub>n</sub> = I · R<sub>n</sub></span>. De ahí sale el <strong>divisor de tensión</strong>:</p>
+        <p class="equation"><span class="eq">V<sub>2</sub> = V · R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</span></p>
+      </section>
+
+      <section>
+        <h2>En paralelo: varios caminos</h2>
+        <p>Todos los componentes están conectados entre los mismos dos nodos. Cada rama tiene <strong>la misma tensión</strong> y la corriente total se <strong>reparte</strong>.</p>
+        <p class="equation"><span class="eq">1 / R<sub>eq</sub> = 1 / R<sub>1</sub> + 1 / R<sub>2</sub></span> &nbsp;⇒&nbsp; <span class="eq">R<sub>eq</sub> = R<sub>1</sub>·R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g3at g3ad">
+            <title id="g3at">Serie y paralelo</title>
+            <desc id="g3ad">Dos circuitos: dos resistores uno detrás del otro, y dos resistores en ramas separadas.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="22">En serie</text>
+            <path class="fg-line" d="M60 50 H100 M166 50 H200 M266 50 H300 V190 H60 V137 M60 103 V50"/>
+            <path class="fg-line" d="M100 50 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M200 50 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/>
+            <path class="fg-line" d="M60 103 v10 M60 127 v10"/><line class="fg-line" x1="46" y1="113" x2="74" y2="113"/><line class="fg-line" x1="52" y1="127" x2="68" y2="127" stroke-width="4"/>
+            <text class="fg-m" x="40" y="96" text-anchor="end">+</text>
+            <text class="fg-t fg-i fg-c" x="133" y="82">R<tspan font-size="10" dy="3">1</tspan></text>
+            <text class="fg-t fg-i fg-c" x="233" y="82">R<tspan font-size="10" dy="3">2</tspan></text>
+            <path class="fg-pos" d="M300 100 V135 M294 127 L300 135 L306 127" style="stroke-width:2"/>
+            <text class="fg-t fg-i" x="312" y="122" style="fill:var(--charge-pos);">I</text>
+            <text class="fg-m fg-c" x="133" y="108">V<tspan font-size="10" dy="3">1</tspan></text>
+            <text class="fg-m fg-c" x="233" y="108">V<tspan font-size="10" dy="3">2</tspan></text>
+            <text class="fg-m fg-c" x="180" y="214">misma I · la tensión se reparte</text>
+            <text class="fg-a fg-c fg-i" x="180" y="236">R<tspan font-size="10" dy="3">eq</tspan><tspan dy="-3"> = R</tspan><tspan font-size="10" dy="3">1</tspan><tspan dy="-3"> + R</tspan><tspan font-size="10" dy="3">2</tspan></text>
+
+            <text class="fg-t fg-b fg-c" x="520" y="22">En paralelo</text>
+            <path class="fg-line" d="M400 50 H640 M400 190 H640 M400 50 V103 M400 137 V190 M480 50 V92 M480 158 V190 M580 50 V92 M580 158 V190"/>
+            <g transform="translate(480,92) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <g transform="translate(580,92) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <path class="fg-line" d="M400 103 v10 M400 127 v10"/><line class="fg-line" x1="386" y1="113" x2="414" y2="113"/><line class="fg-line" x1="392" y1="127" x2="408" y2="127" stroke-width="4"/>
+            <text class="fg-t fg-i" x="498" y="130">R<tspan font-size="10" dy="3">1</tspan></text>
+            <text class="fg-t fg-i" x="598" y="130">R<tspan font-size="10" dy="3">2</tspan></text>
+            <path class="fg-pos" d="M492 66 V84 M486 78 L492 84 L498 78 M592 66 V84 M586 78 L592 84 L598 78" style="stroke-width:2"/>
+            <text class="fg-m" x="504" y="76" style="fill:var(--charge-pos);">I<tspan font-size="10" dy="3">1</tspan></text>
+            <text class="fg-m" x="604" y="76" style="fill:var(--charge-pos);">I<tspan font-size="10" dy="3">2</tspan></text>
+            <text class="fg-m fg-c" x="520" y="214">misma V · la corriente se reparte</text>
+            <text class="fg-a fg-c fg-i" x="520" y="236">1/R<tspan font-size="10" dy="3">eq</tspan><tspan dy="-3"> = 1/R</tspan><tspan font-size="10" dy="3">1</tspan><tspan dy="-3"> + 1/R</tspan><tspan font-size="10" dy="3">2</tspan></text>
+          </svg>
+          <figcaption><strong>Serie:</strong> un solo camino, la corriente es la misma en todos. <strong>Paralelo:</strong> varios caminos entre los mismos dos puntos, la tensión es la misma en todos.</figcaption>
+        </figure>
+        <p>Cada rama cumple Ohm por separado (<span class="eq">I<sub>n</sub> = V / R<sub>n</sub></span>) y la total es la suma: <span class="eq">I = I<sub>1</sub> + I<sub>2</sub></span>.</p>
+        <div class="note">
+          <span class="box-title">Regla útil</span>
+          <p>En paralelo, la resistencia equivalente siempre es <em>menor</em> que la menor de las ramas, porque agregar caminos facilita el paso de la corriente. En serie, es siempre <em>mayor</em> que cualquiera.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="cortocircuito">Cortocircuito y circuito abierto</h2>
+        <p>Hay dos situaciones extremas que conviene reconocer:</p>
+        <ul>
+          <li><strong>Circuito abierto:</strong> el camino está interrumpido (un interruptor abierto, un cable cortado). Equivale a una resistencia infinita, y la corriente es cero. Es lo que se hace a propósito para apagar algo.</li>
+          <li><strong>Cortocircuito:</strong> se une directamente dos puntos del circuito con un camino de resistencia casi nula (dos cables pelados que se tocan, una herramienta apoyada entre los dos polos de una batería). Como <span class="eq">I = V / R</span>, con R casi cero la corriente se vuelve enorme: solo la limita la resistencia interna de la fuente (capítulo <a class="xref" href="04-baterias.html">4</a>). Esa corriente produce un calor <span class="eq">I² · R</span> muy grande en los cables y en la fuente, y puede provocar incendios.</li>
+        </ul>
+        <p>Para protegerse existen dispositivos que cortan el circuito si la corriente es excesiva: el <strong>fusible</strong> (un hilo calibrado que se funde y abre el circuito) y la <strong>llave térmica</strong> (un interruptor automático que se dispara por calentamiento, ante sobrecargas, y magnéticamente, ante un cortocircuito). Se eligen para que actúen antes de que el cable se recaliente. Un <strong>disyuntor diferencial</strong> es otro dispositivo distinto: corta cuando detecta que parte de la corriente se fuga a tierra, por ejemplo a través de una persona.</p>
+        <div class="note">
+          <span class="box-title">Conexión con el multímetro</span>
+          <p>Un amperímetro en paralelo con un componente lo cortocircuita (capítulo <a class="xref" href="05-multimetro.html">5</a>): por eso se conecta siempre en serie.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="kirchhoff">Las leyes de Kirchhoff</h2>
+        <p>Las reglas de serie y paralelo son casos particulares de dos leyes más generales, que permiten analizar cualquier circuito:</p>
+        <ul>
+          <li><strong>Ley de los nodos (corrientes):</strong> en cualquier nodo (punto donde se unen varios cables), la suma de las corrientes que entran es igual a la suma de las que salen. Es la conservación de la carga: las cargas no se acumulan ni desaparecen en una unión.</li>
+          <li><strong>Ley de las mallas (tensiones):</strong> recorriendo cualquier lazo cerrado del circuito, la suma de las subidas de tensión (fuentes) es igual a la suma de las caídas (resistencias). Es la conservación de la energía: al volver al punto de partida, el potencial es el mismo.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 240" role="img" aria-labelledby="g3bt g3bd">
+            <title id="g3bt">Leyes de Kirchhoff</title>
+            <desc id="g3bd">Un nodo donde dos corrientes entran y una sale, y una malla con una subida y dos caídas de tensión.</desc>
+            <text class="fg-t fg-b fg-c" x="150" y="22">Nodos: lo que entra, sale</text>
+            <circle class="fg-fill-acc" cx="150" cy="110" r="7"/>
+            <path class="fg-pos" d="M30 60 L143 104 M30 160 L143 116 M157 110 H270"/>
+            <path class="fg-pos" d="M128 92 L143 104 L124 106 M128 134 L143 116 L125 118 M258 103 L270 110 L258 117" style="stroke-width:2"/>
+            <text class="fg-t" x="30" y="52">I<tspan font-size="10" dy="3">1</tspan><tspan dy="-3"> = 2 A</tspan></text>
+            <text class="fg-t" x="30" y="182">I<tspan font-size="10" dy="3">2</tspan><tspan dy="-3"> = 1 A</tspan></text>
+            <text class="fg-t" x="190" y="96">I<tspan font-size="10" dy="3">3</tspan><tspan dy="-3"> = 3 A</tspan></text>
+            <text class="fg-a fg-c fg-b" x="150" y="222">I<tspan font-size="10" dy="3">1</tspan><tspan dy="-3"> + I</tspan><tspan font-size="10" dy="3">2</tspan><tspan dy="-3"> = I</tspan><tspan font-size="10" dy="3">3</tspan></text>
+
+            <text class="fg-t fg-b fg-c" x="500" y="22">Mallas: lo que sube, baja</text>
+            <path class="fg-line" d="M400 60 H600 V180 H400 V137 M400 103 V60"/>
+            <path class="fg-line" d="M400 103 v10 M400 127 v10"/><line class="fg-line" x1="386" y1="113" x2="414" y2="113"/><line class="fg-line" x1="392" y1="127" x2="408" y2="127" stroke-width="4"/>
+            <rect class="fg-box" x="470" y="50" width="60" height="20" rx="3" style="fill:var(--surface)"/>
+            <path class="fg-line" d="M467 60 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/>
+            <g transform="translate(600,87) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <text class="fg-pos" x="380" y="124" text-anchor="end" style="fill:var(--good);stroke:none" font-weight="600">+12 V</text>
+            <text class="fg-bad" x="500" y="44" text-anchor="middle" style="fill:var(--bad);stroke:none" font-weight="600">−6 V</text>
+            <text class="fg-bad" x="620" y="126" style="fill:var(--bad);stroke:none" font-weight="600">−6 V</text>
+            <text class="fg-a fg-c fg-b" x="500" y="222">+12 − 6 − 6 = 0</text>
+          </svg>
+          <figcaption><strong>Izquierda:</strong> en el nodo, 2 A + 1 A entran y 3 A salen. <strong>Derecha:</strong> dando la vuelta completa, la fuente sube 12 V y los resistores bajan 6 V + 6 V.</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una fuente de 12 V alimenta R<sub>1</sub> = 100 Ω en serie con dos resistencias de 200 Ω en paralelo entre sí (R<sub>2</sub> y R<sub>3</sub>).</p>
+          <ol>
+            <li>El paralelo de 200 Ω y 200 Ω equivale a 100 Ω. La resistencia total es 100 + 100 = 200 Ω, y <span class="eq">I = 12 / 200 = 60 mA</span>.</li>
+            <li>Tensión en R<sub>1</sub>: <span class="eq">0,06 · 100 = 6 V</span>. Queda 12 − 6 = 6 V sobre el paralelo.</li>
+            <li>Cada rama del paralelo tiene 6 V: <span class="eq">I<sub>2</sub> = I<sub>3</sub> = 6 / 200 = 30 mA</span>.</li>
+            <li><strong>Comprobación con Kirchhoff:</strong> en el nodo, 60 mA = 30 mA + 30 mA ✓. En la malla, 12 V = 6 V (R<sub>1</sub>) + 6 V (paralelo) ✓.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Los enchufes de una casa</span>
+          <p>Todos los artefactos están en paralelo: cada uno recibe la tensión completa de la red, y cada uno toma su propia corriente. Si enchufás más aparatos, la corriente total que pasa por el cable de la pared <em>suma</em>, y por eso las térmicas saltan cuando se conectan demasiados.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Guirnaldas de luces</span>
+          <p>Las guirnaldas antiguas conectaban las lamparitas en serie: si una se quemaba, se cortaba el único camino y se apagaba toda la tira. Las modernas usan paralelo (o combinaciones) para que una falla no apague todo.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un sensor de luz con divisor de tensión</span>
+          <p>Un LDR (resistencia que baja con la luz) en serie con un resistor fijo de 10 kΩ y alimentado con 5 V forma un divisor. Con luz fuerte el LDR vale ~1 kΩ y la tensión sobre él es <span class="eq">5 · 1 / 11 ≈ 0,45 V</span>; a oscuras vale ~100 kΩ y la tensión sube a <span class="eq">5 · 100 / 110 ≈ 4,5 V</span>. Así un microcontrolador (el pequeño chip programable que decide qué hace un aparato) convierte “cuánta luz hay” en una tensión que puede leer.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Con una fuente de 9 V, R<sub>1</sub> = 1 kΩ y R<sub>2</sub> = 2 kΩ:</p>
+          <ul>
+            <li><strong>En serie:</strong> R<sub>eq</sub> = 3 kΩ → I = 9 V / 3 kΩ = 3 mA → V<sub>1</sub> = 3 V y V<sub>2</sub> = 6 V (suman 9 V ✓).</li>
+            <li><strong>En paralelo:</strong> R<sub>eq</sub> = 1·2/3 ≈ 667 Ω → I<sub>1</sub> = 9 mA, I<sub>2</sub> = 4,5 mA → I = 13,5 mA (= 9 V / 667 Ω ✓).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>En <strong>serie</strong>, poné R<sub>1</sub> = R<sub>2</sub>: cada una se lleva la mitad de la tensión. Ahora hacé R<sub>2</sub> mucho mayor que R<sub>1</sub>: casi toda la tensión cae en R<sub>2</sub>.</li>
+        <li>Cambiá a <strong>paralelo</strong> con los mismos valores: ambas ramas reciben los 9 V completos y la corriente total aumenta.</li>
+        <li>En paralelo, mirá qué rama tiene más corriente: la de <em>menor</em> resistencia.</li>
+        <li>Verificá que R<sub>eq</sub> en paralelo es menor que ambas resistencias.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/resistors.js"></script>
+  <script src="../js/quizzes/03-resistencias.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

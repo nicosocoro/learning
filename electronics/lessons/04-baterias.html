@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baterías y fuentes reales · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="04-baterias" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 4</p>
+        <h1>Baterías y fuentes reales</h1>
+        <p class="lead">Una pila no es una fuente perfecta: tiene una resistencia interna, una capacidad limitada y su tensión cae cuando se la exige.</p>
+      </header>
+      <section>
+        <h2>La fuente ideal y la real</h2>
+        <p>Una <strong>fuente ideal</strong> mantiene siempre la misma tensión, sin importar cuánta corriente se le pida. Una batería real se modela como esa fuente ideal (su <strong>fuerza electromotriz</strong>, <em>E</em>) en serie con una pequeña <strong>resistencia interna</strong> (<em>r</em>):</p>
+        <p class="equation"><span class="eq">V = E − I · r</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 560 240" role="img" aria-labelledby="g4bt g4bd">
+            <title id="g4bt">Tensión contra corriente</title>
+            <desc id="g4bd">Recta decreciente de la tensión en bornes según la corriente extraída.</desc>
+            <line class="fg-grid" x1="60" y1="100" x2="440" y2="100"/><line class="fg-grid" x1="160" y1="30" x2="160" y2="200"/>
+            <line class="fg-grid" x1="260" y1="30" x2="260" y2="200"/><line class="fg-grid" x1="360" y1="30" x2="360" y2="200"/>
+            <path class="fg-line" d="M60 30 V200 H440 M432 194 L440 200 L432 206 M54 38 L60 30 L66 38"/>
+            <text class="fg-t fg-i" x="450" y="205">I (A)</text><text class="fg-t fg-i" x="50" y="22">V (V)</text>
+            <g class="fg-m fg-c"><text x="160" y="218">1</text><text x="260" y="218">2</text><text x="360" y="218">3</text></g>
+            <g class="fg-m fg-e"><text x="52" y="54">1,5</text><text x="52" y="104">1,0</text><text x="52" y="204">0</text></g>
+            <line class="fg-acc" x1="60" y1="50" x2="360" y2="200"/>
+            <circle class="fg-fill-acc" cx="60" cy="50" r="5"/><circle class="fg-fill-good" cx="74" cy="57" r="5" style="fill:var(--good)"/>
+            <circle cx="160" cy="100" r="5" style="fill:var(--bad)"/><circle cx="360" cy="200" r="5" style="fill:var(--heat)"/>
+            <text class="fg-a" x="72" y="40">E = 1,5 V (sin carga)</text>
+            <text class="fg-m" x="120" y="64" style="fill:var(--good)">R = 10 Ω: 1,43 V</text>
+            <text class="fg-m" x="172" y="94" style="fill:var(--bad)">R = 1 Ω: 1,0 V</text>
+            <text class="fg-m" x="374" y="172" style="fill:var(--heat)">cortocircuito:</text><text class="fg-m" x="374" y="188" style="fill:var(--heat)">I = E / r = 3 A</text>
+            <text class="fg-m" x="270" y="90">pendiente = −r</text>
+          </svg>
+          <figcaption><strong>Cuanta más corriente, menos tensión en los bornes.</strong> Con los números del ejemplo de la pila (E = 1,5 V, r = 0,5 Ω), la recta cae con pendiente −r hasta anularse en el cortocircuito.</figcaption>
+        </figure>
+        <p>Cuanta más corriente se extrae, más tensión se “pierde” dentro de la batería, y esa caída se convierte en calor (<span class="eq">P = I² · r</span>). La corriente que circula con una carga <em>R</em> es:</p>
+        <p class="equation"><span class="eq">I = E / (R + r)</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 250" role="img" aria-labelledby="g4at g4ad">
+            <title id="g4at">Modelo de una batería real</title>
+            <desc id="g4ad">Una fuente ideal E en serie con una resistencia interna r, conectada a una carga R.</desc>
+            <rect class="fg-dash" x="40" y="36" width="250" height="170" rx="8"/>
+            <text class="fg-m" x="52" y="56">batería real</text>
+            <path class="fg-line" d="M80 80 H130 M196 80 H290 M80 80 V94 M80 128 V176 H290"/>
+            <path class="fg-line" d="M80 94 v10 M80 118 v10"/><line class="fg-line" x1="66" y1="104" x2="94" y2="104"/><line class="fg-line" x1="72" y1="118" x2="88" y2="118" stroke-width="4"/>
+            <path class="fg-line" d="M130 80 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/>
+            <circle cx="290" cy="80" r="5" stroke-width="2" style="fill:var(--surface);stroke:var(--wire);"/>
+            <circle cx="290" cy="176" r="5" stroke-width="2" style="fill:var(--surface);stroke:var(--wire);"/>
+            <path class="fg-line" d="M295 80 H500 V97 M295 176 H500 V163"/>
+            <g transform="translate(500,97) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <text class="fg-t fg-i fg-c" x="110" y="124">E</text>
+            <text class="fg-m fg-c" x="110" y="142" font-size="11">(ideal)</text>
+            <text class="fg-t fg-i fg-c" x="163" y="64">r</text>
+            <text class="fg-m fg-c" x="163" y="106" font-size="11">resistencia interna</text>
+            <text class="fg-t fg-i" x="520" y="134">R <tspan class="fg-m">(carga)</tspan></text>
+            <path class="fg-thin" d="M335 86 V170 M330 94 L335 86 L340 94 M330 162 L335 170 L340 162"/>
+            <text class="fg-t fg-i" x="345" y="132">V</text>
+            <path class="fg-pos" d="M370 62 H440 M430 56 L440 62 L430 68" style="stroke-width:2"/>
+            <text class="fg-t fg-i" x="405" y="52" style="fill:var(--charge-pos);">I</text>
+            <text class="fg-a fg-b" x="350" y="232" font-size="17">V = E − I · r</text>
+          </svg>
+          <figcaption><strong>Dentro de la caja punteada</strong> está lo que no podemos separar: la fuente ideal y la resistencia interna. Los bornes ven solo la tensión V = E − I·r.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Capacidad y energía</h2>
+        <p>La <strong>capacidad</strong> (<em>Q</em>) indica cuánta carga puede entregar una batería. Se expresa en amperes-hora (Ah) o miliamperes-hora (mAh): 1 Ah = 3600 C. Con una corriente constante, la duración aproximada es:</p>
+        <p class="equation"><span class="eq">t = Q / I</span></p>
+        <p>La <strong>energía</strong> almacenada es <span class="eq">W = V · Q</span>, que suele darse en watt-hora (Wh): una batería de 3,7 V y 2 Ah guarda 7,4 Wh.</p>
+      </section>
+
+      <section>
+        <h2>Celdas en serie y en paralelo</h2>
+        <ul>
+          <li><strong>En serie</strong> (+ con −): las tensiones <em>suman</em> y la capacidad no cambia. También suman las resistencias internas.</li>
+          <li><strong>En paralelo</strong> (+ con + y − con −): la tensión no cambia y las capacidades <em>suman</em>. La resistencia interna equivalente baja.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 210" role="img" aria-labelledby="g4ct g4cd">
+            <title id="g4ct">Celdas en serie y en paralelo</title>
+            <desc id="g4cd">Dos celdas de 1,5 V y 2 Ah conectadas en serie y en paralelo.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="22">En serie</text>
+            <rect class="fg-box" x="40" y="50" width="90" height="44" rx="5"/><rect class="fg-fill-wire" x="130" y="66.0" width="7" height="12"/><text class="fg-t fg-c" x="85.0" y="77.0" font-size="14">1,5 V · 2 Ah</text><rect class="fg-box" x="160" y="50" width="90" height="44" rx="5"/><rect class="fg-fill-wire" x="250" y="66.0" width="7" height="12"/><text class="fg-t fg-c" x="205.0" y="77.0" font-size="14">1,5 V · 2 Ah</text>
+            <path class="fg-line" d="M137 72 H160 M257 72 H290 M20 72 H40"/>
+            <text class="fg-m" x="22" y="64">−</text><text class="fg-m" x="272" y="64">+</text>
+            <text class="fg-a fg-c fg-b" x="170" y="130" font-size="17">3 V · 2 Ah</text>
+            <text class="fg-m fg-c" x="170" y="152">+ con −: la tensión suma</text>
+            <text class="fg-t fg-b fg-c" x="520" y="22">En paralelo</text>
+            <rect class="fg-box" x="430" y="40" width="90" height="40" rx="5"/><rect class="fg-fill-wire" x="520" y="54.0" width="7" height="12"/><text class="fg-t fg-c" x="475.0" y="65.0" font-size="14">1,5 V · 2 Ah</text><rect class="fg-box" x="430" y="100" width="90" height="40" rx="5"/><rect class="fg-fill-wire" x="520" y="114.0" width="7" height="12"/><text class="fg-t fg-c" x="475.0" y="125.0" font-size="14">1,5 V · 2 Ah</text>
+            <path class="fg-line" d="M400 60 H430 M400 120 H430 M400 60 V120 M527 60 H570 M527 120 H570 M570 60 V120 M400 90 H380 M570 90 H600"/>
+            <text class="fg-m" x="378" y="82" text-anchor="end">−</text><text class="fg-m" x="604" y="82">+</text>
+            <text class="fg-a fg-c fg-b" x="500" y="170" font-size="17">1,5 V · 4 Ah</text>
+            <text class="fg-m fg-c" x="500" y="192">+ con +: la capacidad suma</text>
+          </svg>
+          <figcaption>Con las mismas dos celdas se elige qué se quiere duplicar: la tensión (serie) o la autonomía (paralelo).</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Tensiones típicas por celda</caption>
+            <thead><tr><th>Tecnología</th><th>Tensión nominal</th><th>Recargable</th><th>Usos comunes</th></tr></thead>
+            <tbody>
+              <tr><td>Alcalina (AA, AAA)</td><td>1,5 V</td><td>No</td><td>Controles remotos, linternas</td></tr>
+              <tr><td>NiMH</td><td>1,2 V</td><td>Sí</td><td>Pilas recargables AA/AAA</td></tr>
+              <tr><td>Ion-litio</td><td>3,6 – 3,7 V</td><td>Sí</td><td>Celulares, notebooks, power banks</td></tr>
+              <tr><td>Plomo-ácido</td><td>2 V (6 celdas = 12 V)</td><td>Sí</td><td>Batería de auto</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="tipos">Tipos de baterías, cuidados y seguridad</h2>
+        <p>Una batería almacena energía <em>química</em> y la convierte en eléctrica mediante reacciones entre sus materiales. Al descargarse se consumen esos materiales; por eso su tensión cae y su resistencia interna aumenta.</p>
+        <ul>
+          <li><strong>Primarias:</strong> no se pueden recargar (alcalinas, de zinc-carbono, pilas de botón de litio). La reacción es irreversible.</li>
+          <li><strong>Secundarias:</strong> son recargables: aplicando corriente en sentido contrario se invierte la reacción (NiMH, ion-litio, plomo-ácido).</li>
+        </ul>
+        <p>Otros datos útiles: toda batería pierde carga sola con el tiempo (<em>autodescarga</em>; las alcalinas muy poco por año, las de ion-litio unos pocos por ciento por mes, y las NiMH más rápido); una de ion-litio soporta del orden de cientos a pocos miles de ciclos de carga y descarga antes de perder capacidad; y la corriente de carga o descarga suele expresarse en múltiplos de la capacidad (<em>C-rate</em>): una celda de 2 Ah descargada a “1C” entrega 2 A.</p>
+        <div class="note">
+          <span class="box-title">Seguridad</span>
+          <p>No hay que cortocircuitar una batería (capítulo <a class="xref" href="03-resistencias.html#cortocircuito">3</a>), ni cargar pilas alcalinas, ni mezclar pilas nuevas con usadas o de distinto tipo en un mismo aparato (las más gastadas tienen más resistencia interna y se recalientan o pierden líquido). Las baterías de litio pueden incendiarse si se sobrecargan, se perforan o se calientan en exceso, por eso llevan un circuito de protección. Al terminar su vida útil, se llevan a un punto de reciclaje.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El control remoto</span>
+          <p>Usa dos pilas AAA en serie: 1,5 V + 1,5 V = 3 V. Consume muy poca corriente, así que la caída por resistencia interna es despreciable y las pilas duran meses.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Una linterna LED</span>
+          <p>Con una pila AA de 2,5 Ah y un consumo de 100 mA, la duración teórica es <span class="eq">t = 2,5 Ah / 0,1 A = 25 h</span>. En la práctica es algo menos, porque a medida que la pila se descarga su tensión baja y su resistencia interna sube.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Power bank de 10 000 mAh</span>
+          <p>Son celdas de ion-litio de 3,7 V: guarda unos <span class="eq">3,7 V · 10 Ah = 37 Wh</span>. Un celular con batería de unos 15 Wh se carga completo alrededor de dos veces (hay pérdidas al elevar la tensión a 5 V).</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Arrancar un auto</span>
+          <p>El motor de arranque pide cientos de amperes durante unos segundos. Una batería de 12 V de plomo-ácido tiene una resistencia interna de pocos miliohms, así que su tensión casi no cae. Una pila AA (r ≈ 0,3 Ω) jamás podría: aun en cortocircuito entregaría solo <span class="eq">I = E / r = 1,5 / 0,3 = 5 A</span>.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una pila con E = 1,5 V y r = 0,5 Ω alimenta una carga. ¿Qué tensión llega a la carga?</p>
+          <ul>
+            <li><strong>Con R = 10 Ω:</strong> I = 1,5 / 10,5 = 0,143 A → V = 1,5 − 0,143 · 0,5 = <strong>1,43 V</strong> (casi no se nota la caída).</li>
+            <li><strong>Con R = 1 Ω:</strong> I = 1,5 / 1,5 = 1 A → V = 1,5 − 1 · 0,5 = <strong>1,0 V</strong> (¡cayó un tercio!) y 0,5 W se pierden como calor dentro de la pila.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Bajá la resistencia de la carga: la corriente sube y la tensión en los terminales <em>cae</em>, porque aumenta I · r.</li>
+        <li>Aumentá la resistencia interna: con la misma carga, la tensión de salida baja y se pierde más calor adentro de la batería.</li>
+        <li>Pasá de 2 celdas en serie a 4: la tensión se duplica; ¿cambia la duración? Compará con 2 ramas en paralelo: la duración se duplica pero la tensión no cambia.</li>
+        <li>Dejá que se agote: la curva de tensión baja despacio y después cae rápido. El aparato deja de funcionar cuando la tensión pasa la línea de “tensión mínima”.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/battery.js"></script>
+  <script src="../js/quizzes/04-baterias.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

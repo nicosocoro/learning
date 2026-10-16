@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magnetismo e inducción electromagnética · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="12-induccion" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 12</p>
+        <h1>Magnetismo e inducción electromagnética</h1>
+        <p class="lead">Un imán en movimiento puede generar tensión en una bobina. Ese fenómeno, la inducción electromagnética, es la base de los generadores, los transformadores y buena parte de la tecnología eléctrica.</p>
+      </header>
+      <section>
+        <h2>Electricidad y magnetismo están emparentados</h2>
+        <p>Los <strong>imanes</strong> tienen dos polos, norte y sur. Polos iguales se repelen y polos distintos se atraen. Alrededor de un imán existe un <strong>campo magnético</strong>, una región donde se sienten esas fuerzas; se lo dibuja con <em>líneas de campo</em> que salen del polo norte y entran por el sur. La Tierra misma es un enorme imán, y por eso la brújula se orienta.</p>
+        <p>En 1820, Hans Christian Ørsted notó algo sorprendente: una <strong>corriente eléctrica también crea un campo magnético</strong> a su alrededor. Si el cable se enrolla en forma de <strong>bobina</strong> (muchas vueltas), los campos de cada vuelta se suman y la bobina se comporta como un imán, un <strong>electroimán</strong>, que se puede encender, apagar e intensificar variando la corriente. Es lo que hay en timbres, relés, parlantes y grúas de chatarrerías.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 205" role="img" aria-labelledby="g12at g12ad">
+            <title id="g12at">Campo de un imán y de un electroimán</title>
+            <desc id="g12ad">Líneas de campo magnético alrededor de un imán de barra y de una bobina con corriente.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="20">Imán</text>
+            <rect x="110" y="86" width="60" height="28" style="fill:var(--charge-neg);opacity:.9"/><text class="fg-c fg-b" x="140" y="106" fill="#fff" font-size="16">S</text>
+            <rect x="170" y="86" width="60" height="28" style="fill:var(--charge-pos);opacity:.9"/><text class="fg-c fg-b" x="200" y="106" fill="#fff" font-size="16">N</text>
+            <path class="fg-acc" style="stroke-width:1.6" d="M230 90 C 275 50 65 50 110 90"/><path class="fg-acc" d="M177.0 55.8 L170.0 60.0 L177.0 64.2" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M230 110 C 275 150 65 150 110 110"/><path class="fg-acc" d="M177.0 135.8 L170.0 140.0 L177.0 144.2" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M230 82 C 305 20 35 20 110 82"/><path class="fg-acc" d="M177.0 31.3 L170.0 35.5 L177.0 39.7" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M230 118 C 305 180 35 180 110 118"/><path class="fg-acc" d="M177.0 160.3 L170.0 164.5 L177.0 168.7" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="170" y="190">las líneas salen del N y entran por el S</text>
+            <text class="fg-t fg-b fg-c" x="520" y="20">Electroimán</text>
+            <ellipse cx="470" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="488" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="506" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="524" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="542" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="560" cy="100" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/>
+            <path class="fg-line" d="M470 124 V150 H440 M560 124 V150 H590"/>
+            
+            <path class="fg-acc" style="stroke-width:1.6" d="M575 90 C 620 50 410 50 455 90"/><path class="fg-acc" d="M522.0 55.8 L515.0 60.0 L522.0 64.2" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M575 110 C 620 150 410 150 455 110"/><path class="fg-acc" d="M522.0 135.8 L515.0 140.0 L522.0 144.2" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M575 82 C 650 20 380 20 455 82"/><path class="fg-acc" d="M522.0 31.3 L515.0 35.5 L522.0 39.7" style="stroke-width:2"/><path class="fg-acc" style="stroke-width:1.6" d="M575 118 C 650 180 380 180 455 118"/><path class="fg-acc" d="M522.0 160.3 L515.0 164.5 L522.0 168.7" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="520" y="190">una corriente crea un campo igual: se enciende y se apaga</text>
+          </svg>
+          <figcaption>Una bobina con corriente produce un campo con la misma forma que un imán de barra: por eso se la llama electroimán.</figcaption>
+        </figure>
+        <p>La intensidad del campo magnético se mide en <strong>teslas (T)</strong>. Un imán de heladera ronda los 5 mT; un imán de neodimio, cerca de 1 T; la Tierra, unos 50 µT.</p>
+        <div class="note">
+          <span class="box-title">La idea que sigue</span>
+          <p>Si la corriente puede crear magnetismo, ¿puede el magnetismo crear corriente? La respuesta, descubierta por Michael Faraday en 1831, es sí, pero con una condición muy importante: el magnetismo tiene que estar <em>cambiando</em>.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="flujo">El flujo magnético</h2>
+        <p>Para medir “cuánto campo magnético atraviesa una espira” se define el <strong>flujo magnético</strong> (<em>Φ</em>). Una analogía: imaginá lluvia cayendo sobre un aro. Cuanto más intensa la lluvia, cuanto más grande el aro y cuanto más de frente le llegue, más agua lo atraviesa. Con el campo magnético ocurre lo mismo:</p>
+        <p class="equation"><span class="eq">Φ = B · A · cos θ</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 205" role="img" aria-labelledby="g12bt g12bd">
+            <title id="g12bt">Flujo magnético según el ángulo</title>
+            <desc id="g12bd">Una espira vista de canto con ángulos de 0, 60 y 90 grados respecto de un campo uniforme.</desc>
+<path class="fg-thin" d="M48 52 H192" style="stroke-width:1.2"/><path class="fg-thin" d="M186.0 55.6 L192.0 52.0 L186.0 48.4" style="stroke-width:2"/><path class="fg-acc" d="M48 68 H192" style="stroke-width:2.2"/><path class="fg-acc" d="M186.0 71.6 L192.0 68.0 L186.0 64.4" style="stroke-width:2"/><path class="fg-acc" d="M48 84 H192" style="stroke-width:2.2"/><path class="fg-acc" d="M186.0 87.6 L192.0 84.0 L186.0 80.4" style="stroke-width:2"/><path class="fg-acc" d="M48 100 H192" style="stroke-width:2.2"/><path class="fg-acc" d="M186.0 103.6 L192.0 100.0 L186.0 96.4" style="stroke-width:2"/><path class="fg-acc" d="M48 116 H192" style="stroke-width:2.2"/><path class="fg-acc" d="M186.0 119.6 L192.0 116.0 L186.0 112.4" style="stroke-width:2"/><path class="fg-acc" d="M48 132 H192" style="stroke-width:2.2"/><path class="fg-acc" d="M186.0 135.6 L192.0 132.0 L186.0 128.4" style="stroke-width:2"/><path class="fg-thin" d="M48 148 H192" style="stroke-width:1.2"/><path class="fg-thin" d="M186.0 151.6 L192.0 148.0 L186.0 144.4" style="stroke-width:2"/><path class="fg-line" style="stroke-width:4" d="M120.0 140.0 L120.0 60.0"/><text class="fg-t fg-b fg-c" x="120" y="172">θ = 0°: Φ máximo</text><text class="fg-m fg-c" x="120" y="192">el campo atraviesa de frente</text><path class="fg-thin" d="M278 52 H422" style="stroke-width:1.2"/><path class="fg-thin" d="M416.0 55.6 L422.0 52.0 L416.0 48.4" style="stroke-width:2"/><path class="fg-thin" d="M278 68 H422" style="stroke-width:1.2"/><path class="fg-thin" d="M416.0 71.6 L422.0 68.0 L416.0 64.4" style="stroke-width:2"/><path class="fg-acc" d="M278 84 H422" style="stroke-width:2.2"/><path class="fg-acc" d="M416.0 87.6 L422.0 84.0 L416.0 80.4" style="stroke-width:2"/><path class="fg-acc" d="M278 100 H422" style="stroke-width:2.2"/><path class="fg-acc" d="M416.0 103.6 L422.0 100.0 L416.0 96.4" style="stroke-width:2"/><path class="fg-acc" d="M278 116 H422" style="stroke-width:2.2"/><path class="fg-acc" d="M416.0 119.6 L422.0 116.0 L416.0 112.4" style="stroke-width:2"/><path class="fg-thin" d="M278 132 H422" style="stroke-width:1.2"/><path class="fg-thin" d="M416.0 135.6 L422.0 132.0 L416.0 128.4" style="stroke-width:2"/><path class="fg-thin" d="M278 148 H422" style="stroke-width:1.2"/><path class="fg-thin" d="M416.0 151.6 L422.0 148.0 L416.0 144.4" style="stroke-width:2"/><path class="fg-line" style="stroke-width:4" d="M315.4 120.0 L384.6 80.0"/><text class="fg-t fg-b fg-c" x="350" y="172">θ = 60°: Φ = B·A / 2</text><text class="fg-m fg-c" x="350" y="192">atraviesa menos líneas</text><path class="fg-thin" d="M508 52 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 55.6 L652.0 52.0 L646.0 48.4" style="stroke-width:2"/><path class="fg-thin" d="M508 68 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 71.6 L652.0 68.0 L646.0 64.4" style="stroke-width:2"/><path class="fg-thin" d="M508 84 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 87.6 L652.0 84.0 L646.0 80.4" style="stroke-width:2"/><path class="fg-acc" d="M508 100 H652" style="stroke-width:2.2"/><path class="fg-acc" d="M646.0 103.6 L652.0 100.0 L646.0 96.4" style="stroke-width:2"/><path class="fg-thin" d="M508 116 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 119.6 L652.0 116.0 L646.0 112.4" style="stroke-width:2"/><path class="fg-thin" d="M508 132 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 135.6 L652.0 132.0 L646.0 128.4" style="stroke-width:2"/><path class="fg-thin" d="M508 148 H652" style="stroke-width:1.2"/><path class="fg-thin" d="M646.0 151.6 L652.0 148.0 L646.0 144.4" style="stroke-width:2"/><path class="fg-line" style="stroke-width:4" d="M540.0 100.0 L620.0 100.0"/><text class="fg-t fg-b fg-c" x="580" y="172">θ = 90°: Φ = 0</text><text class="fg-m fg-c" x="580" y="192">el campo pasa rasante</text>
+            <text class="fg-m fg-c" x="350" y="18">vista de canto: la espira es el trazo grueso y las flechas son el campo B</text>
+          </svg>
+          <figcaption><strong>El flujo es la cantidad de líneas de campo que atraviesan la espira.</strong> Girarla cambia el flujo aunque el campo no varíe.</figcaption>
+        </figure>
+        <p>donde <em>B</em> es la intensidad del campo, <em>A</em> el área de la espira y <em>θ</em> el ángulo entre el campo y la perpendicular al aro (con <em>θ</em> = 0, el campo atraviesa de frente y el flujo es máximo). La unidad es el <strong>weber (Wb)</strong>: 1 Wb = 1 T · m².</p>
+        <p>El flujo cambia si cambia cualquiera de estos tres factores: la intensidad del campo (acercar o alejar un imán, o variar una corriente), el área (deformar la espira) o el ángulo (hacer girar la espira).</p>
+      </section>
+
+      <section>
+        <h2 id="faraday">La ley de Faraday</h2>
+        <p>Faraday comprobó que, cuando el flujo que atraviesa un circuito <em>cambia</em>, aparece en él una tensión, la <strong>fuerza electromotriz inducida</strong> (<em>ε</em>). Si el circuito está cerrado, esa tensión hace circular una corriente. La ley dice que la tensión inducida es proporcional a <em>qué tan rápido</em> varía el flujo y al número de vueltas <em>N</em> de la bobina:</p>
+        <p class="equation"><span class="eq">ε = −N · ΔΦ / Δt</span></p>
+        <ul>
+          <li><strong>Solo el cambio induce.</strong> Un imán quieto dentro de la bobina produce un flujo grande, pero constante: <em>ΔΦ/Δt = 0</em> y no hay tensión.</li>
+          <li><strong>Más rápido, más tensión.</strong> Mover el imán diez veces más rápido hace diez veces mayor la tensión.</li>
+          <li><strong>Más vueltas, más tensión.</strong> Cada vuelta aporta lo mismo y las tensiones se suman: una bobina de 500 vueltas induce cinco veces más que una de 100.</li>
+          <li><strong>La tensión sigue la pendiente del flujo, no su valor.</strong> En la gráfica de la simulación, la tensión es máxima donde la curva del flujo es más empinada y es cero donde el flujo llega a su máximo.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 205" role="img" aria-labelledby="g12ct g12cd">
+            <title id="g12ct">La ley de Faraday en tres situaciones</title>
+            <desc id="g12cd">Un imán quieto, entrando y saliendo de una bobina conectada a un galvanómetro.</desc>
+<text class="fg-t fg-b fg-c" x="70" y="20">Imán quieto</text><ellipse cx="90" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="106" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="122" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="138" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><rect x="10" y="66" width="38" height="28" style="fill:var(--charge-neg);opacity:.9"/><text class="fg-c fg-b" x="29" y="86" fill="#fff" font-size="14">S</text><rect x="48" y="66" width="38" height="28" style="fill:var(--charge-pos);opacity:.9"/><text class="fg-c fg-b" x="67" y="86" fill="#fff" font-size="14">N</text><path class="fg-line" d="M90 104 V130 H62 M138 104 V130 H112" style="stroke-width:1.6"/><path class="fg-thin" d="M61 150 A26 26 0 0 1 113 150"/><path class="fg-line" d="M87 150 L87.0 126.0" style="stroke:var(--accent);stroke-width:2.5"/><circle cx="87" cy="150" r="3" class="fg-fill-wire"/><text class="fg-m fg-c" x="87" y="166" font-size="11">galvanómetro</text><text class="fg-a fg-c" x="87" y="196" style="fill:var(--accent)">ε = 0</text><text class="fg-t fg-b fg-c" x="300" y="20">Imán entra</text><ellipse cx="320" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="336" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="352" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="368" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><rect x="200" y="66" width="38" height="28" style="fill:var(--charge-neg);opacity:.9"/><text class="fg-c fg-b" x="219" y="86" fill="#fff" font-size="14">S</text><rect x="238" y="66" width="38" height="28" style="fill:var(--charge-pos);opacity:.9"/><text class="fg-c fg-b" x="257" y="86" fill="#fff" font-size="14">N</text><path class="fg-line" d="M320 104 V130 H292 M368 104 V130 H342" style="stroke-width:1.6"/><path class="fg-thin" d="M291 150 A26 26 0 0 1 343 150"/><path class="fg-line" d="M317 150 L330.8 130.3" style="stroke:var(--accent);stroke-width:2.5"/><circle cx="317" cy="150" r="3" class="fg-fill-wire"/><text class="fg-m fg-c" x="317" y="166" font-size="11">galvanómetro</text><path class="fg-pos" d="M208 44 H260 M250 38 L260 44 L250 50" style="stroke-width:2.2"/><text class="fg-m" x="208" y="36" style="fill:var(--charge-pos)">se mueve</text><text class="fg-a fg-c" x="317" y="196" style="fill:var(--accent)">ε &gt; 0</text><text class="fg-t fg-b fg-c" x="530" y="20">Imán sale</text><ellipse cx="550" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="566" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="582" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="598" cy="80" rx="7" ry="24" fill="none" class="fg-line" style="stroke-width:2.2"/><rect x="430" y="66" width="38" height="28" style="fill:var(--charge-neg);opacity:.9"/><text class="fg-c fg-b" x="449" y="86" fill="#fff" font-size="14">S</text><rect x="468" y="66" width="38" height="28" style="fill:var(--charge-pos);opacity:.9"/><text class="fg-c fg-b" x="487" y="86" fill="#fff" font-size="14">N</text><path class="fg-line" d="M550 104 V130 H522 M598 104 V130 H572" style="stroke-width:1.6"/><path class="fg-thin" d="M521 150 A26 26 0 0 1 573 150"/><path class="fg-line" d="M547 150 L533.2 130.3" style="stroke:var(--accent);stroke-width:2.5"/><circle cx="547" cy="150" r="3" class="fg-fill-wire"/><text class="fg-m fg-c" x="547" y="166" font-size="11">galvanómetro</text><path class="fg-pos" d="M490 44 H438 M448 38 L438 44 L448 50" style="stroke-width:2.2"/><text class="fg-m" x="438" y="36" style="fill:var(--charge-pos)">se mueve</text><text class="fg-a fg-c" x="547" y="196" style="fill:var(--accent)">ε &lt; 0</text>
+          </svg>
+          <figcaption><strong>Solo el movimiento induce.</strong> Quieto no hay tensión; al entrar y al salir la aguja se desvía en sentidos opuestos.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="lenz">La ley de Lenz: el signo menos</h2>
+        <p>El signo negativo de la ley de Faraday tiene un significado físico, formulado por Heinrich Lenz: <strong>la corriente inducida circula en el sentido que se opone a la variación del flujo que la produce</strong>. Si acercás un polo norte a la bobina, la corriente inducida crea un campo que “empuja” al imán hacia atrás; si lo alejás, crea un campo que lo “retiene”.</p>
+        <p>No es una casualidad: es la conservación de la energía. Si la corriente inducida ayudara al movimiento, el imán aceleraría solo y se obtendría energía de la nada. En cambio, hay que <em>hacer trabajo</em> para mover el imán contra esa oposición, y ese trabajo es el que se convierte en energía eléctrica. Por eso un generador cuesta esfuerzo: cuanto más corriente entrega, más cuesta hacerlo girar.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 200" role="img" aria-labelledby="g12dt g12dd">
+            <title id="g12dt">Ley de Lenz</title>
+            <desc id="g12dd">Un imán que se acerca a una bobina, que se magnetiza con el polo norte hacia el imán y lo repele.</desc>
+            <rect x="40" y="86" width="38" height="28" style="fill:var(--charge-neg);opacity:.9"/><text class="fg-c fg-b" x="59" y="106" fill="#fff" font-size="14">S</text><rect x="78" y="86" width="38" height="28" style="fill:var(--charge-pos);opacity:.9"/><text class="fg-c fg-b" x="97" y="106" fill="#fff" font-size="14">N</text>
+            <path class="fg-pos" d="M60 60 H130 M120 54 L130 60 L120 66" style="stroke-width:2.2"/><text class="fg-m" x="60" y="52" style="fill:var(--charge-pos)">el imán se acerca</text>
+            <ellipse cx="300" cy="100" rx="8" ry="30" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="316" cy="100" rx="8" ry="30" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="332" cy="100" rx="8" ry="30" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="348" cy="100" rx="8" ry="30" fill="none" class="fg-line" style="stroke-width:2.2"/><ellipse cx="364" cy="100" rx="8" ry="30" fill="none" class="fg-line" style="stroke-width:2.2"/>
+            <text class="fg-c fg-b" x="278" y="146" style="fill:var(--charge-pos)" font-size="15">N</text><text class="fg-c fg-b" x="362" y="146" style="fill:var(--charge-neg)" font-size="15">S</text>
+            <text class="fg-m fg-c" x="320" y="48">la bobina se vuelve un imán…</text>
+            <path class="fg-bad" d="M246 100 H196 M206 94 L196 100 L206 106" style="stroke-width:3"/>
+            <text class="fg-b" x="40" y="160" style="fill:var(--bad)" font-size="13">… con su N hacia el imán:</text>
+            <text class="fg-b" x="40" y="180" style="fill:var(--bad)" font-size="13">lo empuja hacia atrás</text>
+            <text class="fg-m" x="420" y="90">Lenz: la corriente inducida</text><text class="fg-m" x="420" y="110">se opone a lo que la causa.</text>
+            <text class="fg-m" x="420" y="130">Mover el imán cuesta trabajo,</text><text class="fg-m" x="420" y="150">y ese trabajo es la energía eléctrica.</text>
+          </svg>
+          <figcaption>La oposición no es un capricho: es conservación de la energía. Por eso un generador “pesa” más cuanto más corriente entrega.</figcaption>
+        </figure>
+        <div class="example">
+          <span class="box-title">Un experimento para hacer en casa</span>
+          <p>Dejá caer un imán de neodimio por un tubo de cobre o aluminio (no magnético). Cae mucho más lento que por un tubo de plástico: el movimiento del imán induce corrientes en las paredes del tubo, y esas corrientes crean un campo que lo frena. Es el principio de los frenos magnéticos de trenes y montañas rusas.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="inductancia">Autoinducción: la bobina frente a los cambios de corriente</h2>
+        <p>Cuando la corriente de una bobina cambia, cambia también su propio campo magnético, y por la ley de Faraday eso induce una tensión <em>en la misma bobina</em>, que (según Lenz) se opone al cambio de corriente. Esta propiedad se llama <strong>autoinducción</strong> o <strong>inductancia</strong> (<em>L</em>), y se mide en <strong>henrios (H)</strong>:</p>
+        <p class="equation"><span class="eq">ε = −L · ΔI / Δt</span> &nbsp;&nbsp; <span class="eq">E = ½ · L · I²</span></p>
+        <p>Una bobina se comporta, para la corriente, como algo con “inercia”: se resiste a que la corriente aumente o disminuya bruscamente. Es el equivalente magnético del capacitor, que se resiste a los cambios de <em>tensión</em>. Por eso, cuando se abre de golpe un interruptor que alimenta un motor o un relé, la bobina intenta mantener la corriente y genera un pico de tensión (la chispa); los circuitos lo controlan con un diodo en paralelo (capítulos <a class="xref" href="07-diodos-led.html">7</a> y <a class="xref" href="19-cargas-inductivas.html">19</a>). Cómo se comporta una bobina dentro de un circuito (constante de tiempo L/R y reactancia) se estudia en el capítulo <a class="xref" href="20-inductor-rl.html">20</a>.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El alternador y el generador</span>
+          <p>Toda la electricidad de la red nace de la ley de Faraday: una turbina (de vapor, agua, viento o gas) hace girar un imán o una bobina, y el flujo que atraviesa la bobina cambia periódicamente. Como la espira gira, el ángulo <em>θ</em> cambia de forma continua y la tensión resulta <em>senoidal</em>, con la frecuencia de giro (por eso la red es de 50 o 60 Hz; capítulo <a class="xref" href="09-onda-senoidal.html">9</a>). La dínamo de una bicicleta y el alternador de un auto funcionan igual.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El relé: un electroimán que mueve un contacto</span>
+          <p>La corriente de una bobina crea un campo que atrae una armadura de hierro y cierra un interruptor. Es el funcionamiento de un relé (capítulo <a class="xref" href="18-rele.html">18</a>), y por la autoinducción de su bobina hay que protegerlo con un diodo al apagarlo (capítulo <a class="xref" href="19-cargas-inductivas.html">19</a>).</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Micrófono dinámico y parlante</span>
+          <p>Un micrófono dinámico tiene una bobina pegada a una membrana que vibra con el sonido dentro del campo de un imán: el movimiento induce una tensión que copia la forma del sonido. Un parlante es lo mismo al revés: una corriente variable en la bobina la hace moverse dentro del campo del imán y mueve el cono.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Cocina de inducción y carga inalámbrica</span>
+          <p>La cocina de inducción tiene una bobina que crea un campo magnético variable; ese campo induce corrientes dentro del fondo metálico de la olla, y ese metal se calienta por efecto Joule. La olla se calienta, no la placa. Los cargadores inalámbricos de celulares usan una bobina emisora y una receptora: es el principio del transformador, pero con aire entre las bobinas.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una bobina de 200 vueltas es atravesada por un flujo que pasa de 0 a 0,5 mWb en 0,05 s. ¿Qué tensión se induce?</p>
+          <ol>
+            <li>Variación del flujo: <span class="eq">ΔΦ = 0,5 mWb − 0 = 5 × 10<sup>−4</sup> Wb</span></li>
+            <li>Rapidez del cambio: <span class="eq">ΔΦ / Δt = 5 × 10<sup>−4</sup> / 0,05 = 0,01 Wb/s</span></li>
+            <li>Tensión inducida: <span class="eq">ε = N · ΔΦ/Δt = 200 · 0,01 = 2 V</span> (en valor absoluto; el signo indica el sentido, según Lenz).</li>
+            <li>Si el mismo cambio ocurriera 10 veces más rápido (0,005 s), la tensión sería 20 V: la misma variación de flujo, pero más rápida.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con el imán <strong>quieto</strong> en el centro: el flujo es máximo pero la tensión es cero. El flujo grande no induce nada; lo que induce es que cambie.</li>
+          <li>Poné el imán a ir y venir y mirá las dos curvas: la tensión (naranja) es máxima donde el flujo (azul) cambia más rápido y pasa por cero cuando el flujo está en su máximo. La tensión es la “pendiente” del flujo.</li>
+          <li>Subí la frecuencia del movimiento: el flujo cambia más rápido y la tensión pico crece de forma proporcional.</li>
+          <li>Duplicá las vueltas de la bobina: la tensión pico se duplica.</li>
+          <li>Fijate cómo cambia el signo de la tensión al acercar y al alejar el imán: es la ley de Lenz. La aguja del voltímetro va para un lado cuando el imán entra y para el otro cuando sale.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/induction.js"></script>
+  <script src="../js/quizzes/12-induccion.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

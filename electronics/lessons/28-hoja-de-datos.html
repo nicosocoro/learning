@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hojas de datos y elección de componentes · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="28-hoja-de-datos" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 28</p>
+        <h1>Hojas de datos y elección de componentes</h1>
+        <p class="lead">Valores comerciales, tolerancias y potencia de los resistores, tensión de los capacitores, cómo se lee una hoja de datos y cómo se calienta un semiconductor.</p>
+      </header>
+      <section>
+        <h2>Elegir un componente es leer sus números</h2>
+        <p>Hasta ahora usamos resistores, capacitores y transistores «ideales», con un solo valor. Los componentes reales tienen un <strong>valor nominal</strong> (10 kΩ, 100 nF) y además <strong>límites</strong> y <strong>tolerancias</strong> que hay que respetar: cuánta tensión, corriente y potencia aguantan, cuánto pueden diferir del valor nominal y cuánto se calientan. Este capítulo enseña a leer esos números y a elegir con margen.</p>
+      </section>
+
+      <section id="resistores">
+        <h2>Resistores: valor, tolerancia y potencia</h2>
+        <p><strong>Valores normalizados.</strong> Los resistores no se fabrican en cualquier valor, sino en series: la <strong>E12</strong> (12 valores por década, 10 % de tolerancia: 10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82), la <strong>E24</strong> (24 valores, 5 %) y la <strong>E96</strong> (96 valores, 1 %). Los valores se reparten de forma uniforme en escala logarítmica, de manera que cada uno cubre con su tolerancia el hueco hasta el siguiente.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g28at g28ad">
+            <title id="g28at">Valores comerciales de resistores: series E12 y E24</title>
+            <desc id="g28ad">Dos filas de puntos en escala logarítmica con los valores de las series E12 y E24 en una década, equiespaciados en logaritmo.</desc>
+<text class="fg-t fg-b" x="60" y="22">Una década de valores comerciales (escala logarítmica)</text><path class="fg-line" d="M60 80 H660 M60 150 H660"/><circle cx="60.0" cy="80" r="5" style="fill:var(--accent)"/><circle cx="84.8" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="107.5" cy="80" r="5" style="fill:var(--accent)"/><circle cx="128.4" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="165.7" cy="80" r="5" style="fill:var(--accent)"/><circle cx="182.5" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="213.2" cy="80" r="5" style="fill:var(--accent)"/><circle cx="240.6" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="265.5" cy="80" r="5" style="fill:var(--accent)"/><circle cx="288.1" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="318.8" cy="80" r="5" style="fill:var(--accent)"/><circle cx="346.3" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="371.1" cy="80" r="5" style="fill:var(--accent)"/><circle cx="393.8" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="414.6" cy="80" r="5" style="fill:var(--accent)"/><circle cx="440.1" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="463.3" cy="80" r="5" style="fill:var(--accent)"/><circle cx="484.5" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="508.9" cy="80" r="5" style="fill:var(--accent)"/><circle cx="535.4" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="559.5" cy="80" r="5" style="fill:var(--accent)"/><circle cx="585.0" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="608.3" cy="80" r="5" style="fill:var(--accent)"/><circle cx="635.4" cy="80" r="3.5" style="fill:var(--muted)"/><circle cx="60.0" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="60.0" y="172" font-size="11.5">10</text><circle cx="107.5" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="107.5" y="172" font-size="11.5">12</text><circle cx="165.7" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="165.7" y="172" font-size="11.5">15</text><circle cx="213.2" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="213.2" y="172" font-size="11.5">18</text><circle cx="265.5" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="265.5" y="172" font-size="11.5">22</text><circle cx="318.8" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="318.8" y="172" font-size="11.5">27</text><circle cx="371.1" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="371.1" y="172" font-size="11.5">33</text><circle cx="414.6" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="414.6" y="172" font-size="11.5">39</text><circle cx="463.3" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="463.3" y="172" font-size="11.5">47</text><circle cx="508.9" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="508.9" y="172" font-size="11.5">56</text><circle cx="559.5" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="559.5" y="172" font-size="11.5">68</text><circle cx="608.3" cy="150" r="5" style="fill:var(--accent)"/><text class="fg-m fg-c" x="608.3" y="172" font-size="11.5">82</text><text class="fg-m fg-c" x="60.0" y="62" font-size="10.5">10</text><text class="fg-m fg-c" x="84.8" y="104" font-size="10.5">11</text><text class="fg-m fg-c" x="107.5" y="62" font-size="10.5">12</text><text class="fg-m fg-c" x="128.4" y="104" font-size="10.5">13</text><text class="fg-m fg-c" x="165.7" y="62" font-size="10.5">15</text><text class="fg-m fg-c" x="182.5" y="104" font-size="10.5">16</text><text class="fg-m fg-c" x="213.2" y="62" font-size="10.5">18</text><text class="fg-m fg-c" x="240.6" y="104" font-size="10.5">20</text><text class="fg-m fg-c" x="265.5" y="62" font-size="10.5">22</text><text class="fg-m fg-c" x="288.1" y="104" font-size="10.5">24</text><text class="fg-m fg-c" x="318.8" y="62" font-size="10.5">27</text><text class="fg-m fg-c" x="346.3" y="104" font-size="10.5">30</text><text class="fg-m fg-c" x="371.1" y="62" font-size="10.5">33</text><text class="fg-m fg-c" x="393.8" y="104" font-size="10.5">36</text><text class="fg-m fg-c" x="414.6" y="62" font-size="10.5">39</text><text class="fg-m fg-c" x="440.1" y="104" font-size="10.5">43</text><text class="fg-m fg-c" x="463.3" y="62" font-size="10.5">47</text><text class="fg-m fg-c" x="484.5" y="104" font-size="10.5">51</text><text class="fg-m fg-c" x="508.9" y="62" font-size="10.5">56</text><text class="fg-m fg-c" x="535.4" y="104" font-size="10.5">62</text><text class="fg-m fg-c" x="559.5" y="62" font-size="10.5">68</text><text class="fg-m fg-c" x="585.0" y="104" font-size="10.5">75</text><text class="fg-m fg-c" x="608.3" y="62" font-size="10.5">82</text><text class="fg-m fg-c" x="635.4" y="104" font-size="10.5">91</text><text class="fg-t fg-b" x="54" y="84" text-anchor="end" style="fill:var(--muted)">E24</text><text class="fg-t fg-b" x="54" y="154" text-anchor="end" style="fill:var(--accent)">E12</text><text class="fg-m" x="60" y="202" font-size="12.5">Cada valor es ≈ 21 % mayor que el anterior en la serie E12 (10 %) y ≈ 10 % en la E24 (5 %).</text>
+<text class="fg-m" x="60" y="222" font-size="12.5">Así las tolerancias de valores vecinos se tocan y no quedan huecos. Se repite ×10, ×100, ×1000…</text>
+<text class="fg-m" x="60" y="242" font-size="12.5">E96 (1 %) y E192 (0,5 %) siguen la misma idea con 96 y 192 valores por década.</text>
+          </svg>
+          <figcaption><strong>Los valores comerciales no son «redondos».</strong> Se reparten parejos en escala logarítmica para que, con la tolerancia, no queden huecos: por eso existe 47 kΩ y 56 kΩ, pero no 50 kΩ.</figcaption>
+        </figure>
+
+        <p><strong>Tolerancia.</strong> Un resistor de 1 kΩ al 5 % puede valer entre 950 y 1050 Ω. Para casi todo (limitar la corriente de un LED, pull-ups) alcanza con 5 %; para divisores de precisión o amplificadores conviene 1 % o 0,1 %.</p>
+        <p><strong>Potencia.</strong> Cada resistor soporta una potencia máxima (⅛, ¼, ½, 1 W o más para los de potencia). Se calcula con las fórmulas del <a class="xref" href="02-ley-de-ohm.html">capítulo 2</a>, <span class="eq">P = I² · R = V² / R</span>, y se elige un resistor de <strong>al menos el doble</strong>: un resistor trabajando al 100 % de su potencia se pone a más de 100 °C de temperatura superficial.</p>
+        <ul>
+          <li><strong>Código de colores</strong> (<a class="xref" href="02-ley-de-ohm.html#resistividad">capítulo 2</a>) para los de patas; en los <strong>SMD</strong> se lee un código numérico: «103» = 10 × 10³ = 10 kΩ; «4R7» = 4,7 Ω; «1002» (de 4 cifras, 1 %) = 100 × 10² = 10 kΩ.</li>
+          <li><strong>Tecnología:</strong> los de película de carbón son baratos; los de <em>película metálica</em> son más precisos y estables (1 %); los <em>de alambre</em> soportan mucha potencia.</li>
+          <li>Con la temperatura, el valor cambia unas decenas de ppm/°C (los de película metálica) o centenares (los de carbón).</li>
+        </ul>
+      </section>
+
+      <section id="capacitores">
+        <h2>Capacitores: tensión, tipo y polaridad</h2>
+        <ul>
+          <li><strong>Tensión nominal:</strong> la tensión máxima continua. Se elige un capacitor de <strong>al menos el doble</strong> de la tensión de trabajo (para 12 V, de 25 V). En un electrolítico, superarla o conectarlo al revés puede calentarlo, ventear o hacerlo explotar.</li>
+          <li><strong>Tolerancia:</strong> ±20 % en electrolíticos, ±5–10 % en cerámicos y de película. Para un temporizador (<a class="xref" href="27-temporizador-555.html">capítulo 27</a>) o un filtro (<a class="xref" href="21-impedancia-filtros.html">capítulo 21</a>) de precisión se usan los de película o cerámicos C0G.</li>
+          <li><strong>Los cerámicos de alta capacidad pierden valor con la tensión:</strong> un X7R puede perder el 30 % de su capacidad con la tensión nominal aplicada y un Y5V hasta el 70 %. Los C0G (NP0) casi no cambian, pero solo existen para valores pequeños (hasta unos 100 nF).</li>
+          <li><strong>ESR y corriente de rizado:</strong> un electrolítico real equivale a un capacitor con un pequeño resistor en serie (resistencia equivalente serie). Importa en fuentes conmutadas, donde se calienta con las corrientes de rizado.</li>
+          <li><strong>Tipos y usos:</strong> cerámico (desacople, filtros, acople), electrolítico (filtrado de fuentes, de µF a mF; con polaridad), tantalio (compacto y estable, con polaridad; falla en cortocircuito), película (audio, temporizadores).</li>
+        </ul>
+      </section>
+
+      <section id="hoja">
+        <h2>La hoja de datos de un semiconductor</h2>
+        <p>Cada transistor, diodo o circuito integrado tiene una <strong>hoja de datos</strong> (<em>datasheet</em>) que publica el fabricante, casi siempre gratis en internet. Los datos están organizados en bloques:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 780 410" role="img" aria-labelledby="g28bt g28bd">
+            <title id="g28bt">Qué hay en una hoja de datos</title>
+            <desc id="g28bd">Cuatro bloques de una hoja de datos de un transistor: valores máximos absolutos, características eléctricas con mínimo, típico y máximo, curvas y gráficos, y encapsulado con pines y resistencia térmica.</desc>
+<text class="fg-t fg-b" x="40" y="22" font-size="15">2N3904 (transistor NPN) · las secciones de su hoja de datos</text><rect x="40" y="36" width="700" height="76" rx="6" style="fill:var(--surface);stroke:var(--bad);stroke-width:2"/><rect x="40" y="36" width="190" height="76" rx="6" style="fill:var(--bad);opacity:.18"/><text class="fg-t fg-b" x="52" y="58" font-size="13" style="fill:var(--bad)">① Valores máximos</text><text class="fg-m" x="244" y="58" font-size="12">V<tspan font-size="8" dy="3">CEO</tspan><tspan dy="-3"> = 40 V · I</tspan><tspan font-size="8" dy="3">C</tspan><tspan dy="-3"> = 200 mA · P</tspan><tspan font-size="8" dy="3">tot</tspan><tspan dy="-3"> = 625 mW · T</tspan><tspan font-size="8" dy="3">j</tspan><tspan dy="-3"> = 150 °C</tspan></text><text class="fg-m" x="244" y="76" font-size="12">¡Nunca superarlos! Más allá, el componente se daña.</text><rect x="40" y="122" width="700" height="76" rx="6" style="fill:var(--surface);stroke:var(--charge-neg);stroke-width:2"/><rect x="40" y="122" width="190" height="76" rx="6" style="fill:var(--charge-neg);opacity:.18"/><text class="fg-t fg-b" x="52" y="144" font-size="13" style="fill:var(--charge-neg)">② Características eléctricas</text><text class="fg-m" x="244" y="144" font-size="12">h<tspan font-size="8" dy="3">FE</tspan><tspan dy="-3"> = 100 (mín) a 300 (máx), a 10 mA y 1 V · V</tspan><tspan font-size="8" dy="3">CE,sat</tspan><tspan dy="-3"> ≤ 0,2 V (a 10 mA) · V</tspan><tspan font-size="8" dy="3">BE</tspan><tspan dy="-3"> ≈ 0,7 V</tspan></text><text class="fg-m" x="244" y="162" font-size="12">Con «condiciones de prueba»: se diseña con el peor caso, no con el típico.</text><rect x="40" y="208" width="700" height="76" rx="6" style="fill:var(--surface);stroke:var(--good);stroke-width:2"/><rect x="40" y="208" width="190" height="76" rx="6" style="fill:var(--good);opacity:.18"/><text class="fg-t fg-b" x="52" y="230" font-size="13" style="fill:var(--good)">③ Curvas y gráficos</text><text class="fg-m" x="244" y="230" font-size="12">I<tspan font-size="8" dy="3">C</tspan><tspan dy="-3"> contra V</tspan><tspan font-size="8" dy="3">CE</tspan><tspan dy="-3"> · h</tspan><tspan font-size="8" dy="3">FE</tspan><tspan dy="-3"> contra corriente y temperatura · V</tspan><tspan font-size="8" dy="3">CE,sat</tspan><tspan dy="-3"> contra I</tspan><tspan font-size="8" dy="3">C</tspan></text><text class="fg-m" x="244" y="248" font-size="12">Muestran cómo cambian los valores con la corriente y la temperatura.</text><rect x="40" y="294" width="700" height="76" rx="6" style="fill:var(--surface);stroke:var(--heat);stroke-width:2"/><rect x="40" y="294" width="190" height="76" rx="6" style="fill:var(--heat);opacity:.18"/><text class="fg-t fg-b" x="52" y="316" font-size="13" style="fill:var(--heat)">④ Encapsulado y pines</text><text class="fg-m" x="244" y="316" font-size="12">TO-92: patas E-B-C vistas desde abajo (varía según el fabricante).</text><text class="fg-m" x="244" y="334" font-size="12">θ<tspan font-size="8" dy="3">JA</tspan><tspan dy="-3"> = 200 °C/W. Dimensiones, soldadura y curva de reducción de potencia (derating).</tspan></text><text class="fg-m" x="40" y="392" font-size="12.5">Regla de oro: los «máximos» son un límite que no se cruza; las «características» son lo esperable en las condiciones indicadas.</text>
+          </svg>
+          <figcaption><strong>Leer una hoja de datos es buscar tres cosas:</strong> cuánto aguanta (máximos), cómo se comporta en el peor caso (características) y cómo se conecta (encapsulado).</figcaption>
+        </figure>
+
+        <p>La confusión más peligrosa es entre los <strong>valores máximos absolutos</strong> (el límite a partir del cual se daña, aunque sea por un instante) y las <strong>condiciones de funcionamiento recomendadas</strong>. Y el valor «típico» no es una garantía: se diseña con el <em>mínimo</em> o el <em>máximo</em> garantizado, según cuál sea el peor caso. Por eso en el capítulo 15 se calculó la corriente de base con la β <em>mínima</em>.</p>
+      </section>
+
+      <section id="calor">
+        <h2>El calor: temperatura de la juntura</h2>
+        <p>Todo componente que disipa potencia se calienta. La temperatura de su parte activa, la <strong>juntura</strong>, sube sobre la ambiente según la <strong>resistencia térmica</strong> <em>θ</em> (en °C por watt) entre la juntura y el aire:</p>
+        <p class="equation"><span class="eq">T<sub>j</sub> = T<sub>a</sub> + P · θ<sub>JA</sub></span> &nbsp;&nbsp; <span class="eq">P<sub>máx</sub> = (T<sub>j,máx</sub> − T<sub>a</sub>) / θ<sub>JA</sub></span></p>
+        <p>Un silicio se daña por encima de unos 150 °C (en algunos, 125 o 175 °C). El θ<sub>JA</sub> depende del encapsulado: unos 200 °C/W en un transistor TO-92 (con 0,36 W sube 72 °C, como en el ejemplo del <a class="xref" href="15-transistor-interruptor.html#errores">capítulo 15</a>), unos 60 °C/W en un TO-220 sin disipador. Un <strong>disipador</strong> (una pieza de aluminio con aletas) agrega un camino más rápido para el calor y baja el θ total a pocos °C/W.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 300" role="img" aria-labelledby="g28ct g28cd">
+            <title id="g28ct">El circuito térmico: resistencias térmicas en serie</title>
+            <desc id="g28cd">Analogía eléctrica del calor: una fuente de potencia en watts que fluye por las resistencias térmicas de juntura a cápsula, de cápsula a disipador y de disipador a aire, hasta la temperatura ambiente.</desc>
+<text class="fg-t fg-b" x="40" y="22">La temperatura es como una tensión, la potencia como una corriente</text>
+<circle cx="90" cy="130" r="22" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><path class="fg-pos" d="M90 144 V116 M84 122 L90 114 L96 122" style="stroke-width:2.5"/><text class="fg-t fg-b" x="122" y="136" font-size="13">P</text><text class="fg-m" x="122" y="152" font-size="11.5">potencia disipada (W)</text>
+<path class="fg-line" d="M90 108 V70 H150"/><circle cx="150" cy="70" r="5" style="fill:var(--accent)"/><text class="fg-t fg-b fg-c" x="150" y="52" font-size="12.5" style="fill:var(--accent)">T<tspan font-size="9" dy="3">j</tspan></text>
+<path class="fg-line" d="M170 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><text class="fg-m fg-c" x="203" y="104" font-size="11.5">θ<tspan font-size="8" dy="3">JC</tspan></text><text class="fg-m fg-c" x="203" y="120" font-size="10.5">juntura-cápsula</text>
+<path class="fg-line" d="M290 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><text class="fg-m fg-c" x="323" y="104" font-size="11.5">θ<tspan font-size="8" dy="3">CS</tspan></text><text class="fg-m fg-c" x="323" y="120" font-size="10.5">pasta térmica</text>
+<path class="fg-line" d="M270 70 H290 M356 70 H390"/><circle cx="390" cy="70" r="5" style="fill:var(--heat)"/>
+<path class="fg-line" d="M410 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><text class="fg-m fg-c" x="443" y="104" font-size="11.5">θ<tspan font-size="8" dy="3">SA</tspan></text><text class="fg-m fg-c" x="443" y="120" font-size="10.5">disipador-aire</text>
+<path class="fg-line" d="M390 70 H410 M476 70 H520 V108"/><circle cx="520" cy="130" r="22" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-b fg-c" x="520" y="135" font-size="13">T<tspan font-size="9" dy="3">a</tspan></text>
+<path class="fg-line" d="M520 152 V170 M508 170 H532 M512 176 H528 M516 182 H524"/><text class="fg-m" x="550" y="135" font-size="11.5">ambiente</text>
+<path class="fg-line" d="M90 152 V170 M78 170 H102 M82 176 H98 M86 182 H94"/>
+<text class="fg-m fg-c" x="270" y="52" font-size="11.5">cápsula</text><text class="fg-m fg-c" x="390" y="52" font-size="11.5">disipador</text>
+<text class="fg-a fg-b" x="40" y="236" style="fill:var(--accent)" font-size="15">T<tspan font-size="10" dy="3">j</tspan><tspan dy="-3"> = T</tspan><tspan font-size="10" dy="3">a</tspan><tspan dy="-3"> + P · (θ</tspan><tspan font-size="10" dy="3">JC</tspan><tspan dy="-3"> + θ</tspan><tspan font-size="10" dy="3">CS</tspan><tspan dy="-3"> + θ</tspan><tspan font-size="10" dy="3">SA</tspan><tspan dy="-3">)</tspan></text>
+<text class="fg-m" x="40" y="262" font-size="12.5">Es una ley de Ohm térmica: cada resistencia térmica (°C/W) sube la temperatura en proporción a la potencia.</text>
+<text class="fg-m" x="40" y="282" font-size="12.5">Sin disipador, el calor sale por una sola θ grande; con disipador, por tres θ chicas en serie.</text>
+          </svg>
+          <figcaption><strong>El calor fluye como la corriente.</strong> La juntura está a la temperatura ambiente más la caída térmica total; para bajarla se reduce la potencia o se agrega un disipador (menos θ).</figcaption>
+        </figure>
+
+        <p>Cuando hay disipador, las resistencias térmicas se suman en serie: <span class="eq">θ<sub>JA</sub> = θ<sub>JC</sub> + θ<sub>CS</sub> + θ<sub>SA</sub></span> (juntura-cápsula, cápsula-disipador con pasta térmica, disipador-aire). La hoja de datos incluye una <strong>curva de reducción de potencia</strong> (<em>derating</em>): a mayor temperatura ambiente, menos potencia admisible. Dentro de una caja cerrada, la temperatura ambiente puede ser 20 a 40 °C más alta que la de la habitación.</p>
+      </section>
+
+      <section id="margen">
+        <h2>Diseñar con margen</h2>
+        <p>La regla básica es no trabajar nunca en el límite. Algunos criterios típicos:</p>
+        <ul>
+          <li><strong>Tensión:</strong> usar a lo sumo el 50–80 % de la tensión máxima (el doble de margen en capacitores electrolíticos).</li>
+          <li><strong>Corriente:</strong> a lo sumo el 50–70 % de la máxima.</li>
+          <li><strong>Potencia:</strong> a lo sumo el 50 % de la nominal del resistor, y calcular la temperatura de juntura de los semiconductores con el peor caso de temperatura ambiente.</li>
+          <li><strong>Valores:</strong> considerar la tolerancia: un resistor de 5 % o un capacitor de ±20 % puede cambiar el resultado. Si el circuito debe funcionar en todos los casos, se calcula con los valores extremos.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Un resistor de LED que se quema</span>
+          <p>Con 12 V y un LED de 2 V a 20 mA, el resistor es <span class="eq">10 V / 20 mA = 500 Ω</span> y disipa 0,2 W. Un resistor de ¼ W trabajaría casi al límite (80 %) y se pondría muy caliente; uno de ½ W queda al 40 %. La diferencia de unos centavos evita un olor a quemado.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El regulador que quema</span>
+          <p>Un regulador lineal de 5 V (LM7805, <a class="xref" href="08-cc-vs-ca.html#reguladores">capítulo 8</a>) alimentado con 12 V disipa en calor toda la diferencia: con 0,5 A, <span class="eq">(12 − 5) · 0,5 = 3,5 W</span>. Un TO-220 sin disipador subiría 217 °C: se daña. Con disipador funciona sin problema.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El capacitor que explota</span>
+          <p>Un electrolítico de 16 V conectado a una fuente de 24 V, o al revés, se calienta, hincha su tapa y revienta. Con la tensión adecuada (el doble de la de trabajo) dura décadas.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: elegir el resistor de un LED</span>
+          <p>Fuente de 12 V, LED de 2 V que se quiere a unos 20 mA.</p>
+          <ol>
+            <li>Valor calculado: <span class="eq">R = (12 − 2) / 0,02 = 500 Ω</span>. Valores E12 cercanos: 470 Ω y 560 Ω.</li>
+            <li>Con 560 Ω: <span class="eq">I = 10 / 560 ≈ 17,9 mA</span> (un poco menos brillante, pero seguro). Con 470 Ω serían 21,3 mA, apenas arriba del objetivo.</li>
+            <li>Potencia con 560 Ω: <span class="eq">P = I² · R = 0,0179² · 560 ≈ 0,18 W</span>. Con la regla del 50 % se necesita al menos 0,36 W: un resistor de <strong>½ W</strong>.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿qué disipador necesita el regulador?</span>
+          <p>LM7805 con entrada de 12 V y salida de 5 V a 0,5 A, en una caja a 40 °C. Tj máx = 150 °C; θ<sub>JC</sub> = 5 °C/W; pasta térmica θ<sub>CS</sub> = 1 °C/W.</p>
+          <ol>
+            <li>Potencia: <span class="eq">P = (12 − 5) · 0,5 = 3,5 W</span>.</li>
+            <li>Resistencia térmica total admisible: <span class="eq">θ<sub>JA</sub> ≤ (150 − 40) / 3,5 ≈ 31 °C/W</span> (sin margen).</li>
+            <li>Disipador: <span class="eq">θ<sub>SA</sub> ≤ 31 − 5 − 1 = 25 °C/W</span>. Con un margen de 30 %, conviene uno de 15 a 18 °C/W (un disipador chico de aluminio).</li>
+            <li>Alternativa: un regulador conmutado (capítulo 8), que desperdicia unos 0,3 W en vez de 3,5 W y no necesita disipador.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con el <strong>TO-92</strong>, 0,36 W y 25 °C de ambiente: Tj = 97 °C, justo el caso del transistor del capítulo 15. Subí la potencia hasta ver cuándo la juntura llega a los 150 °C (≈ 0,62 W).</li>
+        <li>Subí la temperatura ambiente a 60 °C (una caja cerrada y caliente): con los mismos 0,36 W, la juntura sube a 132 °C. Mirá cómo el punto de la gráfica se acerca a la curva: la potencia máxima admisible baja con el calor.</li>
+        <li>Cambiá a <strong>TO-220 sin disipador</strong> (θ = 62 °C/W): ahora admite unos 2 W a 25 °C. Poné 3,5 W (el LM7805 del ejemplo): la juntura se pasa de 150 °C.</li>
+        <li>Elegí <strong>TO-220 con disipador</strong> (θ = 8 °C/W): los mismos 3,5 W suben la juntura solo 28 °C (Tj ≈ 53 °C con 25 °C de ambiente). Fijate en el color y en la lectura del termómetro.</li>
+        <li>Probá qué potencia máxima puede disipar cada encapsulado a 25, 50 y 80 °C: la fórmula P<sub>máx</sub> = (150 − T<sub>a</sub>) / θ es una recta decreciente (la curva de «derating»).</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/thermal.js"></script>
+  <script src="../js/quizzes/28-hoja-de-datos.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

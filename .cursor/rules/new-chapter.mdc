@@ -1,0 +1,14 @@
+---
+description: Pasos para agregar un capítulo o una parte nueva al libro
+alwaysApply: false
+---
+
+# Agregar un capítulo
+
+1. **Índice**: sumar la entrada en `Elec.LESSONS` y su id en la `Elec.PARTS` correspondiente (`js/core/lessons-data.js`). Título, resumen de una línea y `tags` con la fórmula clave. La numeración sale de la posición en `LESSONS`: no insertar en el medio sin revisar los números de capítulo citados ("capítulo N") en el texto de las demás lecciones.
+2. **Lección**: copiar una página existente de `lessons/`, completar teoría, figuras, laboratorio y cuestionario (`lesson-structure.mdc`).
+3. **Simulación**: `js/sims/<nombre>.js` (`sims-and-quizzes.mdc`). Si necesita componentes nuevos, agregarlos a `js/core/parts.js`.
+4. **Cuestionario**: `js/quizzes/<id>.js`.
+5. **Enlaces cruzados**: desde el capítulo nuevo a los previos que usa, y desde los previos que mencionan el tema por adelantado hacia el nuevo.
+6. **README**: actualizar la cantidad de capítulos y la tabla de `js/core`.
+7. **Verificación**: abrir la lección en Chrome y Firefox (claro y oscuro), correr la simulación, responder el cuestionario y confirmar que la portada y la navegación muestran el capítulo.

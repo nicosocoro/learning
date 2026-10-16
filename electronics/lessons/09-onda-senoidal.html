@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La onda senoidal y el valor eficaz · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="09-onda-senoidal" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 9</p>
+        <h1>La onda senoidal y el valor eficaz</h1>
+        <p class="lead">Una señal alterna cambia todo el tiempo. Para describirla hacen falta tres números: cuánto sube, cuánto tarda en repetirse y qué potencia entrega.</p>
+      </header>
+      <section>
+        <h2>La onda senoidal</h2>
+        <p>La tensión alterna varía con el tiempo de forma senoidal:</p>
+        <p class="equation"><span class="eq">v(t) = V<sub>p</sub> · sen(2π · f · t)</span></p>
+        <ul>
+          <li><strong>V<sub>p</sub></strong>: tensión <em>pico</em>, el valor máximo. La tensión pico a pico es <span class="eq">V<sub>pp</sub> = 2 · V<sub>p</sub></span>.</li>
+          <li><strong>f</strong>: <em>frecuencia</em>, cuántos ciclos completos por segundo, en hertz (Hz).</li>
+          <li><strong>T</strong>: <em>período</em>, lo que dura un ciclo: <span class="eq">T = 1 / f</span>.</li>
+          <li><strong>ω</strong>: <em>frecuencia angular</em>, <span class="eq">ω = 2π · f</span> (rad/s). Es la velocidad con que gira el fasor.</li>
+        </ul>
+        <p>Una forma de verla: un vector que gira a velocidad constante (el <strong>fasor</strong>); su proyección vertical dibuja la senoide.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 250" role="img" aria-labelledby="g9at g9ad">
+            <title id="g9at">Fasor y onda senoidal</title>
+            <desc id="g9ad">Un vector que gira en un círculo cuya altura traza una senoide, con las medidas Vp, Vpp y T.</desc>
+            <circle class="fg-thin" cx="90" cy="115" r="60"/>
+            <path class="fg-thin" d="M20 115 H160 M90 45 V185"/>
+            <path class="fg-acc" d="M90 115 L128.6 69.0"/><circle class="fg-fill-acc" cx="128.6" cy="69.0" r="5"/>
+            <path class="fg-thin" d="M112 115 A22 22 0 0 0 104.1 98.1"/>
+            <text class="fg-t" x="118" y="107" font-size="13">ωt</text>
+            <text class="fg-m fg-c" x="90" y="205">fasor: gira con ω = 2π·f</text>
+            <path class="fg-dash" d="M128.6 69.0 H270.8"/>
+            <path class="fg-thin" d="M250 115 H560 M250 45 V185"/>
+            <path class="fg-acc" d="M250.0 115.0 L251.2 111.9 L252.5 108.7 L253.8 105.6 L255.0 102.5 L256.2 99.5 L257.5 96.5 L258.8 93.5 L260.0 90.6 L261.2 87.8 L262.5 85.0 L263.8 82.3 L265.0 79.7 L266.2 77.2 L267.5 74.9 L268.8 72.6 L270.0 70.4 L271.2 68.4 L272.5 66.5 L273.8 64.7 L275.0 63.0 L276.2 61.5 L277.5 60.2 L278.8 59.0 L280.0 57.9 L281.2 57.0 L282.5 56.3 L283.8 55.7 L285.0 55.3 L286.2 55.1 L287.5 55.0 L288.8 55.1 L290.0 55.3 L291.2 55.7 L292.5 56.3 L293.8 57.0 L295.0 57.9 L296.2 59.0 L297.5 60.2 L298.8 61.5 L300.0 63.0 L301.2 64.7 L302.5 66.5 L303.8 68.4 L305.0 70.4 L306.2 72.6 L307.5 74.9 L308.8 77.2 L310.0 79.7 L311.2 82.3 L312.5 85.0 L313.8 87.8 L315.0 90.6 L316.2 93.5 L317.5 96.5 L318.8 99.5 L320.0 102.5 L321.2 105.6 L322.5 108.7 L323.8 111.9 L325.0 115.0 L326.2 118.1 L327.5 121.3 L328.8 124.4 L330.0 127.5 L331.2 130.5 L332.5 133.5 L333.8 136.5 L335.0 139.4 L336.2 142.2 L337.5 145.0 L338.8 147.7 L340.0 150.3 L341.2 152.8 L342.5 155.1 L343.8 157.4 L345.0 159.6 L346.2 161.6 L347.5 163.5 L348.8 165.3 L350.0 167.0 L351.2 168.5 L352.5 169.8 L353.8 171.0 L355.0 172.1 L356.2 173.0 L357.5 173.7 L358.8 174.3 L360.0 174.7 L361.2 174.9 L362.5 175.0 L363.8 174.9 L365.0 174.7 L366.2 174.3 L367.5 173.7 L368.8 173.0 L370.0 172.1 L371.2 171.0 L372.5 169.8 L373.8 168.5 L375.0 167.0 L376.2 165.3 L377.5 163.5 L378.8 161.6 L380.0 159.6 L381.2 157.4 L382.5 155.1 L383.8 152.8 L385.0 150.3 L386.2 147.7 L387.5 145.0 L388.8 142.2 L390.0 139.4 L391.2 136.5 L392.5 133.5 L393.8 130.5 L395.0 127.5 L396.2 124.4 L397.5 121.3 L398.8 118.1 L400.0 115.0 L401.2 111.9 L402.5 108.7 L403.8 105.6 L405.0 102.5 L406.2 99.5 L407.5 96.5 L408.8 93.5 L410.0 90.6 L411.2 87.8 L412.5 85.0 L413.8 82.3 L415.0 79.7 L416.2 77.2 L417.5 74.9 L418.8 72.6 L420.0 70.4 L421.2 68.4 L422.5 66.5 L423.8 64.7 L425.0 63.0 L426.2 61.5 L427.5 60.2 L428.8 59.0 L430.0 57.9 L431.2 57.0 L432.5 56.3 L433.8 55.7 L435.0 55.3 L436.2 55.1 L437.5 55.0 L438.8 55.1 L440.0 55.3 L441.2 55.7 L442.5 56.3 L443.8 57.0 L445.0 57.9 L446.2 59.0 L447.5 60.2 L448.8 61.5 L450.0 63.0 L451.2 64.7 L452.5 66.5 L453.8 68.4 L455.0 70.4 L456.2 72.6 L457.5 74.9 L458.8 77.2 L460.0 79.7 L461.2 82.3 L462.5 85.0 L463.8 87.8 L465.0 90.6 L466.2 93.5 L467.5 96.5 L468.8 99.5 L470.0 102.5 L471.2 105.6 L472.5 108.7 L473.8 111.9 L475.0 115.0 L476.2 118.1 L477.5 121.3 L478.8 124.4 L480.0 127.5 L481.2 130.5 L482.5 133.5 L483.8 136.5 L485.0 139.4 L486.2 142.2 L487.5 145.0 L488.8 147.7 L490.0 150.3 L491.2 152.8 L492.5 155.1 L493.8 157.4 L495.0 159.6 L496.2 161.6 L497.5 163.5 L498.8 165.3 L500.0 167.0 L501.2 168.5 L502.5 169.8 L503.8 171.0 L505.0 172.1 L506.2 173.0 L507.5 173.7 L508.8 174.3 L510.0 174.7 L511.2 174.9 L512.5 175.0 L513.8 174.9 L515.0 174.7 L516.2 174.3 L517.5 173.7 L518.8 173.0 L520.0 172.1 L521.2 171.0 L522.5 169.8 L523.8 168.5 L525.0 167.0 L526.2 165.3 L527.5 163.5 L528.8 161.6 L530.0 159.6 L531.2 157.4 L532.5 155.1 L533.8 152.8 L535.0 150.3 L536.2 147.7 L537.5 145.0 L538.8 142.2 L540.0 139.4 L541.2 136.5 L542.5 133.5 L543.8 130.5 L545.0 127.5 L546.2 124.4 L547.5 121.3 L548.8 118.1 L550.0 115.0"/>
+            <circle class="fg-fill-acc" cx="270.8" cy="69.0" r="5"/>
+            <path class="fg-thin" d="M400 191 H250 M256 186 L250 191 L256 196 M394 186 L400 191 L394 196"/>
+            <text class="fg-t fg-c fg-i" x="325" y="209">T = 1 / f</text>
+            <path class="fg-thin" d="M582 115 V55 M577 63 L582 55 L587 63"/>
+            <text class="fg-t fg-i" x="592" y="89.0">V<tspan font-size="10" dy="3">p</tspan></text>
+            <path class="fg-thin" d="M618 55 V175 M613 63 L618 55 L623 63 M613 167 L618 175 L623 167"/>
+            <text class="fg-t fg-i" x="628" y="119">V<tspan font-size="10" dy="3">pp</tspan></text>
+          </svg>
+          <figcaption><strong>El fasor</strong> gira a ω; su altura en cada instante es el valor de la tensión. Una vuelta completa dura un período T.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="alternador">¿Por qué justo una senoide?</h2>
+        <p>La forma senoidal no es una elección arbitraria: es la que sale naturalmente de un <strong>alternador</strong>. Una bobina gira con velocidad constante dentro de un campo magnético; el flujo que la atraviesa, <em>Φ = B·A·cos θ</em>, cambia como un coseno del ángulo, y la ley de Faraday (capítulo <a class="xref" href="12-induccion.html#faraday">12</a>) dice que la tensión inducida es la variación del flujo, es decir, un seno. La frecuencia de la tensión es la de giro: en una central de 50 Hz, el rotor da 50 vueltas por segundo (o una fracción, si tiene varios pares de polos).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g9ct g9cd">
+            <title id="g9ct">Alternador</title>
+            <desc id="g9cd">Una espira que gira dentro de un campo magnético y la tensión senoidal que se induce.</desc>
+            <rect class="fg-box" x="30" y="55" width="52" height="120" rx="4" style="fill:var(--charge-pos);opacity:.85"/><text class="fg-c fg-b" x="56" y="122" font-size="24" fill="#fff">N</text>
+            <rect class="fg-box" x="228" y="55" width="52" height="120" rx="4" style="fill:var(--charge-neg);opacity:.85"/><text class="fg-c fg-b" x="254" y="122" font-size="24" fill="#fff">S</text>
+            <path class="fg-dash" d="M90 90 H220 M90 115 H220 M90 140 H220"/>
+            <text class="fg-m fg-c" x="155" y="46">campo magnético B</text>
+            <g transform="translate(155,115) rotate(-35)">
+              <rect x="-45" y="-30" width="90" height="60" rx="3" style="fill:var(--surface-2);stroke:var(--accent);stroke-width:3"/>
+              <circle r="4" class="fg-fill-wire"/>
+            </g>
+            <path class="fg-neg" d="M120 186 A60 60 0 0 0 190 186 M182 180 L191 186 L181 191" style="stroke-width:2;display:none"/>
+            <path class="fg-pos" d="M205 76 A62 62 0 0 1 218 150 M210 148 L218 151 L219 143" style="stroke-width:2.2"/>
+            <text class="fg-m fg-c" x="155" y="205">espira que gira</text>
+            <path class="fg-line" d="M155 115 V210 H330" style="display:none"/>
+            <path class="fg-thin" d="M360 115 H680 M360 50 V180"/>
+            <path class="fg-acc" d="M360 115 360.0 115.0 L361.6 111.2 L363.2 107.5 L364.8 103.8 L366.4 100.1 L368.0 96.5 L369.6 92.9 L371.2 89.5 L372.8 86.1 L374.4 82.9 L376.0 79.7 L377.6 76.8 L379.2 73.9 L380.8 71.3 L382.4 68.8 L384.0 66.5 L385.6 64.3 L387.2 62.4 L388.8 60.7 L390.4 59.2 L392.0 57.9 L393.6 56.9 L395.2 56.1 L396.8 55.5 L398.4 55.1 L400.0 55.0 L401.6 55.1 L403.2 55.5 L404.8 56.1 L406.4 56.9 L408.0 57.9 L409.6 59.2 L411.2 60.7 L412.8 62.4 L414.4 64.3 L416.0 66.5 L417.6 68.8 L419.2 71.3 L420.8 73.9 L422.4 76.8 L424.0 79.7 L425.6 82.9 L427.2 86.1 L428.8 89.5 L430.4 92.9 L432.0 96.5 L433.6 100.1 L435.2 103.8 L436.8 107.5 L438.4 111.2 L440.0 115.0 L441.6 118.8 L443.2 122.5 L444.8 126.2 L446.4 129.9 L448.0 133.5 L449.6 137.1 L451.2 140.5 L452.8 143.9 L454.4 147.1 L456.0 150.3 L457.6 153.2 L459.2 156.1 L460.8 158.7 L462.4 161.2 L464.0 163.5 L465.6 165.7 L467.2 167.6 L468.8 169.3 L470.4 170.8 L472.0 172.1 L473.6 173.1 L475.2 173.9 L476.8 174.5 L478.4 174.9 L480.0 175.0 L481.6 174.9 L483.2 174.5 L484.8 173.9 L486.4 173.1 L488.0 172.1 L489.6 170.8 L491.2 169.3 L492.8 167.6 L494.4 165.7 L496.0 163.5 L497.6 161.2 L499.2 158.7 L500.8 156.1 L502.4 153.2 L504.0 150.3 L505.6 147.1 L507.2 143.9 L508.8 140.5 L510.4 137.1 L512.0 133.5 L513.6 129.9 L515.2 126.2 L516.8 122.5 L518.4 118.8 L520.0 115.0 L521.6 111.2 L523.2 107.5 L524.8 103.8 L526.4 100.1 L528.0 96.5 L529.6 92.9 L531.2 89.5 L532.8 86.1 L534.4 82.9 L536.0 79.7 L537.6 76.8 L539.2 73.9 L540.8 71.3 L542.4 68.8 L544.0 66.5 L545.6 64.3 L547.2 62.4 L548.8 60.7 L550.4 59.2 L552.0 57.9 L553.6 56.9 L555.2 56.1 L556.8 55.5 L558.4 55.1 L560.0 55.0 L561.6 55.1 L563.2 55.5 L564.8 56.1 L566.4 56.9 L568.0 57.9 L569.6 59.2 L571.2 60.7 L572.8 62.4 L574.4 64.3 L576.0 66.5 L577.6 68.8 L579.2 71.3 L580.8 73.9 L582.4 76.8 L584.0 79.7 L585.6 82.9 L587.2 86.1 L588.8 89.5 L590.4 92.9 L592.0 96.5 L593.6 100.1 L595.2 103.8 L596.8 107.5 L598.4 111.2 L600.0 115.0 L601.6 118.8 L603.2 122.5 L604.8 126.2 L606.4 129.9 L608.0 133.5 L609.6 137.1 L611.2 140.5 L612.8 143.9 L614.4 147.1 L616.0 150.3 L617.6 153.2 L619.2 156.1 L620.8 158.7 L622.4 161.2 L624.0 163.5 L625.6 165.7 L627.2 167.6 L628.8 169.3 L630.4 170.8 L632.0 172.1 L633.6 173.1 L635.2 173.9 L636.8 174.5 L638.4 174.9 L640.0 175.0 L641.6 174.9 L643.2 174.5 L644.8 173.9 L646.4 173.1 L648.0 172.1 L649.6 170.8 L651.2 169.3 L652.8 167.6 L654.4 165.7 L656.0 163.5 L657.6 161.2 L659.2 158.7 L660.8 156.1 L662.4 153.2 L664.0 150.3 L665.6 147.1 L667.2 143.9 L668.8 140.5 L670.4 137.1 L672.0 133.5 L673.6 129.9 L675.2 126.2 L676.8 122.5 L678.4 118.8 L680.0 115.0"/>
+            <text class="fg-t fg-c fg-b" x="520" y="30">tensión inducida</text>
+            <text class="fg-m fg-c" x="520" y="198">una vuelta de la espira = un ciclo de la senoide</text>
+            <path class="fg-thin" d="M290 115 H350 M342 109 L350 115 L342 121"/>
+          </svg>
+          <figcaption>Al girar con velocidad constante, el flujo que atraviesa la espira cambia como un coseno y la tensión inducida resulta una senoide.</figcaption>
+        </figure>
+        <p>Además, la senoide tiene una propiedad matemática útil: sumada, derivada o filtrada, sigue siendo una senoide de la misma frecuencia. Eso simplifica el análisis de los circuitos y explica por qué los transformadores y los capacitores se comportan de forma tan predecible con ella.</p>
+      </section>
+
+      <section>
+        <h2>Valor eficaz (RMS)</h2>
+        <p>Como la tensión cambia todo el tiempo, ¿qué valor la describe? El <strong>valor eficaz</strong> es la tensión continua que entregaría la <em>misma potencia</em> a una resistencia:</p>
+        <p class="equation"><span class="eq">V<sub>rms</sub> = V<sub>p</sub> / √2 ≈ 0,707 · V<sub>p</sub></span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 210" role="img" aria-labelledby="g9bt g9bd">
+            <title id="g9bt">Valor eficaz y potencia</title>
+            <desc id="g9bd">La tensión alterna con sus niveles eficaces y la potencia instantánea, que oscila entre cero y el máximo con promedio igual a la mitad.</desc>
+            <text class="fg-t fg-b fg-c" x="190" y="20">Tensión v(t)</text>
+            <path class="fg-thin" d="M40 100 H340 M40 36 V164"/>
+            <path class="fg-acc" d="M40.0 100.0 L41.2 96.9 L42.5 93.7 L43.8 90.6 L45.0 87.5 L46.2 84.5 L47.5 81.5 L48.8 78.5 L50.0 75.6 L51.2 72.8 L52.5 70.0 L53.8 67.3 L55.0 64.7 L56.2 62.2 L57.5 59.9 L58.8 57.6 L60.0 55.4 L61.2 53.4 L62.5 51.5 L63.8 49.7 L65.0 48.0 L66.2 46.5 L67.5 45.2 L68.8 44.0 L70.0 42.9 L71.2 42.0 L72.5 41.3 L73.8 40.7 L75.0 40.3 L76.2 40.1 L77.5 40.0 L78.8 40.1 L80.0 40.3 L81.2 40.7 L82.5 41.3 L83.8 42.0 L85.0 42.9 L86.2 44.0 L87.5 45.2 L88.8 46.5 L90.0 48.0 L91.2 49.7 L92.5 51.5 L93.8 53.4 L95.0 55.4 L96.2 57.6 L97.5 59.9 L98.8 62.2 L100.0 64.7 L101.2 67.3 L102.5 70.0 L103.8 72.8 L105.0 75.6 L106.2 78.5 L107.5 81.5 L108.8 84.5 L110.0 87.5 L111.2 90.6 L112.5 93.7 L113.8 96.9 L115.0 100.0 L116.2 103.1 L117.5 106.3 L118.8 109.4 L120.0 112.5 L121.2 115.5 L122.5 118.5 L123.8 121.5 L125.0 124.4 L126.2 127.2 L127.5 130.0 L128.8 132.7 L130.0 135.3 L131.2 137.8 L132.5 140.1 L133.8 142.4 L135.0 144.6 L136.2 146.6 L137.5 148.5 L138.8 150.3 L140.0 152.0 L141.2 153.5 L142.5 154.8 L143.8 156.0 L145.0 157.1 L146.2 158.0 L147.5 158.7 L148.8 159.3 L150.0 159.7 L151.2 159.9 L152.5 160.0 L153.8 159.9 L155.0 159.7 L156.2 159.3 L157.5 158.7 L158.8 158.0 L160.0 157.1 L161.2 156.0 L162.5 154.8 L163.8 153.5 L165.0 152.0 L166.2 150.3 L167.5 148.5 L168.8 146.6 L170.0 144.6 L171.2 142.4 L172.5 140.1 L173.8 137.8 L175.0 135.3 L176.2 132.7 L177.5 130.0 L178.8 127.2 L180.0 124.4 L181.2 121.5 L182.5 118.5 L183.8 115.5 L185.0 112.5 L186.2 109.4 L187.5 106.3 L188.8 103.1 L190.0 100.0 L191.2 96.9 L192.5 93.7 L193.8 90.6 L195.0 87.5 L196.2 84.5 L197.5 81.5 L198.8 78.5 L200.0 75.6 L201.2 72.8 L202.5 70.0 L203.7 67.3 L205.0 64.7 L206.2 62.2 L207.5 59.9 L208.8 57.6 L210.0 55.4 L211.2 53.4 L212.5 51.5 L213.8 49.7 L215.0 48.0 L216.2 46.5 L217.5 45.2 L218.8 44.0 L220.0 42.9 L221.2 42.0 L222.5 41.3 L223.8 40.7 L225.0 40.3 L226.2 40.1 L227.5 40.0 L228.8 40.1 L230.0 40.3 L231.2 40.7 L232.5 41.3 L233.8 42.0 L235.0 42.9 L236.2 44.0 L237.5 45.2 L238.8 46.5 L240.0 48.0 L241.2 49.7 L242.5 51.5 L243.8 53.4 L245.0 55.4 L246.2 57.6 L247.5 59.9 L248.8 62.2 L250.0 64.7 L251.3 67.3 L252.5 70.0 L253.8 72.8 L255.0 75.6 L256.2 78.5 L257.5 81.5 L258.8 84.5 L260.0 87.5 L261.2 90.6 L262.5 93.7 L263.8 96.9 L265.0 100.0 L266.2 103.1 L267.5 106.3 L268.8 109.4 L270.0 112.5 L271.2 115.5 L272.5 118.5 L273.8 121.5 L275.0 124.4 L276.2 127.2 L277.5 130.0 L278.8 132.7 L280.0 135.3 L281.2 137.8 L282.5 140.1 L283.8 142.4 L285.0 144.6 L286.2 146.6 L287.5 148.5 L288.8 150.3 L290.0 152.0 L291.2 153.5 L292.5 154.8 L293.8 156.0 L295.0 157.1 L296.2 158.0 L297.5 158.7 L298.8 159.3 L300.0 159.7 L301.2 159.9 L302.5 160.0 L303.8 159.9 L305.0 159.7 L306.2 159.3 L307.5 158.7 L308.8 158.0 L310.0 157.1 L311.2 156.0 L312.5 154.8 L313.8 153.5 L315.0 152.0 L316.2 150.3 L317.5 148.5 L318.8 146.6 L320.0 144.6 L321.2 142.4 L322.5 140.1 L323.8 137.8 L325.0 135.3 L326.2 132.7 L327.5 130.0 L328.8 127.2 L330.0 124.4 L331.2 121.5 L332.5 118.5 L333.8 115.5 L335.0 112.5 L336.2 109.4 L337.5 106.3 L338.8 103.1 L340.0 100.0"/>
+            <path class="fg-dash" d="M40 57.6 H340"/><path class="fg-dash" d="M40 142.4 H340"/>
+            
+            <text class="fg-m fg-c" x="190" y="196">punteadas: ±V<tspan font-size="10" dy="3">rms</tspan><tspan dy="-3"> = 0,707 · V</tspan><tspan font-size="10" dy="3">p</tspan></text>
+            <text class="fg-t fg-b fg-c" x="530" y="20">Potencia p(t) = v² / R</text>
+            <path class="fg-thin" d="M380 160 H680 M380 36 V164"/>
+            <path class="fg-acc" d="M380.0 160.0 L381.2 159.7 L382.5 158.7 L383.8 157.1 L385.0 154.8 L386.2 152.0 L387.5 148.5 L388.8 144.6 L390.0 140.1 L391.2 135.3 L392.5 130.0 L393.8 124.4 L395.0 118.5 L396.2 112.5 L397.5 106.3 L398.8 100.0 L400.0 93.7 L401.2 87.5 L402.5 81.5 L403.8 75.6 L405.0 70.0 L406.2 64.7 L407.5 59.9 L408.8 55.4 L410.0 51.5 L411.2 48.0 L412.5 45.2 L413.8 42.9 L415.0 41.3 L416.2 40.3 L417.5 40.0 L418.8 40.3 L420.0 41.3 L421.2 42.9 L422.5 45.2 L423.8 48.0 L425.0 51.5 L426.2 55.4 L427.5 59.9 L428.8 64.7 L430.0 70.0 L431.2 75.6 L432.5 81.5 L433.8 87.5 L435.0 93.7 L436.2 100.0 L437.5 106.3 L438.8 112.5 L440.0 118.5 L441.2 124.4 L442.5 130.0 L443.8 135.3 L445.0 140.1 L446.2 144.6 L447.5 148.5 L448.8 152.0 L450.0 154.8 L451.2 157.1 L452.5 158.7 L453.8 159.7 L455.0 160.0 L456.2 159.7 L457.5 158.7 L458.8 157.1 L460.0 154.8 L461.2 152.0 L462.5 148.5 L463.8 144.6 L465.0 140.1 L466.2 135.3 L467.5 130.0 L468.8 124.4 L470.0 118.5 L471.2 112.5 L472.5 106.3 L473.8 100.0 L475.0 93.7 L476.2 87.5 L477.5 81.5 L478.8 75.6 L480.0 70.0 L481.2 64.7 L482.5 59.9 L483.8 55.4 L485.0 51.5 L486.2 48.0 L487.5 45.2 L488.8 42.9 L490.0 41.3 L491.2 40.3 L492.5 40.0 L493.8 40.3 L495.0 41.3 L496.2 42.9 L497.5 45.2 L498.8 48.0 L500.0 51.5 L501.2 55.4 L502.5 59.9 L503.8 64.7 L505.0 70.0 L506.2 75.6 L507.5 81.5 L508.8 87.5 L510.0 93.7 L511.2 100.0 L512.5 106.3 L513.8 112.5 L515.0 118.5 L516.2 124.4 L517.5 130.0 L518.8 135.3 L520.0 140.1 L521.2 144.6 L522.5 148.5 L523.8 152.0 L525.0 154.8 L526.2 157.1 L527.5 158.7 L528.8 159.7 L530.0 160.0 L531.2 159.7 L532.5 158.7 L533.8 157.1 L535.0 154.8 L536.2 152.0 L537.5 148.5 L538.8 144.6 L540.0 140.1 L541.2 135.3 L542.5 130.0 L543.8 124.4 L545.0 118.5 L546.2 112.5 L547.5 106.3 L548.8 100.0 L550.0 93.7 L551.2 87.5 L552.5 81.5 L553.8 75.6 L555.0 70.0 L556.2 64.7 L557.5 59.9 L558.8 55.4 L560.0 51.5 L561.2 48.0 L562.5 45.2 L563.8 42.9 L565.0 41.3 L566.2 40.3 L567.5 40.0 L568.8 40.3 L570.0 41.3 L571.2 42.9 L572.5 45.2 L573.8 48.0 L575.0 51.5 L576.2 55.4 L577.5 59.9 L578.8 64.7 L580.0 70.0 L581.2 75.6 L582.5 81.5 L583.8 87.5 L585.0 93.7 L586.2 100.0 L587.5 106.3 L588.8 112.5 L590.0 118.5 L591.2 124.4 L592.5 130.0 L593.8 135.3 L595.0 140.1 L596.2 144.6 L597.5 148.5 L598.8 152.0 L600.0 154.8 L601.2 157.1 L602.5 158.7 L603.8 159.7 L605.0 160.0 L606.2 159.7 L607.5 158.7 L608.8 157.1 L610.0 154.8 L611.2 152.0 L612.5 148.5 L613.8 144.6 L615.0 140.1 L616.2 135.3 L617.5 130.0 L618.8 124.4 L620.0 118.5 L621.2 112.5 L622.5 106.3 L623.8 100.0 L625.0 93.7 L626.2 87.5 L627.5 81.5 L628.8 75.6 L630.0 70.0 L631.2 64.7 L632.5 59.9 L633.8 55.4 L635.0 51.5 L636.2 48.0 L637.5 45.2 L638.8 42.9 L640.0 41.3 L641.2 40.3 L642.5 40.0 L643.8 40.3 L645.0 41.3 L646.2 42.9 L647.5 45.2 L648.8 48.0 L650.0 51.5 L651.2 55.4 L652.5 59.9 L653.8 64.7 L655.0 70.0 L656.2 75.6 L657.5 81.5 L658.8 87.5 L660.0 93.7 L661.2 100.0 L662.5 106.3 L663.8 112.5 L665.0 118.5 L666.2 124.4 L667.5 130.0 L668.8 135.3 L670.0 140.1 L671.2 144.6 L672.5 148.5 L673.8 152.0 L675.0 154.8 L676.2 157.1 L677.5 158.7 L678.8 159.7 L680.0 160.0"/>
+            <path class="fg-dash" d="M380 100 H680"/>
+            
+            <text class="fg-m fg-c" x="530" y="196">punteada: potencia media = P máx / 2</text>
+          </svg>
+          <figcaption><strong>El valor eficaz sale de la potencia:</strong> como la potencia promedio es la mitad de la máxima, la tensión “equivalente” es Vp/√2, no Vp.</figcaption>
+        </figure>
+        <p>Con una carga resistiva, la corriente es <span class="eq">i(t) = v(t) / R</span> y la potencia promedio es <span class="eq">P = V<sub>rms</sub>² / R</span>.</p>
+      </section>
+
+      <section>
+        <h2 id="truerms">Medir el valor eficaz: promedio contra True RMS</h2>
+        <p>El valor eficaz se define, en general, como la raíz cuadrada del promedio del cuadrado de la señal (<em>root mean square</em>, RMS). Para una senoide da <em>V<sub>p</sub>/√2</em>, pero para otras formas de onda da factores distintos:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Forma de onda</th><th>V<sub>rms</sub> en función del pico</th></tr></thead>
+            <tbody>
+              <tr><td>Senoidal</td><td>V<sub>p</sub> / √2 ≈ 0,707 · V<sub>p</sub></td></tr>
+              <tr><td>Cuadrada (simétrica)</td><td>V<sub>p</sub></td></tr>
+              <tr><td>Triangular</td><td>V<sub>p</sub> / √3 ≈ 0,577 · V<sub>p</sub></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Los multímetros económicos no calculan el RMS real: miden el promedio de la señal rectificada y lo multiplican por un factor fijo (1,11) que es correcto <em>solo para ondas senoidales</em>. Con una onda cuadrada o con la forma distorsionada de una fuente conmutada, marcan un valor equivocado. Los multímetros <strong>True RMS</strong> calculan el valor eficaz verdadero de cualquier forma de onda.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El enchufe de tu casa</span>
+          <p>Los “220 V” son el valor <em>eficaz</em>. La tensión pico es <span class="eq">220 · √2 ≈ 311 V</span> y la tensión pico a pico, unos 622 V. Los multímetros comunes muestran el valor eficaz (los de buena calidad, “True RMS”, lo calculan correctamente aun si la onda no es senoidal).</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Aislación y seguridad</span>
+          <p>Los componentes de una fuente conectada a 220 V deben soportar los picos de 311 V, no solo los 220 V. Por eso los capacitores de entrada de los equipos tienen una tensión máxima de 400 V o más.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: la tostadora de 1000 W</span>
+          <p>Conectada a 220 V eficaces:</p>
+          <ol>
+            <li>Corriente eficaz: <span class="eq">I<sub>rms</sub> = P / V<sub>rms</sub> = 1000 / 220 ≈ 4,55 A</span></li>
+            <li>Corriente pico: <span class="eq">I<sub>p</sub> = I<sub>rms</sub> · √2 ≈ 6,43 A</span></li>
+            <li>Resistencia: <span class="eq">R = V<sub>rms</sub>² / P = 220² / 1000 = 48,4 Ω</span></li>
+            <li>La potencia instantánea oscila entre 0 y 2000 W (a 100 Hz, dos veces por ciclo de 50 Hz); su promedio es 1000 W.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Subí la frecuencia: el fasor gira más rápido y el período <em>T</em> se acorta, pero la altura de la onda no cambia.</li>
+        <li>Subí V<sub>p</sub>: la onda crece y V<sub>rms</sub> aumenta proporcionalmente (siempre es 0,707 · V<sub>p</sub>).</li>
+        <li>Observá los electrones del circuito: no “circulan”, oscilan alrededor de su lugar. Se mueven más rápido cuando |v| es grande y se frenan en los picos, donde invierten el sentido.</li>
+        <li>La resistencia se calienta en ambos semiciclos: la potencia depende de <em>v²</em>, así que nunca es negativa.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/ac.js"></script>
+  <script src="../js/quizzes/09-onda-senoidal.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

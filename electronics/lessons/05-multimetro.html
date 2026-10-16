@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El multímetro · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="05-multimetro" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 5</p>
+        <h1>El multímetro</h1>
+        <p class="lead">El instrumento básico de cualquier banco de trabajo: mide tensión, corriente y resistencia. Usarlo bien es tan importante como entender lo que mide.</p>
+      </header>
+      <section>
+        <h2>Qué es y cómo se usa</h2>
+        <p>El <strong>multímetro</strong> (o tester) reúne un voltímetro, un amperímetro y un óhmetro en un solo aparato. Tiene un <strong>selector</strong> para elegir la función, una pantalla y tres <strong>bornes</strong> donde se conectan las puntas: <em>COM</em> (la negra, siempre), <em>VΩ</em> (la roja para tensión y resistencia) y <em>A</em> o <em>mA</em> (la roja para corriente).</p>
+        <p>La regla de oro es entender <em>cómo se conecta</em> cada función:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 230" role="img" aria-labelledby="g5at g5ad">
+            <title id="g5at">Conexión de voltímetro y amperímetro</title>
+            <desc id="g5ad">El voltímetro se conecta en paralelo con el resistor y el amperímetro en serie con él.</desc>
+            <g>
+              <path class="fg-line" d="M40 40 H100 M166 40 H280 V160 H40 V114 M40 80 V40"/>
+              <path class="fg-line" d="M100 40 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M40 80 v10 M40 104 v10"/><line class="fg-line" x1="26" y1="90" x2="54" y2="90"/><line class="fg-line" x1="32" y1="104" x2="48" y2="104" stroke-width="4"/>
+              <path class="fg-line" d="M100 40 V100 H116 M150 100 H166 V40"/>
+              <circle cx="133" cy="100" r="17" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.5"/><text class="fg-a fg-c fg-b" x="133" y="106" font-size="17">V</text>
+              <text class="fg-t fg-i fg-c" x="133" y="26">R</text>
+              <text class="fg-t fg-b fg-c" x="160" y="198">Voltímetro: en paralelo</text>
+              <text class="fg-m fg-c" x="160" y="218">no se corta nada: se apoyan las puntas</text>
+            </g>
+            <g transform="translate(360,0)">
+              <path class="fg-line" d="M40 40 H70 M104 40 H160 M226 40 H280 V160 H40 V114 M40 80 V40"/>
+              <path class="fg-line" d="M160 40 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M40 80 v10 M40 104 v10"/><line class="fg-line" x1="26" y1="90" x2="54" y2="90"/><line class="fg-line" x1="32" y1="104" x2="48" y2="104" stroke-width="4"/>
+              <circle cx="87" cy="40" r="17" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.5"/><text class="fg-a fg-c fg-b" x="87" y="46" font-size="17">A</text>
+              <text class="fg-t fg-i fg-c" x="193" y="26">R</text>
+              <text class="fg-t fg-b fg-c" x="160" y="198">Amperímetro: en serie</text>
+              <text class="fg-m fg-c" x="160" y="218">se abre el circuito y la corriente lo atraviesa</text>
+            </g>
+          </svg>
+          <figcaption><strong>Voltímetro en paralelo, amperímetro en serie.</strong> Confundirlos es el error clásico (se explica en la sección siguiente).</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Para medir</th><th>Conexión</th><th>Por qué</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tensión (V)</strong></td><td>En <em>paralelo</em> con el componente</td><td>Compara el potencial entre dos puntos. Su resistencia interna es enorme (≈ 10 MΩ), así que casi no altera el circuito.</td></tr>
+              <tr><td><strong>Corriente (A)</strong></td><td>En <em>serie</em>: hay que abrir el circuito</td><td>Toda la corriente debe pasar por el instrumento. Su resistencia interna es casi cero.</td></tr>
+              <tr><td><strong>Resistencia (Ω)</strong></td><td>En paralelo, con el componente <em>sin energía</em></td><td>El multímetro envía una corriente pequeña propia; cualquier otra fuente falsea el resultado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Los errores que queman fusibles</h2>
+        <div class="note">
+          <span class="box-title">Medir corriente en paralelo</span>
+          <p>Un amperímetro tiene una resistencia casi nula. Si lo conectás en paralelo (como un voltímetro), actúa como un cortocircuito y circula una corriente enorme. En el mejor caso se quema el fusible interno; en el peor, el aparato o la fuente. La simulación de abajo te deja cometer este error sin consecuencias.</p>
+        </div>
+        <p>Otras precauciones: no medir resistencia con el circuito energizado; volver el selector a una posición segura (voltios) después de medir corriente; empezar por la escala más alta si se desconoce el valor; y no medir la tensión de la red sin instrumentos y puntas con la categoría de seguridad adecuada.</p>
+      </section>
+
+      <section>
+        <h2 id="interior">Cómo mide por dentro</h2>
+        <p>Un multímetro digital solo sabe medir una cosa: una pequeña tensión, que un <strong>conversor analógico-digital</strong> traduce a un número. Todo lo demás es una forma de convertir la magnitud a medir en esa tensión:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 220" role="img" aria-labelledby="g5bt g5bd">
+            <title id="g5bt">Cómo mide por dentro</title>
+            <desc id="g5bd">Tres magnitudes se convierten en una tensión pequeña que un conversor analógico-digital muestra como número.</desc>
+            <rect class="fg-box" x="20" y="34" width="150" height="44" rx="5"/><text class="fg-t fg-c" x="95" y="61">Tensión a medir</text>
+            <path class="fg-thin" d="M170 56 H210 M202 51 L210 56 L202 61"/>
+            <rect class="fg-box" x="210" y="34" width="240" height="44" rx="5"/><text class="fg-t fg-c" x="330" y="61">divisor de 10 MΩ → V chica</text>
+            <path class="fg-thin" d="M450 56 H490 M482 51 L490 56 L482 61"/>
+            <rect class="fg-box" x="490" y="34" width="130" height="44" rx="5" style="stroke:var(--accent)"/><text class="fg-a fg-c" x="555" y="61">A/D → número</text>            <rect class="fg-box" x="20" y="98" width="150" height="44" rx="5"/><text class="fg-t fg-c" x="95" y="125">Corriente</text>
+            <path class="fg-thin" d="M170 120 H210 M202 115 L210 120 L202 125"/>
+            <rect class="fg-box" x="210" y="98" width="240" height="44" rx="5"/><text class="fg-t fg-c" x="330" y="125">shunt 0,1 Ω → V = I · R</text>
+            <path class="fg-thin" d="M450 120 H490 M482 115 L490 120 L482 125"/>
+            <rect class="fg-box" x="490" y="98" width="130" height="44" rx="5" style="stroke:var(--accent)"/><text class="fg-a fg-c" x="555" y="125">A/D → número</text>            <rect class="fg-box" x="20" y="162" width="150" height="44" rx="5"/><text class="fg-t fg-c" x="95" y="189">Resistencia</text>
+            <path class="fg-thin" d="M170 184 H210 M202 179 L210 184 L202 189"/>
+            <rect class="fg-box" x="210" y="162" width="240" height="44" rx="5"/><text class="fg-t fg-c" x="330" y="189">fuente I₀ → V = I₀ · R</text>
+            <path class="fg-thin" d="M450 184 H490 M482 179 L490 184 L482 189"/>
+            <rect class="fg-box" x="490" y="162" width="130" height="44" rx="5" style="stroke:var(--accent)"/><text class="fg-a fg-c" x="555" y="189">A/D → número</text>
+            <text class="fg-m fg-c" x="95" y="22">magnitud</text><text class="fg-m fg-c" x="330" y="22">se convierte en una tensión pequeña</text><text class="fg-m fg-c" x="555" y="22">conversor</text>
+          </svg>
+          <figcaption>Un solo medidor de tensión sirve para las tres funciones; lo que cambia es el “traductor” que lo precede.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Voltímetro:</strong> un divisor de tensión interno, con resistencias muy grandes en serie (típicamente 10 MΩ en total), reduce la tensión a medir a un valor pequeño.</li>
+          <li><strong>Amperímetro:</strong> la corriente atraviesa una resistencia muy pequeña llamada <em>shunt</em> (por ejemplo, 0,1 Ω); el instrumento mide la caída <em>I·R</em> sobre ella. Como esa resistencia queda en serie con el circuito, provoca una pequeña “caída de carga” que hay que tener presente en circuitos de baja tensión. Los bornes de corriente están protegidos con fusibles.</li>
+          <li><strong>Óhmetro:</strong> inyecta una corriente conocida <em>I<sub>0</sub></em> y mide la tensión <em>V</em> que aparece; la resistencia es <span class="eq">R = V / I<sub>0</sub></span>.</li>
+        </ul>
+        <h3>El instrumento también modifica lo que mide</h3>
+        <p>Un voltímetro ideal tendría resistencia infinita; el real tiene unos 10 MΩ. En circuitos de baja resistencia no se nota, pero en uno de resistencias muy grandes sí: el multímetro queda en paralelo con el componente y lo altera. Esto se llama <strong>efecto de carga</strong>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 230" role="img" aria-labelledby="g5ct g5cd">
+            <title id="g5ct">Efecto de carga</title>
+            <desc id="g5cd">Un divisor de dos resistores de 1 MΩ medido con un voltímetro de 10 MΩ en paralelo con el de abajo.</desc>
+            <path class="fg-line" d="M100 20 V40 M100 106 V134 M100 200 V210 H250 M100 120 H250 V150 M250 186 V210"/>
+            <g transform="translate(100,40) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><g transform="translate(100,134) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <circle cx="250" cy="168" r="17" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.5"/><text class="fg-a fg-c fg-b" x="250" y="174" font-size="17">V</text>
+            <circle class="fg-fill-acc" cx="100" cy="120" r="4"/>
+            <text class="fg-t" x="60" y="26" text-anchor="end">+10 V</text>
+            <text class="fg-m fg-e" x="86" y="78">1 MΩ</text><text class="fg-m fg-e" x="86" y="172">1 MΩ</text>
+            <text class="fg-m" x="276" y="172">10 MΩ (multímetro)</text>
+            <text class="fg-m" x="60" y="214" text-anchor="end">0 V</text>
+            <text class="fg-t fg-b" x="420" y="70">Esperado: 5 V</text>
+            <text class="fg-m" x="420" y="94">1 MΩ ‖ 10 MΩ = 0,91 MΩ</text>
+            <text class="fg-bad fg-b" x="420" y="128" style="fill:var(--bad);stroke:none">Medido: 4,76 V</text>
+            <text class="fg-m" x="420" y="152">el instrumento “roba” corriente</text>
+            <text class="fg-m" x="420" y="172">y altera lo que mide</text>
+          </svg>
+          <figcaption>El voltímetro queda en paralelo con la resistencia de abajo y la reduce, así que la tensión del punto medio baja de 5 V a 4,76 V.</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: el efecto de carga</span>
+          <p>Un divisor de 10 V con dos resistencias de 1 MΩ debería dar 5 V en el medio. Se lo mide con un multímetro de 10 MΩ.</p>
+          <ol>
+            <li>El multímetro queda en paralelo con la resistencia de abajo: <span class="eq">1 MΩ ‖ 10 MΩ = 0,91 MΩ</span>.</li>
+            <li>La tensión medida pasa a ser <span class="eq">10 V · 0,91 / (1 + 0,91) = 4,76 V</span>, casi un 5 % por debajo de lo esperado.</li>
+            <li>Con resistencias de 10 kΩ la misma medición daría 4,998 V: el error es despreciable.</li>
+          </ol>
+        </div>
+        <h3>Resolución, rangos y seguridad</h3>
+        <p>La pantalla de un multímetro común es de “3½ dígitos”: puede mostrar hasta 1999. Por eso conviene elegir el <em>menor rango que contenga el valor</em>: al medir 3,3 V, el rango de 20 V da 3,30 V y el de 200 V solo 3,3 V. La precisión se da como un porcentaje de la lectura más unos pocos dígitos.</p>
+        <p>Los multímetros se clasifican en <strong>categorías de seguridad</strong> (CAT II, III, IV) según los picos de tensión que soportan sin riesgo en cada punto de una instalación. Para medir en una instalación de 220 V hay que usar un instrumento y puntas con la categoría adecuada, además de saber qué se está haciendo.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">¿Está gastada la pila?</span>
+          <p>Con el selector en voltios continuos, apoyás la punta roja en el polo + y la negra en el −. Una pila alcalina nueva marca cerca de 1,5 V (a veces algo más); por debajo de 1,2 V ya está casi agotada. Mejor aún es medirla <em>con carga</em>: una pila gastada puede marcar 1,3 V en vacío y caer a 0,8 V al encender el aparato, por su resistencia interna.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Prueba de continuidad</span>
+          <p>En la función “continuidad” (símbolo de zumbador), el multímetro suena si hay un camino de baja resistencia entre las puntas. Sirve para saber si un cable está cortado, si un fusible está sano o si dos puntos de una placa están unidos.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">¿Cuánto consume este circuito?</span>
+          <p>Para medir cuánto consume un <a class="xref" href="07-diodos-led.html#led">LED</a> o un sensor, se corta un cable de alimentación y se intercala el multímetro en serie (selector en mA, punta roja en el borne mA). Medir la corriente es la forma directa de estimar cuánto durará una batería.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: qué debería marcar</span>
+          <p>Circuito de la simulación: 9 V, R<sub>1</sub> = 300 Ω y R<sub>2</sub> = 600 Ω en serie.</p>
+          <ol>
+            <li>Corriente: <span class="eq">I = 9 V / 900 Ω = 10 mA</span> (amperímetro en serie).</li>
+            <li>Entre A y B (sobre R<sub>1</sub>): <span class="eq">V<sub>AB</sub> = 10 mA · 300 Ω = 3 V</span>. Entre B y C: <span class="eq">V<sub>BC</sub> = 6 V</span>. Entre A y C: 9 V (3 V + 6 V ✓).</li>
+            <li>Con la fuente retirada, entre A y C el óhmetro marca 300 Ω + 600 Ω = 900 Ω.</li>
+            <li>Si por error conectás el amperímetro en paralelo con R<sub>1</sub>, la leés “puenteada”: <span class="eq">I = 9 V / 600 Ω = 15 mA</span>. Ya no medís lo que había antes: modificaste el circuito.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Modo <strong>Voltios</strong>, roja en A y negra en C: leés la tensión de la fuente. Probá A–B y B–C: son las caídas en cada resistencia y suman el total.</li>
+        <li>Intercambiá las puntas (roja en C, negra en A): la lectura es negativa. Es la polaridad invertida.</li>
+        <li>Modo <strong>Amperios</strong> “en serie”: la corriente real del circuito. Ahora cambiá a “paralelo a R₁”: la lectura cambia porque cortocircuitaste una resistencia.</li>
+        <li>Modo <strong>Ohmios</strong> con la fuente conectada: da error. Retirá la fuente y medí R₁, R₂ y R₁ + R₂ cambiando las puntas.</li>
+        <li>Subí la tensión a 12 V y bajá las resistencias a 100 Ω: ¿qué tan peligroso sería el error de medir corriente en paralelo?</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/multimeter.js"></script>
+  <script src="../js/quizzes/05-multimetro.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+---
+description: Convenciones generales del proyecto "Elementos de Electrónica" (idioma, estructura, sin build)
+alwaysApply: true
+---
+
+# Proyecto: Elementos de Electrónica
+
+Sitio estático de teoría de electrónica con simulaciones. HTML, CSS y JS vanilla: **sin build, sin dependencias, sin módulos ES**. Tiene que abrirse con doble clic (`file://`).
+
+- **Idioma:** español rioplatense, con voseo ("Poné", "Mirá", "Probá"). Decimales con coma (1,5 V), espacio entre número y unidad. Nunca mezclar con tuteo.
+- **Estructura:** `lessons/` (un capítulo por página), `css/`, `js/core/` (piezas reutilizables), `js/sims/` (una simulación por capítulo), `js/quizzes/` (preguntas por capítulo). Ver `README.md`.
+- **JS:** cada archivo es una función autoejecutable que lee y publica en `window.Elec`. El orden de los `<script>` importa.
+- **Colores:** solo tokens de `css/base.css` (`--text`, `--accent`, `--charge-pos`, ...). Nada de colores fijos en HTML ni en canvas, para respetar el tema claro/oscuro. Excepciones: colores que son *el dato* (franjas de resistores, espectro visible).
+- **Todo capítulo nuevo cumple `lesson-structure.mdc`:** teoría, imágenes, laboratorio y cuestionario. No se publica un capítulo al que le falte alguna de las cuatro partes.
+- Antes de dar un cambio por terminado, abrir la página en el navegador (Chrome **y Firefox**) y comprobar que se ve bien en tema claro y oscuro.

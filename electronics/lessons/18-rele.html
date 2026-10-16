@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El relé · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="18-rele" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 18</p>
+        <h1>El relé</h1>
+        <p class="lead">Un electroimán que cierra o abre contactos: aísla el circuito de control del circuito de potencia y permite manejar corrientes y tensiones que un transistor no soportaría.</p>
+      </header>
+      <section>
+        <h2>Un interruptor que se acciona con un electroimán</h2>
+        <p>El <strong>relé</strong> es un interruptor accionado eléctricamente. Por dentro tiene dos partes bien separadas: una <strong>bobina</strong> (el electroimán del <a class="xref" href="12-induccion.html">capítulo 12</a>) y uno o más <strong>contactos</strong> metálicos. Cuando circula corriente por la bobina, crea un campo magnético que atrae una <strong>armadura</strong> de hierro; ésta empuja los contactos y los cierra o los abre. Al cortar la corriente, un resorte los devuelve a su posición.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 740 270" role="img" aria-labelledby="g18at g18ad">
+            <title id="g18at">Por dentro de un relé: en reposo y energizado</title>
+            <desc id="g18ad">Un relé con su bobina, núcleo, armadura y contactos en dos estados: sin corriente, con el contacto común unido al normalmente cerrado, y energizado, con el contacto común unido al normalmente abierto y la lámpara encendida.</desc>
+<text class="fg-t fg-b fg-c" x="180" y="22">En reposo</text><rect class="fg-box" x="72" y="104" width="16" height="108" style="fill:var(--surface-2)"/><ellipse cx="80" cy="116" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="130" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="144" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="158" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="172" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="186" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><ellipse cx="80" cy="200" rx="24" ry="6" style="fill:var(--bg);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M56 116 H30 V240 M104 200 H130 V240" style="stroke-width:2"/><text class="fg-m fg-c" x="80" y="236">bobina</text><text class="fg-m fg-c" x="80" y="252" font-size="11.5">sin corriente</text><path class="fg-line" d="M70.0 70.0 L122 70 L262.0 70.0" style="stroke-width:5;stroke:var(--wire)"/><circle cx="122" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><text class="fg-m fg-e" x="64.0" y="64.0" font-size="11.5">armadura</text><circle cx="262" cy="28.3" r="5" class="fg-fill-wire"/><circle cx="262" cy="76" r="5" class="fg-fill-wire"/><text class="fg-m" x="266" y="18.3" font-size="12">NA</text><text class="fg-m" x="272" y="90" font-size="12">NC</text><path class="fg-line" d="M122 70 V36"/><text class="fg-m" x="130" y="46" font-size="12">COM</text><text class="fg-a fg-b" x="114" y="34" text-anchor="end" style="fill:var(--accent)" font-size="12.5">+12 V</text><path class="fg-line" d="M262 28.3 H328 V104" style="stroke:var(--wire)"/><circle cx="328" cy="124" r="18" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M315.76 111.76 L340.24 136.24 M315.76 136.24 L340.24 111.76" style="stroke-width:1.8"/><path class="fg-line" d="M328 142 V210"/><path class="fg-line" d="M328 210 V218 M314 218 H342 M319 223 H337 M324 228 H332"/><text class="fg-m fg-c" x="328" y="262" font-size="11.5">lámpara apagada</text><text class="fg-t fg-b fg-c" x="540" y="22">Energizado</text><rect class="fg-box" x="432" y="104" width="16" height="108" style="fill:var(--surface-2)"/><ellipse cx="440" cy="116" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="130" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="144" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="158" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="172" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="186" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><ellipse cx="440" cy="200" rx="24" ry="6" style="fill:var(--bg);stroke:var(--heat);stroke-width:2.2"/><path class="fg-line" d="M416 116 H390 V240 M464 200 H490 V240" style="stroke-width:2"/><text class="fg-m fg-c" x="440" y="236">bobina</text><text class="fg-m fg-c" x="440" y="252" font-size="11.5">con corriente</text><path class="fg-line" d="M431.9 84.0 L482 70 L616.8 32.3" style="stroke-width:5;stroke:var(--good)"/><circle cx="482" cy="70" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><text class="fg-m fg-e" x="425.9" y="78.0" font-size="11.5">armadura</text><circle cx="622" cy="28.3" r="5" class="fg-fill-wire"/><circle cx="622" cy="76" r="5" class="fg-fill-wire"/><text class="fg-m" x="626" y="18.3" font-size="12">NA</text><text class="fg-m" x="632" y="90" font-size="12">NC</text><path class="fg-line" d="M482 70 V36"/><text class="fg-m" x="490" y="46" font-size="12">COM</text><text class="fg-a fg-b" x="474" y="34" text-anchor="end" style="fill:var(--accent)" font-size="12.5">+12 V</text><path class="fg-line" d="M622 28.3 H688 V104" style="stroke:var(--charge-pos)"/><circle cx="688" cy="124" r="36" style="fill:var(--heat);opacity:.28"/><circle cx="688" cy="124" r="18" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M675.76 111.76 L700.24 136.24 M675.76 136.24 L700.24 111.76" style="stroke-width:1.8"/><path class="fg-line" d="M688 142 V210"/><path class="fg-line" d="M688 210 V218 M674 218 H702 M679 223 H697 M684 228 H692"/><text class="fg-m fg-c" x="688" y="262" font-size="11.5">lámpara encendida</text>
+          </svg>
+          <figcaption><strong>Un electroimán que mueve un contacto.</strong> Con corriente en la bobina, el núcleo atrae la armadura, que empuja el contacto común hacia el de trabajo (NA); al cortar la corriente, un resorte lo devuelve al de reposo (NC).</figcaption>
+        </figure>
+
+        <p>La gran ventaja es la <strong>aislación galvánica</strong>: el circuito de control (la bobina, de 5 V, 12 V o 24 V) y el circuito de carga (los contactos, que pueden manejar 220 V y 10 A) no tienen ninguna conexión eléctrica entre sí. Una señal débil y segura gobierna un aparato de potencia. Además, los contactos son metal contra metal: cuando están cerrados, su resistencia es casi nula, y sirven tanto para corriente continua como alterna.</p>
+      </section>
+
+      <section id="contactos">
+        <h2>Los contactos: COM, NA y NC</h2>
+        <p>En cada contacto hay tres terminales posibles:</p>
+        <ul>
+          <li><strong>COM</strong> (común): el que se mueve.</li>
+          <li><strong>NC</strong> (<em>normalmente cerrado</em>): conectado a COM cuando la bobina <em>no</em> tiene corriente.</li>
+          <li><strong>NA</strong> (<em>normalmente abierto</em>, a veces NO): conectado a COM cuando la bobina <em>sí</em> tiene corriente.</li>
+        </ul>
+        <p>«Normalmente» se refiere al estado de reposo. La lámpara de la figura anterior está en NA: se enciende cuando se energiza el relé. Si se la conectara a NC, estaría encendida en reposo y se apagaría al energizar (útil para circuitos que deben funcionar si falla la alimentación de control).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 220" role="img" aria-labelledby="g18bt g18bd">
+            <title id="g18bt">Tipos de contactos</title>
+            <desc id="g18bd">Símbolos de un relé con un contacto normalmente abierto (SPST), un conmutador con común, normalmente abierto y normalmente cerrado (SPDT) y dos conmutadores acoplados (DPDT).</desc>
+            <text class="fg-t fg-b fg-c" x="110" y="22">SPST (1 NA)</text>
+            <path class="fg-line" d="M40 100 H64 M156 100 H180"/><circle cx="64" cy="100" r="3.5" class="fg-fill-wire"/><circle cx="156" cy="100" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M64 100 L148 66"/>
+            <text class="fg-m fg-c" x="110" y="150" font-size="12">un contacto que se cierra</text><text class="fg-m fg-c" x="110" y="168" font-size="12">al energizar</text>
+            <text class="fg-t fg-b fg-c" x="350" y="22">SPDT (conmutador)</text>
+            <path class="fg-line" d="M270 100 H294"/><circle cx="294" cy="100" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M294 100 L382 112"/>
+            <circle cx="386" cy="62" r="3.5" class="fg-fill-wire"/><circle cx="386" cy="112" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M386 62 H420 M386 112 H420"/>
+            <text class="fg-m" x="270" y="124" font-size="12">COM</text><text class="fg-m" x="426" y="66" font-size="12">NA</text><text class="fg-m" x="426" y="116" font-size="12">NC</text>
+            <text class="fg-m fg-c" x="350" y="150" font-size="12">una entrada, dos salidas:</text><text class="fg-m fg-c" x="350" y="168" font-size="12">reposo en NC, trabajo en NA</text>
+            <text class="fg-t fg-b fg-c" x="590" y="22">DPDT (dos circuitos)</text>
+            <path class="fg-line" d="M510 62 H534 M510 140 H534"/>
+            <circle cx="534" cy="62" r="3.5" class="fg-fill-wire"/><circle cx="534" cy="140" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M534 62 L622 74 M534 140 L622 152"/>
+            <path class="fg-dash" d="M578 68 V146"/>
+            <circle cx="626" cy="40" r="3.5" class="fg-fill-wire"/><circle cx="626" cy="74" r="3.5" class="fg-fill-wire"/><circle cx="626" cy="118" r="3.5" class="fg-fill-wire"/><circle cx="626" cy="152" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M626 40 H650 M626 74 H650 M626 118 H650 M626 152 H650"/>
+            <text class="fg-m" x="656" y="44" font-size="11.5">NA</text><text class="fg-m" x="656" y="78" font-size="11.5">NC</text><text class="fg-m" x="656" y="122" font-size="11.5">NA</text><text class="fg-m" x="656" y="156" font-size="11.5">NC</text>
+            <text class="fg-m fg-c" x="590" y="186" font-size="12">dos conmutadores unidos</text><text class="fg-m fg-c" x="590" y="204" font-size="12">por el mismo mecanismo</text>
+          </svg>
+          <figcaption><strong>NA</strong> (normalmente abierto) conduce solo con la bobina energizada; <strong>NC</strong> (normalmente cerrado) conduce solo en reposo; <strong>COM</strong> es el terminal común que se mueve de uno al otro.</figcaption>
+        </figure>
+
+        <p>Las siglas indican cuántos circuitos controla y cuántos caminos tiene cada uno: <strong>SPST</strong> (un polo, una vía: un interruptor simple), <strong>SPDT</strong> (un polo, dos vías: un conmutador, el más común) y <strong>DPDT</strong> (dos conmutadores accionados a la vez).</p>
+      </section>
+
+      <section id="bobina">
+        <h2>La bobina: qué hay que saber</h2>
+        <p>La hoja de datos de un relé indica:</p>
+        <ul>
+          <li><strong>Tensión nominal de la bobina</strong> (5, 12, 24 V…): la tensión a la que está diseñada.</li>
+          <li><strong>Resistencia de la bobina</strong> (por ejemplo, 70 Ω a 5 V o 400 Ω a 12 V): de ahí sale la corriente, <span class="eq">I = V / R</span>, y la potencia que consume mientras está energizado, <span class="eq">P = V² / R</span> (unos 0,3–0,4 W en un relé común). El relé consume ese valor <em>todo el tiempo</em> que está activado.</li>
+          <li><strong>Tensión de cierre</strong> (<em>pull-in</em>, alrededor del 75 % de la nominal) y <strong>tensión de apertura</strong> (<em>drop-out</em>, 10–20 %): la bobina necesita llegar a un umbral para cerrar, pero una vez cerrado el relé se mantiene con menos tensión, porque el entrehierro es menor. Es una <em>histéresis</em>.</li>
+          <li><strong>Tiempo de operación y de liberación</strong>: de 5 a 15 ms. La corriente de la bobina crece con la constante de tiempo <span class="eq">τ = L / R</span> (el mismo proceso del <a class="xref" href="06-capacitores-rc.html">circuito RC</a>, pero con una bobina) y la armadura tarda unos ms en moverse.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 270" role="img" aria-labelledby="g18ct g18cd">
+            <title id="g18ct">Histéresis de un relé</title>
+            <desc id="g18cd">Estado del contacto según la tensión aplicada a la bobina: cierra al llegar al 75 por ciento de la tensión nominal y abre al caer por debajo de alrededor del 20 por ciento.</desc>
+            <path class="fg-line" d="M80 30 V200 H574 M74 38 L80 30 L86 38 M566 194 L574 200 L566 206"/>
+            <path class="fg-dash" d="M440.0 200 V70 M176.0 200 V70"/>
+            <path class="fg-dash" d="M560 200 V70" style="stroke:var(--muted)"/>
+            <path class="fg-acc" d="M80 200 H440.0 V80 H560" style="stroke:var(--heat)"/>
+            <path class="fg-acc" d="M560 72 H176.0 V192 H80" style="stroke:var(--accent)"/>
+            <text class="fg-t fg-b" x="436.0" y="220" text-anchor="middle">cierra</text><text class="fg-m" x="436.0" y="236" text-anchor="middle" font-size="12">75 % de V<tspan font-size="9" dy="3">nom</tspan></text>
+            <text class="fg-t fg-b" x="176.0" y="220" text-anchor="middle">abre</text><text class="fg-m" x="176.0" y="236" text-anchor="middle" font-size="12">~ 20 % de V<tspan font-size="9" dy="3">nom</tspan></text>
+            <text class="fg-m" x="560" y="220" text-anchor="middle">V<tspan font-size="9" dy="3">nom</tspan></text>
+            <text class="fg-m fg-e" x="72" y="204">NC</text><text class="fg-m fg-e" x="72" y="84">NA</text>
+            <text class="fg-m" x="252.79999999999998" y="114" style="fill:var(--heat)" font-size="12.5">tensión subiendo →</text>
+            <text class="fg-m" x="252.79999999999998" y="66" style="fill:var(--accent)" font-size="12.5">← tensión bajando</text>
+            <text class="fg-t fg-b fg-c" x="320.0" y="262" font-size="12.5">tensión aplicada a la bobina</text>
+            <text class="fg-m" x="86" y="26">estado del contacto</text>
+            <text class="fg-m fg-c" x="305.6" y="144.0" font-size="12.5">zona de histéresis: mantiene el estado</text>
+          </svg>
+          <figcaption><strong>Cierra alto y abre bajo.</strong> Entre los dos umbrales el relé conserva el estado en que estaba. Una tensión que «se cae» o que oscila cerca del umbral puede dejarlo a medias.</figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="box-title">Una bobina es inductiva</span>
+          <p>Al cortar la corriente, la bobina del relé genera un pico de tensión (<a class="xref" href="12-induccion.html#inductancia">autoinducción</a>) que puede destruir al transistor o al microcontrolador que la maneja. Por eso en paralelo con la bobina se coloca siempre un diodo (capítulo <a class="xref" href="19-cargas-inductivas.html">19</a>).</p>
+        </div>
+      </section>
+
+      <section id="capacidad">
+        <h2>Los contactos: capacidad y desgaste</h2>
+        <p>Un relé se especifica, por ejemplo, como «10 A · 250 V CA / 30 V CC». Cada dato tiene su razón:</p>
+        <ul>
+          <li><strong>La corriente continua es más exigente que la alterna.</strong> Al abrir un contacto con corriente, se forma un arco. En alterna, la corriente pasa por cero 100 veces por segundo y el arco se apaga solo; en continua no, y el arco puede mantenerse y quemar los contactos. Por eso los mismos 10 A de un relé valen 250 V en CA pero apenas 30 V en CC.</li>
+          <li><strong>Las cargas inductivas y las lámparas piden más.</strong> Un motor al arrancar toma de 5 a 10 veces su corriente nominal, y el filamento frío de una lámpara incandescente, unas 10 veces. Hay que dimensionar el relé para ese pico.</li>
+          <li><strong>Vida útil:</strong> un relé aguanta unos 10 millones de maniobras sin carga (mecánica) pero solo unas 100 000 a plena carga (eléctrica): cada maniobra desgasta un poco los contactos.</li>
+          <li><strong>Rebote:</strong> al cerrarse, los contactos «rebotan» durante 1–5 ms, abriendo y cerrando varias veces. No importa para una lámpara, pero sí para una entrada digital.</li>
+        </ul>
+      </section>
+
+      <section id="excitar">
+        <h2>Cómo se maneja un relé</h2>
+        <p>Una bobina de 70 mA es demasiado para un pin de microcontrolador (unos 20 mA), así que se la maneja con un <strong>transistor</strong> como interruptor (<a class="xref" href="15-transistor-interruptor.html">capítulo 15</a>) o un MOSFET (<a class="xref" href="17-mosfet.html">capítulo 17</a>), y con un diodo en paralelo. Los «módulos de relé» que se compran para placas tipo Arduino ya traen todo eso, y a menudo un optoacoplador que aísla también el microcontrolador de la etapa del relé.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 318" role="img" aria-labelledby="g18dt g18dd">
+            <title id="g18dt">Cómo se maneja un relé desde un microcontrolador</title>
+            <desc id="g18dd">Un pin del microcontrolador alimenta la base de un transistor que energiza la bobina del relé, con un diodo en paralelo, mientras los contactos conectan una lámpara de 220 voltios sin conexión eléctrica con el circuito de control.</desc>
+            <text class="fg-t fg-b" x="20" y="18">Circuito de control (5 V)</text><text class="fg-t fg-b" x="400" y="18">Circuito de carga (220 V)</text>
+            <path class="fg-line" d="M110 38 H310"/><text class="fg-a fg-b" x="316" y="43" style="fill:var(--accent)">+5 V</text>
+            <path class="fg-line" d="M140 38 V70 M140 110 V150 H232.6 V163.77427686910778"/>
+            <polygon points="128,110 152,110 140,76" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M128 76 H152"/>
+            <text class="fg-m fg-e" x="118" y="96" font-size="12">diodo</text><text class="fg-m fg-e" x="118" y="110" font-size="11.5">(cap. 19)</text>
+            <path class="fg-line" d="M232.6 38 V62"/><rect class="fg-box" x="204.6" y="62" width="56" height="70" rx="3" style="fill:var(--surface-2)"/><path class="fg-line" d="M232.6 132 V150"/>
+            <text class="fg-t fg-c fg-b" x="232.6" y="92" font-size="12">bobina</text><text class="fg-m fg-c" x="232.6" y="108" font-size="11">70 mA</text>
+            <path class="fg-line" d="M62 215 H90"/><path class="fg-line" d="M90 215 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M156 215 H164"/>
+            <rect class="fg-box" x="8" y="195" width="54" height="40" rx="5"/><text class="fg-t fg-b fg-c" x="35" y="220" font-size="13">Micro</text>
+            <circle cx="220" cy="215" r="30" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M164 215 H211.0"/><path class="fg-line" d="M211.0 200.0 V230.0" style="stroke-width:3.5"/><path class="fg-line" d="M211.0 208.4 L232.6 187.77427686910778 V163.77427686910778 M211.0 221.6 L232.6 242.22572313089222 V266.2257231308922"/><polygon class="fg-fill-wire" points="228.3,238.1 219.9,234.9 224.7,229.8"/><text class="fg-m" x="241.6" y="169.77427686910778">C</text><text class="fg-m" x="241.6" y="268.2257231308922">E</text><text class="fg-m fg-e" x="160" y="209">B</text>
+            <path class="fg-line" d="M232.6 266.2257231308922 V274.2257231308922"/><path class="fg-line" d="M232.6 274.2257231308922 V282.2257231308922 M218.6 282.2257231308922 H246.6 M223.6 287.2257231308922 H241.6 M228.6 292.2257231308922 H236.6"/>
+            <text class="fg-t fg-i fg-c" x="123" y="196">R<tspan font-size="10" dy="3">B</tspan></text>
+            <path class="fg-dash" d="M248.6 126 H509 V76" style="stroke:var(--heat);stroke-width:1.8"/><text class="fg-m" x="266.6" y="118" style="fill:var(--heat)" font-size="12">acoplamiento mecánico</text>
+            <path class="fg-dash" d="M360 22 V290" style="stroke:var(--muted)"/><text class="fg-m fg-c" x="360" y="304" font-size="12">sin conexión eléctrica</text>
+            <circle cx="420" cy="190" r="17" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-acc" d="M410 190 q5 -9 10 0 t10 0" style="stroke-width:2"/><text class="fg-t fg-c" x="420" y="226">220 V</text>
+            <path class="fg-line" d="M420 173 V70 H470 M420 207 V270 H640 V160"/>
+            <circle cx="470" cy="70" r="3.5" class="fg-fill-wire"/><circle cx="548" cy="70" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M470 70 L538 54" style="stroke:var(--wire)"/>
+            <path class="fg-line" d="M548 70 H640 V120"/>
+            <circle cx="640" cy="140" r="40" style="fill:var(--heat);opacity:.28"/><circle cx="640" cy="140" r="20" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M626.4 126.4 L653.6 153.6 M626.4 153.6 L653.6 126.4" style="stroke-width:1.8"/><text class="fg-m fg-c" x="640" y="178" font-size="12">lámpara</text>
+            <text class="fg-m fg-c" x="509" y="46" font-size="11.5">contacto NA</text>
+          </svg>
+          <figcaption><strong>El transistor maneja la bobina</strong> (que pide unas decenas de mA, más de lo que da un pin) y el diodo la protege del pico al apagar. Los contactos gobiernan la carga de 220 V, eléctricamente aislada del control.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="alternativas">
+        <h2>Relé, relé de estado sólido o transistor</h2>
+        <p>Un <strong>relé de estado sólido</strong> (SSR) conmuta sin partes móviles: un LED infrarrojo interno ilumina un semiconductor que, con un triac o un MOSFET, cierra el circuito de la carga. Es silencioso, rápido y casi no se desgasta.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th></th><th>Relé electromecánico</th><th>Relé de estado sólido</th><th>Transistor / MOSFET</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Aislación</strong></td><td>Sí, total</td><td>Sí (óptica)</td><td>No</td></tr>
+              <tr><td><strong>Carga</strong></td><td>CA o CC, cualquier tensión hasta el límite de contactos</td><td>Casi siempre solo CA (o solo CC según modelo)</td><td>Solo CC</td></tr>
+              <tr><td><strong>Caída al conducir</strong></td><td>≈ 0 (milésimas de ohm)</td><td>Entre 1 y 2 V (se calienta)</td><td>Muy baja (MOSFET)</td></tr>
+              <tr><td><strong>Velocidad y vida</strong></td><td>Lento (ms), se desgasta, hace «clic»</td><td>Rápido, silencioso, larga vida</td><td>Muy rápido, vida casi ilimitada</td></tr>
+              <tr><td><strong>Consumo de control</strong></td><td>Alto (decenas de mA)</td><td>Bajo (unos mA)</td><td>Casi nulo (MOSFET)</td></tr>
+              <tr><td><strong>Usos típicos</strong></td><td>Encender electrodomésticos, tableros, domótica, automóvil</td><td>Estufas, control de calefacción con PWM lento</td><td>Cargas de CC de potencia, PWM</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="seguridad">
+        <h2>Seguridad con 220 V</h2>
+        <div class="note">
+          <span class="box-title">Atención</span>
+          <p>Los contactos de un relé pueden conectar la red de 220 V. Un error de cableado o un contacto que se suelda puede causar una descarga o un incendio. Con la red: nada de proyectos sin caja cerrada, bornes bien ajustados y cable de sección suficiente, fusible o llave térmica en la línea, y conexiones hechas <em>siempre con el equipo desenchufado</em>. Si no tenés experiencia, usá un módulo comercial con certificaciones y pedí ayuda.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El automóvil</span>
+          <p>Las bocinas, las luces altas y el motor de arranque se manejan con relés de 12 V y 30–40 A: el interruptor del tablero solo conduce los pocos mA de la bobina y no el grueso de la corriente, así que los cables del tablero pueden ser finos.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Electrodomésticos y tableros</span>
+          <p>El compresor de una heladera o de un aire acondicionado, las contactoras de una industria y los tableros de domótica emplean relés (o sus parientes grandes, los contactores) para conectar cargas de cientos de watts o kilowatts.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El «clic» que se oye</span>
+          <p>Es la armadura golpeando contra el núcleo y los contactos cerrándose. Si escuchás un relé que «tartamudea» (clic-clic-clic) es porque la tensión de su bobina oscila cerca del umbral de cierre y se abre y cierra una y otra vez.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: datos de la bobina</span>
+          <p>Un relé de 12 V tiene bobina de 400 Ω.</p>
+          <ol>
+            <li>Corriente: <span class="eq">I = 12 / 400 = 30 mA</span> y potencia <span class="eq">P = 12² / 400 = 0,36 W</span>.</li>
+            <li>Tensión de cierre (75 %): <span class="eq">0,75 · 12 = 9 V</span>. Con una fuente que «cae» a 8 V al arrancar un motor, el relé no cierra.</li>
+            <li>Tensión de apertura (≈ 20 %): <span class="eq">0,2 · 12 = 2,4 V</span>. Una vez cerrado, se mantiene aunque la tensión baje a 3 V.</li>
+            <li>Un pin de 5 V no puede manejarlo directo: haría falta un transistor, que entrega esos 30 mA desde la fuente de 12 V.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿alcanza el relé?</span>
+          <p>Un relé de 10 A / 250 V CA se usa para encender una lámpara halógena de 500 W en 220 V.</p>
+          <ol>
+            <li>Corriente de funcionamiento: <span class="eq">I = 500 / 220 ≈ 2,3 A</span>, muy por debajo de 10 A.</li>
+            <li>Pico al encender (filamento frío, unas 10 veces): <span class="eq">≈ 23 A</span> durante unos ms. Excede el valor nominal; el relé aguanta bien algunos picos, pero se desgasta más rápido y, en el peor caso, los contactos se sueldan.</li>
+            <li>Conviene un relé de mayor capacidad o uno de estado sólido con cruce por cero (que conecta cuando la tensión pasa por 0 V y evita el pico).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con el relé de 12 V y 12 V aplicados, encendé el interruptor. Mirá la gráfica (cámara lenta): la corriente sube con τ = 2 ms y, al superar la línea del 75 %, la armadura se mueve y la lámpara se enciende en unos 5 ms. Se mide el <strong>tiempo de cierre</strong> en el panel de fórmulas.</li>
+        <li>Apagá el interruptor: la corriente baja y, cuando pasa por el umbral del 20 %, la armadura vuelve y se enciende el LED del contacto NC. Fijate que la apertura ocurre bastante después de apagar: la bobina «se resiste» a perder la corriente.</li>
+        <li>Bajá la tensión de la bobina a 8 V (menos del 75 % de la nominal) y encendé: la corriente se estabiliza en 20 mA, no llega al umbral y el <strong>relé no cierra</strong>. Subí de a poco hasta 9 V y vé el momento exacto en que cierra.</li>
+        <li>Con el relé cerrado y 12 V, bajá la tensión a 5 V sin apagar: el relé se mantiene cerrado (histéresis: abre recién por debajo de ≈ 20 %, es decir unos 2,4 V). Es la razón de que un relé no «tartamudee» ante pequeñas caídas.</li>
+        <li>Cambiá a un relé de 5 V (bobina de 70 Ω, 71 mA) y aplicale 12 V: la corriente de la bobina sube a 171 mA (más del doble de la nominal): el relé cierra más rápido, pero la bobina se sobrecalienta, y puede quemarse si se mantiene. Aplicá a cada relé la tensión para la que fue diseñado.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/relay.js"></script>
+  <script src="../js/quizzes/18-rele.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

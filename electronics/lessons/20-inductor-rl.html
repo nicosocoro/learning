@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El inductor y el circuito RL · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="20-inductor-rl" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 20</p>
+        <h1>El inductor y el circuito RL</h1>
+        <p class="lead">La bobina como componente de circuito: se opone a los cambios de corriente, tarda L/R en cargarse y su oposición a la alterna crece con la frecuencia.</p>
+      </header>
+      <section>
+        <h2>El inductor: guardar energía en un campo magnético</h2>
+        <p>Un <strong>inductor</strong> (o <em>bobina</em>) es un alambre enrollado, con aire o con un núcleo de hierro o ferrita dentro. Ya lo conocemos del <a class="xref" href="12-induccion.html#inductancia">capítulo 12</a>: cuando la corriente cambia, su campo magnético cambia y se induce una tensión que <em>se opone</em> a ese cambio. La propiedad que lo mide es la <strong>inductancia</strong> <em>L</em>, en <strong>henrios (H)</strong>: 1 H es la inductancia que produce 1 V cuando la corriente cambia a razón de 1 A por segundo. En la práctica se usan µH, mH y, en transformadores y filtros de potencia, algunos henrios.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 245" role="img" aria-labelledby="g20at g20ad">
+            <title id="g20at">Una bobina y su analogía mecánica</title>
+            <desc id="g20ad">Una bobina con su símbolo y un volante de inercia que representa cómo la inductancia se opone a los cambios de corriente.</desc>
+            <text class="fg-t fg-b fg-c" x="170" y="22">Una bobina (inductor)</text>
+            <path class="fg-line" d="M20 110 H64 M276 110 H320"/>
+            <rect x="120.0" y="104" width="100" height="12" rx="2" style="fill:var(--surface-2);stroke:var(--muted)"/><ellipse cx="134.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="146.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="158.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="170.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="182.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="194.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/><ellipse cx="206.0" cy="110" rx="7" ry="26" style="fill:none;stroke:var(--heat);stroke-width:3"/>
+            <text class="fg-m fg-c" x="170" y="168">alambre enrollado, con o sin núcleo</text>
+            <path class="fg-line" d="M48 200 H110 q10 -22 20 0 t20 0 t20 0 t20 0 t20 0 H290" style="stroke-width:2.2"/>
+            <text class="fg-m fg-c" x="170" y="228" font-size="12">símbolo:   L  (se mide en henrios, H)</text>
+            <text class="fg-t fg-b fg-c" x="530" y="22">La analogía del volante</text>
+            <circle cx="530" cy="106" r="52" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:3"/>
+            <circle cx="530" cy="106" r="8" class="fg-fill-wire"/>
+            <path class="fg-line" d="M530 54 V158 M478 106 H582 M493 69 L567 143 M567 69 L493 143" style="stroke-width:2"/>
+            <path class="fg-acc" d="M590 70 A64 64 0 0 1 590 142 M582 138 L590 143 L592 133" style="stroke-width:2.5"/>
+            <text class="fg-m fg-c" x="530" y="186" font-size="12.5">no se frena ni se acelera de golpe:</text>
+            <text class="fg-m fg-c" x="530" y="204" font-size="12.5">su “inercia” es la inductancia L</text>
+            <text class="fg-t fg-c" x="530" y="228" font-size="12.5" style="fill:var(--accent)">corriente ↔ velocidad del volante</text>
+          </svg>
+          <figcaption><strong>La inductancia es la «inercia» de la corriente.</strong> Un volante pesado cuesta acelerarlo y cuesta frenarlo; una bobina con mucha inductancia se resiste de la misma manera a que su corriente aumente o disminuya.</figcaption>
+        </figure>
+
+        <p>Es el «gemelo opuesto» del capacitor (<a class="xref" href="06-capacitores-rc.html">capítulo 6</a>): el capacitor almacena energía en un campo <em>eléctrico</em> y se opone a los cambios de <em>tensión</em>; la bobina almacena energía en un campo <em>magnético</em> y se opone a los cambios de <em>corriente</em>.</p>
+      </section>
+
+      <section id="ecuaciones">
+        <h2>Tensión, corriente y energía</h2>
+        <p>La relación entre la tensión en una bobina y su corriente es:</p>
+        <p class="equation"><span class="eq">v<sub>L</sub> = L · Δi / Δt</span> &nbsp;&nbsp; <span class="eq">E = ½ · L · i²</span></p>
+        <ul>
+          <li>Con <strong>corriente constante</strong> (Δi = 0) no cae tensión en la bobina: en continua, una bobina ideal es un <em>cable</em>.</li>
+          <li>Con una corriente que cambia rápido cae mucha tensión: la bobina «frena» el cambio. Cortar de golpe la corriente de una bobina grande produce picos enormes, justo lo que vimos en el <a class="xref" href="19-cargas-inductivas.html">capítulo 19</a>.</li>
+          <li>La energía depende del cuadrado de la corriente: duplicar la corriente cuadruplica la energía guardada.</li>
+        </ul>
+      </section>
+
+      <section id="rl">
+        <h2>El circuito RL: la corriente tarda en crecer</h2>
+        <p>Si se conecta una bobina de inductancia <em>L</em> en serie con un resistor <em>R</em> a una fuente <em>V</em>, la corriente no salta al valor final <em>V/R</em>: crece gradualmente, como la tensión de un capacitor en un circuito RC. La corriente sigue una curva exponencial con constante de tiempo:</p>
+        <p class="equation"><span class="eq">τ = L / R</span> &nbsp;&nbsp; <span class="eq">i(t) = (V / R) · (1 − e<sup>−t/τ</sup>)</span></p>
+        <p>Los números para recordar son los mismos que en el circuito RC: a 1τ la corriente llegó al <strong>63 %</strong> de su valor final, a 2τ al 86 %, a 3τ al 95 % y a 5τ a más del 99 %. Al desconectar la fuente y dejar a la corriente un camino cerrado (por ejemplo, un diodo en paralelo), decae con la misma τ: queda el 37 % al cabo de 1τ.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 245" role="img" aria-labelledby="g20bt g20bd">
+            <title id="g20bt">Corriente y tensión de una bobina al conectarla</title>
+            <desc id="g20bd">Dos curvas exponenciales: la corriente sube del cero al valor final y la tensión en la bobina cae desde el valor de la fuente hasta cero.</desc>
+<path class="fg-line" d="M70 56 V200 H604 M64 64 L70 56 L76 64 M596 194 L604 200 L596 206"/>
+            <path class="fg-grid" d="M70 70 H590 M70 135.0 H590 M174.0 64 V200 M278.0 64 V200 M382.0 64 V200 M486.0 64 V200 M590 64 V200"/>
+            <path class="fg-pos" d="M70.0 200.0 L72.6 196.8 L75.2 193.7 L77.8 190.6 L80.4 187.6 L83.0 184.7 L85.6 181.9 L88.2 179.1 L90.8 176.4 L93.4 173.8 L96.0 171.2 L98.6 168.7 L101.2 166.3 L103.8 163.9 L106.4 161.6 L109.0 159.3 L111.6 157.1 L114.2 155.0 L116.8 152.9 L119.4 150.8 L122.0 148.8 L124.6 146.9 L127.2 145.0 L129.8 143.2 L132.4 141.3 L135.0 139.6 L137.6 137.9 L140.2 136.2 L142.8 134.6 L145.4 133.0 L148.0 131.4 L150.6 129.9 L153.2 128.4 L155.8 127.0 L158.4 125.6 L161.0 124.2 L163.6 122.9 L166.2 121.5 L168.8 120.3 L171.4 119.0 L174.0 117.8 L176.6 116.6 L179.2 115.5 L181.8 114.4 L184.4 113.3 L187.0 112.2 L189.6 111.2 L192.2 110.1 L194.8 109.2 L197.4 108.2 L200.0 107.2 L202.6 106.3 L205.2 105.4 L207.8 104.6 L210.4 103.7 L213.0 102.9 L215.6 102.1 L218.2 101.3 L220.8 100.5 L223.4 99.7 L226.0 99.0 L228.6 98.3 L231.2 97.6 L233.8 96.9 L236.4 96.2 L239.0 95.6 L241.6 95.0 L244.2 94.4 L246.8 93.7 L249.4 93.2 L252.0 92.6 L254.6 92.0 L257.2 91.5 L259.8 91.0 L262.4 90.4 L265.0 89.9 L267.6 89.4 L270.2 89.0 L272.8 88.5 L275.4 88.0 L278.0 87.6 L280.6 87.2 L283.2 86.7 L285.8 86.3 L288.4 85.9 L291.0 85.5 L293.6 85.1 L296.2 84.8 L298.8 84.4 L301.4 84.0 L304.0 83.7 L306.6 83.4 L309.2 83.0 L311.8 82.7 L314.4 82.4 L317.0 82.1 L319.6 81.8 L322.2 81.5 L324.8 81.2 L327.4 80.9 L330.0 80.7 L332.6 80.4 L335.2 80.2 L337.8 79.9 L340.4 79.7 L343.0 79.4 L345.6 79.2 L348.2 79.0 L350.8 78.7 L353.4 78.5 L356.0 78.3 L358.6 78.1 L361.2 77.9 L363.8 77.7 L366.4 77.5 L369.0 77.3 L371.6 77.2 L374.2 77.0 L376.8 76.8 L379.4 76.6 L382.0 76.5 L384.6 76.3 L387.2 76.2 L389.8 76.0 L392.4 75.9 L395.0 75.7 L397.6 75.6 L400.2 75.4 L402.8 75.3 L405.4 75.2 L408.0 75.0 L410.6 74.9 L413.2 74.8 L415.8 74.7 L418.4 74.6 L421.0 74.4 L423.6 74.3 L426.2 74.2 L428.8 74.1 L431.4 74.0 L434.0 73.9 L436.6 73.8 L439.2 73.7 L441.8 73.6 L444.4 73.6 L447.0 73.5 L449.6 73.4 L452.2 73.3 L454.8 73.2 L457.4 73.1 L460.0 73.1 L462.6 73.0 L465.2 72.9 L467.8 72.8 L470.4 72.8 L473.0 72.7 L475.6 72.6 L478.2 72.6 L480.8 72.5 L483.4 72.4 L486.0 72.4 L488.6 72.3 L491.2 72.3 L493.8 72.2 L496.4 72.2 L499.0 72.1 L501.6 72.0 L504.2 72.0 L506.8 71.9 L509.4 71.9 L512.0 71.9 L514.6 71.8 L517.2 71.8 L519.8 71.7 L522.4 71.7 L525.0 71.6 L527.6 71.6 L530.2 71.6 L532.8 71.5 L535.4 71.5 L538.0 71.4 L540.6 71.4 L543.2 71.4 L545.8 71.3 L548.4 71.3 L551.0 71.3 L553.6 71.2 L556.2 71.2 L558.8 71.2 L561.4 71.2 L564.0 71.1 L566.6 71.1 L569.2 71.1 L571.8 71.0 L574.4 71.0 L577.0 71.0 L579.6 71.0 L582.2 70.9 L584.8 70.9 L587.4 70.9 L590.0 70.9"/><path class="fg-acc" d="M70.0 70.0 L72.6 73.2 L75.2 76.3 L77.8 79.4 L80.4 82.4 L83.0 85.3 L85.6 88.1 L88.2 90.9 L90.8 93.6 L93.4 96.2 L96.0 98.8 L98.6 101.3 L101.2 103.7 L103.8 106.1 L106.4 108.4 L109.0 110.7 L111.6 112.9 L114.2 115.0 L116.8 117.1 L119.4 119.2 L122.0 121.2 L124.6 123.1 L127.2 125.0 L129.8 126.8 L132.4 128.7 L135.0 130.4 L137.6 132.1 L140.2 133.8 L142.8 135.4 L145.4 137.0 L148.0 138.6 L150.6 140.1 L153.2 141.6 L155.8 143.0 L158.4 144.4 L161.0 145.8 L163.6 147.1 L166.2 148.5 L168.8 149.7 L171.4 151.0 L174.0 152.2 L176.6 153.4 L179.2 154.5 L181.8 155.6 L184.4 156.7 L187.0 157.8 L189.6 158.8 L192.2 159.9 L194.8 160.8 L197.4 161.8 L200.0 162.8 L202.6 163.7 L205.2 164.6 L207.8 165.4 L210.4 166.3 L213.0 167.1 L215.6 167.9 L218.2 168.7 L220.8 169.5 L223.4 170.3 L226.0 171.0 L228.6 171.7 L231.2 172.4 L233.8 173.1 L236.4 173.8 L239.0 174.4 L241.6 175.0 L244.2 175.6 L246.8 176.3 L249.4 176.8 L252.0 177.4 L254.6 178.0 L257.2 178.5 L259.8 179.0 L262.4 179.6 L265.0 180.1 L267.6 180.6 L270.2 181.0 L272.8 181.5 L275.4 182.0 L278.0 182.4 L280.6 182.8 L283.2 183.3 L285.8 183.7 L288.4 184.1 L291.0 184.5 L293.6 184.9 L296.2 185.2 L298.8 185.6 L301.4 186.0 L304.0 186.3 L306.6 186.6 L309.2 187.0 L311.8 187.3 L314.4 187.6 L317.0 187.9 L319.6 188.2 L322.2 188.5 L324.8 188.8 L327.4 189.1 L330.0 189.3 L332.6 189.6 L335.2 189.8 L337.8 190.1 L340.4 190.3 L343.0 190.6 L345.6 190.8 L348.2 191.0 L350.8 191.3 L353.4 191.5 L356.0 191.7 L358.6 191.9 L361.2 192.1 L363.8 192.3 L366.4 192.5 L369.0 192.7 L371.6 192.8 L374.2 193.0 L376.8 193.2 L379.4 193.4 L382.0 193.5 L384.6 193.7 L387.2 193.8 L389.8 194.0 L392.4 194.1 L395.0 194.3 L397.6 194.4 L400.2 194.6 L402.8 194.7 L405.4 194.8 L408.0 195.0 L410.6 195.1 L413.2 195.2 L415.8 195.3 L418.4 195.4 L421.0 195.6 L423.6 195.7 L426.2 195.8 L428.8 195.9 L431.4 196.0 L434.0 196.1 L436.6 196.2 L439.2 196.3 L441.8 196.4 L444.4 196.4 L447.0 196.5 L449.6 196.6 L452.2 196.7 L454.8 196.8 L457.4 196.9 L460.0 196.9 L462.6 197.0 L465.2 197.1 L467.8 197.2 L470.4 197.2 L473.0 197.3 L475.6 197.4 L478.2 197.4 L480.8 197.5 L483.4 197.6 L486.0 197.6 L488.6 197.7 L491.2 197.7 L493.8 197.8 L496.4 197.8 L499.0 197.9 L501.6 198.0 L504.2 198.0 L506.8 198.1 L509.4 198.1 L512.0 198.1 L514.6 198.2 L517.2 198.2 L519.8 198.3 L522.4 198.3 L525.0 198.4 L527.6 198.4 L530.2 198.4 L532.8 198.5 L535.4 198.5 L538.0 198.6 L540.6 198.6 L543.2 198.6 L545.8 198.7 L548.4 198.7 L551.0 198.7 L553.6 198.8 L556.2 198.8 L558.8 198.8 L561.4 198.8 L564.0 198.9 L566.6 198.9 L569.2 198.9 L571.8 199.0 L574.4 199.0 L577.0 199.0 L579.6 199.0 L582.2 199.1 L584.8 199.1 L587.4 199.1 L590.0 199.1" style="stroke:var(--accent)"/>
+            <g class="fg-m fg-c"><text x="70" y="218">0</text><text x="174.0" y="218">1τ</text><text x="278.0" y="218">2τ</text><text x="382.0" y="218">3τ</text><text x="486.0" y="218">4τ</text><text x="590" y="218">5τ</text></g>
+            <g class="fg-m fg-e"><text x="62" y="74">100 %</text><text x="62" y="139.0">50 %</text><text x="62" y="204">0</text></g>
+            <circle cx="174.0" cy="117.8243273522875" r="5" style="fill:var(--charge-pos)"/><text class="fg-t" x="130.0" y="105.8243273522875" style="fill:var(--charge-pos)" font-size="12.5">63 %</text>
+            <circle cx="174.0" cy="152.1756726477125" r="5" style="fill:var(--accent)"/><text class="fg-t" x="186.0" y="146.1756726477125" style="fill:var(--accent)" font-size="12.5">37 %</text>
+            <text class="fg-t fg-b" x="356.0" y="98.6" style="fill:var(--charge-pos)">corriente i: sube de 0 a V/R</text>
+            <text class="fg-t fg-b" x="278.0" y="155.8" style="fill:var(--accent)">tensión en la bobina: de V a 0</text>
+            <text class="fg-m fg-c" x="330.0" y="240">tiempo, medido en constantes de tiempo τ = L / R</text>
+          </svg>
+          <figcaption><strong>Al inicio, la bobina se comporta como un circuito abierto</strong> (toda la tensión cae en ella y la corriente es cero); <strong>al final, como un cable</strong> (la tensión es cero y la corriente la fija solo R).</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Capacitor frente a inductor</caption>
+            <thead><tr><th></th><th>Capacitor (RC)</th><th>Inductor (RL)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Almacena energía en</strong></td><td>Campo eléctrico: ½·C·V²</td><td>Campo magnético: ½·L·I²</td></tr>
+              <tr><td><strong>No puede cambiar de golpe</strong></td><td>La tensión</td><td>La corriente</td></tr>
+              <tr><td><strong>Constante de tiempo</strong></td><td>τ = R · C</td><td>τ = L / R</td></tr>
+              <tr><td><strong>Al inicio (t = 0)</strong></td><td>Se comporta como un cable (si está descargado)</td><td>Se comporta como un circuito abierto (si no tiene corriente)</td></tr>
+              <tr><td><strong>Mucho después, en continua</strong></td><td>Circuito abierto</td><td>Cable</td></tr>
+              <tr><td><strong>En corriente alterna</strong></td><td>Deja pasar altas frecuencias</td><td>Deja pasar bajas frecuencias</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="reactancia">
+        <h2>La bobina frente a la corriente alterna</h2>
+        <p>Con una tensión alterna, la corriente cambia todo el tiempo y la bobina se opone a ello. Esa oposición se llama <strong>reactancia inductiva</strong> y, a diferencia de la del capacitor, <em>crece</em> con la frecuencia:</p>
+        <p class="equation"><span class="eq">X<sub>L</sub> = 2π · f · L</span></p>
+        <p>Cuanto más rápido cambia la corriente, mayor es la tensión inducida y menos corriente deja pasar. Con continua (f = 0), X<sub>L</sub> = 0: la bobina es un cable. Con frecuencias muy altas, X<sub>L</sub> es enorme: casi un circuito abierto. Por eso una bobina se usa como <strong>choque</strong> (<em>choke</em>): deja pasar la continua y frena el ruido de alta frecuencia. Otra diferencia con el capacitor es el desfase: la corriente en una bobina <em>se retrasa</em> un cuarto de ciclo (90°) respecto de la tensión, mientras que en un capacitor <em>se adelanta</em>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g20ct g20cd">
+            <title id="g20ct">Reactancia de la bobina y del capacitor</title>
+            <desc id="g20cd">Curvas de la reactancia inductiva, que crece con la frecuencia, y de la reactancia capacitiva, que decrece, cruzándose en 1,59 kilohertz.</desc>
+<path class="fg-line" d="M70 41 V205 H604 M64 49 L70 41 L76 49 M596 199 L604 205 L596 211"/>
+            <path class="fg-grid" d="M70 130.0 H590 M70 55 H590 M200.0 49 V205 M330.0 49 V205 M460.0 49 V205 M590 49 V205"/>
+            <path class="fg-acc" d="M72.6 204.4 L75.2 203.7 L77.8 203.1 L80.4 202.5 L83.0 201.9 L85.6 201.2 L88.2 200.6 L90.8 200.0 L93.4 199.3 L96.0 198.7 L98.6 198.1 L101.2 197.5 L103.8 196.8 L106.4 196.2 L109.0 195.6 L111.6 194.9 L114.2 194.3 L116.8 193.7 L119.4 193.1 L122.0 192.4 L124.6 191.8 L127.2 191.2 L129.8 190.5 L132.4 189.9 L135.0 189.3 L137.6 188.7 L140.2 188.0 L142.8 187.4 L145.4 186.8 L148.0 186.2 L150.6 185.5 L153.2 184.9 L155.8 184.3 L158.4 183.6 L161.0 183.0 L163.6 182.4 L166.2 181.8 L168.8 181.1 L171.4 180.5 L174.0 179.9 L176.6 179.2 L179.2 178.6 L181.8 178.0 L184.4 177.4 L187.0 176.7 L189.6 176.1 L192.2 175.5 L194.8 174.8 L197.4 174.2 L200.0 173.6 L202.6 173.0 L205.2 172.3 L207.8 171.7 L210.4 171.1 L213.0 170.4 L215.6 169.8 L218.2 169.2 L220.8 168.6 L223.4 167.9 L226.0 167.3 L228.6 166.7 L231.2 166.0 L233.8 165.4 L236.4 164.8 L239.0 164.2 L241.6 163.5 L244.2 162.9 L246.8 162.3 L249.4 161.6 L252.0 161.0 L254.6 160.4 L257.2 159.8 L259.8 159.1 L262.4 158.5 L265.0 157.9 L267.6 157.2 L270.2 156.6 L272.8 156.0 L275.4 155.4 L278.0 154.7 L280.6 154.1 L283.2 153.5 L285.8 152.8 L288.4 152.2 L291.0 151.6 L293.6 151.0 L296.2 150.3 L298.8 149.7 L301.4 149.1 L304.0 148.5 L306.6 147.8 L309.2 147.2 L311.8 146.6 L314.4 145.9 L317.0 145.3 L319.6 144.7 L322.2 144.1 L324.8 143.4 L327.4 142.8 L330.0 142.2 L332.6 141.5 L335.2 140.9 L337.8 140.3 L340.4 139.7 L343.0 139.0 L345.6 138.4 L348.2 137.8 L350.8 137.1 L353.4 136.5 L356.0 135.9 L358.6 135.3 L361.2 134.6 L363.8 134.0 L366.4 133.4 L369.0 132.7 L371.6 132.1 L374.2 131.5 L376.8 130.9 L379.4 130.2 L382.0 129.6 L384.6 129.0 L387.2 128.3 L389.8 127.7 L392.4 127.1 L395.0 126.5 L397.6 125.8 L400.2 125.2 L402.8 124.6 L405.4 123.9 L408.0 123.3 L410.6 122.7 L413.2 122.1 L415.8 121.4 L418.4 120.8 L421.0 120.2 L423.6 119.5 L426.2 118.9 L428.8 118.3 L431.4 117.7 L434.0 117.0 L436.6 116.4 L439.2 115.8 L441.8 115.2 L444.4 114.5 L447.0 113.9 L449.6 113.3 L452.2 112.6 L454.8 112.0 L457.4 111.4 L460.0 110.8 L462.6 110.1 L465.2 109.5 L467.8 108.9 L470.4 108.2 L473.0 107.6 L475.6 107.0 L478.2 106.4 L480.8 105.7 L483.4 105.1 L486.0 104.5 L488.6 103.8 L491.2 103.2 L493.8 102.6 L496.4 102.0 L499.0 101.3 L501.6 100.7 L504.2 100.1 L506.8 99.4 L509.4 98.8 L512.0 98.2 L514.6 97.6 L517.2 96.9 L519.8 96.3 L522.4 95.7 L525.0 95.0 L527.6 94.4 L530.2 93.8 L532.8 93.2 L535.4 92.5 L538.0 91.9 L540.6 91.3 L543.2 90.6 L545.8 90.0 L548.4 89.4 L551.0 88.8 L553.6 88.1 L556.2 87.5 L558.8 86.9 L561.4 86.2 L564.0 85.6 L566.6 85.0 L569.2 84.4 L571.8 83.7 L574.4 83.1 L577.0 82.5 L579.6 81.8 L582.2 81.2 L584.8 80.6 L587.4 80.0 L590.0 79.3" style="stroke:var(--heat)"/><path class="fg-acc" d="M72.6 55.0 L75.2 55.0 L77.8 55.0 L80.4 55.0 L83.0 55.0 L85.6 55.0 L88.2 55.0 L90.8 55.0 L93.4 55.0 L96.0 55.0 L98.6 55.0 L101.2 55.0 L103.8 55.0 L106.4 55.0 L109.0 55.0 L111.6 55.0 L114.2 55.0 L116.8 55.0 L119.4 55.0 L122.0 55.0 L124.6 55.0 L127.2 55.0 L129.8 55.0 L132.4 55.0 L135.0 55.0 L137.6 55.0 L140.2 57.6 L142.8 62.9 L145.4 67.8 L148.0 72.4 L150.6 76.6 L153.2 80.7 L155.8 84.4 L158.4 88.0 L161.0 91.3 L163.6 94.5 L166.2 97.5 L168.8 100.3 L171.4 103.0 L174.0 105.5 L176.6 108.0 L179.2 110.3 L181.8 112.5 L184.4 114.6 L187.0 116.6 L189.6 118.5 L192.2 120.3 L194.8 122.1 L197.4 123.8 L200.0 125.4 L202.6 127.0 L205.2 128.5 L207.8 129.9 L210.4 131.3 L213.0 132.7 L215.6 133.9 L218.2 135.2 L220.8 136.4 L223.4 137.6 L226.0 138.7 L228.6 139.8 L231.2 140.8 L233.8 141.8 L236.4 142.8 L239.0 143.8 L241.6 144.7 L244.2 145.6 L246.8 146.5 L249.4 147.3 L252.0 148.2 L254.6 149.0 L257.2 149.7 L259.8 150.5 L262.4 151.2 L265.0 151.9 L267.6 152.6 L270.2 153.3 L272.8 154.0 L275.4 154.6 L278.0 155.3 L280.6 155.9 L283.2 156.5 L285.8 157.1 L288.4 157.6 L291.0 158.2 L293.6 158.7 L296.2 159.3 L298.8 159.8 L301.4 160.3 L304.0 160.8 L306.6 161.3 L309.2 161.8 L311.8 162.2 L314.4 162.7 L317.0 163.1 L319.6 163.6 L322.2 164.0 L324.8 164.4 L327.4 164.8 L330.0 165.2 L332.6 165.6 L335.2 166.0 L337.8 166.4 L340.4 166.7 L343.0 167.1 L345.6 167.5 L348.2 167.8 L350.8 168.2 L353.4 168.5 L356.0 168.8 L358.6 169.2 L361.2 169.5 L363.8 169.8 L366.4 170.1 L369.0 170.4 L371.6 170.7 L374.2 171.0 L376.8 171.3 L379.4 171.6 L382.0 171.8 L384.6 172.1 L387.2 172.4 L389.8 172.7 L392.4 172.9 L395.0 173.2 L397.6 173.4 L400.2 173.7 L402.8 173.9 L405.4 174.2 L408.0 174.4 L410.6 174.6 L413.2 174.9 L415.8 175.1 L418.4 175.3 L421.0 175.5 L423.6 175.7 L426.2 176.0 L428.8 176.2 L431.4 176.4 L434.0 176.6 L436.6 176.8 L439.2 177.0 L441.8 177.2 L444.4 177.4 L447.0 177.6 L449.6 177.7 L452.2 177.9 L454.8 178.1 L457.4 178.3 L460.0 178.5 L462.6 178.6 L465.2 178.8 L467.8 179.0 L470.4 179.2 L473.0 179.3 L475.6 179.5 L478.2 179.7 L480.8 179.8 L483.4 180.0 L486.0 180.1 L488.6 180.3 L491.2 180.4 L493.8 180.6 L496.4 180.7 L499.0 180.9 L501.6 181.0 L504.2 181.2 L506.8 181.3 L509.4 181.5 L512.0 181.6 L514.6 181.7 L517.2 181.9 L519.8 182.0 L522.4 182.1 L525.0 182.3 L527.6 182.4 L530.2 182.5 L532.8 182.6 L535.4 182.8 L538.0 182.9 L540.6 183.0 L543.2 183.1 L545.8 183.3 L548.4 183.4 L551.0 183.5 L553.6 183.6 L556.2 183.7 L558.8 183.8 L561.4 183.9 L564.0 184.1 L566.6 184.2 L569.2 184.3 L571.8 184.4 L574.4 184.5 L577.0 184.6 L579.6 184.7 L582.2 184.8 L584.8 184.9 L587.4 185.0 L590.0 185.1" style="stroke:var(--charge-neg)"/>
+            <g class="fg-m fg-c"><text x="70" y="223">0</text><text x="200.0" y="223">1 kHz</text><text x="330.0" y="223">2 kHz</text><text x="460.0" y="223">3 kHz</text><text x="590" y="223">4 kHz</text></g>
+            <g class="fg-m fg-e"><text x="62" y="134.0">150 Ω</text><text x="62" y="59">300 Ω</text><text x="62" y="209">0</text></g>
+            <circle cx="277.0" cy="155.0" r="6" style="fill:var(--accent)"/>
+            <text class="fg-t" x="289.0" y="145.0" style="fill:var(--accent)" font-size="12.5">se cruzan en 1,59 kHz (cap. 22)</text>
+            <text class="fg-t fg-b" x="444.4" y="70.0" style="fill:var(--heat)">X<tspan font-size="10" dy="3">L</tspan><tspan dy="-3"> = 2π·f·L: sube con f</tspan></text>
+            <text class="fg-t fg-b" x="174.0" y="85.0" style="fill:var(--charge-neg)">X<tspan font-size="10" dy="3">C</tspan><tspan dy="-3"> = 1/(2π·f·C): baja con f</tspan></text>
+            <text class="fg-m fg-c" x="330.0" y="245">frecuencia (L = 10 mH, C = 1 µF)</text>
+          </svg>
+          <figcaption><strong>Son opuestos.</strong> La bobina deja pasar fácil las frecuencias bajas y frena las altas; el capacitor, al revés. En continua (f = 0), la bobina es un cable y el capacitor, un circuito abierto.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="combinaciones">
+        <h2>Bobinas reales y combinaciones</h2>
+        <ul>
+          <li><strong>En serie</strong> (separadas, sin acoplamiento magnético): las inductancias <em>suman</em>, como las resistencias: <span class="eq">L = L<sub>1</sub> + L<sub>2</sub></span>.</li>
+          <li><strong>En paralelo:</strong> <span class="eq">1/L = 1/L<sub>1</sub> + 1/L<sub>2</sub></span>.</li>
+          <li><strong>Resistencia del alambre:</strong> una bobina real también tiene resistencia (el cobre del bobinado). Se la modela como una L ideal en serie con un resistor.</li>
+          <li><strong>Saturación:</strong> si la corriente es demasiado grande, el núcleo de hierro o ferrita ya no puede concentrar más campo, la inductancia cae de golpe y la corriente se dispara. Cada inductor tiene una corriente de saturación en su hoja de datos.</li>
+          <li><strong>Núcleos:</strong> el aire no se satura pero da poca inductancia; el hierro laminado sirve a 50 Hz; la ferrita, a alta frecuencia (<a class="xref" href="13-transformadores.html#nucleo">capítulo 13</a>).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Fuentes conmutadas y el convertidor «buck»</span>
+          <p>La bobina de unos 10–100 µH junto al transistor de una fuente conmutada (<a class="xref" href="08-cc-vs-ca.html#reguladores">capítulo 8</a>) almacena energía mientras el transistor conduce y la entrega cuando se apaga, promediando los pulsos para bajar la tensión con muy poca pérdida.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Ferritas en los cables</span>
+          <p>El cilindro que se ve en un cable de monitor o de USB es una pieza de ferrita: un inductor que frena el ruido de alta frecuencia (el X<sub>L</sub> es grande ahí) sin afectar la señal útil ni la continua.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Parlantes, motores y relés</span>
+          <p>Todo lo que tiene un bobinado es una carga inductiva: el motor de un ventilador, la bobina de un relé (<a class="xref" href="18-rele.html">capítulo 18</a>) o la de un parlante. Su corriente tarda en subir y la inductancia explica los picos al apagarlos.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: constante de tiempo y corriente final</span>
+          <p>Una bobina de 100 mH en serie con 100 Ω y una fuente de 9 V.</p>
+          <ol>
+            <li>Corriente final: <span class="eq">I = V / R = 9 / 100 = 90 mA</span>.</li>
+            <li>Constante de tiempo: <span class="eq">τ = L / R = 0,1 / 100 = 1 ms</span>.</li>
+            <li>A 1 ms la corriente es <span class="eq">0,63 · 90 mA ≈ 57 mA</span>; a 5 ms, más de 89 mA: prácticamente el valor final.</li>
+            <li>Energía almacenada al final: <span class="eq">½ · 0,1 · 0,09² ≈ 0,4 mJ</span>.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: reactancia inductiva</span>
+          <p>Un inductor de 1 H en una red de 50 Hz y otro de 10 mH a 10 kHz.</p>
+          <ol>
+            <li><span class="eq">X<sub>L</sub> = 2π · 50 · 1 ≈ 314 Ω</span>. Con 220 V eficaces circularía <span class="eq">I = 220 / 314 ≈ 0,70 A</span> (suponiendo resistencia despreciable).</li>
+            <li><span class="eq">X<sub>L</sub> = 2π · 10 000 · 0,01 ≈ 628 Ω</span>: la misma bobina que a 50 Hz solo ofrecería 3,1 Ω.</li>
+            <li>Conclusión: la bobina «ve» las frecuencias altas como un obstáculo grande y las bajas como un cable.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con 9 V, 100 Ω y 100 mH, τ = 1 ms. Mirá que la corriente (naranja) llega al <strong>63 %</strong> exactamente en 1τ. La tensión en la bobina (roja) hace lo contrario: empieza en 100 % y cae a cero.</li>
+        <li>Subí L de 100 mH a 500 mH (cinco veces más): τ se multiplica por 5 y la curva se estira, pero la corriente final es la misma (V/R). La inductancia cambia <em>cuánto tarda</em>, no <em>cuánto vale</em>.</li>
+        <li>Duplicá R: la corriente final se reduce a la mitad y τ también (τ = L/R): la curva sube más rápido hacia un valor menor.</li>
+        <li>Elegí <strong>Desconectar</strong>: la corriente decae con la misma τ y la tensión en la bobina cambia de signo (es la bobina la que ahora «empuja»). Observá la energía almacenada bajando.</li>
+        <li>Con L = 1 H y R = 10 Ω (τ = 100 ms), mirá la lectura de «vL» al principio: es igual a la tensión de la fuente. ¿Por qué una bobina se ve como un circuito abierto en el primer instante?</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/rl.js"></script>
+  <script src="../js/quizzes/20-inductor-rl.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

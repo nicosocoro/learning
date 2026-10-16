@@ -1,0 +1,30 @@
+---
+description: Cómo dibujar las figuras SVG de las lecciones (tema claro/oscuro, compatibles con Firefox)
+globs: lessons/*.html, css/lesson.css
+alwaysApply: false
+---
+
+# Figuras SVG
+
+Las figuras son SVG en línea dentro de `<figure class="figure">`. Los estilos viven en `css/lesson.css` (sección "Figuras explicativas").
+
+## Colores
+- Usar las clases: `fg-line` (cable), `fg-thin`, `fg-dash`, `fg-pos` (corriente / cargas +), `fg-neg` (electrones), `fg-acc` (resaltado), `fg-good`, `fg-bad`, `fg-grid`, `fg-box`, `fg-fill-*`, y para texto `fg-t`, `fg-m` (apagado), `fg-a` (acento), `fg-b` (negrita), `fg-i` (cursiva), `fg-c` / `fg-e` (centrado / alineado al final).
+- Si falta un color, usar `style="fill:var(--token)"` o `style="stroke:var(--token)"`.
+- **Nunca `fill="var(--x)"` ni `stroke="var(--x)"` como atributo:** Firefox no resuelve `var()` en atributos de presentación y la forma queda negra. Siempre dentro de `style`.
+- Tampoco colores fijos (`#fff` solo para un signo dentro de un círculo de color). Excepciones: cuando el color es el dato (código de colores, espectro).
+- No repetir el atributo `class` en un mismo elemento (el navegador ignora el segundo): juntar las clases en uno solo.
+
+## Forma
+- `viewBox` apaisado (ancho 640–720), sin `width`/`height` fijos. El CSS limita el ancho a 760 px.
+- Todo `<text>` sin `fg-t` (o `fg-m`/`fg-a`) queda negro: siempre ponerle clase de texto.
+- Tamaño de texto mínimo legible: 12 px en el sistema de coordenadas del `viewBox`.
+- Evitar que el texto pise cables o curvas: dejar aire o mover la etiqueta.
+- `<title>` y `<desc>` con `id` únicos en la página (`f1t`, `f1d`, ...), referenciados por `aria-labelledby`.
+- `figcaption`: una o dos frases; la idea principal en `<strong>`.
+
+## Qué dibujar (convenciones)
+- Corriente convencional en `fg-pos` con flecha; electrones en `fg-neg`.
+- Componentes: resistor en zigzag, pila con placa larga arriba (+), fuentes y cargas rotuladas con su valor.
+- Curvas: ejes con flecha, marcas con valores reales del texto, puntos de operación resaltados.
+- Verificar el resultado generando una captura con Chrome y con Firefox headless antes de dar la figura por buena.

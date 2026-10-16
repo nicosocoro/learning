@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El transistor como amplificador · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="16-transistor-amplificador" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 16</p>
+        <h1>El transistor como amplificador</h1>
+        <p class="lead">Con el transistor en la zona activa, una señal diminuta se convierte en una copia grande e invertida. Se calcula el punto de trabajo, la ganancia y el límite donde la señal se recorta.</p>
+      </header>
+      <section>
+        <h2>Amplificar: hacer más grande una señal</h2>
+        <p>Un micrófono entrega unos pocos milivolts; un parlante necesita varios volts. Un <strong>amplificador</strong> toma una señal pequeña y entrega una copia más grande, usando energía de una fuente. El transistor lo logra porque, en la <a class="xref" href="14-transistor-bjt.html#regiones">zona activa</a>, <em>pequeñas variaciones de la tensión de base producen grandes variaciones de la corriente de colector</em>, y un resistor de colector transforma esas variaciones de corriente en variaciones de tensión.</p>
+        <p>La <strong>ganancia de tensión</strong> es el cociente entre la amplitud de salida y la de entrada:</p>
+        <p class="equation"><span class="eq">A<sub>v</sub> = V<sub>sal</sub> / V<sub>ent</sub></span></p>
+        <p>El amplificador clásico con un BJT es el de <strong>emisor común</strong>: la señal entra por la base, sale por el colector, y el emisor es el punto común (a masa).</p>
+      </section>
+
+      <section id="polarizacion">
+        <h2>El punto de trabajo: polarizar el transistor</h2>
+        <p>Para amplificar, el transistor tiene que estar <em>siempre</em> en la zona activa, incluso cuando la señal baja. Por eso se le da una corriente continua de reposo, el <strong>punto de trabajo</strong> o punto Q, y la señal se superpone a ella. Si el transistor estuviera sin polarizar, la parte negativa de la señal lo dejaría en corte y se perdería medio ciclo.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 690 235" role="img" aria-labelledby="g16bt g16bd">
+            <title id="g16bt">Por qué hace falta polarizar</title>
+            <desc id="g16bd">Tres formas de onda de salida: sin polarización solo se amplifica medio ciclo, con el punto de trabajo mal centrado se recorta un extremo y bien centrado la señal sale completa.</desc>
+<text class="fg-t fg-b fg-c" x="115.0" y="20">Sin polarizar</text><path class="fg-line" d="M20 42 V178" style="stroke-width:1.5"/><path class="fg-bad" d="M20 50 H210" style="stroke-dasharray:4 4;stroke-width:1.3"/><path class="fg-bad" d="M20 170 H210" style="stroke-dasharray:4 4;stroke-width:1.3"/><text class="fg-m" x="24" y="44" font-size="11">fuente</text><text class="fg-m" x="24" y="184" font-size="11">saturación</text><path class="fg-acc" d="M20.0 50.0 L21.1 56.3 L22.1 62.5 L23.2 68.7 L24.2 74.8 L25.3 80.8 L26.3 86.6 L27.4 92.3 L28.4 97.7 L29.5 102.9 L30.6 107.9 L31.6 112.5 L32.7 116.9 L33.7 120.9 L34.8 124.6 L35.8 127.9 L36.9 130.9 L37.9 133.4 L39.0 135.6 L40.1 137.3 L41.1 138.6 L42.2 139.5 L43.2 139.9 L44.3 139.9 L45.3 139.5 L46.4 138.6 L47.4 137.3 L48.5 135.6 L49.6 133.4 L50.6 130.9 L51.7 127.9 L52.7 124.6 L53.8 120.9 L54.8 116.9 L55.9 112.5 L56.9 107.9 L58.0 102.9 L59.1 97.7 L60.1 92.3 L61.2 86.6 L62.2 80.8 L63.3 74.8 L64.3 68.7 L65.4 62.5 L66.4 56.3 L67.5 50.0 L68.6 50.0 L69.6 50.0 L70.7 50.0 L71.7 50.0 L72.8 50.0 L73.8 50.0 L74.9 50.0 L75.9 50.0 L77.0 50.0 L78.1 50.0 L79.1 50.0 L80.2 50.0 L81.2 50.0 L82.3 50.0 L83.3 50.0 L84.4 50.0 L85.4 50.0 L86.5 50.0 L87.6 50.0 L88.6 50.0 L89.7 50.0 L90.7 50.0 L91.8 50.0 L92.8 50.0 L93.9 50.0 L94.9 50.0 L96.0 50.0 L97.1 50.0 L98.1 50.0 L99.2 50.0 L100.2 50.0 L101.3 50.0 L102.3 50.0 L103.4 50.0 L104.4 50.0 L105.5 50.0 L106.6 50.0 L107.6 50.0 L108.7 50.0 L109.7 50.0 L110.8 50.0 L111.8 50.0 L112.9 50.0 L113.9 50.0 L115.0 50.0 L116.1 56.3 L117.1 62.5 L118.2 68.7 L119.2 74.8 L120.3 80.8 L121.3 86.6 L122.4 92.3 L123.4 97.7 L124.5 102.9 L125.6 107.9 L126.6 112.5 L127.7 116.9 L128.7 120.9 L129.8 124.6 L130.8 127.9 L131.9 130.9 L132.9 133.4 L134.0 135.6 L135.1 137.3 L136.1 138.6 L137.2 139.5 L138.2 139.9 L139.3 139.9 L140.3 139.5 L141.4 138.6 L142.4 137.3 L143.5 135.6 L144.6 133.4 L145.6 130.9 L146.7 127.9 L147.7 124.6 L148.8 120.9 L149.8 116.9 L150.9 112.5 L151.9 107.9 L153.0 102.9 L154.1 97.7 L155.1 92.3 L156.2 86.6 L157.2 80.8 L158.3 74.8 L159.3 68.7 L160.4 62.5 L161.4 56.3 L162.5 50.0 L163.6 50.0 L164.6 50.0 L165.7 50.0 L166.7 50.0 L167.8 50.0 L168.8 50.0 L169.9 50.0 L170.9 50.0 L172.0 50.0 L173.1 50.0 L174.1 50.0 L175.2 50.0 L176.2 50.0 L177.3 50.0 L178.3 50.0 L179.4 50.0 L180.4 50.0 L181.5 50.0 L182.6 50.0 L183.6 50.0 L184.7 50.0 L185.7 50.0 L186.8 50.0 L187.8 50.0 L188.9 50.0 L189.9 50.0 L191.0 50.0 L192.1 50.0 L193.1 50.0 L194.2 50.0 L195.2 50.0 L196.3 50.0 L197.3 50.0 L198.4 50.0 L199.4 50.0 L200.5 50.0 L201.6 50.0 L202.6 50.0 L203.7 50.0 L204.7 50.0 L205.8 50.0 L206.8 50.0 L207.9 50.0 L208.9 50.0 L210.0 50.0"/><text class="fg-m fg-c" x="115.0" y="206" font-size="12">Q en corte: medio ciclo</text><text class="fg-t fg-b fg-c" x="345.0" y="20">Mal centrado</text><path class="fg-line" d="M250 42 V178" style="stroke-width:1.5"/><path class="fg-bad" d="M250 50 H440" style="stroke-dasharray:4 4;stroke-width:1.3"/><path class="fg-bad" d="M250 170 H440" style="stroke-dasharray:4 4;stroke-width:1.3"/><text class="fg-m" x="254" y="44" font-size="11">fuente</text><text class="fg-m" x="254" y="184" font-size="11">saturación</text><path class="fg-acc" d="M250.0 70.0 L251.1 65.7 L252.1 61.4 L253.2 57.1 L254.2 52.9 L255.3 50.0 L256.3 50.0 L257.4 50.0 L258.4 50.0 L259.5 50.0 L260.6 50.0 L261.6 50.0 L262.7 50.0 L263.7 50.0 L264.8 50.0 L265.8 50.0 L266.9 50.0 L267.9 50.0 L269.0 50.0 L270.1 50.0 L271.1 50.0 L272.2 50.0 L273.2 50.0 L274.3 50.0 L275.3 50.0 L276.4 50.0 L277.4 50.0 L278.5 50.0 L279.6 50.0 L280.6 50.0 L281.7 50.0 L282.7 50.0 L283.8 50.0 L284.8 50.0 L285.9 50.0 L286.9 50.0 L288.0 50.0 L289.1 50.0 L290.1 50.0 L291.2 50.0 L292.2 50.0 L293.3 52.9 L294.3 57.1 L295.4 61.4 L296.4 65.7 L297.5 70.0 L298.6 74.3 L299.6 78.6 L300.7 82.9 L301.7 87.1 L302.8 91.2 L303.8 95.2 L304.9 99.1 L305.9 102.9 L307.0 106.4 L308.1 109.9 L309.1 113.1 L310.2 116.1 L311.2 118.9 L312.3 121.4 L313.3 123.7 L314.4 125.7 L315.4 127.5 L316.5 129.0 L317.6 130.2 L318.6 131.1 L319.7 131.7 L320.7 132.0 L321.8 132.0 L322.8 131.7 L323.9 131.1 L324.9 130.2 L326.0 129.0 L327.1 127.5 L328.1 125.7 L329.2 123.7 L330.2 121.4 L331.3 118.9 L332.3 116.1 L333.4 113.1 L334.4 109.9 L335.5 106.4 L336.6 102.9 L337.6 99.1 L338.7 95.2 L339.7 91.2 L340.8 87.1 L341.8 82.9 L342.9 78.6 L343.9 74.3 L345.0 70.0 L346.1 65.7 L347.1 61.4 L348.2 57.1 L349.2 52.9 L350.3 50.0 L351.3 50.0 L352.4 50.0 L353.4 50.0 L354.5 50.0 L355.6 50.0 L356.6 50.0 L357.7 50.0 L358.7 50.0 L359.8 50.0 L360.8 50.0 L361.9 50.0 L362.9 50.0 L364.0 50.0 L365.1 50.0 L366.1 50.0 L367.2 50.0 L368.2 50.0 L369.3 50.0 L370.3 50.0 L371.4 50.0 L372.4 50.0 L373.5 50.0 L374.6 50.0 L375.6 50.0 L376.7 50.0 L377.7 50.0 L378.8 50.0 L379.8 50.0 L380.9 50.0 L381.9 50.0 L383.0 50.0 L384.1 50.0 L385.1 50.0 L386.2 50.0 L387.2 50.0 L388.3 52.9 L389.3 57.1 L390.4 61.4 L391.4 65.7 L392.5 70.0 L393.6 74.3 L394.6 78.6 L395.7 82.9 L396.7 87.1 L397.8 91.2 L398.8 95.2 L399.9 99.1 L400.9 102.9 L402.0 106.4 L403.1 109.9 L404.1 113.1 L405.2 116.1 L406.2 118.9 L407.3 121.4 L408.3 123.7 L409.4 125.7 L410.4 127.5 L411.5 129.0 L412.6 130.2 L413.6 131.1 L414.7 131.7 L415.7 132.0 L416.8 132.0 L417.8 131.7 L418.9 131.1 L419.9 130.2 L421.0 129.0 L422.1 127.5 L423.1 125.7 L424.2 123.7 L425.2 121.4 L426.3 118.9 L427.3 116.1 L428.4 113.1 L429.4 109.9 L430.5 106.4 L431.6 102.9 L432.6 99.1 L433.7 95.2 L434.7 91.2 L435.8 87.1 L436.8 82.9 L437.9 78.6 L438.9 74.3 L440.0 70.0"/><text class="fg-m fg-c" x="345.0" y="206" font-size="12">Q muy arriba: recorta</text><text class="fg-t fg-b fg-c" x="575.0" y="20">Bien centrado</text><path class="fg-line" d="M480 42 V178" style="stroke-width:1.5"/><path class="fg-bad" d="M480 50 H670" style="stroke-dasharray:4 4;stroke-width:1.3"/><path class="fg-bad" d="M480 170 H670" style="stroke-dasharray:4 4;stroke-width:1.3"/><text class="fg-m" x="484" y="44" font-size="11">fuente</text><text class="fg-m" x="484" y="184" font-size="11">saturación</text><path class="fg-acc" d="M480.0 110.0 L481.1 107.2 L482.1 104.4 L483.2 101.7 L484.2 99.0 L485.3 96.3 L486.3 93.7 L487.4 91.2 L488.4 88.8 L489.5 86.5 L490.6 84.3 L491.6 82.2 L492.7 80.3 L493.7 78.5 L494.8 76.8 L495.8 75.4 L496.9 74.0 L497.9 72.9 L499.0 72.0 L500.1 71.2 L501.1 70.6 L502.2 70.2 L503.2 70.0 L504.3 70.0 L505.3 70.2 L506.4 70.6 L507.4 71.2 L508.5 72.0 L509.6 72.9 L510.6 74.0 L511.7 75.4 L512.7 76.8 L513.8 78.5 L514.8 80.3 L515.9 82.2 L516.9 84.3 L518.0 86.5 L519.1 88.8 L520.1 91.2 L521.2 93.7 L522.2 96.3 L523.3 99.0 L524.3 101.7 L525.4 104.4 L526.4 107.2 L527.5 110.0 L528.6 112.8 L529.6 115.6 L530.7 118.3 L531.7 121.0 L532.8 123.7 L533.8 126.3 L534.9 128.8 L535.9 131.2 L537.0 133.5 L538.1 135.7 L539.1 137.8 L540.2 139.7 L541.2 141.5 L542.3 143.2 L543.3 144.6 L544.4 146.0 L545.4 147.1 L546.5 148.0 L547.6 148.8 L548.6 149.4 L549.7 149.8 L550.7 150.0 L551.8 150.0 L552.8 149.8 L553.9 149.4 L554.9 148.8 L556.0 148.0 L557.1 147.1 L558.1 146.0 L559.2 144.6 L560.2 143.2 L561.3 141.5 L562.3 139.7 L563.4 137.8 L564.4 135.7 L565.5 133.5 L566.6 131.2 L567.6 128.8 L568.7 126.3 L569.7 123.7 L570.8 121.0 L571.8 118.3 L572.9 115.6 L573.9 112.8 L575.0 110.0 L576.1 107.2 L577.1 104.4 L578.2 101.7 L579.2 99.0 L580.3 96.3 L581.3 93.7 L582.4 91.2 L583.4 88.8 L584.5 86.5 L585.6 84.3 L586.6 82.2 L587.7 80.3 L588.7 78.5 L589.8 76.8 L590.8 75.4 L591.9 74.0 L592.9 72.9 L594.0 72.0 L595.1 71.2 L596.1 70.6 L597.2 70.2 L598.2 70.0 L599.3 70.0 L600.3 70.2 L601.4 70.6 L602.4 71.2 L603.5 72.0 L604.6 72.9 L605.6 74.0 L606.7 75.4 L607.7 76.8 L608.8 78.5 L609.8 80.3 L610.9 82.2 L611.9 84.3 L613.0 86.5 L614.1 88.8 L615.1 91.2 L616.2 93.7 L617.2 96.3 L618.3 99.0 L619.3 101.7 L620.4 104.4 L621.4 107.2 L622.5 110.0 L623.6 112.8 L624.6 115.6 L625.7 118.3 L626.7 121.0 L627.8 123.7 L628.8 126.3 L629.9 128.8 L630.9 131.2 L632.0 133.5 L633.1 135.7 L634.1 137.8 L635.2 139.7 L636.2 141.5 L637.3 143.2 L638.3 144.6 L639.4 146.0 L640.4 147.1 L641.5 148.0 L642.6 148.8 L643.6 149.4 L644.7 149.8 L645.7 150.0 L646.8 150.0 L647.8 149.8 L648.9 149.4 L649.9 148.8 L651.0 148.0 L652.1 147.1 L653.1 146.0 L654.2 144.6 L655.2 143.2 L656.3 141.5 L657.3 139.7 L658.4 137.8 L659.4 135.7 L660.5 133.5 L661.6 131.2 L662.6 128.8 L663.7 126.3 L664.7 123.7 L665.8 121.0 L666.8 118.3 L667.9 115.6 L668.9 112.8 L670.0 110.0"/><text class="fg-m fg-c" x="575.0" y="206" font-size="12">Q al medio: sin recorte</text>
+          </svg>
+          <figcaption><strong>El punto de trabajo (Q) es la tensión de reposo del colector.</strong> Lo ideal es dejarlo cerca de la mitad entre la fuente y la saturación, para que la señal pueda subir y bajar sin chocar contra los límites.</figcaption>
+        </figure>
+
+        <p>La forma habitual de fijar el punto Q es un <strong>divisor de tensión</strong> en la base (R<sub>1</sub> y R<sub>2</sub>) y un resistor de emisor (R<sub>E</sub>) que lo estabiliza. Se calcula así:</p>
+        <ol>
+          <li>Tensión en la base: <span class="eq">V<sub>B</sub> = V<sub>CC</sub> · R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</span> (si el divisor es «rígido», es decir, pasa por él una corriente mucho mayor que I<sub>B</sub>, unas 10 veces).</li>
+          <li>Tensión en el emisor: <span class="eq">V<sub>E</sub> = V<sub>B</sub> − 0,7 V</span>.</li>
+          <li>Corriente de reposo: <span class="eq">I<sub>C</sub> ≈ I<sub>E</sub> = V<sub>E</sub> / R<sub>E</sub></span>.</li>
+          <li>Tensión del colector: <span class="eq">V<sub>C</sub> = V<sub>CC</sub> − I<sub>C</sub> · R<sub>C</sub></span>. Se busca que quede cerca de la mitad de V<sub>CC</sub> para permitir el mayor movimiento hacia arriba y hacia abajo.</li>
+        </ol>
+        <div class="note">
+          <span class="box-title">Por qué R<sub>E</sub> estabiliza</span>
+          <p>Si por calor o por un β distinto la corriente aumenta, sube V<sub>E</sub> = I<sub>E</sub>·R<sub>E</sub>, baja la tensión V<sub>BE</sub> = V<sub>B</sub> − V<sub>E</sub> y la corriente se corrige sola. El resultado depende de los resistores, no de β: justo lo que se busca.</p>
+        </div>
+        <figure class="figure">
+          <svg viewBox="0 0 700 322" role="img" aria-labelledby="g16at g16ad">
+            <title id="g16at">Amplificador de emisor común con polarización por divisor</title>
+            <desc id="g16ad">Esquema con un transistor NPN, divisor de tensión R1 y R2 en la base, resistor de colector RC, resistor de emisor RE con capacitor de desacople y capacitores de acople de entrada y salida.</desc>
+            <path class="fg-line" d="M150 28 H470"/>
+            <text class="fg-a fg-b" x="476" y="33" style="fill:var(--accent)">+12 V</text>
+            <path class="fg-line" d="M200 28 V52"/><g transform="translate(200,52) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M200 118 V170 M200 170 V190"/><g transform="translate(200,190) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M200 256 V300"/>
+            <text class="fg-t fg-i" x="214" y="90">R<tspan font-size="10" dy="3">1</tspan></text><text class="fg-t fg-i" x="214" y="226">R<tspan font-size="10" dy="3">2</tspan></text>
+            <circle cx="200" cy="170" r="4" class="fg-fill-wire"/>
+            <path class="fg-line" d="M200 170 H318"/>
+            <path class="fg-line" d="M70 170 H104 M114 170 H200"/><path class="fg-line" d="M104 156 V184 M114 156 V184" style="stroke-width:3"/>
+            <text class="fg-m fg-c" x="109" y="148">C<tspan font-size="9" dy="3">in</tspan></text>
+            
+            <circle cx="70" cy="226" r="16" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-acc" d="M60 226 q5 -9 10 0 t10 0" style="stroke-width:2"/>
+            <path class="fg-line" d="M70 210 V170 M70 242 V300"/><text class="fg-t fg-i fg-c" x="34" y="230">V<tspan font-size="10" dy="3">in</tspan></text>
+            <circle cx="380" cy="170" r="36" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M318 170 H369.2"/><path class="fg-line" d="M369.2 152.0 V188.0" style="stroke-width:3.5"/><path class="fg-line" d="M369.2 162.08 L395.12 137.32913224292932 V113.32913224292932 M369.2 177.92 L395.12 202.67086775707068 V226.67086775707068"/><polygon class="fg-fill-wire" points="389.9,197.7 381.5,194.5 386.4,189.5"/><text class="fg-m" x="404.12" y="119.32913224292932">C</text><text class="fg-m" x="404.12" y="228.67086775707068">E</text><text class="fg-m fg-e" x="314" y="164">B</text>
+            <path class="fg-line" d="M395.12 113.32913224292932 V120 M395.12 28 V52"/><g transform="translate(395.12,52) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <text class="fg-t fg-i" x="409.12" y="86">R<tspan font-size="10" dy="3">C</tspan></text>
+            <circle cx="395.12" cy="120" r="4" class="fg-fill-wire"/>
+            <path class="fg-line" d="M395.12 120 H520 M530 120 H580"/><path class="fg-line" d="M520 106 V134 M530 106 V134" style="stroke-width:3"/>
+            <text class="fg-m fg-c" x="525" y="98">C<tspan font-size="9" dy="3">out</tspan></text>
+            <circle cx="580" cy="120" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-i" x="590" y="124">V<tspan font-size="10" dy="3">out</tspan></text>
+            <path class="fg-line" d="M395.12 226.67086775707068 V232.67086775707068"/><g transform="translate(395.12,232.67086775707068) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M395.12 298.6708677570707 V300"/>
+            <text class="fg-t fg-i" x="379.12" y="270.6708677570707" text-anchor="end">R<tspan font-size="10" dy="3">E</tspan></text>
+            <circle cx="395.12" cy="316.6708677570707" r="4" class="fg-fill-wire" style="display:none"/>
+            <path class="fg-line" d="M395.12 246.67086775707068 H450 V270 M450 280 V300"/><path class="fg-line" d="M436 270 H464 M436 280 H464" style="stroke-width:3"/>
+            <text class="fg-t fg-i" x="466" y="282">C<tspan font-size="10" dy="3">E</tspan></text>
+            <path class="fg-line" d="M70 300 H395.12 M395.12 300 H450"/><path class="fg-line" d="M200 300 V308 M186 308 H214 M191 313 H209 M196 318 H204"/>
+            <rect x="140" y="40" width="130" height="220" rx="8" fill="none" class="fg-dash" style="display:none"/>
+            
+          </svg>
+          <figcaption><strong>Dos mundos en un circuito:</strong> la continua (R<sub>1</sub>, R<sub>2</sub>, R<sub>C</sub>, R<sub>E</sub>) coloca al transistor en la zona activa; la señal alterna pasa por los capacitores, se amplifica y sale por el colector.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="ganancia">
+        <h2>De qué depende la ganancia</h2>
+        <p>Para señales pequeñas, la juntura base-emisor se comporta como un pequeño resistor, la <strong>resistencia dinámica del emisor</strong>, que depende solo de la corriente de reposo:</p>
+        <p class="equation"><span class="eq">r<sub>e</sub> ≈ 25 mV / I<sub>C</sub></span></p>
+        <p>Con 2 mA, r<sub>e</sub> ≈ 12,5 Ω. La ganancia del emisor común resulta:</p>
+        <p class="equation"><span class="eq">A<sub>v</sub> = − R<sub>C</sub> / (r<sub>e</sub> + R<sub>E</sub>)</span></p>
+        <ul>
+          <li>El <strong>signo menos</strong> indica que la salida está <em>invertida</em> (desfasada 180°).</li>
+          <li>Si el emisor va directo a masa (R<sub>E</sub> = 0, o con R<sub>E</sub> «puenteado» por un capacitor), la ganancia es la máxima, −R<sub>C</sub>/r<sub>e</sub>, y puede superar 100. Pero depende de I<sub>C</sub> y por lo tanto de la temperatura: es alta pero poco estable, y distorsiona más.</li>
+          <li>Con un resistor de emisor sin puentear, la ganancia baja, pero es mucho más estable y previsible: aproximadamente −R<sub>C</sub>/R<sub>E</sub>. Se cambia ganancia por calidad (es la idea de la <em>realimentación negativa</em>, que el amplificador operacional lleva al extremo: capítulo <a class="xref" href="23-amplificador-operacional.html">23</a>).</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 320" role="img" aria-labelledby="g16ct g16cd">
+            <title id="g16ct">Entrada y salida del amplificador</title>
+            <desc id="g16cd">Una señal de entrada de 20 milivolts y la salida de varios volts invertida respecto de la entrada.</desc>
+            <text class="fg-t fg-b" x="60" y="24">Entrada: ± 20 mV</text>
+            <path class="fg-thin" d="M60 80 H520"/><path class="fg-acc" d="M60.0 80.0 L62.3 79.2 L64.6 78.5 L66.9 77.8 L69.2 77.0 L71.5 76.3 L73.8 75.6 L76.1 74.9 L78.4 74.2 L80.7 73.6 L83.0 72.9 L85.3 72.4 L87.6 71.8 L89.9 71.3 L92.2 70.8 L94.5 70.3 L96.8 69.9 L99.1 69.5 L101.4 69.1 L103.7 68.8 L106.0 68.6 L108.3 68.4 L110.6 68.2 L112.9 68.1 L115.2 68.0 L117.5 68.0 L119.8 68.0 L122.1 68.1 L124.4 68.2 L126.7 68.4 L129.0 68.6 L131.3 68.8 L133.6 69.1 L135.9 69.5 L138.2 69.9 L140.5 70.3 L142.8 70.8 L145.1 71.3 L147.4 71.8 L149.7 72.4 L152.0 72.9 L154.3 73.6 L156.6 74.2 L158.9 74.9 L161.2 75.6 L163.5 76.3 L165.8 77.0 L168.1 77.8 L170.4 78.5 L172.7 79.2 L175.0 80.0 L177.3 80.8 L179.6 81.5 L181.9 82.2 L184.2 83.0 L186.5 83.7 L188.8 84.4 L191.1 85.1 L193.4 85.8 L195.7 86.4 L198.0 87.1 L200.3 87.6 L202.6 88.2 L204.9 88.7 L207.2 89.2 L209.5 89.7 L211.8 90.1 L214.1 90.5 L216.4 90.9 L218.7 91.2 L221.0 91.4 L223.3 91.6 L225.6 91.8 L227.9 91.9 L230.2 92.0 L232.5 92.0 L234.8 92.0 L237.1 91.9 L239.4 91.8 L241.7 91.6 L244.0 91.4 L246.3 91.2 L248.6 90.9 L250.9 90.5 L253.2 90.1 L255.5 89.7 L257.8 89.2 L260.1 88.7 L262.4 88.2 L264.7 87.6 L267.0 87.1 L269.3 86.4 L271.6 85.8 L273.9 85.1 L276.2 84.4 L278.5 83.7 L280.8 83.0 L283.1 82.2 L285.4 81.5 L287.7 80.8 L290.0 80.0 L292.3 79.2 L294.6 78.5 L296.9 77.8 L299.2 77.0 L301.5 76.3 L303.8 75.6 L306.1 74.9 L308.4 74.2 L310.7 73.6 L313.0 72.9 L315.3 72.4 L317.6 71.8 L319.9 71.3 L322.2 70.8 L324.5 70.3 L326.8 69.9 L329.1 69.5 L331.4 69.1 L333.7 68.8 L336.0 68.6 L338.3 68.4 L340.6 68.2 L342.9 68.1 L345.2 68.0 L347.5 68.0 L349.8 68.0 L352.1 68.1 L354.4 68.2 L356.7 68.4 L359.0 68.6 L361.3 68.8 L363.6 69.1 L365.9 69.5 L368.2 69.9 L370.5 70.3 L372.8 70.8 L375.1 71.3 L377.4 71.8 L379.7 72.4 L382.0 72.9 L384.3 73.6 L386.6 74.2 L388.9 74.9 L391.2 75.6 L393.5 76.3 L395.8 77.0 L398.1 77.8 L400.4 78.5 L402.7 79.2 L405.0 80.0 L407.3 80.8 L409.6 81.5 L411.9 82.2 L414.2 83.0 L416.5 83.7 L418.8 84.4 L421.1 85.1 L423.4 85.8 L425.7 86.4 L428.0 87.1 L430.3 87.6 L432.6 88.2 L434.9 88.7 L437.2 89.2 L439.5 89.7 L441.8 90.1 L444.1 90.5 L446.4 90.9 L448.7 91.2 L451.0 91.4 L453.3 91.6 L455.6 91.8 L457.9 91.9 L460.2 92.0 L462.5 92.0 L464.8 92.0 L467.1 91.9 L469.4 91.8 L471.7 91.6 L474.0 91.4 L476.3 91.2 L478.6 90.9 L480.9 90.5 L483.2 90.1 L485.5 89.7 L487.8 89.2 L490.1 88.7 L492.4 88.2 L494.7 87.6 L497.0 87.1 L499.3 86.4 L501.6 85.8 L503.9 85.1 L506.2 84.4 L508.5 83.7 L510.8 83.0 L513.1 82.2 L515.4 81.5 L517.7 80.8 L520.0 80.0"/>
+            <text class="fg-t fg-b" x="60" y="150">Salida: 7,6 V ± 3,5 V (A<tspan font-size="10" dy="3">v</tspan><tspan dy="-3"> = −176)</tspan></text>
+            <path class="fg-thin" d="M60 230 H520"/><path class="fg-bad" d="M60.0 230.0 L62.3 233.1 L64.6 236.3 L66.9 239.4 L69.2 242.4 L71.5 245.5 L73.8 248.4 L76.1 251.3 L78.4 254.1 L80.7 256.8 L83.0 259.4 L85.3 261.9 L87.6 264.2 L89.9 266.4 L92.2 268.5 L94.5 270.5 L96.8 272.2 L99.1 273.8 L101.4 275.2 L103.7 276.5 L106.0 277.6 L108.3 278.4 L110.6 279.1 L112.9 279.6 L115.2 279.9 L117.5 280.0 L119.8 279.9 L122.1 279.6 L124.4 279.1 L126.7 278.4 L129.0 277.6 L131.3 276.5 L133.6 275.2 L135.9 273.8 L138.2 272.2 L140.5 270.5 L142.8 268.5 L145.1 266.4 L147.4 264.2 L149.7 261.9 L152.0 259.4 L154.3 256.8 L156.6 254.1 L158.9 251.3 L161.2 248.4 L163.5 245.5 L165.8 242.4 L168.1 239.4 L170.4 236.3 L172.7 233.1 L175.0 230.0 L177.3 226.9 L179.6 223.7 L181.9 220.6 L184.2 217.6 L186.5 214.5 L188.8 211.6 L191.1 208.7 L193.4 205.9 L195.7 203.2 L198.0 200.6 L200.3 198.1 L202.6 195.8 L204.9 193.6 L207.2 191.5 L209.5 189.5 L211.8 187.8 L214.1 186.2 L216.4 184.8 L218.7 183.5 L221.0 182.4 L223.3 181.6 L225.6 180.9 L227.9 180.4 L230.2 180.1 L232.5 180.0 L234.8 180.1 L237.1 180.4 L239.4 180.9 L241.7 181.6 L244.0 182.4 L246.3 183.5 L248.6 184.8 L250.9 186.2 L253.2 187.8 L255.5 189.5 L257.8 191.5 L260.1 193.6 L262.4 195.8 L264.7 198.1 L267.0 200.6 L269.3 203.2 L271.6 205.9 L273.9 208.7 L276.2 211.6 L278.5 214.5 L280.8 217.6 L283.1 220.6 L285.4 223.7 L287.7 226.9 L290.0 230.0 L292.3 233.1 L294.6 236.3 L296.9 239.4 L299.2 242.4 L301.5 245.5 L303.8 248.4 L306.1 251.3 L308.4 254.1 L310.7 256.8 L313.0 259.4 L315.3 261.9 L317.6 264.2 L319.9 266.4 L322.2 268.5 L324.5 270.5 L326.8 272.2 L329.1 273.8 L331.4 275.2 L333.7 276.5 L336.0 277.6 L338.3 278.4 L340.6 279.1 L342.9 279.6 L345.2 279.9 L347.5 280.0 L349.8 279.9 L352.1 279.6 L354.4 279.1 L356.7 278.4 L359.0 277.6 L361.3 276.5 L363.6 275.2 L365.9 273.8 L368.2 272.2 L370.5 270.5 L372.8 268.5 L375.1 266.4 L377.4 264.2 L379.7 261.9 L382.0 259.4 L384.3 256.8 L386.6 254.1 L388.9 251.3 L391.2 248.4 L393.5 245.5 L395.8 242.4 L398.1 239.4 L400.4 236.3 L402.7 233.1 L405.0 230.0 L407.3 226.9 L409.6 223.7 L411.9 220.6 L414.2 217.6 L416.5 214.5 L418.8 211.6 L421.1 208.7 L423.4 205.9 L425.7 203.2 L428.0 200.6 L430.3 198.1 L432.6 195.8 L434.9 193.6 L437.2 191.5 L439.5 189.5 L441.8 187.8 L444.1 186.2 L446.4 184.8 L448.7 183.5 L451.0 182.4 L453.3 181.6 L455.6 180.9 L457.9 180.4 L460.2 180.1 L462.5 180.0 L464.8 180.1 L467.1 180.4 L469.4 180.9 L471.7 181.6 L474.0 182.4 L476.3 183.5 L478.6 184.8 L480.9 186.2 L483.2 187.8 L485.5 189.5 L487.8 191.5 L490.1 193.6 L492.4 195.8 L494.7 198.1 L497.0 200.6 L499.3 203.2 L501.6 205.9 L503.9 208.7 L506.2 211.6 L508.5 214.5 L510.8 217.6 L513.1 220.6 L515.4 223.7 L517.7 226.9 L520.0 230.0" style="stroke:var(--accent)"/>
+            <path class="fg-dash" d="M117.5 64 V290 M232.5 64 V290 M347.5 64 V290 M462.5 64 V290"/>
+            <text class="fg-m fg-c" x="117.5" y="58" font-size="11.5">entrada: máx.</text>
+            <text class="fg-m fg-c" x="232.5" y="58" font-size="11.5">entrada: mín.</text>
+            <text class="fg-m fg-c" x="117.5" y="306" font-size="11.5">salida: mín.</text>
+            <text class="fg-m fg-c" x="232.5" y="306" font-size="11.5">salida: máx.</text>
+            <text class="fg-a fg-b" x="536" y="84" style="fill:var(--accent)" font-size="17">× 176</text>
+            <text class="fg-m" x="536" y="234">invertida</text><text class="fg-m" x="536" y="252">(desfasada 180°)</text>
+            <text class="fg-m" x="536" y="102">se amplifica</text>
+          </svg>
+          <figcaption><strong>Más grande e invertida.</strong> Cuando la entrada sube, el transistor conduce más, cae más tensión en R<sub>C</sub> y la tensión del colector baja.</figcaption>
+        </figure>
+
+        <h3>Capacitores de acople y de desacople</h3>
+        <p>Los capacitores del esquema cumplen dos funciones. Los de <strong>acople</strong> (C<sub>in</sub> y C<sub>out</sub>) dejan pasar la señal alterna pero bloquean la continua, así el punto de trabajo no se altera por la fuente de la señal ni por lo que se conecte a la salida (<a class="xref" href="06-capacitores-rc.html#reactancia">capítulo 6</a>). El de <strong>desacople</strong> (C<sub>E</sub>), en paralelo con R<sub>E</sub>, es un cortocircuito para la señal y un circuito abierto para la continua: mantiene la polarización estable y deja la ganancia máxima. Forman filtros pasa-altos con frecuencia de corte <span class="eq">f<sub>c</sub> = 1 / (2π · R · C)</span>: por debajo de ella, las señales se atenúan.</p>
+      </section>
+
+      <section id="limites">
+        <h2>Los límites: recorte y distorsión</h2>
+        <p>La salida solo puede moverse entre dos límites: no puede superar la tensión de la fuente (V<sub>CC</sub>) ni bajar de la saturación (la tensión del emisor más unos 0,2 V). Si la ganancia por la amplitud de entrada pide más que eso, la onda se <strong>recorta</strong> (<em>clipping</em>) y se distorsiona: suena sucia en un parlante.</p>
+        <p>Como una ganancia alta deja poco margen, hay que ajustar la amplitud de la entrada, la ganancia (con R<sub>E</sub>) o el punto de trabajo. Además, el amplificador tiene un <strong>ancho de banda</strong> limitado: por debajo y por encima de ciertas frecuencias la ganancia cae.</p>
+      </section>
+
+      <section id="configuraciones">
+        <h2>Otras formas de conectar el transistor</h2>
+        <p>Según qué terminal se use como entrada, como salida y como común, el transistor sirve para distintas cosas:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Configuración</th><th>Entrada → salida</th><th>Ganancia de tensión</th><th>Para qué se usa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Emisor común</strong></td><td>Base → colector</td><td>Alta, invierte</td><td>Amplificar tensión</td></tr>
+              <tr><td><strong>Colector común</strong> (seguidor de emisor)</td><td>Base → emisor</td><td>≈ 1, no invierte</td><td>Adaptar impedancias: entrega mucha corriente con poca carga a la fuente de señal</td></tr>
+              <tr><td><strong>Base común</strong></td><td>Emisor → colector</td><td>Alta, no invierte</td><td>Radiofrecuencia (altas frecuencias)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>El <strong>seguidor de emisor</strong> es muy útil: la salida «sigue» a la entrada menos 0,7 V, pero puede entregar mucha más corriente. Sirve para conectar una señal débil (de un sensor o un micrófono) a una carga exigente sin que la señal se debilite.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El preamplificador de un micrófono</span>
+          <p>Un micrófono electret entrega unos 10 mV. Una etapa de emisor común con ganancia ≈ 100 lo lleva a 1 V, suficiente para la siguiente etapa o para una tarjeta de sonido. Es la entrada de casi cualquier equipo de audio.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Radio y sensores</span>
+          <p>La antena de una radio recibe microvolts: se necesitan varias etapas de amplificación (en radiofrecuencia, con transistores de base común o emisor común) antes de poder escuchar. Los sensores (de temperatura, de luz, de presión) también entregan señales muy pequeñas.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Los amplificadores de hoy</span>
+          <p>Actualmente se usan circuitos integrados llamados <em>amplificadores operacionales</em>, que contienen decenas de transistores, y amplificadores de potencia de audio que usan pares de transistores (uno amplifica el semiciclo positivo y otro el negativo). Pero cada etapa se entiende con lo visto en este capítulo.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: polarización y ganancia</span>
+          <p>V<sub>CC</sub> = 12 V, R<sub>1</sub> = 68 kΩ, R<sub>2</sub> = 10 kΩ, R<sub>C</sub> = 2,2 kΩ, R<sub>E</sub> = 470 Ω.</p>
+          <ol>
+            <li>Base: <span class="eq">V<sub>B</sub> = 12 · 10 / 78 ≈ 1,54 V</span>.</li>
+            <li>Emisor: <span class="eq">V<sub>E</sub> = 1,54 − 0,7 = 0,84 V</span>, entonces <span class="eq">I<sub>C</sub> ≈ 0,84 / 470 ≈ 1,8 mA</span>.</li>
+            <li>Colector: <span class="eq">V<sub>C</sub> = 12 − 1,8 mA · 2,2 kΩ ≈ 8,0 V</span>, así que V<sub>CE</sub> ≈ 7,1 V: en la zona activa con buen margen.</li>
+            <li>Resistencia dinámica: <span class="eq">r<sub>e</sub> = 25 mV / 1,8 mA ≈ 14 Ω</span>.</li>
+            <li>Con R<sub>E</sub> sin puentear: <span class="eq">A<sub>v</sub> = −2200 / (14 + 470) ≈ −4,5</span>. Con R<sub>E</sub> puenteado por un capacitor: <span class="eq">A<sub>v</sub> = −2200 / 14 ≈ −157</span>.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿se recorta?</span>
+          <p>Un amplificador con tensión de reposo en el colector de 7,6 V (V<sub>CC</sub> = 12 V, saturación a 1,2 V) y ganancia −176.</p>
+          <ol>
+            <li>Margen hacia arriba: 12 − 7,6 = 4,4 V. Hacia abajo: 7,6 − 1,2 = 6,4 V. El menor manda: <strong>4,4 V</strong>.</li>
+            <li>Amplitud máxima de entrada sin recorte: <span class="eq">4,4 V / 176 = 25 mV</span>.</li>
+            <li>Con 20 mV de entrada, la salida pide 3,52 V: cabe. Con 40 mV, pediría 7 V y se recorta arriba y abajo.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con los valores iniciales la ganancia es −176: una entrada de 20 mV sale como una onda de unos 3,5 V alrededor de 7,6 V. Fijate en que, cuando la entrada sube, la salida <strong>baja</strong>: está invertida.</li>
+        <li>Subí la amplitud de entrada: pasando los 25 mV la parte superior de la salida se aplana (recorte). La fórmula del margen te avisa antes de que se vea.</li>
+        <li>Elegí R<sub>E</sub> = 470 Ω: la ganancia cae a −4,6, pero ahora podés subir la entrada hasta 300 mV sin que se recorte. Se cambió ganancia por margen y estabilidad.</li>
+        <li>Bajá la corriente de reposo a 1 mA: la resistencia dinámica sube, la ganancia se reduce a la mitad y el punto de reposo se mueve hacia arriba.</li>
+        <li>Con R<sub>C</sub> = 4,7 kΩ e I<sub>C</sub> = 2 mA, el reposo cae a 2,6 V: queda muy cerca de la saturación y se recorta abajo, aunque la entrada sea chica. ¿Por qué un punto de trabajo bien centrado es tan importante?</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/amplifier.js"></script>
+  <script src="../js/quizzes/16-transistor-amplificador.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

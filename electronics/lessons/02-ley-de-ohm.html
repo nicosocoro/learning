@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ley de Ohm y potencia · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="02-ley-de-ohm" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 2</p>
+        <h1>Ley de Ohm y potencia</h1>
+        <p class="lead">Cuánta corriente circula cuando aplicás una tensión a una resistencia, y cuánta energía se convierte en calor.</p>
+      </header>
+      <section>
+        <h2>Resistencia</h2>
+        <p>La <strong>resistencia</strong> (<em>R</em>) mide cuánto se opone un componente al paso de la corriente. Se mide en <strong>ohms (Ω)</strong>. Una resistencia grande deja pasar poca corriente para una misma tensión.</p>
+      </section>
+
+      <section>
+        <h2>La ley de Ohm</h2>
+        <p>Para un resistor ideal, la tensión entre sus extremos es proporcional a la corriente que lo atraviesa:</p>
+        <p class="equation"><span class="eq">V = I · R</span> &nbsp;⇔&nbsp; <span class="eq">I = V / R</span> &nbsp;⇔&nbsp; <span class="eq">R = V / I</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 210" role="img" aria-labelledby="g2at g2ad">
+            <title id="g2at">Triángulo de la ley de Ohm</title>
+            <desc id="g2ad">V arriba; I y R abajo, separadas por una línea.</desc>
+            <polygon class="fg-fill-soft" points="110,24 200,188 20,188" style="stroke:var(--wire);stroke-width:1.5"/>
+            <line class="fg-thin" x1="60" y1="116" x2="160" y2="116"/>
+            <line class="fg-thin" x1="110" y1="116" x2="110" y2="188"/>
+            <g class="fg-t fg-i fg-c" font-size="30">
+              <text x="110" y="100">V</text><text x="76" y="165">I</text><text x="146" y="165">R</text>
+            </g>
+            <text class="fg-m" x="240" y="48">Tapá la letra que querés calcular:</text>
+            <g class="fg-t" font-size="17">
+              <text x="240" y="90"><tspan class="fg-i fg-a">V</tspan> arriba, solo → es lo de abajo multiplicado:</text>
+              <text x="260" y="116" class="fg-i">V = I · R</text>
+              <text x="240" y="158"><tspan class="fg-i fg-a">I</tspan> o <tspan class="fg-i fg-a">R</tspan> → V dividido por el otro:</text>
+              <text x="260" y="184" class="fg-i">I = V / R</text><text x="380" y="184" class="fg-i">R = V / I</text>
+            </g>
+          </svg>
+          <figcaption><strong>Triángulo de Ohm.</strong> Una regla para no memorizar tres fórmulas: tapás la magnitud que buscás y lo que queda te dice cómo calcularla.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">Cómo leerla</span>
+          <p>1 V aplicado a 1 Ω produce 1 A. Si duplicás la tensión, se duplica la corriente; si duplicás la resistencia, la corriente se reduce a la mitad.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="resistividad">De qué depende la resistencia</h2>
+        <p>La resistencia de un cable, o de cualquier conductor, depende de tres cosas: del <strong>material</strong>, de su <strong>longitud</strong> <em>L</em> y de su <strong>sección</strong> <em>A</em> (el área de un corte transversal):</p>
+        <p class="equation"><span class="eq">R = ρ · L / A</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 240" role="img" aria-labelledby="g2bt g2bd">
+            <title id="g2bt">Resistencia según largo y sección</title>
+            <desc id="g2bd">Un cable largo y fino frente a uno corto y grueso, con la fórmula de la resistencia.</desc>
+            <text class="fg-t fg-b" x="40" y="28">Largo y fino: R grande</text>
+            <rect class="fg-box" x="40" y="42" width="420" height="16" rx="3"/>
+            <path class="fg-thin" d="M40 74 H460 M40 68 V80 M460 68 V80"/>
+            <text class="fg-m fg-c" x="250" y="92"><tspan class="fg-i">L</tspan> grande · <tspan class="fg-i">A</tspan> pequeña</text>
+            <text class="fg-t fg-b" x="40" y="136">Corto y grueso: R pequeña</text>
+            <rect class="fg-box" x="40" y="150" width="140" height="44" rx="3"/>
+            <path class="fg-thin" d="M40 206 H180 M40 200 V212 M180 200 V212"/>
+            <text class="fg-m fg-c" x="110" y="226"><tspan class="fg-i">L</tspan> chica · <tspan class="fg-i">A</tspan> grande</text>
+            <g class="fg-fill-neg"><circle cx="70" cy="50" r="4"/><circle cx="130" cy="50" r="4"/><circle cx="210" cy="50" r="4"/><circle cx="300" cy="50" r="4"/><circle cx="390" cy="50" r="4"/>
+            <circle cx="70" cy="162" r="4"/><circle cx="70" cy="180" r="4"/><circle cx="110" cy="171" r="4"/><circle cx="150" cy="162" r="4"/><circle cx="150" cy="180" r="4"/></g>
+            <path class="fg-thin" d="M100 50 h-0"/>
+            <text class="fg-a fg-b fg-i" x="500" y="60" font-size="22">R = ρ · L / A</text>
+            <text class="fg-m" x="500" y="86">ρ: depende del material</text>
+            <text class="fg-m" x="500" y="106">L: más largo → más R</text>
+            <text class="fg-m" x="500" y="126">A: más grueso → menos R</text>
+          </svg>
+          <figcaption><strong>Como una cañería:</strong> un cable largo y angosto tiene pocos caminos para las cargas y muchos obstáculos; uno corto y ancho se las pone fáciles.</figcaption>
+        </figure>
+        <p>donde <em>ρ</em> (rho) es la <strong>resistividad</strong> del material, en ohm-metro (Ω·m). Cuanto más largo el conductor, más obstáculos encuentran las cargas y más resistencia hay; cuanto más grueso, más caminos paralelos tienen para avanzar y menos resistencia. Es como una cañería: una larga y angosta ofrece más resistencia al agua que una corta y ancha.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Resistividad aproximada de algunos materiales a temperatura ambiente</caption>
+            <thead><tr><th>Material</th><th>ρ (Ω·m)</th><th>Tipo y uso</th></tr></thead>
+            <tbody>
+              <tr><td>Plata</td><td>1,6 × 10<sup>−8</sup></td><td>El mejor conductor; contactos</td></tr>
+              <tr><td>Cobre</td><td>1,7 × 10<sup>−8</sup></td><td>Cables y pistas de circuitos</td></tr>
+              <tr><td>Aluminio</td><td>2,8 × 10<sup>−8</sup></td><td>Líneas de alta tensión (más liviano)</td></tr>
+              <tr><td>Nicrom (níquel-cromo)</td><td>1,1 × 10<sup>−6</sup></td><td>Resistencias calefactoras (tostadoras, estufas)</td></tr>
+              <tr><td>Silicio puro</td><td>≈ 2 × 10<sup>3</sup></td><td>Semiconductor</td></tr>
+              <tr><td>Vidrio, goma, plástico</td><td>10<sup>10</sup> – 10<sup>14</sup></td><td>Aislantes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Los materiales se clasifican, según su resistividad, en <strong>conductores</strong> (metales), <strong>aislantes</strong> (la corriente prácticamente no pasa) y <strong>semiconductores</strong> (intermedios, y su conductividad se puede controlar; capítulo <a class="xref" href="07-diodos-led.html">7</a>).</p>
+        <h3>La temperatura también cuenta</h3>
+        <p>En los metales, la resistencia <em>aumenta</em> al calentarse: la agitación de los átomos entorpece a los electrones. Por eso el filamento frío de una lámpara incandescente tiene mucha menos resistencia que cuando está al rojo vivo, y al encenderla toma un pico de corriente. En cambio, en los termistores NTC y en los semiconductores, la resistencia <em>baja</em> al calentarse, lo que se aprovecha para medir temperatura.</p>
+        <h3>El código de colores de los resistores</h3>
+        <p>El valor de un resistor pequeño se lee en sus franjas de colores: las dos primeras son dígitos, la tercera es el multiplicador (la cantidad de ceros) y la cuarta es la tolerancia (dorado ±5 %, plata ±10 %).</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Color</th><th>Negro</th><th>Marrón</th><th>Rojo</th><th>Naranja</th><th>Amarillo</th><th>Verde</th><th>Azul</th><th>Violeta</th><th>Gris</th><th>Blanco</th></tr></thead>
+            <tbody><tr><td>Dígito</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr></tbody>
+          </table>
+        </div>
+        <p>Por ejemplo, <em>marrón – negro – rojo – dorado</em> es 1, 0, ×100, ±5 %: 1000 Ω = 1 kΩ con 5 % de tolerancia.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 640 236" role="img" aria-labelledby="g2ct g2cd">
+            <title id="g2ct">Código de colores</title>
+            <desc id="g2cd">Un resistor con franjas marrón, negro, rojo y dorado.</desc>
+            <line class="fg-line" x1="60" y1="100" x2="190" y2="100"/><line class="fg-line" x1="450" y1="100" x2="580" y2="100"/>
+            <rect x="190" y="68" width="260" height="64" rx="30" fill="#d9c08e" stroke-width="1.5" style="stroke:var(--wire);"/>
+            <rect x="216" y="68" width="22" height="64" fill="#7a4a1e"/>
+            <rect x="276" y="68" width="22" height="64" fill="#111"/>
+            <rect x="336" y="68" width="22" height="64" fill="#cc2a1e"/>
+            <rect x="412" y="68" width="22" height="64" fill="#d4a017"/>
+            <g class="fg-t fg-c" font-size="16">
+              <text x="227" y="164">1</text><text x="287" y="164">0</text><text x="347" y="164">× 100</text><text x="423" y="164">± 5 %</text>
+            </g>
+            <g class="fg-m fg-c">
+              <text x="227" y="184">marrón</text><text x="287" y="184">negro</text><text x="347" y="184">rojo</text><text x="423" y="184">dorado</text>
+              <text x="227" y="48">1ª cifra</text><text x="287" y="48">2ª cifra</text><text x="347" y="48">× ceros</text><text x="423" y="48">tolerancia</text>
+            </g>
+            <text class="fg-a fg-c fg-b" x="320" y="218" font-size="17">10 × 100 = 1000 Ω = 1 kΩ, ± 5 %</text>
+          </svg>
+          <figcaption><strong>Se lee de izquierda a derecha,</strong> empezando por el lado opuesto a la franja dorada o plateada.</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un alargue</span>
+          <p>Un alargue de 10 m con cable de cobre de 1,5 mm² de sección. La corriente va por un conductor y vuelve por el otro, es decir, recorre 20 m. Si se conecta una estufa que toma 10 A, ¿cuánto se pierde en el cable?</p>
+          <ol>
+            <li>Resistencia: <span class="eq">R = ρ · L / A = 1,7 × 10<sup>−8</sup> · 20 / 1,5 × 10<sup>−6</sup> ≈ 0,23 Ω</span></li>
+            <li>Caída de tensión: <span class="eq">V = I · R = 10 · 0,23 ≈ 2,3 V</span> (la estufa recibe 2,3 V menos).</li>
+            <li>Calor generado en el cable: <span class="eq">P = I² · R = 100 · 0,23 ≈ 23 W</span>, repartidos en los 20 m del cable. Con un cable de la mitad de sección, la resistencia y el calor se duplicarían.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="potencia">Potencia y calor</h2>
+        <p>Al atravesar la resistencia, las cargas “caen” una diferencia de potencial <em>V</em> y entregan su energía en forma de calor (efecto Joule). La potencia disipada es:</p>
+        <p class="equation"><span class="eq">P = V · I</span> &nbsp;=&nbsp; <span class="eq">I² · R</span> &nbsp;=&nbsp; <span class="eq">V² / R</span></p>
+        <p>Por eso los resistores tienen una potencia máxima (por ejemplo ¼ W): si disipan más, se calientan demasiado y se dañan. En el capítulo <a class="xref" href="28-hoja-de-datos.html">28</a> se ve cómo elegir con margen y cómo calcular la temperatura.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Una tostadora</span>
+          <p>Es, básicamente, un alambre resistivo que se pone al rojo. Una tostadora de 1000 W conectada a 220 V toma <span class="eq">I = P / V = 1000 / 220 ≈ 4,5 A</span> y su resistencia es <span class="eq">R = V / I ≈ 48 Ω</span>. Toda la energía eléctrica se convierte en calor.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un cable que se calienta</span>
+          <p>Un cable no es un conductor perfecto. Si tiene 0,1 Ω y circulan 10 A, disipa <span class="eq">P = I² · R = 100 · 0,1 = 10 W</span> de calor. Por eso los cables finos recalientan con corrientes grandes y las instalaciones usan secciones mayores a más corriente.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: el resistor de un LED</span>
+          <p>Querés encender un <a class="xref" href="07-diodos-led.html#led">LED</a> que necesita 20 mA y cae 2 V cuando conduce, desde una fuente de 5 V. Sin resistencia, el LED se quemaría. ¿Qué resistor va en serie?</p>
+          <ol>
+            <li>Sobran 5 V − 2 V = 3 V, que debe absorber el resistor.</li>
+            <li>Por Ohm: <span class="eq">R = V / I = 3 V / 0,02 A = 150 Ω</span></li>
+            <li>El resistor disipa <span class="eq">P = 3 V · 0,02 A = 60 mW</span>, muy por debajo de ¼ W: un resistor común alcanza.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con 9 V y 100 Ω, anotá la corriente. Duplicá R a 200 Ω: la corriente debería ser la mitad.</li>
+        <li>Volvé a 100 Ω y duplicá la tensión (de 3 V a 6 V): la corriente se duplica pero la <strong>potencia se cuadruplica</strong>, porque <em>P = V²/R</em>.</li>
+        <li>Mirá el resistor: cuanto más potencia disipa, más se tiñe de naranja.</li>
+        <li>Con R = 10 Ω y V = 12 V se disipan 14,4 W. ¿Soportaría esto un resistor de ¼ W?</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/ohm.js"></script>
+  <script src="../js/quizzes/02-ley-de-ohm.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

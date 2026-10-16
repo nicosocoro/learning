@@ -1,0 +1,228 @@
+/* Estilo "libro de texto": papel crema, tinta oscura, serif clásica, acentos color tinta roja.
+   El modo oscuro es una pizarra verde con tiza. Los canvas leen estos tokens desde js/core/theme.js */
+:root {
+  color-scheme: light dark;
+
+  --bg: #f3ecdb;
+  --surface: #fbf7ec;
+  --surface-2: #ebe2cb;
+  --text: #2b2118;
+  --muted: #6b5d49;
+  --border: #c9bb9c;
+  --accent: #8b2a1a;
+  --charge-pos: #c8641e;
+  --charge-neg: #1f5f8b;
+  --wire: #4a3d2f;
+  --heat: #d08a12;
+  --good: #3b6b33;
+  --bad: #a4281a;
+  --grid: rgba(74, 61, 47, 0.18);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+  --gutter: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a2420;
+    --surface: #212d28;
+    --surface-2: #2a3832;
+    --text: #ece5d0;
+    --muted: #a8b2a0;
+    --border: #3d4d44;
+    --accent: #f0c674;
+    --charge-pos: #ff9f68;
+    --charge-neg: #7cc4e8;
+    --wire: #bcc5b2;
+    --heat: #ffb347;
+    --good: #9ccc8a;
+    --bad: #ff8f80;
+    --grid: rgba(236, 229, 208, 0.15);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.55rem;
+  margin-top: 2.2em;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-style: italic;
+  margin-top: 1.6em;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1em;
+}
+
+li {
+  margin-bottom: 0.4em;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+/* Ecuaciones: cursiva serif, como en un texto impreso */
+.eq {
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.equation {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 1em 0;
+}
+
+sub,
+sup {
+  font-size: 0.7em;
+  line-height: 0;
+}
+
+/* Cabecera del sitio: filete doble, como un encabezado de revista */
+.masthead {
+  border-bottom: 4px double var(--text);
+  background: var(--bg);
+}
+
+.masthead-inner {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.masthead-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.masthead-title em {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.masthead-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.masthead-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.masthead-nav a {
+  min-width: 30px;
+  text-align: center;
+  padding: 2px 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+}
+
+.masthead-nav a:hover {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.masthead-nav a[aria-current="page"] {
+  color: var(--bg);
+  background: var(--accent);
+}
+
+.site-footer {
+  max-width: 980px;
+  margin: 4rem auto 0;
+  padding: 1.5rem var(--gutter) 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer .terms h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.site-footer .terms p {
+  margin: 0 0 0.6rem;
+  max-width: 70ch;
+}
+
+/* Ecuaciones largas: en pantallas chicas pueden partirse o desplazarse sin ensanchar la página */
+@media (max-width: 700px) {
+  .eq {
+    white-space: normal;
+  }
+
+  .equation {
+    font-size: 1.15rem;
+    overflow-x: auto;
+  }
+}

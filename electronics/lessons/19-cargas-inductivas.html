@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cargas inductivas y elección del interruptor · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="19-cargas-inductivas" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 19</p>
+        <h1>Cargas inductivas y elección del interruptor</h1>
+        <p class="lead">Por qué apagar un relé o un motor puede destruir al transistor, cómo se protege con un diodo, cómo se invierte un motor con un puente H y cómo elegir entre BJT, MOSFET, relé y relé de estado sólido.</p>
+      </header>
+      <section>
+        <h2>El problema: una bobina no soporta que le corten la corriente</h2>
+        <p>Los relés, los motores y los solenoides son <strong>cargas inductivas</strong>: dentro tienen una bobina. Como vimos en el <a class="xref" href="12-induccion.html#inductancia">capítulo 12</a>, una bobina se opone a los cambios de corriente generando una tensión:</p>
+        <p class="equation"><span class="eq">V = L · ΔI / Δt</span> &nbsp;&nbsp; <span class="eq">E = ½ · L · I²</span></p>
+        <p>Mientras el transistor conduce, la bobina almacena energía en su campo magnético. Al apagarlo, la corriente intenta bajar a cero en un tiempo ínfimo (un microsegundo) y la bobina responde con una tensión enorme: <em>cuanto más rápido se corta la corriente, mayor el pico</em>. Para un relé con L = 0,8 H y 30 mA, el cálculo da <span class="eq">0,8 · 0,03 / 1 µs = 24 000 V</span>. En la práctica se forma un arco o el transistor entra en avalancha a unos cientos de volts, pero eso alcanza (y sobra) para destruir un transistor de 40 V.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 680 235" role="img" aria-labelledby="g19at g19ad">
+            <title id="g19at">Tensión en el colector al apagar una bobina</title>
+            <desc id="g19ad">Dos gráficas de la tensión colector-emisor: sin protección aparece un pico enorme al apagar y con un diodo en paralelo la tensión sube apenas 0,7 volts por encima de la alimentación.</desc>
+<text class="fg-t fg-b fg-c" x="180.0" y="20">Sin protección</text><path class="fg-line" d="M50 56 V200 H320" style="stroke-width:1.6"/><path class="fg-bad" d="M50 113.33333333333333 H310" style="stroke-dasharray:5 4;stroke-width:1.3"/><text class="fg-m" x="54" y="108.33333333333333" style="fill:var(--bad)" font-size="11.5">máximo del transistor: 40 V</text><path class="fg-dash" d="M50 174.0 H310"/><text class="fg-m fg-e" x="44" y="178.0" font-size="11.5">12 V</text><text class="fg-m fg-e" x="44" y="204" font-size="11.5">0</text><path class="fg-acc" d="M50 199.6 H180.0 V36 M183.0 36 V174.0 H310"/><path class="fg-dash" d="M180.0 66 V200" style="stroke:var(--muted)"/><text class="fg-m fg-c" x="180.0" y="216" font-size="11.5">se apaga</text><text class="fg-b" x="192.0" y="46" style="fill:var(--bad)" font-size="13">¡pico de cientos de volts!</text><text class="fg-m" x="192.0" y="62" font-size="11">(en teoría, miles; en la práctica salta un arco)</text><text class="fg-t fg-b fg-c" x="520.0" y="20">Con diodo en paralelo</text><path class="fg-line" d="M390 56 V200 H660" style="stroke-width:1.6"/><path class="fg-bad" d="M390 113.33333333333333 H650" style="stroke-dasharray:5 4;stroke-width:1.3"/><text class="fg-m" x="394" y="108.33333333333333" style="fill:var(--bad)" font-size="11.5">máximo del transistor: 40 V</text><path class="fg-dash" d="M390 174.0 H650"/><text class="fg-m fg-e" x="384" y="178.0" font-size="11.5">12 V</text><text class="fg-m fg-e" x="384" y="204" font-size="11.5">0</text><path class="fg-acc" d="M390 199.6 H520.0 V172.5 H620.0 Q638.0 172.5 642.0 174.0 H650"/><path class="fg-dash" d="M520.0 66 V200" style="stroke:var(--muted)"/><text class="fg-m fg-c" x="520.0" y="216" font-size="11.5">se apaga</text><text class="fg-m" x="528.0" y="150.5" font-size="11.5">12,7 V mientras</text><text class="fg-m" x="528.0" y="164.5" font-size="11.5">circula la corriente</text>
+          </svg>
+          <figcaption><strong>Cuando se corta la corriente de una bobina, la autoinducción la «empuja» a seguir.</strong> Si no tiene por dónde, genera la tensión que haga falta —cientos de volts— y el transistor paga las consecuencias.</figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="box-title">Una energía que no puede desaparecer</span>
+          <p>La energía almacenada, ½·L·I², tiene que ir a algún lado. Si no hay un camino pensado para ella, se descarga como chispa, calor o un pico de tensión en el peor lugar: justo el transistor o el pin del microcontrolador.</p>
+        </div>
+      </section>
+
+      <section id="diodo">
+        <h2>La solución: el diodo de rueda libre</h2>
+        <p>Se conecta un <strong>diodo en paralelo con la bobina</strong>, «al revés» (con el cátodo, la barra, del lado de +V). Con el transistor conduciendo, el diodo está en inverso y no hace nada. Al apagar el transistor, la bobina intenta mantener su corriente: invierte su tensión, el diodo pasa a conducir y la corriente <em>circula en un lazo cerrado</em> por la bobina y el diodo, decayendo de a poco por la resistencia de la bobina. Se lo llama diodo de <strong>rueda libre</strong> (<em>freewheeling</em>) o <strong>flyback</strong>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 348" role="img" aria-labelledby="g19bt g19bd">
+            <title id="g19bt">El diodo de rueda libre</title>
+            <desc id="g19bd">Dos circuitos iguales con una bobina, un diodo en paralelo y un transistor: con el transistor encendido la corriente pasa por la bobina y el transistor; apagado, circula por el lazo formado por la bobina y el diodo.</desc>
+<text class="fg-t fg-b fg-c" x="160" y="18">Transistor ON: se carga la bobina</text><path class="fg-line" d="M30 54 H210"/><text class="fg-a fg-b" x="30" y="46" style="fill:var(--accent)">+12 V</text><path class="fg-line" d="M200 54 V76 M200 160 V190.58932507783393"/><path class="fg-line" d="M200 76 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 "/><text class="fg-m" x="222" y="122">bobina</text><path class="fg-line" d="M100 54 V96 M100 132 V172 H200"/><polygon points="88,132 112,132 100,100" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M88 100 H112"/><text class="fg-m fg-e" x="82" y="122" font-size="12">diodo</text><circle cx="200" cy="172" r="4" class="fg-fill-wire"/><circle cx="200" cy="240" r="28" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M146 240 H191.6"/><path class="fg-line" d="M191.6 226.0 V254.0" style="stroke-width:3.5"/><path class="fg-line" d="M191.6 233.84 L211.76 214.58932507783393 V190.58932507783393 M191.6 246.16 L211.76 265.4106749221661 V289.4106749221661"/><polygon class="fg-fill-wire" points="207.7,261.6 199.3,258.4 204.2,253.3"/><text class="fg-m" x="220.76" y="196.58932507783393">C</text><text class="fg-m" x="220.76" y="291.4106749221661">E</text><text class="fg-m fg-e" x="142" y="234">B</text><path class="fg-line" d="M211.76 289.4106749221661 V297.4106749221661"/><path class="fg-line" d="M211.76 297.4106749221661 V305.4106749221661 M197.76 305.4106749221661 H225.76 M202.76 310.4106749221661 H220.76 M207.76 315.4106749221661 H215.76"/><text class="fg-t fg-b fg-c" x="70" y="244" style="fill:var(--good)">ON</text><path class="fg-pos" d="M186 82 L186 150" style="stroke-width:3"/><path class="fg-pos" d="M182.1 141.9 L186 150 L189.9 141.9" style="stroke-width:3"/><path class="fg-pos" d="M200 174 L200 192.58932507783393" style="stroke-width:3"/><path class="fg-pos" d="M196.1 184.5 L200 192.58932507783393 L203.9 184.5" style="stroke-width:3"/><text class="fg-t fg-c" x="160" y="340" font-size="12.5" style="fill:var(--charge-pos)">la corriente va por la bobina y el transistor</text><text class="fg-t fg-b fg-c" x="510" y="18">Transistor OFF: sigue por el diodo</text><path class="fg-line" d="M380 54 H560"/><text class="fg-a fg-b" x="380" y="46" style="fill:var(--accent)">+12 V</text><path class="fg-line" d="M550 54 V76 M550 160 V190.58932507783393"/><path class="fg-line" d="M550 76 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 a7.0 7.0 0 0 1 0 14.0 "/><text class="fg-m" x="572" y="122">bobina</text><path class="fg-line" d="M450 54 V96 M450 132 V172 H550"/><polygon points="438,132 462,132 450,100" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M438 100 H462"/><text class="fg-m fg-e" x="432" y="122" font-size="12">diodo</text><circle cx="550" cy="172" r="4" class="fg-fill-wire"/><circle cx="550" cy="240" r="28" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M496 240 H541.6"/><path class="fg-line" d="M541.6 226.0 V254.0" style="stroke-width:3.5"/><path class="fg-line" d="M541.6 233.84 L561.76 214.58932507783393 V190.58932507783393 M541.6 246.16 L561.76 265.4106749221661 V289.4106749221661"/><polygon class="fg-fill-wire" points="557.7,261.6 549.3,258.4 554.2,253.3"/><text class="fg-m" x="570.76" y="196.58932507783393">C</text><text class="fg-m" x="570.76" y="291.4106749221661">E</text><text class="fg-m fg-e" x="492" y="234">B</text><path class="fg-line" d="M561.76 289.4106749221661 V297.4106749221661"/><path class="fg-line" d="M561.76 297.4106749221661 V305.4106749221661 M547.76 305.4106749221661 H575.76 M552.76 310.4106749221661 H570.76 M557.76 315.4106749221661 H565.76"/><text class="fg-t fg-b fg-c" x="420" y="244" style="fill:var(--bad)">OFF</text><path class="fg-pos" d="M536 82 L536 150" style="stroke-width:3"/><path class="fg-pos" d="M532.1 141.9 L536 150 L539.9 141.9" style="stroke-width:3"/><path class="fg-pos" d="M536 172 L452 172" style="stroke-width:3"/><path class="fg-pos" d="M460.1 168.1 L452 172 L460.1 175.9" style="stroke-width:3"/><path class="fg-pos" d="M450 152 L450 66" style="stroke-width:3"/><path class="fg-pos" d="M453.9 74.1 L450 66 L446.1 74.1" style="stroke-width:3"/><path class="fg-pos" d="M450 62 L536 62" style="stroke-width:3"/><path class="fg-pos" d="M527.9 65.9 L536 62 L527.9 58.1" style="stroke-width:3"/><text class="fg-t fg-c" x="510" y="340" font-size="12.5" style="fill:var(--charge-pos)">la corriente gira en el lazo bobina-diodo</text>
+          </svg>
+          <figcaption><strong>El diodo queda al revés</strong> (cátodo hacia +V): mientras el transistor conduce, no hace nada; al apagarse, ofrece a la corriente de la bobina un camino cerrado y limita la tensión a unos 0,7 V.</figcaption>
+        </figure>
+
+        <ul>
+          <li>La tensión en el colector queda limitada a <span class="eq">V<sub>CC</sub> + 0,7 V</span>: una subida mínima.</li>
+          <li><strong>Polaridad:</strong> el cátodo (barra) va hacia +V. Si se coloca al revés, queda en cortocircuito apenas se enciende el transistor.</li>
+          <li><strong>Elección:</strong> su corriente máxima debe ser mayor que la de la bobina y su tensión inversa mayor que V<sub>CC</sub>. El <strong>1N4007</strong> (1 A, 1000 V) sirve para casi todo; el <strong>1N4148</strong> (muy rápido, 200 mA) para relés chicos; un <strong>Schottky</strong> (1N5819) para motores, porque cae menos de tensión y es más rápido.</li>
+          <li>Va <strong>lo más cerca posible de la bobina</strong>, soldado a sus terminales.</li>
+          <li>Muchos módulos de relé y muchos relés ya traen el diodo; los MOSFET de potencia tienen uno interno (<em>body diode</em>) pero conviene agregar uno externo.</li>
+        </ul>
+      </section>
+
+      <section id="costo">
+        <h2>El precio del diodo y otras alternativas</h2>
+        <p>Con el diodo, la corriente de la bobina decae lentamente con τ = L/R. En un relé, eso significa que la armadura tarda más en soltarse (porque la corriente debe caer por debajo del umbral de apertura). Para un relé de bobina de 400 Ω y 0,8 H, la corriente tarda unos 3 ms más en bajar al 20 %. Si hace falta liberar rápido, se puede dejar que la tensión suba un poco más:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Protección</th><th>Tensión en el colector</th><th>Liberación</th><th>Comentario</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Diodo</strong></td><td>V<sub>CC</sub> + 0,7 V</td><td>Lenta</td><td>La más simple y común. Para CC.</td></tr>
+              <tr><td><strong>Diodo + zener</strong> en serie</td><td>V<sub>CC</sub> + V<sub>Z</sub> + 0,7 V</td><td>Más rápida</td><td>V<sub>Z</sub> debe dejar el total por debajo del máximo del transistor.</td></tr>
+              <tr><td><strong>Resistor + diodo</strong></td><td>V<sub>CC</sub> + I·R</td><td>Intermedia</td><td>Se usa en relés para acelerar la apertura.</td></tr>
+              <tr><td><strong>Red RC</strong> (<em>snubber</em>)</td><td>Limitada por el capacitor</td><td>Intermedia</td><td>Sirve en CA y en contactos de relé.</td></tr>
+              <tr><td><strong>Varistor (MOV) o TVS</strong></td><td>Fija (por ejemplo 18–30 V)</td><td>Rápida</td><td>Funciona en CA y CC; recorta los picos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="motores">
+        <h2>Motores de corriente continua</h2>
+        <p>Un motor es una carga inductiva con particularidades:</p>
+        <ul>
+          <li><strong>Corriente de arranque:</strong> al estar quieto, solo lo limita su resistencia interna, y consume de 5 a 10 veces la corriente nominal. Hay que dimensionar el transistor para ese pico (el MOSFET o el relé).</li>
+          <li><strong>Fuerza contraelectromotriz:</strong> girando, el motor actúa como generador (por <a class="xref" href="12-induccion.html#faraday">Faraday</a>) y se opone a la alimentación; por eso la corriente baja al acelerar. Y si lo hacés girar a mano, entrega tensión.</li>
+          <li><strong>Ruido:</strong> las escobillas producen chispas. Un capacitor de 100 nF entre los bornes del motor reduce las interferencias.</li>
+          <li><strong>Velocidad:</strong> con PWM (<a class="xref" href="11-osciloscopio.html#pwm">capítulo 11</a>) y un MOSFET se regula la potencia promedio sin desperdiciar energía en calor.</li>
+        </ul>
+        <p>Para <strong>invertir el sentido</strong> de giro se usa un <strong>puente H</strong>: cuatro interruptores (transistores, MOSFET o integrados como el L298 o el L293D) conectados en forma de H con el motor en el medio. Cerrando las dos diagonales se alimenta al motor en un sentido o en el otro. Cerrando las dos inferiores (Q3 y Q4), o las dos superiores (Q1 y Q2), se cortocircuitan los bornes del motor y se lo frena.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 285" role="img" aria-labelledby="g19ct g19cd">
+            <title id="g19ct">Puente H para invertir el giro de un motor</title>
+            <desc id="g19cd">Cuatro interruptores en forma de H alrededor de un motor: con dos diagonales cerradas la corriente lo atraviesa en un sentido y con las otras dos, en el contrario.</desc>
+<text class="fg-t fg-b fg-c" x="155" y="20">Gira hacia adelante</text><path class="fg-line" d="M30 44 H280"/><text class="fg-a fg-b" x="30" y="38" style="fill:var(--accent)">+V</text><path class="fg-line" d="M30 236 H280"/><path class="fg-line" d="M155 236 V244 M141 244 H169 M146 249 H164 M151 254 H159"/><path class="fg-line" d="M50 44 V236 M260 44 V236 M50 146 H131 M179 146 H260"/><path d="M50 44 V146 H131 M179 146 H260 V236" fill="none" style="stroke:var(--charge-pos);stroke-width:3.5;stroke-linejoin:round"/><rect x="33" y="70" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--good);stroke-width:3"/><text class="fg-c fg-b" x="50" y="95" font-size="14" style="fill:var(--good)">Q1</text><rect x="33" y="170" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--muted);stroke-width:1.5"/><text class="fg-c fg-b" x="50" y="195" font-size="14" style="fill:var(--muted)">Q3</text><rect x="243" y="70" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--muted);stroke-width:1.5"/><text class="fg-c fg-b" x="260" y="95" font-size="14" style="fill:var(--muted)">Q2</text><rect x="243" y="170" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--good);stroke-width:3"/><text class="fg-c fg-b" x="260" y="195" font-size="14" style="fill:var(--good)">Q4</text><circle cx="155" cy="146" r="24" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-c fg-b" x="155" y="152" font-size="17">M</text><polygon points="50.0,135.0 44.0,123.0 56.0,123.0" style="fill:var(--charge-pos)"/><polygon points="91.0,146.0 79.0,152.0 79.0,140.0" style="fill:var(--charge-pos)"/><polygon points="229.0,146.0 217.0,152.0 217.0,140.0" style="fill:var(--charge-pos)"/><polygon points="260.0,169.0 254.0,157.0 266.0,157.0" style="fill:var(--charge-pos)"/><polygon points="260.0,233.0 254.0,221.0 266.0,221.0" style="fill:var(--charge-pos)"/><text class="fg-m fg-c" x="155" y="272" font-size="12.5">Q1 y Q4 conducen</text><text class="fg-t fg-b fg-c" x="515" y="20">Gira hacia atrás</text><path class="fg-line" d="M390 44 H640"/><text class="fg-a fg-b" x="390" y="38" style="fill:var(--accent)">+V</text><path class="fg-line" d="M390 236 H640"/><path class="fg-line" d="M515 236 V244 M501 244 H529 M506 249 H524 M511 254 H519"/><path class="fg-line" d="M410 44 V236 M620 44 V236 M410 146 H491 M539 146 H620"/><path d="M620 44 V146 H539 M491 146 H410 V236" fill="none" style="stroke:var(--charge-pos);stroke-width:3.5;stroke-linejoin:round"/><rect x="393" y="70" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--muted);stroke-width:1.5"/><text class="fg-c fg-b" x="410" y="95" font-size="14" style="fill:var(--muted)">Q1</text><rect x="393" y="170" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--good);stroke-width:3"/><text class="fg-c fg-b" x="410" y="195" font-size="14" style="fill:var(--good)">Q3</text><rect x="603" y="70" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--good);stroke-width:3"/><text class="fg-c fg-b" x="620" y="95" font-size="14" style="fill:var(--good)">Q2</text><rect x="603" y="170" width="34" height="40" rx="5" style="fill:var(--surface);stroke:var(--muted);stroke-width:1.5"/><text class="fg-c fg-b" x="620" y="195" font-size="14" style="fill:var(--muted)">Q4</text><circle cx="515" cy="146" r="24" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-c fg-b" x="515" y="152" font-size="17">M</text><polygon points="620.0,135.0 614.0,123.0 626.0,123.0" style="fill:var(--charge-pos)"/><polygon points="579.0,146.0 591.0,140.0 591.0,152.0" style="fill:var(--charge-pos)"/><polygon points="441.0,146.0 453.0,140.0 453.0,152.0" style="fill:var(--charge-pos)"/><polygon points="410.0,169.0 404.0,157.0 416.0,157.0" style="fill:var(--charge-pos)"/><polygon points="410.0,233.0 404.0,221.0 416.0,221.0" style="fill:var(--charge-pos)"/><text class="fg-m fg-c" x="515" y="272" font-size="12.5">Q2 y Q3 conducen</text>
+          </svg>
+          <figcaption><strong>Dos diagonales, dos sentidos.</strong> Nunca se cierran a la vez los dos transistores de un mismo lado (Q1 y Q3, o Q2 y Q4): sería un cortocircuito de la fuente a masa. Cada transistor lleva un diodo en paralelo para absorber los picos del motor.</figcaption>
+        </figure>
+
+      </section>
+
+      <section id="ca">
+        <h2>Cargas inductivas en corriente alterna</h2>
+        <p>Con un relé que conmuta un motor de 220 V, una electroválvula o un transformador, el problema se traslada a los <em>contactos</em>: al abrir, la inductancia de la carga hace saltar un arco que desgasta el metal. Se lo reduce con un <strong>snubber RC</strong> (un resistor de unos 100 Ω en serie con un capacitor de 100 nF) o un <strong>varistor</strong> en paralelo con la carga o con los contactos, y eligiendo un relé con capacidad bien holgada para cargas inductivas (una carga de 3 A inductiva puede pedir un relé de 10 A). Un relé de estado sólido con <em>cruce por cero</em> abre cuando la corriente pasa por cero y evita casi todo el pico.</p>
+      </section>
+
+      <section id="elegir">
+        <h2>Cómo elegir el interruptor correcto</h2>
+        <p>Con lo visto en los capítulos de esta parte, la elección se resume así:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 800 358" role="img" aria-labelledby="g19dt g19dd">
+            <title id="g19dt">Cómo elegir el interruptor</title>
+            <desc id="g19dd">Diagrama de decisión: para corriente alterna se elige entre relé de estado sólido y relé electromecánico; para continua entre relé, BJT y MOSFET según aislación, corriente y velocidad.</desc>
+<rect x="265.0" y="6" width="230" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="380" y="32" font-size="12.5">¿Qué vas a conmutar?</text><path d="M380 50 V70 H150 V86 M380 70 H590 V86" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><rect x="65.0" y="86" width="170" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="150" y="105" font-size="12.5">Corriente alterna</text><text class="fg-m fg-c" x="150" y="121" font-size="11.5">(de la red)</text><rect x="505.0" y="86" width="170" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="590" y="112" font-size="12.5">Corriente continua</text><path d="M150 130 V150" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><rect x="35.0" y="150" width="230" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="150" y="169" font-size="12.5">¿Querés silencio, larga vida</text><text class="fg-m fg-c" x="150" y="185" font-size="11.5">o control fino lento?</text><path d="M80 194 V232 M220 194 V232" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><text class="fg-m fg-c" x="66" y="216" font-size="11.5">sí</text><text class="fg-m fg-c" x="234" y="216" font-size="11.5">no</text><rect x="5.0" y="232" width="150" height="44" rx="22" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.2"/><text class="fg-t fg-c fg-b" x="80" y="251" font-size="12.5">Relé de estado</text><text class="fg-m fg-c" x="80" y="267" font-size="11.5">sólido (SSR)</text><rect x="175.0" y="232" width="150" height="44" rx="22" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.2"/><text class="fg-t fg-c fg-b" x="250" y="251" font-size="12.5">Relé</text><text class="fg-m fg-c" x="250" y="267" font-size="11.5">electromecánico</text><path d="M590 130 V150" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><rect x="475.0" y="150" width="230" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="590" y="169" font-size="12.5">¿Hace falta aislación</text><text class="fg-m fg-c" x="590" y="185" font-size="11.5">galvánica total?</text><path d="M500 194 V232 M680 194 V232" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><text class="fg-m fg-c" x="486" y="216" font-size="11.5">sí</text><text class="fg-m fg-c" x="694" y="216" font-size="11.5">no</text><rect x="425.0" y="232" width="150" height="44" rx="22" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.2"/><text class="fg-t fg-c fg-b" x="500" y="251" font-size="12.5">Relé (con transistor</text><text class="fg-m fg-c" x="500" y="267" font-size="11.5">que lo maneje)</text><rect x="600.0" y="232" width="160" height="44" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/><text class="fg-t fg-c " x="680" y="251" font-size="12.5">¿Menos de 100 mA</text><text class="fg-m fg-c" x="680" y="267" font-size="11.5">y sin apuro?</text><path d="M640 276 V304 M720 276 V304" fill="none" style="stroke:var(--muted);stroke-width:1.5"/><text class="fg-m fg-c" x="628" y="296" font-size="11.5">sí</text><text class="fg-m fg-c" x="732" y="296" font-size="11.5">no</text><rect x="580.0" y="304" width="120" height="44" rx="22" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.2"/><text class="fg-t fg-c fg-b" x="640" y="330" font-size="12.5">Transistor BJT</text><rect x="705.0" y="304" width="90" height="44" rx="22" style="fill:var(--surface);stroke:var(--accent);stroke-width:2.2"/><text class="fg-t fg-c fg-b" x="750" y="330" font-size="12.5">MOSFET</text>
+          </svg>
+          <figcaption>Una guía rápida, no una regla absoluta: en un proyecto real también importan el costo, el tamaño, la tensión y el ruido.</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Qué usar según la carga</caption>
+            <thead><tr><th>Carga</th><th>Opción habitual</th><th>Protección y detalles</th></tr></thead>
+            <tbody>
+              <tr><td>LED, buzzer, sensor (&lt; 100 mA, CC)</td><td>BJT (2N2222, BC547) con resistor de base</td><td>Saturar con margen (capítulo 15)</td></tr>
+              <tr><td>Tira de LED, ventilador, lámpara de CC (0,5–10 A)</td><td>MOSFET de nivel lógico (IRLZ44N)</td><td>Resistor de compuerta, pull-down, PWM</td></tr>
+              <tr><td>Relé, solenoide, motor chico</td><td>BJT o MOSFET</td><td><strong>Diodo en paralelo con la carga</strong></td></tr>
+              <tr><td>Motor con inversión de giro</td><td>Puente H (integrado o 4 MOSFET)</td><td>Diodos, limitación de corriente de arranque</td></tr>
+              <tr><td>Electrodoméstico de 220 V</td><td>Relé electromecánico (o módulo de relé)</td><td>Fusible, caja cerrada, relé con capacidad holgada; snubber si es inductiva</td></tr>
+              <tr><td>Calefacción de 220 V con control fino lento</td><td>Relé de estado sólido</td><td>Disipador, cruce por cero</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Lista de verificación de un driver de potencia</h2>
+        <ol>
+          <li><strong>Corriente de la carga</strong> (incluida la de arranque o el pico de encendido) y tensión de alimentación.</li>
+          <li><strong>Elegir el dispositivo</strong> con margen: corriente al menos el doble, tensión mayor que la de trabajo.</li>
+          <li><strong>Excitación:</strong> BJT saturado con margen de 2 a 10 veces (<a class="xref" href="15-transistor-interruptor.html#calculo">capítulo 15</a>); MOSFET con V<sub>GS</sub> suficiente y R<sub>G</sub> pequeño (capítulo <a class="xref" href="17-mosfet.html">17</a>).</li>
+          <li><strong>Pull-down</strong> en la base o la compuerta.</li>
+          <li><strong>Diodo de rueda libre</strong> si la carga es inductiva.</li>
+          <li><strong>Masa común</strong> entre control y potencia.</li>
+          <li><strong>Calor:</strong> calcular P = V<sub>CE</sub>·I o I²·R<sub>DS(on)</sub> y agregar disipador si hace falta.</li>
+          <li><strong>Fusible o protección</strong> contra cortocircuito, y en 220 V, todo aislado y encajonado.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">La bujía: el pico usado a propósito</span>
+          <p>La bobina de encendido de un auto aprovecha justamente este efecto: se cierra el circuito del primario y la corriente crece; al abrirlo de golpe, la bobina genera un pico de 20 000 a 40 000 V (con ayuda de un transformador) que hace saltar la chispa en la bujía. Lo que un transistor chico no tolera, ahí es el objetivo.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Fuentes «flyback»</span>
+          <p>Muchas fuentes conmutadas pequeñas (cargadores de celular) usan un transformador que almacena energía como una bobina y la entrega al apagarse el transistor. Es la misma física, controlada con precisión.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Los módulos de relé para Arduino</span>
+          <p>Traen un transistor, el diodo de rueda libre, un LED indicador y, muchas veces, un optoacoplador: exactamente el esquema de este capítulo, ya armado.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿qué le pasa al transistor?</span>
+          <p>Un relé de 12 V con bobina de 400 Ω y 0,8 H se maneja con un 2N2222 (V<sub>CEO</sub> = 40 V) sin diodo.</p>
+          <ol>
+            <li>Corriente de la bobina: <span class="eq">I = (12 − 0,2) / 400 ≈ 30 mA</span>. Energía: <span class="eq">½ · 0,8 · 0,03² = 0,36 mJ</span>.</li>
+            <li>Si el transistor corta en 1 µs: <span class="eq">V = L · ΔI / Δt = 0,8 · 0,03 / 10<sup>−6</sup> = 24 kV</span> (en la práctica, un arco de cientos de volts).</li>
+            <li>El transistor soporta 40 V: se perfora en el primer apagado o se degrada con los siguientes.</li>
+            <li>Con un diodo, la tensión máxima es 12,7 V. La energía de 0,36 mJ se disipa lentamente como calor en los 400 Ω de la bobina.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿cuánto tarda en soltarse?</span>
+          <p>El mismo relé, con diodo. La bobina tiene τ = L/R = 0,8 / 400 = 2 ms y suelta cuando la corriente baja al 20 % de la nominal.</p>
+          <ol>
+            <li>Con diodo solo: <span class="eq">i(t) = I<sub>0</sub> · e<sup>−t/τ</sup></span>. La corriente llega al 20 % cuando <span class="eq">t = τ · ln(5) ≈ 1,6 · 2 ms ≈ 3,2 ms</span> (aprox.; la caída del diodo la acelera un poco).</li>
+            <li>Con un zener de 12 V en serie con el diodo: la bobina ve unos 12,7 V y la corriente baja casi linealmente: <span class="eq">t ≈ L · ΔI / V = 0,8 · 0,024 / 12,7 ≈ 1,5 ms</span>. Sube la tensión del colector hasta 12 + 12,7 = 24,7 V (aún bajo 40 V).</li>
+            <li>Conclusión: el zener libera el relé el doble de rápido a costa de más tensión en el transistor.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con <strong>sin protección</strong> y el relé de 12 V, dejá correr el ciclo: en el momento de apagarse aparece un pico muy por encima de los 40 V y la figura marca «¡CHISPA!». Mirá el panel de fórmulas: el pico teórico es de decenas de kV.</li>
+        <li>Elegí <strong>Diodo</strong>: la tensión del colector sube apenas a 12,7 V y la corriente de la bobina (gráfica de arriba a la derecha) decae suavemente con τ = L/R. Las cargas dibujadas circulan en el lazo bobina-diodo.</li>
+        <li>Cambiá a <strong>Diodo + zener</strong>: la corriente cae más rápido (la bobina «ve» más tensión), a costa de que el colector suba a unos 24,7 V. Compará el tiempo hasta caer al 20 % con el del diodo solo.</li>
+        <li>Subí V<sub>CC</sub> a 24 V con el diodo y el zener: el pico llega a 36,7 V, cerca del límite de 40 V. Con un zener mayor, el transistor se perdería. Elegir V<sub>Z</sub> exige sumar V<sub>CC</sub>.</li>
+        <li>Probá las otras cargas (solenoide y motor): tienen menos inductancia pero más corriente. Observá que la energía almacenada (½·L·I²) cambia y que, sin protección, siguen produciendo el pico.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/inductive.js"></script>
+  <script src="../js/quizzes/19-cargas-inductivas.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

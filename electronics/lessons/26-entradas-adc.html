@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entradas reales y conversión analógico-digital · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="26-entradas-adc" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 26</p>
+        <h1>Entradas reales y conversión analógico-digital</h1>
+        <p class="lead">Cómo conectar pulsadores y sensores a un circuito digital: pull-up, rebote, el conversor analógico-digital con su resolución y el teorema de Nyquist, y el PWM como conversor digital-analógico.</p>
+      </header>
+      <section>
+        <h2>El mundo real no es digital</h2>
+        <p>Un microcontrolador solo entiende ceros y unos (<a class="xref" href="25-logica.html">capítulo 25</a>), pero el mundo que le interesa (un pulsador, una temperatura, un sonido) no llega en ese formato. Este capítulo explica cómo se conectan las entradas reales a un circuito digital: primero las más simples, los pulsadores y los interruptores; después las señales analógicas, mediante el <strong>conversor analógico-digital</strong> (ADC); y por último el camino inverso, de lo digital a lo analógico.</p>
+      </section>
+
+      <section id="pulsadores">
+        <h2>Pulsadores y entradas flotantes</h2>
+        <p>Un pulsador solo conecta o desconecta. Pero si se lo conecta a una entrada digital sin más, cuando está suelto la entrada <strong>«flota»</strong>: no está conectada a nada y capta el ruido eléctrico del ambiente, así que su lectura es impredecible. La solución es un resistor que fije el nivel cuando el pulsador está suelto:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 740 270" role="img" aria-labelledby="g26at g26ad">
+            <title id="g26at">Resistor pull-down, resistor pull-up y entrada flotante</title>
+            <desc id="g26ad">Tres circuitos de un pulsador conectado a una entrada digital: con un resistor a masa, con un resistor a la alimentación y sin ningún resistor, donde la entrada queda flotante.</desc>
+<text class="fg-t fg-b fg-c" x="110" y="20">Con pull-down</text><path class="fg-line" d="M10 44 H140"/><text class="fg-a fg-b" x="146" y="49" style="fill:var(--accent)" font-size="12">+5 V</text><path class="fg-line" d="M10 200 H140"/><path class="fg-line" d="M70 44 V64"/><path class="fg-line" d="M70 44 V70"/><circle cx="70" cy="78" r="3.5" class="fg-fill-wire"/><circle cx="70" cy="108" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M70 78 L88 100"/><path class="fg-line" d="M70 108 V128"/><circle cx="70" cy="128" r="4" class="fg-fill-wire"/><path class="fg-line" d="M70 128 H120"/><text class="fg-t fg-b" x="126" y="132" style="fill:var(--accent)" font-size="12">entrada</text><g transform="translate(70,134) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M70 200 V200"/><text class="fg-m" x="82" y="170" font-size="12">10 kΩ</text><text class="fg-m fg-c" x="110" y="230" font-size="12">sin apretar: 0 (resistor a masa)</text><text class="fg-m fg-c" x="110" y="247" font-size="12">apretado: 1 (llega +5 V)</text><text class="fg-t fg-b fg-c" x="350" y="20">Con pull-up</text><path class="fg-line" d="M250 44 H380"/><text class="fg-a fg-b" x="386" y="49" style="fill:var(--accent)" font-size="12">+5 V</text><path class="fg-line" d="M250 200 H380"/><path class="fg-line" d="M310 44 V62"/><g transform="translate(310,56) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g><path class="fg-line" d="M310 122 V128"/><circle cx="310" cy="128" r="4" class="fg-fill-wire"/><path class="fg-line" d="M310 128 H360"/><text class="fg-t fg-b" x="366" y="132" style="fill:var(--accent)" font-size="12">entrada</text><path class="fg-line" d="M310 128 V140"/><circle cx="310" cy="150" r="3.5" class="fg-fill-wire"/><circle cx="310" cy="180" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M310 140 V147 M310 150 L328 172 M310 183 V200"/><text class="fg-m" x="322" y="86" font-size="12">10 kΩ</text><text class="fg-m fg-c" x="350" y="230" font-size="12">sin apretar: 1 (resistor a +5 V)</text><text class="fg-m fg-c" x="350" y="247" font-size="12">apretado: 0 (conecta a masa)</text><text class="fg-t fg-b fg-c" x="590" y="20">Sin resistor (mal)</text><path class="fg-line" d="M490 44 H620"/><text class="fg-a fg-b" x="626" y="49" style="fill:var(--accent)" font-size="12">+5 V</text><path class="fg-line" d="M490 200 H620"/><path class="fg-line" d="M550 44 V70"/><circle cx="550" cy="78" r="3.5" class="fg-fill-wire"/><circle cx="550" cy="108" r="3.5" class="fg-fill-wire"/><path class="fg-line" d="M550 78 L568 100"/><path class="fg-line" d="M550 108 V128 H600"/><text class="fg-t fg-b" x="606" y="132" style="fill:var(--bad)" font-size="12">entrada ?</text><path class="fg-bad" d="M608 150 q4 -12 8 0 t8 0 t8 0 t8 0 t8 0" style="stroke-width:1.8"/><text class="fg-m fg-c" x="590" y="230" font-size="12">sin apretar: ¡flota! (0 o 1 al azar)</text><text class="fg-m fg-c" x="590" y="247" font-size="12">capta ruido y la lectura es inestable</text>
+          </svg>
+          <figcaption><strong>Una entrada digital nunca debe quedar «al aire».</strong> El resistor (de unos 10 kΩ) fija el nivel cuando el pulsador está suelto; al apretarlo, el pulsador impone el nivel contrario.</figcaption>
+        </figure>
+
+        <ul>
+          <li><strong>Pull-down</strong> (resistor a masa): suelto = 0, apretado = 1.</li>
+          <li><strong>Pull-up</strong> (resistor a +V): suelto = 1, apretado = 0 (la lógica queda «invertida»). Es la más usada, porque los microcontroladores traen pull-ups internos que se activan por software (en Arduino, <code>INPUT_PULLUP</code>) y ahorran el resistor externo.</li>
+        </ul>
+        <p>El valor típico es de 10 kΩ: lo bastante chico para fijar el nivel y lo bastante grande para que, al apretar el pulsador, la corriente sea mínima (5 V / 10 kΩ = 0,5 mA).</p>
+      </section>
+
+      <section id="rebote">
+        <h2>El rebote de los contactos</h2>
+        <p>Los contactos metálicos de un pulsador no se cierran de una vez: <strong>rebotan</strong> durante 1 a 10 ms, abriendo y cerrando varias veces. Para una persona es un solo apretón; para un microcontrolador que lee millones de veces por segundo, son diez. Se lo elimina de tres maneras:</p>
+        <ul>
+          <li><strong>Con hardware:</strong> un filtro RC (<a class="xref" href="21-impedancia-filtros.html">capítulo 21</a>) que suavice la señal, seguido de una entrada <strong>Schmitt</strong> (<a class="xref" href="24-aplicaciones-operacional.html#histeresis">capítulo 24</a>) que convierta la rampa en una transición limpia.</li>
+          <li><strong>Con un latch SR</strong> (capítulo 25) si el pulsador es un conmutador (NA y NC).</li>
+          <li><strong>Con software:</strong> al detectar un cambio, esperar unos 20 ms antes de volver a leer.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 600 460" role="img" aria-labelledby="g26bt g26bd">
+            <title id="g26bt">El rebote de un pulsador y cómo eliminarlo</title>
+            <desc id="g26bd">Tres señales: la del pulsador con muchos rebotes al apretarlo, la misma suavizada por un circuito RC y la salida limpia de una entrada Schmitt.</desc>
+<text class="fg-t fg-b" x="60" y="38">① El pulsador rebota al apretarlo</text><path class="fg-thin" d="M60 130 H560"/><path class="fg-acc" d="M60.0 130.0 L120.0 130.0 L120.0 58.0 L130.6 58.0 L130.6 130.0 L137.8 130.0 L137.8 58.0 L151.0 58.0 L151.0 130.0 L157.6 130.0 L157.6 58.0 L169.9 58.0 L169.9 130.0 L178.8 130.0 L178.8 58.0 L187.3 58.0 L187.3 130.0 L197.3 130.0 L197.3 58.0 L205.6 58.0 L205.6 130.0 L215.1 130.0 L215.1 58.0 L223.6 58.0 L223.6 130.0 L230.4 130.0 L230.4 58.0 L241.8 58.0 L241.8 130.0 L254.4 130.0 L254.4 58.0 L560.0 58.0" style="stroke:var(--bad)"/><text class="fg-m" x="556" y="38" text-anchor="end" font-size="12">≈ 1 a 10 ms de rebotes</text><text class="fg-t fg-b" x="60" y="188">② Después de un RC (R = 10 kΩ, C = 1 µF, τ ≈ 10 ms)</text><path class="fg-thin" d="M60 280 H560"/><path class="fg-acc" d="M60.0 280.0 L62.0 280.0 L64.0 280.0 L66.0 280.0 L68.0 280.0 L70.0 280.0 L72.0 280.0 L74.0 280.0 L76.0 280.0 L78.0 280.0 L80.0 280.0 L82.0 280.0 L84.0 280.0 L86.0 280.0 L88.0 280.0 L90.0 280.0 L92.0 280.0 L94.0 280.0 L96.0 280.0 L98.0 280.0 L100.0 280.0 L102.0 280.0 L104.0 280.0 L106.0 280.0 L108.0 280.0 L110.0 280.0 L112.0 280.0 L114.0 280.0 L116.0 280.0 L118.0 280.0 L120.0 276.1 L122.0 272.4 L124.0 268.9 L126.0 265.7 L128.0 262.5 L130.0 259.6 L132.0 260.7 L134.0 261.7 L136.0 262.7 L138.0 259.8 L140.0 257.0 L142.0 254.3 L144.0 251.8 L146.0 249.5 L148.0 247.2 L150.0 245.1 L152.0 247.0 L154.0 248.8 L156.0 250.5 L158.0 248.2 L160.0 246.0 L162.0 243.9 L164.0 242.0 L166.0 240.2 L168.0 238.4 L170.0 240.7 L172.0 242.8 L174.0 244.8 L176.0 246.7 L178.0 248.5 L180.0 246.3 L182.0 244.2 L184.0 242.3 L186.0 240.4 L188.0 242.6 L190.0 244.6 L192.0 246.5 L194.0 248.3 L196.0 250.0 L198.0 247.8 L200.0 245.6 L202.0 243.6 L204.0 241.7 L206.0 243.7 L208.0 245.7 L210.0 247.5 L212.0 249.3 L214.0 251.0 L216.0 248.6 L218.0 246.4 L220.0 244.4 L222.0 242.4 L224.0 244.4 L226.0 246.3 L228.0 248.2 L230.0 249.9 L232.0 247.6 L234.0 245.5 L236.0 243.5 L238.0 241.5 L240.0 239.7 L242.0 241.9 L244.0 244.0 L246.0 245.9 L248.0 247.8 L250.0 249.5 L252.0 251.1 L254.0 252.7 L256.0 250.3 L258.0 248.0 L260.0 245.8 L262.0 243.8 L264.0 241.9 L266.0 240.0 L268.0 238.3 L270.0 236.7 L272.0 235.1 L274.0 233.6 L276.0 232.3 L278.0 231.0 L280.0 229.7 L282.0 228.5 L284.0 227.4 L286.0 226.4 L288.0 225.4 L290.0 224.4 L292.0 223.6 L294.0 222.7 L296.0 221.9 L298.0 221.2 L300.0 220.5 L302.0 219.8 L304.0 219.1 L306.0 218.5 L308.0 218.0 L310.0 217.4 L312.0 216.9 L314.0 216.4 L316.0 216.0 L318.0 215.6 L320.0 215.1 L322.0 214.8 L324.0 214.4 L326.0 214.1 L328.0 213.7 L330.0 213.4 L332.0 213.1 L334.0 212.8 L336.0 212.6 L338.0 212.3 L340.0 212.1 L342.0 211.9 L344.0 211.7 L346.0 211.5 L348.0 211.3 L350.0 211.1 L352.0 210.9 L354.0 210.8 L356.0 210.6 L358.0 210.5 L360.0 210.4 L362.0 210.2 L364.0 210.1 L366.0 210.0 L368.0 209.9 L370.0 209.8 L372.0 209.7 L374.0 209.6 L376.0 209.5 L378.0 209.4 L380.0 209.3 L382.0 209.3 L384.0 209.2 L386.0 209.1 L388.0 209.1 L390.0 209.0 L392.0 209.0 L394.0 208.9 L396.0 208.9 L398.0 208.8 L400.0 208.8 L402.0 208.7 L404.0 208.7 L406.0 208.7 L408.0 208.6 L410.0 208.6 L412.0 208.6 L414.0 208.5 L416.0 208.5 L418.0 208.5 L420.0 208.4 L422.0 208.4 L424.0 208.4 L426.0 208.4 L428.0 208.4 L430.0 208.3 L432.0 208.3 L434.0 208.3 L436.0 208.3 L438.0 208.3 L440.0 208.3 L442.0 208.2 L444.0 208.2 L446.0 208.2 L448.0 208.2 L450.0 208.2 L452.0 208.2 L454.0 208.2 L456.0 208.2 L458.0 208.2 L460.0 208.1 L462.0 208.1 L464.0 208.1 L466.0 208.1 L468.0 208.1 L470.0 208.1 L472.0 208.1 L474.0 208.1 L476.0 208.1 L478.0 208.1 L480.0 208.1 L482.0 208.1 L484.0 208.1 L486.0 208.1 L488.0 208.1 L490.0 208.1 L492.0 208.1 L494.0 208.1 L496.0 208.1 L498.0 208.1 L500.0 208.0 L502.0 208.0 L504.0 208.0 L506.0 208.0 L508.0 208.0 L510.0 208.0 L512.0 208.0 L514.0 208.0 L516.0 208.0 L518.0 208.0 L520.0 208.0 L522.0 208.0 L524.0 208.0 L526.0 208.0 L528.0 208.0 L530.0 208.0 L532.0 208.0 L534.0 208.0 L536.0 208.0 L538.0 208.0 L540.0 208.0 L542.0 208.0 L544.0 208.0 L546.0 208.0 L548.0 208.0 L550.0 208.0 L552.0 208.0 L554.0 208.0 L556.0 208.0 L558.0 208.0 L560.0 208.0" style="stroke:var(--charge-neg)"/><text class="fg-m" x="556" y="188" text-anchor="end" font-size="12">sube suave, sin picos</text><text class="fg-t fg-b" x="60" y="338">③ Después de una entrada Schmitt (capítulo 24)</text><path class="fg-thin" d="M60 430 H560"/><path class="fg-acc" d="M60.0 430.0 L62.0 430.0 L64.0 430.0 L66.0 430.0 L68.0 430.0 L70.0 430.0 L72.0 430.0 L74.0 430.0 L76.0 430.0 L78.0 430.0 L80.0 430.0 L82.0 430.0 L84.0 430.0 L86.0 430.0 L88.0 430.0 L90.0 430.0 L92.0 430.0 L94.0 430.0 L96.0 430.0 L98.0 430.0 L100.0 430.0 L102.0 430.0 L104.0 430.0 L106.0 430.0 L108.0 430.0 L110.0 430.0 L112.0 430.0 L114.0 430.0 L116.0 430.0 L118.0 430.0 L120.0 430.0 L122.0 430.0 L124.0 430.0 L126.0 430.0 L128.0 430.0 L130.0 430.0 L132.0 430.0 L134.0 430.0 L136.0 430.0 L138.0 430.0 L140.0 430.0 L142.0 430.0 L144.0 430.0 L146.0 430.0 L148.0 430.0 L150.0 430.0 L152.0 430.0 L154.0 430.0 L156.0 430.0 L158.0 430.0 L160.0 430.0 L162.0 430.0 L164.0 430.0 L166.0 430.0 L168.0 430.0 L170.0 430.0 L172.0 430.0 L174.0 430.0 L176.0 430.0 L178.0 430.0 L180.0 430.0 L182.0 430.0 L184.0 430.0 L186.0 430.0 L188.0 430.0 L190.0 430.0 L192.0 430.0 L194.0 430.0 L196.0 430.0 L198.0 430.0 L200.0 430.0 L202.0 430.0 L204.0 430.0 L206.0 430.0 L208.0 430.0 L210.0 430.0 L212.0 430.0 L214.0 430.0 L216.0 430.0 L218.0 430.0 L220.0 430.0 L222.0 430.0 L224.0 430.0 L226.0 430.0 L228.0 430.0 L230.0 430.0 L232.0 430.0 L234.0 430.0 L236.0 430.0 L238.0 430.0 L240.0 430.0 L242.0 430.0 L244.0 430.0 L246.0 430.0 L248.0 430.0 L250.0 430.0 L252.0 430.0 L254.0 430.0 L256.0 430.0 L258.0 430.0 L260.0 430.0 L262.0 430.0 L264.0 430.0 L266.0 430.0 L268.0 430.0 L270.0 430.0 L272.0 430.0 L274.0 430.0 L276.0 430.0 L278.0 430.0 L280.0 430.0 L282.0 358.0 L284.0 358.0 L286.0 358.0 L288.0 358.0 L290.0 358.0 L292.0 358.0 L294.0 358.0 L296.0 358.0 L298.0 358.0 L300.0 358.0 L302.0 358.0 L304.0 358.0 L306.0 358.0 L308.0 358.0 L310.0 358.0 L312.0 358.0 L314.0 358.0 L316.0 358.0 L318.0 358.0 L320.0 358.0 L322.0 358.0 L324.0 358.0 L326.0 358.0 L328.0 358.0 L330.0 358.0 L332.0 358.0 L334.0 358.0 L336.0 358.0 L338.0 358.0 L340.0 358.0 L342.0 358.0 L344.0 358.0 L346.0 358.0 L348.0 358.0 L350.0 358.0 L352.0 358.0 L354.0 358.0 L356.0 358.0 L358.0 358.0 L360.0 358.0 L362.0 358.0 L364.0 358.0 L366.0 358.0 L368.0 358.0 L370.0 358.0 L372.0 358.0 L374.0 358.0 L376.0 358.0 L378.0 358.0 L380.0 358.0 L382.0 358.0 L384.0 358.0 L386.0 358.0 L388.0 358.0 L390.0 358.0 L392.0 358.0 L394.0 358.0 L396.0 358.0 L398.0 358.0 L400.0 358.0 L402.0 358.0 L404.0 358.0 L406.0 358.0 L408.0 358.0 L410.0 358.0 L412.0 358.0 L414.0 358.0 L416.0 358.0 L418.0 358.0 L420.0 358.0 L422.0 358.0 L424.0 358.0 L426.0 358.0 L428.0 358.0 L430.0 358.0 L432.0 358.0 L434.0 358.0 L436.0 358.0 L438.0 358.0 L440.0 358.0 L442.0 358.0 L444.0 358.0 L446.0 358.0 L448.0 358.0 L450.0 358.0 L452.0 358.0 L454.0 358.0 L456.0 358.0 L458.0 358.0 L460.0 358.0 L462.0 358.0 L464.0 358.0 L466.0 358.0 L468.0 358.0 L470.0 358.0 L472.0 358.0 L474.0 358.0 L476.0 358.0 L478.0 358.0 L480.0 358.0 L482.0 358.0 L484.0 358.0 L486.0 358.0 L488.0 358.0 L490.0 358.0 L492.0 358.0 L494.0 358.0 L496.0 358.0 L498.0 358.0 L500.0 358.0 L502.0 358.0 L504.0 358.0 L506.0 358.0 L508.0 358.0 L510.0 358.0 L512.0 358.0 L514.0 358.0 L516.0 358.0 L518.0 358.0 L520.0 358.0 L522.0 358.0 L524.0 358.0 L526.0 358.0 L528.0 358.0 L530.0 358.0 L532.0 358.0 L534.0 358.0 L536.0 358.0 L538.0 358.0 L540.0 358.0 L542.0 358.0 L544.0 358.0 L546.0 358.0 L548.0 358.0 L550.0 358.0 L552.0 358.0 L554.0 358.0 L556.0 358.0 L558.0 358.0 L560.0 358.0" style="stroke:var(--accent)"/><text class="fg-m" x="556" y="338" text-anchor="end" font-size="12">una sola transición limpia</text>
+          </svg>
+          <figcaption><strong>Los contactos metálicos rebotan.</strong> Para un microcontrolador, un solo pulsado puede parecer diez. Se arregla con un RC más una entrada Schmitt, con un latch SR o con un retardo de unos 20 ms por software.</figcaption>
+        </figure>
+
+        <p>El mismo fenómeno ocurre con los contactos de un relé (<a class="xref" href="18-rele.html#capacidad">capítulo 18</a>), aunque ahí rara vez importa.</p>
+      </section>
+
+      <section id="adc">
+        <h2>De analógico a digital: el ADC</h2>
+        <p>Para leer una señal analógica (una tensión que varía de manera continua) hace falta un <strong>conversor analógico-digital</strong>. Casi todos los microcontroladores traen uno. Hace dos cosas:</p>
+        <ol>
+          <li><strong>Muestreo:</strong> mide la tensión a intervalos regulares, <em>f<sub>m</sub></em> veces por segundo.</li>
+          <li><strong>Cuantización:</strong> convierte cada medida en un número entero entre 0 y 2<sup>n</sup> − 1, donde <em>n</em> es la <strong>resolución</strong> en bits.</li>
+        </ol>
+        <p>Si la tensión de referencia es V<sub>ref</sub>, la escala completa se divide en 2<sup>n</sup> escalones, y cada uno vale:</p>
+        <p class="equation"><span class="eq">LSB = V<sub>ref</sub> / 2<sup>n</sup></span> &nbsp;&nbsp; <span class="eq">código = ⌊V<sub>ent</sub> / LSB⌋</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g26ct g26cd">
+            <title id="g26ct">Cuantización de una señal con 3 bits</title>
+            <desc id="g26cd">Una senoide continua y su aproximación en ocho niveles que entrega un conversor analógico-digital de 3 bits, con la fórmula del tamaño del escalón y ejemplos.</desc>
+<text class="fg-t fg-b fg-c" x="245.0" y="20">Un ADC de 3 bits (8 niveles)</text>
+            <path class="fg-line" d="M80 38 V200 H420" style="stroke-width:1.5"/>
+            <path class="fg-grid" d="M80 200.0 H410"/><text class="fg-m fg-e" x="74" y="194.6" font-size="10.5">000</text><path class="fg-grid" d="M80 181.2 H410"/><text class="fg-m fg-e" x="74" y="175.9" font-size="10.5">001</text><path class="fg-grid" d="M80 162.5 H410"/><text class="fg-m fg-e" x="74" y="157.1" font-size="10.5">010</text><path class="fg-grid" d="M80 143.8 H410"/><text class="fg-m fg-e" x="74" y="138.4" font-size="10.5">011</text><path class="fg-grid" d="M80 125.0 H410"/><text class="fg-m fg-e" x="74" y="119.6" font-size="10.5">100</text><path class="fg-grid" d="M80 106.2 H410"/><text class="fg-m fg-e" x="74" y="100.9" font-size="10.5">101</text><path class="fg-grid" d="M80 87.5 H410"/><text class="fg-m fg-e" x="74" y="82.1" font-size="10.5">110</text><path class="fg-grid" d="M80 68.8 H410"/><text class="fg-m fg-e" x="74" y="63.4" font-size="10.5">111</text>
+            <path class="fg-acc" d="M80.0 125.0 L81.4 121.2 L82.8 117.4 L84.1 113.6 L85.5 109.9 L86.9 106.2 L88.2 102.5 L89.6 98.9 L91.0 95.4 L92.4 92.0 L93.8 88.6 L95.1 85.4 L96.5 82.2 L97.9 79.2 L99.2 76.3 L100.6 73.6 L102.0 70.9 L103.4 68.5 L104.8 66.1 L106.1 64.0 L107.5 62.0 L108.9 60.2 L110.2 58.5 L111.6 57.1 L113.0 55.8 L114.4 54.7 L115.8 53.8 L117.1 53.1 L118.5 52.6 L119.9 52.3 L121.2 52.2 L122.6 52.3 L124.0 52.6 L125.4 53.1 L126.8 53.8 L128.1 54.7 L129.5 55.8 L130.9 57.1 L132.2 58.5 L133.6 60.2 L135.0 62.0 L136.4 64.0 L137.8 66.1 L139.1 68.5 L140.5 70.9 L141.9 73.6 L143.2 76.3 L144.6 79.2 L146.0 82.2 L147.4 85.4 L148.8 88.6 L150.1 92.0 L151.5 95.4 L152.9 98.9 L154.2 102.5 L155.6 106.2 L157.0 109.9 L158.4 113.6 L159.8 117.4 L161.1 121.2 L162.5 125.0 L163.9 128.8 L165.2 132.6 L166.6 136.4 L168.0 140.1 L169.4 143.8 L170.8 147.5 L172.1 151.1 L173.5 154.6 L174.9 158.0 L176.2 161.4 L177.6 164.6 L179.0 167.8 L180.4 170.8 L181.8 173.7 L183.1 176.4 L184.5 179.1 L185.9 181.5 L187.2 183.9 L188.6 186.0 L190.0 188.0 L191.4 189.8 L192.8 191.5 L194.1 192.9 L195.5 194.2 L196.9 195.3 L198.2 196.2 L199.6 196.9 L201.0 197.4 L202.4 197.7 L203.8 197.8 L205.1 197.7 L206.5 197.4 L207.9 196.9 L209.2 196.2 L210.6 195.3 L212.0 194.2 L213.4 192.9 L214.8 191.5 L216.1 189.8 L217.5 188.0 L218.9 186.0 L220.2 183.9 L221.6 181.5 L223.0 179.1 L224.4 176.4 L225.8 173.7 L227.1 170.8 L228.5 167.8 L229.9 164.6 L231.2 161.4 L232.6 158.0 L234.0 154.6 L235.4 151.1 L236.8 147.5 L238.1 143.8 L239.5 140.1 L240.9 136.4 L242.2 132.6 L243.6 128.8 L245.0 125.0 L246.4 121.2 L247.8 117.4 L249.1 113.6 L250.5 109.9 L251.9 106.2 L253.2 102.5 L254.6 98.9 L256.0 95.4 L257.4 92.0 L258.8 88.6 L260.1 85.4 L261.5 82.2 L262.9 79.2 L264.2 76.3 L265.6 73.6 L267.0 70.9 L268.4 68.5 L269.8 66.1 L271.1 64.0 L272.5 62.0 L273.9 60.2 L275.2 58.5 L276.6 57.1 L278.0 55.8 L279.4 54.7 L280.8 53.8 L282.1 53.1 L283.5 52.6 L284.9 52.3 L286.2 52.2 L287.6 52.3 L289.0 52.6 L290.4 53.1 L291.8 53.8 L293.1 54.7 L294.5 55.8 L295.9 57.1 L297.2 58.5 L298.6 60.2 L300.0 62.0 L301.4 64.0 L302.8 66.1 L304.1 68.5 L305.5 70.9 L306.9 73.6 L308.2 76.3 L309.6 79.2 L311.0 82.2 L312.4 85.4 L313.8 88.6 L315.1 92.0 L316.5 95.4 L317.9 98.9 L319.2 102.5 L320.6 106.2 L322.0 109.9 L323.4 113.6 L324.8 117.4 L326.1 121.2 L327.5 125.0 L328.9 128.8 L330.2 132.6 L331.6 136.4 L333.0 140.1 L334.4 143.8 L335.8 147.5 L337.1 151.1 L338.5 154.6 L339.9 158.0 L341.2 161.4 L342.6 164.6 L344.0 167.8 L345.4 170.8 L346.8 173.7 L348.1 176.4 L349.5 179.1 L350.9 181.5 L352.2 183.9 L353.6 186.0 L355.0 188.0 L356.4 189.8 L357.8 191.5 L359.1 192.9 L360.5 194.2 L361.9 195.3 L363.2 196.2 L364.6 196.9 L366.0 197.4 L367.4 197.7 L368.8 197.8 L370.1 197.7 L371.5 197.4 L372.9 196.9 L374.2 196.2 L375.6 195.3 L377.0 194.2 L378.4 192.9 L379.8 191.5 L381.1 189.8 L382.5 188.0 L383.9 186.0 L385.2 183.9 L386.6 181.5 L388.0 179.1 L389.4 176.4 L390.8 173.7 L392.1 170.8 L393.5 167.8 L394.9 164.6 L396.2 161.4 L397.6 158.0 L399.0 154.6 L400.4 151.1 L401.8 147.5 L403.1 143.8 L404.5 140.1 L405.9 136.4 L407.2 132.6 L408.6 128.8 L410.0 125.0" style="stroke:var(--charge-neg);stroke-width:2"/>
+            <path class="fg-acc" d="M80.0 115.6 L81.4 115.6 L82.8 115.6 L84.1 115.6 L85.5 115.6 L86.9 96.9 L88.2 96.9 L89.6 96.9 L91.0 96.9 L92.4 96.9 L93.8 96.9 L95.1 78.1 L96.5 78.1 L97.9 78.1 L99.2 78.1 L100.6 78.1 L102.0 78.1 L103.4 59.4 L104.8 59.4 L106.1 59.4 L107.5 59.4 L108.9 59.4 L110.2 59.4 L111.6 59.4 L113.0 59.4 L114.4 59.4 L115.8 59.4 L117.1 59.4 L118.5 59.4 L119.9 59.4 L121.2 59.4 L122.6 59.4 L124.0 59.4 L125.4 59.4 L126.8 59.4 L128.1 59.4 L129.5 59.4 L130.9 59.4 L132.2 59.4 L133.6 59.4 L135.0 59.4 L136.4 59.4 L137.8 59.4 L139.1 59.4 L140.5 78.1 L141.9 78.1 L143.2 78.1 L144.6 78.1 L146.0 78.1 L147.4 78.1 L148.8 96.9 L150.1 96.9 L151.5 96.9 L152.9 96.9 L154.2 96.9 L155.6 96.9 L157.0 115.6 L158.4 115.6 L159.8 115.6 L161.1 115.6 L162.5 115.6 L163.9 134.4 L165.2 134.4 L166.6 134.4 L168.0 134.4 L169.4 153.1 L170.8 153.1 L172.1 153.1 L173.5 153.1 L174.9 153.1 L176.2 153.1 L177.6 171.9 L179.0 171.9 L180.4 171.9 L181.8 171.9 L183.1 171.9 L184.5 171.9 L185.9 190.6 L187.2 190.6 L188.6 190.6 L190.0 190.6 L191.4 190.6 L192.8 190.6 L194.1 190.6 L195.5 190.6 L196.9 190.6 L198.2 190.6 L199.6 190.6 L201.0 190.6 L202.4 190.6 L203.8 190.6 L205.1 190.6 L206.5 190.6 L207.9 190.6 L209.2 190.6 L210.6 190.6 L212.0 190.6 L213.4 190.6 L214.8 190.6 L216.1 190.6 L217.5 190.6 L218.9 190.6 L220.2 190.6 L221.6 190.6 L223.0 171.9 L224.4 171.9 L225.8 171.9 L227.1 171.9 L228.5 171.9 L229.9 171.9 L231.2 153.1 L232.6 153.1 L234.0 153.1 L235.4 153.1 L236.8 153.1 L238.1 153.1 L239.5 134.4 L240.9 134.4 L242.2 134.4 L243.6 134.4 L245.0 134.4 L246.4 115.6 L247.8 115.6 L249.1 115.6 L250.5 115.6 L251.9 96.9 L253.2 96.9 L254.6 96.9 L256.0 96.9 L257.4 96.9 L258.8 96.9 L260.1 78.1 L261.5 78.1 L262.9 78.1 L264.2 78.1 L265.6 78.1 L267.0 78.1 L268.4 59.4 L269.8 59.4 L271.1 59.4 L272.5 59.4 L273.9 59.4 L275.2 59.4 L276.6 59.4 L278.0 59.4 L279.4 59.4 L280.8 59.4 L282.1 59.4 L283.5 59.4 L284.9 59.4 L286.2 59.4 L287.6 59.4 L289.0 59.4 L290.4 59.4 L291.8 59.4 L293.1 59.4 L294.5 59.4 L295.9 59.4 L297.2 59.4 L298.6 59.4 L300.0 59.4 L301.4 59.4 L302.8 59.4 L304.1 59.4 L305.5 78.1 L306.9 78.1 L308.2 78.1 L309.6 78.1 L311.0 78.1 L312.4 78.1 L313.8 96.9 L315.1 96.9 L316.5 96.9 L317.9 96.9 L319.2 96.9 L320.6 96.9 L322.0 115.6 L323.4 115.6 L324.8 115.6 L326.1 115.6 L327.5 115.6 L328.9 134.4 L330.2 134.4 L331.6 134.4 L333.0 134.4 L334.4 153.1 L335.8 153.1 L337.1 153.1 L338.5 153.1 L339.9 153.1 L341.2 153.1 L342.6 171.9 L344.0 171.9 L345.4 171.9 L346.8 171.9 L348.1 171.9 L349.5 171.9 L350.9 190.6 L352.2 190.6 L353.6 190.6 L355.0 190.6 L356.4 190.6 L357.8 190.6 L359.1 190.6 L360.5 190.6 L361.9 190.6 L363.2 190.6 L364.6 190.6 L366.0 190.6 L367.4 190.6 L368.8 190.6 L370.1 190.6 L371.5 190.6 L372.9 190.6 L374.2 190.6 L375.6 190.6 L377.0 190.6 L378.4 190.6 L379.8 190.6 L381.1 190.6 L382.5 190.6 L383.9 190.6 L385.2 190.6 L386.6 190.6 L388.0 171.9 L389.4 171.9 L390.8 171.9 L392.1 171.9 L393.5 171.9 L394.9 171.9 L396.2 153.1 L397.6 153.1 L399.0 153.1 L400.4 153.1 L401.8 153.1 L403.1 153.1 L404.5 134.4 L405.9 134.4 L407.2 134.4 L408.6 134.4 L410.0 134.4"/>
+            <text class="fg-m fg-c" x="245.0" y="222" font-size="12">tiempo</text>
+            <text class="fg-t fg-b" x="440" y="60" style="fill:var(--charge-neg)" font-size="13">señal real</text><text class="fg-t fg-b" x="440" y="80" style="fill:var(--accent)" font-size="13">lo que mide el ADC</text>
+            <text class="fg-m" x="440" y="104" font-size="12">El error nunca pasa de</text><text class="fg-m" x="440" y="120" font-size="12">± medio escalón (LSB/2).</text>
+            <text class="fg-t fg-b" x="440" y="154" font-size="13">LSB = V<tspan font-size="9" dy="3">ref</tspan><tspan dy="-3"> / 2</tspan><tspan font-size="9" dy="-6">n</tspan></text>
+            <text class="fg-m" x="440" y="176" font-size="12">5 V, 8 bits → 19,5 mV</text><text class="fg-m" x="440" y="193" font-size="12">5 V, 10 bits → 4,9 mV</text><text class="fg-m" x="440" y="210" font-size="12">5 V, 12 bits → 1,2 mV</text><text class="fg-m" x="440" y="227" font-size="12">5 V, 16 bits → 76 µV</text>
+          </svg>
+          <figcaption><strong>Cada bit extra duplica los niveles</strong> y reduce a la mitad el escalón. El conversor guarda solo el número del escalón (el «código»), no el valor exacto.</figcaption>
+        </figure>
+
+        <p>Con un ADC de 10 bits (el de un Arduino) y 5 V, el escalón es de 4,9 mV: las tensiones se cuantizan a múltiplos de eso: el error es de hasta un escalón, o de ±½ escalón (±2,4 mV) si el conversor redondea al valor más cercano. Con más bits, el escalón es menor, pero los conversores son más caros y más lentos. El número leído se traduce de vuelta a volts con <span class="eq">V = código · V<sub>ref</sub> / 2<sup>n</sup></span>.</p>
+        <h3>Cuántas veces hay que medir: el teorema de Nyquist</h3>
+        <p>Para reconstruir una señal alterna, hay que medirla con una frecuencia de muestreo <strong>mayor que el doble</strong> de su frecuencia más alta: <span class="eq">f<sub>m</sub> &gt; 2 · f<sub>máx</sub></span>. Si se muestrea más lento, las muestras «engañan»: la señal aparece como otra de frecuencia menor que no existe, un fenómeno llamado <strong>alias</strong> (como cuando una rueda de un auto parece girar al revés en una película). Para evitarlo se coloca, antes del ADC, un <strong>filtro pasa-bajos antialias</strong> (capítulos <a class="xref" href="21-impedancia-filtros.html">21</a> y <a class="xref" href="24-aplicaciones-operacional.html#activos">24</a>) que elimine lo que supere la mitad de f<sub>m</sub>.</p>
+      </section>
+
+      <section id="acondicionar">
+        <h2>Acondicionar la señal antes del ADC</h2>
+        <ul>
+          <li><strong>Escalar</strong> la señal al rango del ADC (por ejemplo 0–5 V) con un divisor de tensión (<a class="xref" href="03-resistencias.html">capítulo 3</a>) o un amplificador (<a class="xref" href="24-aplicaciones-operacional.html#sensores">capítulo 24</a>).</li>
+          <li><strong>Desplazar</strong> señales que tienen parte negativa para que queden entre 0 V y V<sub>ref</sub>.</li>
+          <li><strong>Aislar</strong> con un seguidor de tensión si el sensor tiene alta impedancia (el ADC «toma» una pequeña corriente al medir).</li>
+          <li><strong>Filtrar</strong> el ruido y el exceso de frecuencia.</li>
+          <li><strong>Proteger</strong> la entrada con un resistor en serie y diodos a las alimentaciones: una tensión mayor que V<sub>ref</sub> puede dañarla.</li>
+        </ul>
+        <p>Muchos sensores se conectan simplemente como un divisor de tensión (capítulo 3): un termistor NTC o un LDR junto a un resistor fijo, o un potenciómetro, cuyo cursor da una tensión entre 0 V y V<sub>CC</sub> proporcional a su posición.</p>
+      </section>
+
+      <section id="dac">
+        <h2>De digital a analógico</h2>
+        <p>El camino inverso lo hace un <strong>conversor digital-analógico</strong> (DAC), que convierte un número en una tensión. Muchos microcontroladores no tienen uno, pero pueden simularlo con <strong>PWM</strong> (<a class="xref" href="11-osciloscopio.html#pwm">capítulo 11</a>) y un filtro pasa-bajos RC: el filtro promedia los pulsos y entrega una tensión continua igual al ciclo de trabajo por la tensión alta.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 268" role="img" aria-labelledby="g26dt g26dd">
+            <title id="g26dt">Un DAC casero: PWM más un filtro RC</title>
+            <desc id="g26dd">Una señal PWM con ciclo de trabajo del 40 por ciento pasa por un filtro RC pasa-bajos y se convierte en una tensión continua de 2 voltios.</desc>
+<text class="fg-t fg-b" x="30" y="22">Señal PWM (digital, 490 Hz)</text>
+            <path class="fg-thin" d="M30 100 H330"/><path class="fg-acc" d="M30.0 100.0 L30.0 50.0 L50.0 50.0 L50.0 100.0 L80.0 100.0 L80.0 50.0 L100.0 50.0 L100.0 100.0 L130.0 100.0 L130.0 50.0 L150.0 50.0 L150.0 100.0 L180.0 100.0 L180.0 50.0 L200.0 50.0 L200.0 100.0 L230.0 100.0 L230.0 50.0 L250.0 50.0 L250.0 100.0 L280.0 100.0 L280.0 50.0 L300.0 50.0 L300.0 100.0 L330.0 100.0"/>
+            <text class="fg-m" x="34" y="48" font-size="11.5">ciclo de trabajo 40 %</text>
+            <path class="fg-line" d="M340 70 H380"/><path class="fg-line" d="M380 70 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/><path class="fg-line" d="M446 70 H500 M470 70 V90"/><path class="fg-line" d="M458 90 H482 M458 100 H482" style="stroke-width:3"/><path class="fg-line" d="M470 100 V130"/><path class="fg-line" d="M470 130 V138 M456 138 H484 M461 143 H479 M466 148 H474"/>
+            <circle cx="500" cy="70" r="4" class="fg-fill-wire"/><path class="fg-line" d="M470 70 H500"/>
+            <text class="fg-m fg-c" x="413" y="52" font-size="12">R = 10 kΩ</text><text class="fg-m" x="486" y="98" font-size="12">C = 1 µF</text>
+            <text class="fg-t fg-b" x="30" y="170">Salida filtrada (casi continua)</text>
+            <path class="fg-thin" d="M30 250 H330"/><path class="fg-dash" d="M30 230.0 H330" style="stroke:var(--heat)"/>
+            <path class="fg-acc" d="M30.0 249.8 L31.0 249.4 L32.0 249.0 L33.0 248.6 L34.0 248.2 L35.0 247.8 L36.0 247.4 L37.0 247.0 L38.0 246.6 L39.0 246.2 L40.0 245.8 L41.0 245.4 L42.0 245.1 L43.0 244.7 L44.0 244.3 L45.0 243.9 L46.0 243.5 L47.0 243.2 L48.0 242.8 L49.0 242.5 L50.0 242.2 L51.0 241.9 L52.0 241.6 L53.0 241.3 L54.0 241.0 L55.0 240.8 L56.0 240.5 L57.0 240.3 L58.0 240.1 L59.0 239.9 L60.0 239.8 L61.0 239.6 L62.0 239.5 L63.0 239.4 L64.0 239.2 L65.0 239.1 L66.0 239.0 L67.0 239.0 L68.0 238.9 L69.0 238.8 L70.0 238.7 L71.0 238.6 L72.0 238.5 L73.0 238.4 L74.0 238.3 L75.0 238.2 L76.0 238.1 L77.0 237.9 L78.0 237.8 L79.0 237.6 L80.0 237.5 L81.0 237.3 L82.0 237.1 L83.0 236.9 L84.0 236.6 L85.0 236.4 L86.0 236.2 L87.0 235.9 L88.0 235.7 L89.0 235.4 L90.0 235.2 L91.0 234.9 L92.0 234.7 L93.0 234.4 L94.0 234.2 L95.0 233.9 L96.0 233.7 L97.0 233.5 L98.0 233.3 L99.0 233.2 L100.0 233.0 L101.0 232.9 L102.0 232.8 L103.0 232.7 L104.0 232.6 L105.0 232.6 L106.0 232.6 L107.0 232.6 L108.0 232.6 L109.0 232.6 L110.0 232.7 L111.0 232.7 L112.0 232.8 L113.0 232.9 L114.0 233.0 L115.0 233.1 L116.0 233.2 L117.0 233.3 L118.0 233.3 L119.0 233.4 L120.0 233.5 L121.0 233.6 L122.0 233.6 L123.0 233.7 L124.0 233.7 L125.0 233.7 L126.0 233.7 L127.0 233.6 L128.0 233.6 L129.0 233.5 L130.0 233.4 L131.0 233.3 L132.0 233.1 L133.0 233.0 L134.0 232.8 L135.0 232.7 L136.0 232.5 L137.0 232.3 L138.0 232.1 L139.0 231.9 L140.0 231.6 L141.0 231.4 L142.0 231.2 L143.0 231.0 L144.0 230.8 L145.0 230.7 L146.0 230.5 L147.0 230.4 L148.0 230.2 L149.0 230.1 L150.0 230.0 L151.0 230.0 L152.0 229.9 L153.0 229.9 L154.0 229.9 L155.0 229.9 L156.0 230.0 L157.0 230.0 L158.0 230.1 L159.0 230.2 L160.0 230.3 L161.0 230.5 L162.0 230.6 L163.0 230.8 L164.0 230.9 L165.0 231.1 L166.0 231.2 L167.0 231.4 L168.0 231.5 L169.0 231.7 L170.0 231.8 L171.0 231.9 L172.0 232.0 L173.0 232.1 L174.0 232.1 L175.0 232.2 L176.0 232.2 L177.0 232.2 L178.0 232.2 L179.0 232.1 L180.0 232.1 L181.0 232.0 L182.0 231.9 L183.0 231.7 L184.0 231.6 L185.0 231.4 L186.0 231.2 L187.0 231.1 L188.0 230.9 L189.0 230.7 L190.0 230.5 L191.0 230.3 L192.0 230.1 L193.0 229.9 L194.0 229.7 L195.0 229.6 L196.0 229.4 L197.0 229.3 L198.0 229.2 L199.0 229.1 L200.0 229.0 L201.0 229.0 L202.0 229.0 L203.0 229.0 L204.0 229.0 L205.0 229.0 L206.0 229.1 L207.0 229.2 L208.0 229.3 L209.0 229.4 L210.0 229.6 L211.0 229.7 L212.0 229.9 L213.0 230.1 L214.0 230.2 L215.0 230.4 L216.0 230.6 L217.0 230.8 L218.0 230.9 L219.0 231.1 L220.0 231.2 L221.0 231.4 L222.0 231.5 L223.0 231.6 L224.0 231.6 L225.0 231.7 L226.0 231.7 L227.0 231.7 L228.0 231.7 L229.0 231.7 L230.0 231.6 L231.0 231.5 L232.0 231.4 L233.0 231.3 L234.0 231.2 L235.0 231.0 L236.0 230.8 L237.0 230.7 L238.0 230.5 L239.0 230.3 L240.0 230.1 L241.0 229.9 L242.0 229.7 L243.0 229.5 L244.0 229.4 L245.0 229.2 L246.0 229.1 L247.0 229.0 L248.0 228.9 L249.0 228.8 L250.0 228.7 L251.0 228.7 L252.0 228.7 L253.0 228.7 L254.0 228.7 L255.0 228.7 L256.0 228.8 L257.0 228.9 L258.0 229.0 L259.0 229.2 L260.0 229.3 L261.0 229.5 L262.0 229.6 L263.0 229.8 L264.0 230.0 L265.0 230.2 L266.0 230.4 L267.0 230.6 L268.0 230.7 L269.0 230.9 L270.0 231.0 L271.0 231.2 L272.0 231.3 L273.0 231.4 L274.0 231.5 L275.0 231.5 L276.0 231.6 L277.0 231.6 L278.0 231.6 L279.0 231.5 L280.0 231.5 L281.0 231.4 L282.0 231.3 L283.0 231.2 L284.0 231.0 L285.0 230.9 L286.0 230.7 L287.0 230.5 L288.0 230.4 L289.0 230.2 L290.0 230.0 L291.0 229.8 L292.0 229.6 L293.0 229.4 L294.0 229.3 L295.0 229.1 L296.0 229.0 L297.0 228.8 L298.0 228.7 L299.0 228.7 L300.0 228.6 L301.0 228.6 L302.0 228.6 L303.0 228.6 L304.0 228.6 L305.0 228.6 L306.0 228.7 L307.0 228.8 L308.0 228.9 L309.0 229.1 L310.0 229.2 L311.0 229.4 L312.0 229.6 L313.0 229.7 L314.0 229.9 L315.0 230.1 L316.0 230.3 L317.0 230.5 L318.0 230.7 L319.0 230.8 L320.0 231.0 L321.0 231.1 L322.0 231.2 L323.0 231.3 L324.0 231.4 L325.0 231.5 L326.0 231.5 L327.0 231.5 L328.0 231.5 L329.0 231.5 L330.0 231.4" style="stroke:var(--charge-neg)"/>
+            <text class="fg-t fg-b" x="338" y="234.0" style="fill:var(--heat)" font-size="13">2 V</text>
+            <text class="fg-m" x="338" y="252.0" font-size="12">= 40 % de 5 V</text>
+            <text class="fg-a fg-b" x="520" y="120" style="fill:var(--accent)" font-size="14">V<tspan font-size="9" dy="3">medio</tspan><tspan dy="-3"> = D · V</tspan><tspan font-size="9" dy="3">alto</tspan></text>
+            <text class="fg-m" x="520" y="144" font-size="12">f<tspan font-size="9" dy="3">c</tspan><tspan dy="-3"> = 16 Hz ≪ 490 Hz</tspan></text>
+            <text class="fg-m" x="520" y="162" font-size="12">el filtro promedia los pulsos</text>
+          </svg>
+          <figcaption><strong>El filtro RC (capítulo 21) promedia los pulsos:</strong> la tensión continua que resulta es el ciclo de trabajo por la tensión alta. Variando D de 0 a 100 % se obtiene cualquier valor entre 0 y 5 V.</figcaption>
+        </figure>
+
+        <p>Para que funcione, la frecuencia de corte del filtro debe ser mucho menor que la del PWM; si no, queda mucho rizado. Es la técnica con la que se genera una tensión de control, se ajusta el volumen o se produce un tono de audio.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Leer una perilla</span>
+          <p>Un potenciómetro conectado entre 0 V y 5 V da en su cursor una tensión de 0 a 5 V. Un Arduino la lee con un ADC de 10 bits como un número de 0 a 1023, y el programa lo traduce a volumen, velocidad o brillo.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Audio digital</span>
+          <p>Un CD graba el sonido con 16 bits y 44 100 muestras por segundo: Nyquist exige más del doble de la frecuencia más alta que oímos (20 kHz), y 44,1 kHz lo cumple con margen. Con 16 bits hay 65 536 niveles, el escalón es de 76 µV con 5 V.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un termostato</span>
+          <p>Un sensor de temperatura entrega una tensión; el ADC la convierte a un número; el programa compara con un valor deseado (con histéresis por software) y activa un relé o un MOSFET (capítulos <a class="xref" href="18-rele.html">18</a> y <a class="xref" href="17-mosfet.html">17</a>) para calentar.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: leer una tensión con un ADC de 10 bits</span>
+          <p>Un Arduino (V<sub>ref</sub> = 5 V, 10 bits) lee el valor 300.</p>
+          <ol>
+            <li>Escalón: <span class="eq">LSB = 5 / 1024 = 4,88 mV</span>.</li>
+            <li>Tensión leída: <span class="eq">V = 300 · 4,88 mV ≈ 1,46 V</span> (con un error de ±2,4 mV).</li>
+            <li>Con 2,5 V en la entrada, el código sería <span class="eq">2,5 / 4,88 mV ≈ 512</span>, justo a la mitad de la escala.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿cuántas muestras hacen falta?</span>
+          <p>Se quiere medir una señal de vibración de hasta 400 Hz con un ADC.</p>
+          <ol>
+            <li>Nyquist: <span class="eq">f<sub>m</sub> &gt; 2 · 400 = 800 muestras por segundo</span>. En la práctica se usa de 5 a 10 veces más (2 a 4 kHz) para ver bien la forma.</li>
+            <li>Un filtro antialias con <span class="eq">f<sub>c</sub> ≈ 400 Hz</span> (por ejemplo R = 1 kΩ y C = 390 nF) atenúa las componentes que aparecerían como alias; como un RC simple frena solo 20 dB por década, en la práctica se usa un filtro de orden mayor o se muestrea bastante más rápido.</li>
+            <li>Si no se filtrara y hubiera ruido de 1,2 kHz, muestreando a 1 kHz se vería como una señal falsa de 200 Hz.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con 3 bits (8 niveles) y 8 muestras por ciclo, los escalones naranja aproximan mal a la senoide azul. El panel dice el tamaño del escalón: 625 mV. Mirá cómo cada muestra recibe un código binario de 3 cifras.</li>
+        <li>Subí la resolución a 6 bits, luego a 10: los escalones se vuelven tan chicos que la reconstrucción se confunde con la señal real. El error máximo baja de 313 mV a 2,4 mV.</li>
+        <li>Con una resolución fija, bajá las <strong>muestras por ciclo</strong> de 8 a 4 y a 2: la señal reconstruida se vuelve angulosa. En 2 muestras por ciclo ya no se distingue una senoide de una onda triangular o cuadrada.</li>
+        <li>Poné 1,5 muestras por ciclo (menos de 2): aparece el aviso de <strong>alias</strong>. La reconstrucción parece una senoide más lenta que la real: la información se pierde para siempre.</li>
+        <li>Mirá la gráfica inferior: duplicar los bits divide el escalón a la mitad en cada paso; con 10 bits el escalón es 4,9 mV, el valor de un Arduino. ¿Cuántos bits harían falta para distinguir 1 mV con una escala de 5 V? (13 bits: 0,61 mV; con 12 bits el escalón es de 1,2 mV, todavía grande).</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/adc.js"></script>
+  <script src="../js/quizzes/26-entradas-adc.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

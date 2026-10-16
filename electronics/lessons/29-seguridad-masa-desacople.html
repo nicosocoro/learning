@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguridad, masa y desacople · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="29-seguridad-masa-desacople" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 29</p>
+        <h1>Seguridad, masa y desacople</h1>
+        <p class="lead">Qué corrientes son peligrosas, cómo se conectan la tierra y la masa, por qué hay un capacitor de 100 nF junto a cada chip, cómo se evitan las descargas estáticas y cómo se aísla un circuito de otro.</p>
+      </header>
+      <section>
+        <h2>Seguridad eléctrica</h2>
+        <p>Todo el libro trabajó con tensiones bajas y circuitos de juguete, pero algunos proyectos terminan conectándose a la red de 220 V, a baterías de litio o a capacitores grandes. Conviene entender cuál es el peligro real: <strong>el daño lo produce la corriente que atraviesa el cuerpo</strong>, y esa corriente depende de la tensión y de la resistencia de la piel (<span class="eq">I = V / R</span>, <a class="xref" href="02-ley-de-ohm.html">capítulo 2</a>).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 270" role="img" aria-labelledby="g29at g29ad">
+            <title id="g29at">Efectos de la corriente eléctrica en el cuerpo</title>
+            <desc id="g29ad">Una escala logarítmica de corriente en miliamperes con zonas que indican desde la sensación de cosquilleo hasta el riesgo de fibrilación y las quemaduras graves.</desc>
+<text class="fg-t fg-b" x="40" y="22">Efecto de la corriente que atraviesa el cuerpo (50/60 Hz, valores orientativos)</text><path class="fg-line" d="M70 140 H630"/><rect x="161.0" y="96" width="130.2" height="38" style="fill:var(--good);opacity:0.375"/><rect x="291.2" y="96" width="62.1" height="38" style="fill:var(--heat);opacity:0.48750000000000004"/><rect x="392.5" y="96" width="107.3" height="38" style="fill:var(--bad);opacity:0.6375"/><rect x="499.8" y="96" width="130.2" height="38" style="fill:var(--bad);opacity:0.75"/><path class="fg-line" d="M70.0 140 V148"/><text class="fg-m fg-c" x="70.0" y="164" font-size="12">0,1 mA</text><path class="fg-line" d="M200.2 140 V148"/><text class="fg-m fg-c" x="200.2" y="164" font-size="12">1 mA</text><path class="fg-line" d="M330.4 140 V148"/><text class="fg-m fg-c" x="330.4" y="164" font-size="12">10 mA</text><path class="fg-line" d="M460.6 140 V148"/><text class="fg-m fg-c" x="460.6" y="164" font-size="12">100 mA</text><path class="fg-line" d="M590.8 140 V148"/><text class="fg-m fg-c" x="590.8" y="164" font-size="12">1000 mA</text><text class="fg-t fg-b fg-c" x="226.1" y="120" font-size="11.5" style="fill:var(--text)">se siente</text>
+<text class="fg-t fg-b fg-c" x="322.3" y="120" font-size="11.5" style="fill:var(--text)">dolor</text>
+<text class="fg-t fg-b fg-c" x="446.2" y="120" font-size="11.5" style="fill:#fff">peligro de muerte</text>
+<text class="fg-t fg-b fg-c" x="564.9" y="120" font-size="11.5" style="fill:#fff">quemaduras</text>
+<text class="fg-m" x="40" y="206" font-size="12.5">La corriente depende de la tensión y de la resistencia del cuerpo: I = V / R.</text>
+<text class="fg-m" x="40" y="226" font-size="12.5">Piel seca ≈ 100 kΩ; piel húmeda ≈ 1 kΩ o menos. Con 220 V y piel húmeda: 220 V / 1 kΩ = 220 mA.</text>
+<text class="fg-a fg-b" x="40" y="252" style="fill:var(--accent)" font-size="13.5">Por eso se considera «baja tensión segura» a menos de 50 V en alterna (y 120 V en continua).</text>
+          </svg>
+          <figcaption><strong>Lo que lastima es la corriente, no la tensión sola.</strong> Pero la tensión es lo que la empuja a través de la piel: por eso 220 V son mucho más peligrosos que 12 V.</figcaption>
+        </figure>
+
+        <ul>
+          <li>A partir de <strong>1 mA</strong> se siente un cosquilleo; hacia los <strong>10 mA</strong> los músculos se contraen y no se puede soltar el conductor; entre <strong>30 y 100 mA</strong>, por el corazón, hay riesgo de fibrilación y de muerte.</li>
+          <li>La piel seca ofrece unos 100 kΩ, pero <strong>mojada o con una herida baja a menos de 1 kΩ</strong>. Con 12 V circulan unos 12 mA o menos; con 220 V, hasta 220 mA.</li>
+          <li>Por eso se considera «baja tensión segura» a menos de 50 V en alterna (120 V en continua). Y por eso, con 220 V, hay que tomar precauciones <em>siempre</em>.</li>
+        </ul>
+        <div class="note">
+          <span class="box-title">Reglas básicas</span>
+          <ul>
+            <li><strong>Trabajar sin tensión:</strong> desenchufar y esperar a que los capacitores se descarguen (<a class="xref" href="06-capacitores-rc.html">capítulo 6</a>). Comprobar con el multímetro (<a class="xref" href="05-multimetro.html">capítulo 5</a>) que no hay tensión.</li>
+            <li><strong>Una mano a la vez</strong> cuando haya tensión peligrosa: así la corriente no atraviesa el pecho de mano a mano.</li>
+            <li><strong>Con 220 V:</strong> caja cerrada y aislada, cable con sección suficiente, fusible o térmica en el circuito (<a class="xref" href="03-resistencias.html#cortocircuito">capítulo 3</a>), conexión a tierra del chasis metálico y un <strong>disyuntor diferencial</strong> en el tablero (corta si hay una fuga de unos 30 mA).</li>
+            <li><strong>Baterías de litio</strong> (<a class="xref" href="04-baterias.html#tipos">capítulo 4</a>): no cortocircuitar, no perforar, usar su circuito de protección.</li>
+            <li><strong>Calor:</strong> el soldador está a 350 °C y los componentes que disipan potencia también se calientan (<a class="xref" href="28-hoja-de-datos.html#calor">capítulo 28</a>).</li>
+            <li>Si no estás seguro, <strong>usá un módulo comercial certificado</strong> y pedí ayuda a alguien con experiencia.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="tierra">
+        <h2>Tierra, neutro y masa</h2>
+        <p>Tres palabras que se confunden:</p>
+        <ul>
+          <li><strong>Neutro</strong>: el conductor por donde vuelve la corriente a la red; normalmente está a unos pocos volts de la tierra.</li>
+          <li><strong>Tierra de protección</strong> (cable verde y amarillo): una conexión a una jabalina enterrada, que se une al <em>chasis</em> metálico de un aparato. Si una falla pone 220 V en el chasis, esa corriente se va por la tierra, salta la protección y nadie se electrocuta al tocarlo.</li>
+          <li><strong>Masa</strong> de un circuito: el punto de referencia de 0 V al que se miden las tensiones (como el emisor a masa de los capítulos 14 y 15). No es necesariamente la tierra: una pila y un celular tienen masa, pero no están conectados a ninguna jabalina.</li>
+        </ul>
+        <p>Cuando varios circuitos comparten la masa (por ejemplo, un microcontrolador, un sensor y un motor), conviene conectarlos con un <strong>punto único</strong> («masa en estrella») y no en cadena: así la corriente grande de un motor no atraviesa el cable de masa del sensor. Por pequeña que sea, la resistencia del cable (0,1 Ω) con 2 A produce 0,2 V, y ese error se suma a la señal que mide el sensor.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g29bt g29bd">
+            <title id="g29bt">Masa en cadena y masa en estrella</title>
+            <desc id="g29bd">Dos formas de conectar la masa de un sensor, un microcontrolador y un motor: en cadena, donde la corriente del motor recorre el mismo cable que la señal del sensor, y en estrella, con un cable independiente de cada uno a un único punto.</desc>
+<text class="fg-t fg-b fg-c" x="170" y="20">Masa en cadena (mal)</text><text class="fg-t fg-b fg-c" x="530" y="20">Masa en estrella (bien)</text><rect x="60" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="97" y="66" font-size="12">sensor</text><rect x="140" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="177" y="66" font-size="12">micro</text><rect x="220" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="257" y="66" font-size="12">motor</text>
+<path class="fg-line" d="M97 78 V120 M177 78 V120 M257 78 V120"/>
+<path class="fg-line" d="M30 120 H300"/>
+<path class="fg-line" d="M97 120 v0"/>
+<path class="fg-bad" d="M257 120 H300" style="stroke-width:3.5"/>
+<text class="fg-bad fg-b" x="170" y="150" style="fill:var(--bad);stroke:none" font-size="12.5" text-anchor="middle">el motor (2 A) pasa por el mismo cable</text>
+<text class="fg-bad fg-b" x="170" y="168" style="fill:var(--bad);stroke:none" font-size="12.5" text-anchor="middle">que la señal del sensor</text>
+<path class="fg-line" d="M30 120 V136"/><path class="fg-line" d="M30 136 V144 M16 144 H44 M21 149 H39 M26 154 H34"/>
+<text class="fg-m" x="40" y="200" font-size="12">Cada tramo de cable tiene una resistencia (≈ 0,1 Ω):</text>
+<text class="fg-m" x="40" y="218" font-size="12">2 A × 0,1 Ω = 0,2 V que se «suman» a la masa del sensor</text>
+<text class="fg-m" x="40" y="236" font-size="12">y falsean su lectura.</text><rect x="400" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="437" y="66" font-size="12">sensor</text><rect x="480" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="517" y="66" font-size="12">micro</text><rect x="560" y="44" width="74" height="34" rx="5" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="597" y="66" font-size="12">motor</text>
+<path class="fg-line" d="M437 78 V104 H517 M517 78 V104 M597 78 V104 H517"/><circle cx="517" cy="104" r="5" style="fill:var(--accent)"/>
+<path class="fg-line" d="M517 104 V130"/><path class="fg-line" d="M517 130 V138 M503 138 H531 M508 143 H526 M513 148 H521"/>
+<text class="fg-m fg-c" x="517" y="170" font-size="12">punto único de masa</text>
+<text class="fg-m" x="400" y="200" font-size="12">Cada bloque tiene su propio cable de vuelta:</text>
+<text class="fg-m" x="400" y="218" font-size="12">la corriente del motor ya no pasa por el cable</text>
+<text class="fg-m" x="400" y="236" font-size="12">del sensor, y no lo perturba.</text>
+          </svg>
+          <figcaption><strong>Los cables de masa también tienen resistencia.</strong> Si la corriente grande de un motor comparte camino con la masa de un circuito sensible, aparece ruido; con un punto único, cada circuito vuelve por su cuenta.</figcaption>
+        </figure>
+
+        <p>Los «lazos de masa» (<em>ground loops</em>) aparecen cuando dos equipos conectados entre sí tienen sus masas unidas por dos caminos distintos: el lazo capta campos magnéticos de la red y aparece el zumbido de 50 Hz en los equipos de audio. Se resuelven con un único camino de masa o con aislación galvánica (más abajo).</p>
+      </section>
+
+      <section id="desacople">
+        <h2>Ruido en la alimentación y desacople</h2>
+        <p>Un circuito digital (un microcontrolador, una memoria, un 555) no consume una corriente constante: cada vez que conmuta, toma un <strong>pulso rápido de corriente</strong> de unos miliamperes en pocos nanosegundos. La fuente está lejos, y el cable o la pista que une ambos tiene <strong>inductancia</strong> (unos 10 nH por centímetro), así que, por <span class="eq">V = L · Δi / Δt</span> (<a class="xref" href="20-inductor-rl.html">capítulo 20</a>), cada pico de corriente produce un pico de tensión en la alimentación del chip: por ejemplo, 50 nH × (100 mA / 5 ns) = <strong>1 V</strong>. Esas oscilaciones pueden reiniciar el chip o falsear lecturas.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 245" role="img" aria-labelledby="g29ct g29cd">
+            <title id="g29ct">Por qué el capacitor de desacople va pegado al chip</title>
+            <desc id="g29cd">Dos circuitos con un chip alimentado por un cable largo: sin capacitor, el pico de corriente recorre todo el cable y su inductancia genera un pico de tensión; con un capacitor junto al chip, el pico sale del capacitor por un lazo corto.</desc>
+<text class="fg-t fg-b fg-c" x="160" y="20">Sin capacitor de desacople</text><rect x="210" y="70" width="80" height="110" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-c fg-b" x="250" y="130" font-size="13">chip</text><path class="fg-line" d="M30 70 H210 M30 180 H210"/><path class="fg-line" d="M30 70 V84 M30 166 V180"/><rect x="18" y="84" width="24" height="82" rx="4" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="30" y="130" font-size="11" transform="rotate(-90 30 130)">fuente</text><text class="fg-m fg-c" x="120" y="62" font-size="11.5">cable largo (inductancia L)</text><path class="fg-line" d="M80 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M98 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M116 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M134 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M152 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-bad" d="M40 78 H202 V172 H40 Z" style="stroke-width:3;fill:none;stroke-dasharray:5 3"/><text class="fg-t fg-b fg-c" x="160" y="212" font-size="12.5" style="fill:var(--bad)">el pico viaja por todo el cable (lazo largo)</text><text class="fg-m fg-c" x="160" y="230" font-size="12">cada pico de corriente da un pico de tensión</text><text class="fg-t fg-b fg-c" x="520" y="20">Con capacitor junto al chip</text><rect x="570" y="70" width="80" height="110" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><text class="fg-t fg-c fg-b" x="610" y="130" font-size="13">chip</text><path class="fg-line" d="M390 70 H570 M390 180 H570"/><path class="fg-line" d="M390 70 V84 M390 166 V180"/><rect x="378" y="84" width="24" height="82" rx="4" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><text class="fg-t fg-c fg-b" x="390" y="130" font-size="11" transform="rotate(-90 390 130)">fuente</text><text class="fg-m fg-c" x="480" y="62" font-size="11.5">cable largo (inductancia L)</text><path class="fg-line" d="M440 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M458 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M476 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M494 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M512 70 a9 9 0 0 1 18 0" style="stroke:var(--heat);stroke-width:3"/><path class="fg-line" d="M540 70 V116 M540 180 V134"/><path class="fg-line" d="M528 116 H552 M528 126 H552" style="stroke-width:3"/><path class="fg-line" d="M540 126 V134"/><text class="fg-m" x="490" y="124" font-size="11.5" text-anchor="end">100 nF</text><path class="fg-good" d="M540 114 H566 V160 H540 V138" style="stroke-width:3;fill:none;stroke-dasharray:5 3"/><text class="fg-t fg-b fg-c" x="520" y="212" font-size="12.5" style="fill:var(--good)">el pico de corriente sale del capacitor (lazo corto)</text><text class="fg-m fg-c" x="520" y="230" font-size="12">el pico de tensión casi no aparece</text>
+          </svg>
+          <figcaption><strong>El capacitor es una pequeña reserva local de carga.</strong> Entrega los picos rápidos de corriente que la fuente, lejana y con un cable inductivo, no alcanza a dar.</figcaption>
+        </figure>
+
+        <p>La solución es un <strong>capacitor de desacople</strong> (o «de bypass») de <strong>100 nF cerámico</strong> conectado entre la alimentación y la masa, <em>lo más cerca posible de los pines del chip</em>. El capacitor funciona como una reserva local de carga: entrega los picos rápidos y la fuente solo repone lentamente lo que se consumió. La caída de tensión durante un pulso es <span class="eq">ΔV ≈ I · Δt / C</span>: con 100 mA durante 30 ns y 100 nF, solo 30 mV.</p>
+        <ul>
+          <li>Un capacitor de <strong>100 nF</strong> por cada circuito integrado, pegado a sus pines de alimentación.</li>
+          <li>Un electrolítico de <strong>10 a 100 µF</strong> por placa o cerca de cada zona de mucho consumo, para las variaciones más lentas.</li>
+          <li>Pistas y cables de alimentación <strong>cortos y gruesos</strong>.</li>
+          <li>Los capacitores grandes electrolíticos son lentos (tienen inductancia y resistencia interna): por eso se usan <em>en paralelo</em> con uno chico cerámico, que responde a las altas frecuencias.</li>
+        </ul>
+        <p>Es la razón por la que un 555 (<a class="xref" href="27-temporizador-555.html#practica">capítulo 27</a>), un MOSFET que conmuta (<a class="xref" href="17-mosfet.html#compuerta">capítulo 17</a>) o un microcontrolador funcionan mal con una conexión larga y sin capacitor.</p>
+      </section>
+
+      <section id="esd">
+        <h2>Descargas electrostáticas</h2>
+        <p>Al caminar sobre una alfombra o quitarte un buzo, el cuerpo acumula carga estática: unos miles de volts. La corriente que pasa al tocar algo es minúscula y dura nanosegundos, así que no lastima, pero <strong>alcanza para destruir un componente CMOS</strong> (por ejemplo, el óxido de la compuerta de un MOSFET, que se perfora con ±20 V; <a class="xref" href="17-mosfet.html">capítulo 17</a>). Los daños no siempre son inmediatos: a veces el componente queda «debilitado» y falla meses después.</p>
+        <ul>
+          <li>Guardar los componentes sensibles en <strong>bolsas antiestáticas</strong> hasta usarlos.</li>
+          <li>Tocar un objeto metálico a masa antes de manipularlos; ideal, usar una <strong>pulsera antiestática</strong>.</li>
+          <li>No tocar las patas de los integrados CMOS.</li>
+          <li>Las entradas expuestas (USB, conectores) llevan <strong>diodos de protección</strong> (diodos TVS, capítulo 19) que desvían la descarga a masa.</li>
+        </ul>
+      </section>
+
+      <section id="aislacion">
+        <h2>Aislación galvánica</h2>
+        <p>A veces dos circuitos tienen que comunicarse sin estar conectados eléctricamente: porque uno trabaja con 220 V y el otro con 5 V, para evitar los lazos de masa o por seguridad. Se logra con elementos que transmiten la energía o la señal a través de un <em>campo</em>:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g29dt g29dd">
+            <title id="g29dt">Tres formas de aislar eléctricamente dos circuitos</title>
+            <desc id="g29dd">Un transformador, un optoacoplador y un relé, cada uno con una línea punteada que separa los dos lados aislados, y cómo la señal pasa mediante un campo magnético, luz o fuerza magnética.</desc>
+<text class="fg-t fg-b fg-c" x="95" y="40" font-size="13">Transformador</text><ellipse cx="65" cy="72" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="65" cy="86" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="65" cy="100" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="65" cy="114" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="65" cy="128" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="125" cy="72" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="125" cy="86" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="125" cy="100" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="125" cy="114" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="125" cy="128" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><path class="fg-line" d="M86 60 V136 M104 60 V136" style="stroke-width:3"/><path class="fg-dash" d="M95 50 V150"/><text class="fg-m fg-c" x="95" y="174" font-size="11.5">campo magnético (capítulo 13)</text><rect x="250" y="50" width="150" height="100" rx="6" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2.5"/><path class="fg-dash" d="M325 56 V144"/><polygon points="274,88 274,112 294,100" style="fill:var(--heat);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M294 86 V114" style="stroke-width:2.5"/><path class="fg-pos" d="M300 86 L316 72 M308 72 H316 V80 M300 102 L316 88 M308 88 H316 V96" style="stroke-width:2" transform="translate(0 6)"/><circle cx="360" cy="100" r="16" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M354 90 V110 M354 96 L366 88 M354 104 L366 112" style="stroke-width:2"/><path class="fg-line" d="M236 88 H274 M236 112 H274 M376 88 H414 M376 112 H414"/><text class="fg-t fg-b fg-c" x="325" y="40" font-size="13">Optoacoplador</text><text class="fg-m fg-c" x="325" y="174" font-size="11.5">luz entre un LED y un fototransistor</text><text class="fg-t fg-b fg-c" x="575" y="40" font-size="13">Relé</text><ellipse cx="530" cy="72" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="530" cy="86" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="530" cy="100" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="530" cy="114" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><ellipse cx="530" cy="128" rx="16" ry="6" style="fill:none;stroke:var(--heat);stroke-width:2.5"/><path class="fg-dash" d="M575 50 V150"/><path class="fg-line" d="M596 110 L638 88" style="stroke-width:3"/><circle cx="596" cy="110" r="4" class="fg-fill-wire"/><circle cx="640" cy="114" r="4" class="fg-fill-wire"/><circle cx="640" cy="86" r="4" class="fg-fill-wire"/><text class="fg-m fg-c" x="575" y="174" font-size="11.5">fuerza magnética (capítulo 18)</text><text class="fg-m" x="30" y="214" font-size="12.5">En los tres casos la señal o la energía pasa por un campo, sin cobre entre los lados.</text>
+<text class="fg-m" x="30" y="232" font-size="12.5">Es la aislación galvánica: si un lado falla o tiene una tensión peligrosa, el otro lado no se entera.</text>
+          </svg>
+          <figcaption><strong>Una barrera sin cobre.</strong> El optoacoplador es el equivalente «electrónico» del relé: un LED dentro de un encapsulado ilumina un fototransistor y transmite la señal sin conexión eléctrica.</figcaption>
+        </figure>
+
+        <ul>
+          <li>El <strong>transformador</strong> (<a class="xref" href="13-transformadores.html#cc">capítulo 13</a>) separa dos circuitos de alterna y transfiere energía por el campo magnético.</li>
+          <li>El <strong>relé</strong> (<a class="xref" href="18-rele.html">capítulo 18</a>) conmuta una carga con un contacto accionado por una bobina.</li>
+          <li>El <strong>optoacoplador</strong> contiene un LED y un fototransistor: la señal viaja como luz. La relación entre la corriente de salida y la de entrada se llama <em>CTR</em> (típicamente entre 50 % y 600 %). Soporta unos 3 a 5 kV de aislación. Se usa para señales digitales, para manejar un relé o un triac desde un microcontrolador, y en comunicaciones industriales.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Un motor y un Arduino en el mismo proyecto</span>
+          <p>Los motores con escobillas producen picos y ruido en la alimentación. Conviene alimentar el motor con una fuente aparte, unir las masas en un solo punto, poner un capacitor de 100 nF entre los bornes del motor (<a class="xref" href="19-cargas-inductivas.html#motores">capítulo 19</a>) y un electrolítico cerca del microcontrolador.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un zumbido de 50 Hz en el equipo de audio</span>
+          <p>Si al conectar dos equipos aparece un «hum» grave, suele ser un lazo de masa: dos caminos de masa entre los equipos. Se arregla con un aislador de audio (un transformador 1:1) o conectando todo a la misma regleta.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ¿cuánta corriente pasa por el cuerpo?</span>
+          <ol>
+            <li>Con 220 V y piel húmeda (1 kΩ): <span class="eq">I = 220 / 1000 = 220 mA</span>: muy por encima de los 30 mA que ponen en riesgo el corazón.</li>
+            <li>Con una pila de 9 V (piel húmeda): <span class="eq">I = 9 / 1000 = 9 mA</span>: se siente, pero no es peligroso.</li>
+            <li>Con una fuente de 48 V (piel húmeda): <span class="eq">I = 48 mA</span>: ya hay riesgo; por eso el límite de «baja tensión segura» es de 50 V.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: ruido por el cable de alimentación</span>
+          <p>Un chip toma pulsos de 100 mA con flancos de 5 ns, por un cable de 5 cm (≈ 50 nH).</p>
+          <ol>
+            <li>Variación de corriente: <span class="eq">Δi/Δt = 0,1 A / 5 ns = 2 × 10<sup>7</sup> A/s</span>.</li>
+            <li>Pico de tensión: <span class="eq">V = L · Δi/Δt = 50 nH · 2 × 10<sup>7</sup> = 1 V</span>. Con alimentación de 5 V y tolerancia de ±5 % (±0,25 V), es demasiado.</li>
+            <li>Con un capacitor de 100 nF pegado al chip, la caída por un pulso de 30 ns es <span class="eq">ΔV ≈ 0,1 A · 30 ns / 100 nF = 30 mV</span>: despreciable.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: el error en una masa compartida</span>
+          <p>Un sensor de 0 a 1 V comparte 20 cm de cable de masa (0,05 Ω) con un motor que toma 3 A.</p>
+          <ol>
+            <li>Caída en el cable: <span class="eq">V = I · R = 3 A · 0,05 Ω = 0,15 V</span>.</li>
+            <li>Como el sensor mide 0–1 V, el error es del 15 % del fondo de escala: ¡enorme!</li>
+            <li>Con masa en estrella, la corriente del motor no pasa por el cable del sensor y el error desaparece.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Con <strong>Sin capacitor</strong>, un cable de 50 nH y pulsos de 100 mA, la tensión de alimentación oscila varios volts alrededor de los 5 V, muy fuera de la banda de ±5 %: el chip se reiniciaría. Mirá la tensión inducida V = L·Δi/Δt (1 V) en el panel de fórmulas.</li>
+        <li>Poné un capacitor de <strong>100 nF</strong>: las oscilaciones desaparecen y solo queda una pequeña caída (unas decenas de mV) durante cada pulso. Con 1 µF, la caída es todavía menor.</li>
+        <li>Con el capacitor de 100 nF, aumentá la inductancia del cable de 50 nH a 1 µH (un cable largo): aparece una oscilación lenta entre el cable y el capacitor. Un desacople no compensa un cable larguísimo: hay que acortar el cable y acercar el capacitor.</li>
+        <li>Sin capacitor, bajá el pico de corriente a 20 mA: el ruido baja en proporción. Los chips que consumen poco son menos sensibles, pero siguen necesitando su capacitor.</li>
+        <li>Probá con el cable más corto (10 nH, pocos cm) y sin capacitor: el ruido es menor porque V = L·Δi/Δt. Es la razón por la que el capacitor se coloca <em>pegado</em> a los pines del chip: así el lazo es lo más corto posible.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/decoupling.js"></script>
+  <script src="../js/quizzes/29-seguridad-masa-desacople.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

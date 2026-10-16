@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lógica digital y compuertas · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="25-logica" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 25</p>
+        <h1>Lógica digital y compuertas</h1>
+        <p class="lead">Información con dos niveles: niveles lógicos, compuertas, tablas de verdad, cómo se construyen con transistores y cómo se combinan para sumar y recordar.</p>
+      </header>
+      <section>
+        <h2>Analógico y digital</h2>
+        <p>Hasta ahora trabajamos con señales <strong>analógicas</strong>: una tensión que puede tomar cualquier valor, como la de un micrófono o un sensor de temperatura. En <strong>electrónica digital</strong> la información se representa con solo <strong>dos niveles</strong>: un nivel alto (cercano a la tensión de alimentación) que se llama <strong>1</strong>, y uno bajo (cercano a 0 V), que se llama <strong>0</strong>. Cada uno de esos valores es un <strong>bit</strong>.</p>
+        <p>Parece una limitación, pero es una enorme ventaja: como solo hay dos estados, un poco de ruido no cambia la información (un 1 con 4,7 V en vez de 5 V sigue siendo un 1), las señales se copian y se transmiten sin degradarse, y con muchos bits se representa cualquier número, texto, imagen o sonido. Con 3 bits hay 2³ = 8 combinaciones (000 a 111, o sea del 0 al 7), con 8 bits, 256, y así.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 790 262" role="img" aria-labelledby="g25at g25ad">
+            <title id="g25at">Niveles lógicos</title>
+            <desc id="g25ad">Tres columnas de tensión que muestran las zonas de nivel alto, indefinido y bajo de las familias TTL de 5 voltios, CMOS 74HC de 5 voltios y CMOS de 3,3 voltios.</desc>
+<text class="fg-t fg-b fg-c" x="150" y="20">Lógica TTL (5 V)</text><text class="fg-t fg-b fg-c" x="440" y="20">CMOS 74HC (5 V)</text><text class="fg-t fg-b fg-c" x="700" y="20">CMOS (3,3 V)</text><path class="fg-line" d="M110 36 V220 H320" style="stroke-width:1.5"/><rect x="120" y="50" width="90" height="102.0" style="fill:var(--good);opacity:.7"/><rect x="120" y="152.0" width="90" height="40.80000000000001" style="fill:var(--muted);opacity:.35"/><rect x="120" y="192.8" width="90" height="27.19999999999999" style="fill:var(--charge-neg);opacity:.7"/><text class="fg-c fg-b" x="165" y="105.0" font-size="12" style="fill:#fff">1 (alto)</text><text class="fg-c fg-b" x="165" y="176.4" font-size="11.5" style="fill:var(--text)">indefinido</text><text class="fg-c fg-b" x="165" y="210.4" font-size="12" style="fill:#fff">0 (bajo)</text><text class="fg-m" x="216" y="156.0" font-size="11.5">V<tspan font-size="8" dy="3">IH</tspan><tspan dy="-3"> ≥ 2,0 V</tspan></text><text class="fg-m" x="216" y="196.8" font-size="11.5">V<tspan font-size="8" dy="3">IL</tspan><tspan dy="-3"> ≤ 0,8 V</tspan></text><path class="fg-dash" d="M106 138.4 H120" style="stroke:var(--accent)"/><text class="fg-m fg-e" x="104" y="142.4" font-size="11" style="fill:var(--accent)">salida alta ≥ 2,4 V</text><path class="fg-dash" d="M106 206.4 H120" style="stroke:var(--accent)"/><text class="fg-m fg-e" x="104" y="210.4" font-size="11" style="fill:var(--accent)">salida baja ≤ 0,4 V</text><path class="fg-line" d="M400 36 V220 H610" style="stroke-width:1.5"/><rect x="410" y="50" width="90" height="62.900000000000006" style="fill:var(--good);opacity:.7"/><rect x="410" y="112.9" width="90" height="61.19999999999999" style="fill:var(--muted);opacity:.35"/><rect x="410" y="174.1" width="90" height="45.900000000000006" style="fill:var(--charge-neg);opacity:.7"/><text class="fg-c fg-b" x="455" y="85.45" font-size="12" style="fill:#fff">1 (alto)</text><text class="fg-c fg-b" x="455" y="147.5" font-size="11.5" style="fill:var(--text)">indefinido</text><text class="fg-c fg-b" x="455" y="201.05" font-size="12" style="fill:#fff">0 (bajo)</text><text class="fg-m" x="506" y="116.9" font-size="11.5">V<tspan font-size="8" dy="3">IH</tspan><tspan dy="-3"> ≥ 3,15 V</tspan></text><text class="fg-m" x="506" y="178.1" font-size="11.5">V<tspan font-size="8" dy="3">IL</tspan><tspan dy="-3"> ≤ 1,35 V</tspan></text><path class="fg-dash" d="M396 70.39999999999998 H410" style="stroke:var(--accent)"/><text class="fg-m fg-e" x="394" y="74.39999999999998" font-size="11" style="fill:var(--accent)">salida alta ≥ 4,4 V</text><path class="fg-dash" d="M396 216.6 H410" style="stroke:var(--accent)"/><text class="fg-m fg-e" x="394" y="220.6" font-size="11" style="fill:var(--accent)">salida baja ≤ 0,1 V</text><path class="fg-line" d="M640 36 V220 H770" style="stroke-width:1.5"/><rect x="650" y="50.0" width="60" height="66.96969696969697" style="fill:var(--good);opacity:0.7"/><rect x="650" y="116.96969696969697" width="60" height="61.81818181818181" style="fill:var(--muted);opacity:0.35"/><rect x="650" y="178.78787878787878" width="60" height="41.21212121212122" style="fill:var(--charge-neg);opacity:0.7"/><text class="fg-c fg-b" x="680" y="87.48484848484848" font-size="12" style="fill:#fff">1</text><text class="fg-c fg-b" x="680" y="203.39393939393938" font-size="12" style="fill:#fff">0</text><text class="fg-m" x="716" y="120.96969696969697" font-size="11.5">V<tspan font-size="8" dy="3">IH</tspan><tspan dy="-3"> ≥ 2,0 V</tspan></text><text class="fg-m" x="716" y="182.78787878787878" font-size="11.5">V<tspan font-size="8" dy="3">IL</tspan><tspan dy="-3"> ≤ 0,8 V</tspan></text><text class="fg-m fg-c" x="440" y="248" font-size="12.5">Entre V<tspan font-size="9" dy="3">IL</tspan><tspan dy="-3"> y V</tspan><tspan font-size="9" dy="3">IH</tspan><tspan dy="-3"> la lectura es indefinida: hay que evitarla</tspan></text>
+          </svg>
+          <figcaption><strong>Dos niveles con margen.</strong> Una salida «alta» es mejor de lo que una entrada exige, y una salida «baja» es más baja de lo que exige: esa diferencia es el <em>margen de ruido</em>, y por eso la lógica digital tolera interferencias.</figcaption>
+        </figure>
+
+        <p>Cada familia lógica define qué tensiones se aceptan como alto y como bajo. Entre ambos queda una zona <em>indefinida</em> donde la lectura no es confiable (por ejemplo, un pulsador mal conectado, capítulo <a class="xref" href="26-entradas-adc.html">26</a>). Hoy se usan sobre todo los circuitos CMOS de 5 V, 3,3 V o menos.</p>
+      </section>
+
+      <section id="compuertas">
+        <h2>Las compuertas lógicas</h2>
+        <p>Una <strong>compuerta lógica</strong> es un circuito que toma una o más entradas digitales y entrega una salida según una regla. Esa regla se resume en una <strong>tabla de verdad</strong> con todas las combinaciones posibles:</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 322" role="img" aria-labelledby="g25bt g25bd">
+            <title id="g25bt">Las compuertas básicas</title>
+            <desc id="g25bd">Símbolo, expresión booleana y tabla de verdad de las compuertas NOT, AND, OR, NAND, NOR y XOR.</desc>
+<text class="fg-t fg-b" x="30" y="26">NOT</text><text class="fg-m" x="90" y="26" font-size="12">invierte</text><polygon points="70,36.0 70,80.0 118,58" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><circle cx="123" cy="58" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M56 58 H70"/><path class="fg-line" d="M128 58 H142"/><text class="fg-a fg-b" x="30" y="102" style="fill:var(--accent)" font-size="13">Y = Ā</text><text class="fg-c fg-b" x="180" y="42" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="200" y="42" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="180" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="200" y="57" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="180" y="72" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="200" y="72" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-t fg-b" x="260" y="26">AND</text><text class="fg-m" x="320" y="26" font-size="12">todas en 1</text><path d="M300 36.0 H329.0 A22.0 22.0 0 0 1 329.0 80.0 H300 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><path class="fg-line" d="M286 48.32 H300 M286 67.68 H300"/><path class="fg-line" d="M351.0 58 H365.0"/><text class="fg-a fg-b" x="260" y="102" style="fill:var(--accent)" font-size="13">Y = A · B</text><text class="fg-c fg-b" x="390" y="42" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="410" y="42" font-size="12.5" style="fill:var(--accent)">B</text><text class="fg-c fg-b" x="430" y="42" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="390" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="410" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="430" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="390" y="72" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="410" y="72" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="430" y="72" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="390" y="87" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="410" y="87" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="430" y="87" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="390" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="410" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="430" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-t fg-b" x="490" y="26">OR</text><text class="fg-m" x="550" y="26" font-size="12">alguna en 1</text><path d="M530 36.0 Q570.6 36.0 588 58 Q570.6 80.0 530 80.0 Q546.24 58 530 36.0 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><path class="fg-line" d="M516 48.32 H536 M516 67.68 H536"/><path class="fg-line" d="M588 58 H602"/><text class="fg-a fg-b" x="490" y="102" style="fill:var(--accent)" font-size="13">Y = A + B</text><text class="fg-c fg-b" x="620" y="42" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="640" y="42" font-size="12.5" style="fill:var(--accent)">B</text><text class="fg-c fg-b" x="660" y="42" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="620" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="640" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="660" y="57" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="620" y="72" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="640" y="72" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="660" y="72" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="620" y="87" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="640" y="87" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="660" y="87" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="620" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="640" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="660" y="102" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-t fg-b" x="30" y="176">NAND</text><text class="fg-m" x="90" y="176" font-size="12">AND invertida</text><path d="M70 186.0 H99.0 A22.0 22.0 0 0 1 99.0 230.0 H70 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><circle cx="126.0" cy="208" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M56 198.32 H70 M56 217.68 H70"/><path class="fg-line" d="M131.0 208 H145.0"/><text class="fg-a fg-b" x="30" y="252" style="fill:var(--accent)" font-size="13">Y = <tspan text-decoration="overline">A · B</tspan></text><text class="fg-c fg-b" x="160" y="192" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="180" y="192" font-size="12.5" style="fill:var(--accent)">B</text><text class="fg-c fg-b" x="200" y="192" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="160" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="180" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="200" y="207" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="160" y="222" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="180" y="222" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="200" y="222" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="160" y="237" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="180" y="237" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="200" y="237" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="160" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="180" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="200" y="252" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-t fg-b" x="260" y="176">NOR</text><text class="fg-m" x="320" y="176" font-size="12">OR invertida</text><path d="M300 186.0 Q340.6 186.0 358 208 Q340.6 230.0 300 230.0 Q316.24 208 300 186.0 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><circle cx="363" cy="208" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M286 198.32 H306 M286 217.68 H306"/><path class="fg-line" d="M368 208 H382"/><text class="fg-a fg-b" x="260" y="252" style="fill:var(--accent)" font-size="13">Y = <tspan text-decoration="overline">A + B</tspan></text><text class="fg-c fg-b" x="390" y="192" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="410" y="192" font-size="12.5" style="fill:var(--accent)">B</text><text class="fg-c fg-b" x="430" y="192" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="390" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="410" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="430" y="207" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="390" y="222" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="410" y="222" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="430" y="222" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="390" y="237" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="410" y="237" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="430" y="237" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="390" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="410" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="430" y="252" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-t fg-b" x="490" y="176">XOR</text><text class="fg-m" x="550" y="176" font-size="12">entradas distintas</text><path d="M538 186.0 Q578.6 186.0 588 208 Q578.6 230.0 538 230.0 Q554.24 208 538 186.0 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><path d="M530 186.0 Q546.24 208 530 230.0" style="fill:none;stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M516 198.32 H536 M516 217.68 H536"/><path class="fg-line" d="M588 208 H602"/><text class="fg-a fg-b" x="490" y="252" style="fill:var(--accent)" font-size="13">Y = A ⊕ B</text><text class="fg-c fg-b" x="620" y="192" font-size="12.5" style="fill:var(--accent)">A</text><text class="fg-c fg-b" x="640" y="192" font-size="12.5" style="fill:var(--accent)">B</text><text class="fg-c fg-b" x="660" y="192" font-size="12.5" style="fill:var(--accent)">Y</text><text class="fg-c" x="620" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="640" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="660" y="207" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="620" y="222" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="640" y="222" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="660" y="222" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="620" y="237" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="640" y="237" font-size="12.5" style="fill:var(--muted)">0</text><text class="fg-c" x="660" y="237" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="620" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="640" y="252" font-size="12.5" style="fill:var(--charge-pos)">1</text><text class="fg-c" x="660" y="252" font-size="12.5" style="fill:var(--muted)">0</text>
+          </svg>
+          <figcaption><strong>NAND y NOR son «universales»:</strong> con solo una de ellas se puede construir cualquier otra. Por eso son las más usadas dentro de los chips.</figcaption>
+        </figure>
+
+        <ul>
+          <li><strong>NOT</strong> (inversor): la salida es lo contrario de la entrada.</li>
+          <li><strong>AND</strong>: la salida es 1 solo si <em>todas</em> las entradas son 1 (como dos interruptores en serie).</li>
+          <li><strong>OR</strong>: la salida es 1 si <em>alguna</em> entrada es 1 (como dos interruptores en paralelo).</li>
+          <li><strong>NAND</strong> y <strong>NOR</strong>: son un AND y un OR seguidos de un NOT. Son «universales»: con una sola de ellas (por ejemplo, NAND) se arma cualquier otra. Uniendo las dos entradas de una NAND se obtiene un NOT.</li>
+          <li><strong>XOR</strong> (o exclusivo): la salida es 1 cuando las entradas son <em>distintas</em>. Es la base de la suma binaria.</li>
+        </ul>
+        <p>Las operaciones se escriben con el <strong>álgebra de Boole</strong>: <em>A · B</em> (AND), <em>A + B</em> (OR), <em>Ā</em> (NOT), <em>A ⊕ B</em> (XOR). Dos reglas útiles son las de De Morgan: <span class="eq">(A · B)‾ = Ā + B̄</span> y <span class="eq">(A + B)‾ = Ā · B̄</span>.</p>
+      </section>
+
+      <section id="transistores">
+        <h2>Cómo se construye una compuerta</h2>
+        <p>La compuerta más simple, el NOT, es un transistor usado como interruptor (<a class="xref" href="15-transistor-interruptor.html">capítulo 15</a>): cuando la entrada es alta, el transistor conduce y la salida cae a casi 0 V; cuando es baja, el transistor corta y un resistor sube la salida a V<sub>CC</sub>. La salida es el inverso de la entrada. Con dos transistores en serie se logra una NAND, y con dos en paralelo, una NOR.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 345" role="img" aria-labelledby="g25ct g25cd">
+            <title id="g25ct">Una compuerta NOT hecha con transistores</title>
+            <desc id="g25cd">Un inversor con un transistor bipolar y un resistor de colector, y un inversor CMOS con un MOSFET de canal P arriba y uno de canal N abajo.</desc>
+<text class="fg-t fg-b fg-c" x="140" y="20">Inversor con un transistor (cap. 15)</text>
+            <circle cx="130" cy="150" r="30" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path class="fg-line" d="M74 150 H121.0"/><path class="fg-line" d="M121.0 135.0 V165.0" style="stroke-width:3.5"/><path class="fg-line" d="M121.0 143.4 L142.6 122.77427686910778 V98.77427686910778 M121.0 156.6 L142.6 177.22572313089222 V201.22572313089222"/><polygon class="fg-fill-wire" points="138.3,173.1 129.9,169.9 134.7,164.8"/><text class="fg-m" x="151.6" y="104.77427686910778">C</text><text class="fg-m" x="151.6" y="203.22572313089222">E</text><text class="fg-m fg-e" x="70" y="144">B</text>
+            <path class="fg-line" d="M142.6 30 V98.77427686910778 M142.6 30 H190"/>
+            <text class="fg-a fg-b" x="196" y="35" style="fill:var(--accent)" font-size="12">+5 V</text>
+            <g transform="translate(142.6,36) rotate(90)"><path class="fg-line" d="M0 0 h8 l5 -10 l10 20 l10 -20 l10 20 l10 -20 l5 10 h8"/></g>
+            <path class="fg-line" d="M142.6 110 H210"/><circle cx="142.6" cy="110" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-m" x="214" y="114" font-size="12">salida Y</text>
+            <path class="fg-line" d="M142.6 201.22572313089222 V209.22572313089222"/><path class="fg-line" d="M142.6 209.22572313089222 V217.22572313089222 M128.6 217.22572313089222 H156.6 M133.6 222.22572313089222 H151.6 M138.6 227.22572313089222 H146.6"/>
+            <text class="fg-m" x="26" y="140" font-size="12">entrada A</text>
+            <path class="fg-line" d="M26 150 H74"/>
+            <text class="fg-m fg-c" x="140" y="292" font-size="12.5">A alta → transistor conduce → Y ≈ 0 V</text>
+            <text class="fg-m fg-c" x="140" y="310" font-size="12.5">A baja → transistor en corte → Y ≈ 5 V</text>
+            <text class="fg-t fg-b fg-c" x="480" y="20">Inversor CMOS (el de los chips)</text>
+            <path class="fg-line" d="M415.28 86 H434.32"/><path class="fg-line" d="M434.32 58.0 V114.0" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 58.0 V71.44" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 78.16 V93.84" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 100.56 V114.0" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 64.72 H466.8 V44.0 M444.4 107.28 H466.8 V128.0 M444.4 86 H466.8 V107.28"/><polygon class="fg-fill-wire" points="465.8,86.0 456.8,81.5 456.8,90.5"/><path class="fg-line" d="M415.28 200 H434.32"/><path class="fg-line" d="M434.32 172.0 V228.0" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 172.0 V185.44" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 192.16 V207.84" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 214.56 V228.0" style="stroke-width:3.5"/><path class="fg-line" d="M444.4 178.72 H466.8 V158.0 M444.4 221.28 H466.8 V242.0 M444.4 200 H466.8 V221.28"/><polygon class="fg-fill-wire" points="445.4,200.0 454.4,195.5 454.4,204.5"/>
+            <path class="fg-line" d="M466.8 44.0 V30 H496.8 M466.8 30 H466.8"/>
+            <text class="fg-a fg-b" x="502.8" y="35" style="fill:var(--accent)" font-size="12">+5 V</text>
+            <path class="fg-line" d="M466.8 128.0 V158.0"/><circle cx="466.8" cy="143.0" r="3.5" class="fg-fill-wire"/>
+            <path class="fg-line" d="M466.8 143.0 H526.8"/><text class="fg-m" x="530.8" y="147.0" font-size="12">salida Y</text>
+            <path class="fg-line" d="M466.8 242.0 V250.0"/><path class="fg-line" d="M466.8 250.0 V258.0 M452.8 258.0 H480.8 M457.8 263.0 H475.8 M462.8 268.0 H470.8"/>
+            <path class="fg-line" d="M415.28 86 H393.28 V200 H415.28 M393.28 143.0 H367.28"/><circle cx="393.28" cy="143.0" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-m fg-e" x="363.28" y="147.0" font-size="12">entrada A</text>
+            <text class="fg-m" x="480.8" y="78.0" font-size="11.5">PMOS (arriba)</text><text class="fg-m" x="480.8" y="194.0" font-size="11.5">NMOS (abajo)</text>
+            <text class="fg-m fg-c" x="500" y="292" font-size="12.5">A alta → conduce el NMOS → Y = 0 V</text>
+            <text class="fg-m fg-c" x="500" y="310" font-size="12.5">A baja → conduce el PMOS → Y = 5 V</text>
+            <text class="fg-m fg-c" x="500" y="328" font-size="12.5">uno solo conduce a la vez: casi no consume</text>
+          </svg>
+          <figcaption><strong>Un inversor es un transistor usado como interruptor</strong> (capítulo 15). En CMOS se usan dos MOSFET complementarios para que casi no haya consumo cuando la salida está quieta.</figcaption>
+        </figure>
+
+        <p>Los circuitos integrados usan la tecnología <strong>CMOS</strong> (<a class="xref" href="17-mosfet.html">capítulo 17</a>): un MOSFET de canal P conecta la salida a +V y uno de canal N la conecta a masa. Como siempre conduce solo uno de los dos, <em>casi no hay corriente</em> cuando la salida no cambia: ahí está el secreto de que un procesador con miles de millones de transistores no se derrita. Solo se consume potencia al conmutar (cargar y descargar las capacidades de las compuertas).</p>
+      </section>
+
+      <section id="combinacional">
+        <h2>Combinando compuertas</h2>
+        <p>Con compuertas se arman circuitos que calculan. El más famoso es el <strong>semisumador</strong>, que suma dos bits: la <strong>suma</strong> es un XOR (1 + 0 = 1, 1 + 1 = 0) y el <strong>acarreo</strong> es un AND (solo 1 + 1 produce acarreo, para dar 10 en binario). Dos semisumadores y una OR forman un <em>sumador completo</em>, y encadenando 8, 32 o 64 de ellos se suman números de ese tamaño: es el núcleo aritmético de una computadora. También hay <strong>decodificadores</strong> (que activan una salida según un código), <strong>multiplexores</strong> (que eligen una entrada entre varias) y <strong>comparadores</strong> de números.</p>
+      </section>
+
+      <section id="memoria">
+        <h2>Memoria: realimentar la salida</h2>
+        <p>Los circuitos anteriores tienen una salida que depende solo de las entradas <em>de ese instante</em>. Pero si se conecta la salida de una compuerta a la entrada de otra, y viceversa, se crea un circuito que <strong>recuerda</strong>: el <strong>latch SR</strong>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 720 292" role="img" aria-labelledby="g25dt g25dd">
+            <title id="g25dt">Un latch SR hecho con dos compuertas NOR</title>
+            <desc id="g25dd">Dos compuertas NOR con las salidas realimentadas cruzadas forman una memoria de un bit con entradas de puesta a uno y a cero.</desc>
+<text class="fg-t fg-b" x="40" y="22">Memoria de un bit: el latch SR</text>
+            <path d="M250 57.0 Q293.4 57.0 312 80 Q293.4 103.0 250 103.0 Q267.36 80 250 57.0 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><circle cx="317" cy="80" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M236 69.88 H256 M236 90.12 H256"/><path class="fg-line" d="M322 80 H336"/><path d="M250 177.0 Q293.4 177.0 312 200 Q293.4 223.0 250 223.0 Q267.36 200 250 177.0 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2;stroke-linejoin:round"/><circle cx="317" cy="200" r="5" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.2"/><path class="fg-line" d="M236 189.88 H256 M236 210.12 H256"/><path class="fg-line" d="M322 200 H336"/>
+            <path class="fg-line" d="M150 69.88 H236"/><path class="fg-line" d="M150 210.12 H236"/>
+            <text class="fg-t fg-b fg-e" x="144" y="74.88">R</text><text class="fg-t fg-b fg-e" x="144" y="215.12">S</text>
+            <path class="fg-line" d="M336 80 H430"/><path class="fg-line" d="M336 200 H430"/>
+            <text class="fg-t fg-b" x="438" y="85">Q</text><text class="fg-t fg-b" x="438" y="205"><tspan text-decoration="overline">Q</tspan></text>
+            <path class="fg-acc" d="M358 80 V140 L212 168 V210.12 H236" style="stroke:var(--accent);stroke-width:2"/>
+            <path class="fg-acc" d="M358 200 V160 L212 112 V90.12 H236" style="stroke:var(--accent);stroke-width:2"/>
+            <circle cx="358" cy="80" r="3.5" class="fg-fill-wire"/><circle cx="358" cy="200" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-t fg-b" x="40" y="260" style="fill:var(--accent)" font-size="13">Cada salida alimenta a la otra compuerta: se «enganchan» y el circuito recuerda su estado.</text>
+            <text class="fg-m" x="40" y="280" font-size="12.5">S = 1 (set): Q pasa a 1 y queda así aunque S vuelva a 0.     R = 1 (reset): Q pasa a 0.     S = R = 0: mantiene el último valor.</text>
+          </svg>
+          <figcaption><strong>Realimentar la salida a la entrada da memoria.</strong> Es la base de los flip-flops, los registros, los contadores y la memoria de todo procesador.</figcaption>
+        </figure>
+
+        <p>Agregando una señal de <strong>reloj</strong> que decide cuándo se guarda el dato, se obtiene el <strong>flip-flop</strong> (por ejemplo, el tipo D). Con varios flip-flops se arman <strong>registros</strong> (que guardan un número de varios bits) y <strong>contadores</strong> (que cuentan pulsos del reloj). Un microcontrolador es, en esencia, una enorme red de compuertas y flip-flops sincronizada por un reloj.</p>
+      </section>
+
+      <section id="familias">
+        <h2>En la práctica: familias y cuidados</h2>
+        <ul>
+          <li><strong>74HC / 74HCT:</strong> las series de CMOS más usadas (el 74HC00 contiene cuatro compuertas NAND). Funcionan de 2 a 6 V, consumen muy poco y conmutan en pocos ns. La 74HCT acepta niveles TTL en la entrada.</li>
+          <li><strong>Entradas sin conectar:</strong> en CMOS, una entrada al aire capta ruido y la salida oscila o consume mucho. Las entradas que no se usan se conectan a masa o a +V.</li>
+          <li><strong>Mezclar tensiones:</strong> una salida de 5 V conectada a una entrada de 3,3 V puede dañarla. Se necesita un conversor de nivel (o un simple divisor de tensión, capítulo <a class="xref" href="03-resistencias.html">3</a>).</li>
+          <li><strong>Corriente de salida:</strong> una compuerta entrega pocos mA (unos 4–25 mA); para manejar un LED o un relé se usa un transistor (capítulos <a class="xref" href="15-transistor-interruptor.html">15</a> y <a class="xref" href="18-rele.html">18</a>).</li>
+          <li><strong>Retardo:</strong> cada compuerta tarda unos nanosegundos en responder (retardo de propagación), y eso limita la velocidad del circuito.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Una alarma sencilla</span>
+          <p>Una alarma suena si el sistema está armado Y (la puerta está abierta O la ventana está abierta). En lógica: <span class="eq">Y = ARMADO · (PUERTA + VENTANA)</span>. Con unas pocas compuertas se resuelve sin microcontrolador.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Una calculadora y un procesador</span>
+          <p>La suma de una calculadora se hace con la cadena de sumadores de la figura anterior; la memoria, con flip-flops; y las instrucciones se decodifican con compuertas. Un procesador moderno es lo mismo, repetido miles de millones de veces.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Las compuertas en tus proyectos</span>
+          <p>Un 74HC14 (con entradas Schmitt, capítulo <a class="xref" href="24-aplicaciones-operacional.html#histeresis">24</a>) limpia un pulsador; un 74HC595 convierte datos de pocos pines en ocho salidas; un 74HC138 selecciona uno entre ocho dispositivos.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un NOT con una NAND</span>
+          <p>Se quiere un inversor y solo hay una compuerta NAND de dos entradas.</p>
+          <ol>
+            <li>NAND: <span class="eq">Y = (A · B)‾</span>.</li>
+            <li>Se unen las dos entradas (B = A): <span class="eq">Y = (A · A)‾ = Ā</span> (porque A · A = A).</li>
+            <li>Comprobación: con A = 0, Y = 1; con A = 1, Y = 0. Es un NOT.</li>
+          </ol>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: sumar 1 + 1 en binario</span>
+          <ol>
+            <li>Semisumador con A = 1 y B = 1.</li>
+            <li>Suma: <span class="eq">S = A ⊕ B = 1 ⊕ 1 = 0</span>. Acarreo: <span class="eq">C = A · B = 1</span>.</li>
+            <li>El resultado es «C S» = 10 en binario, o sea 2 en decimal: 1 + 1 = 2. ✓</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+        <li>Elegí <strong>AND</strong> y poné las dos entradas en 1: es la única combinación que da salida 1. Cambiá una a 0 y la salida cae. Mirá cómo la fila de la tabla de verdad se resalta con el estado de las entradas.</li>
+        <li>Probá <strong>OR</strong>: alcanza con una entrada en 1. Compará con <strong>XOR</strong>: con las dos en 1, la salida vuelve a 0 (solo conduce si son distintas).</li>
+        <li>Elegí <strong>NAND</strong> y <strong>NOR</strong>: son las inversas de AND y OR. Con <strong>NOT</strong> solo hay una entrada. ¿Qué tabla se obtiene uniendo las dos entradas de una NAND (A = B)? Comprobá que es la de un NOT.</li>
+        <li>Cambiá la familia lógica de 5 V a 3,3 V: las tensiones de los cables y de la salida cambian (el 1 ahora son 3,3 V), pero la lógica es idéntica. Por eso se puede cambiar de familia sin cambiar el razonamiento.</li>
+        <li>Elegí el <strong>Semisumador</strong> y recorré las cuatro combinaciones: 0+0 = 00, 0+1 = 01, 1+0 = 01 y 1+1 = 10 (S = 0 y acarreo C = 1). Es la suma binaria hecha con una XOR y una AND.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/logic.js"></script>
+  <script src="../js/quizzes/25-logica.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>
