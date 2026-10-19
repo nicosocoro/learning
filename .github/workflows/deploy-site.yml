@@ -1,0 +1,70 @@
+name: Deploy Site
+
+# Publishes the static site (electronics/) to an S3 bucket that is served through a
+# CloudFront distribution. There is no build step: the files are uploaded as they are.
+#
+# Navigation needs no rewrite rules on S3/CloudFront: every link in the site is relative and
+# names its file explicitly (`lessons/02-ley-de-ohm.html`, `../index.html`), so each URL maps
+# to an object key one to one. The only thing CloudFront has to do on its own is answer `/`
+# with `index.html`, which requires the distribution's Default Root Object to be `index.html`.
+
+on:
+  workflow_dispatch:
+
+# Prevent overlapping deploys from racing on the same bucket / invalidation.
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    # Pull secrets/variables from the 'prod' GitHub Environment.
+    environment: prod
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+      # Folder uploaded to the bucket root.
+      SITE_DIR: electronics
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # CSS and JS keep the same file name between deploys (no content hash), so they get a
+      # short cache instead of an immutable one. `--delete` is safe here for the same reason:
+      # there are no hashed chunks that an open tab could still be asking for. Content types
+      # are inferred from the extension by the AWS CLI.
+      - name: Sync css and js to S3 (short cache)
+        run: |
+          aws s3 sync "$SITE_DIR/" "s3://$S3_BUCKET/" \
+            --exclude "*" --include "css/*" --include "js/*" \
+            --cache-control "public,max-age=300" \
+            --delete
+
+      # HTML must always be revalidated so a deploy shows up immediately. README.md and other
+      # non-site files are never uploaded.
+      - name: Sync html to S3 (no cache)
+        run: |
+          aws s3 sync "$SITE_DIR/" "s3://$S3_BUCKET/" \
+            --exclude "*" --include "*.html" \
+            --cache-control "no-cache,no-store,must-revalidate" \
+            --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"
