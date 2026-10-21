@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alternadores, trifásica y fuentes primarias · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="35-alternadores" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 35</p>
+        <h1>Alternadores, trifásica y fuentes primarias</h1>
+        <p class="lead">Los generadores reales no giran una espira con anillos: giran el campo dentro de bobinas fijas, usan varios pares de polos para ajustar la frecuencia y reparten la potencia en tres fases. Y todos necesitan algo que haga girar el eje: ese algo es la verdadera fuente de energía.</p>
+      </header>
+      <section>
+        <h2 id="estator-rotor">Estator fijo, rotor que gira</h2>
+        <p>Lo que importa para inducir tensión es el <em>movimiento relativo</em> entre el campo y la bobina (capítulo <a class="xref" href="33-generador-ca.html#otras-formas">33</a>). Da igual que gire la bobina dentro de un imán fijo o que gire el imán dentro de una bobina fija. En los alternadores de potencia se elige la segunda:</p>
+        <ul>
+          <li>El <strong>estator</strong> (fijo) lleva los devanados de potencia. La corriente y la tensión altas salen directamente de bobinas quietas, bien aisladas y fáciles de enfriar; no hay contactos deslizantes que se desgasten o que tengan que soportar miles de volts.</li>
+          <li>El <strong>rotor</strong> (el que gira) lleva el campo. Es un electroimán (o imanes permanentes) cuyos polos pasan frente a las bobinas. Si es un electroimán, necesita corriente continua, la <strong>corriente de campo</strong> o de <em>excitación</em>, que entra por dos anillos rozantes. Esa corriente es pequeña comparada con la que genera la máquina (un 1 a 5 %), así que los anillos no sufren.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g35at g35ad">
+            <title id="g35at">Corte de un alternador trifásico</title>
+            <desc id="g35ad">Un rotor con un polo norte y un polo sur gira dentro de un estator con tres devanados A, B y C separados 120 grados.</desc>
+            <circle cx="170" cy="125" r="104" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:3"/>
+            <circle cx="170" cy="125" r="68" style="fill:var(--surface);stroke:var(--wire);stroke-width:1.5"/>
+            <path d="M170 71 A54 54 0 0 0 170 179 Z" style="fill:var(--charge-pos);opacity:.75;stroke:var(--wire);stroke-width:2"/>
+            <path d="M170 71 A54 54 0 0 1 170 179 Z" style="fill:var(--charge-neg);opacity:.75;stroke:var(--wire);stroke-width:2"/>
+            <text class="fg-c fg-b" x="140" y="132" font-size="20" fill="#fff">N</text><text class="fg-c fg-b" x="200" y="132" font-size="20" fill="#fff">S</text>
+            <circle cx="170" cy="125" r="4" class="fg-fill-wire"/>
+            <circle cx="170" cy="42" r="13" style="fill:var(--accent);opacity:.25;stroke:var(--accent);stroke-width:2.5"/><text class="fg-c fg-b fg-t" x="170" y="47" font-size="14">A</text>
+            <circle cx="242" cy="167" r="13" style="fill:var(--charge-pos);opacity:.25;stroke:var(--charge-pos);stroke-width:2.5"/><text class="fg-c fg-b fg-t" x="242" y="172" font-size="14">B</text>
+            <circle cx="98" cy="167" r="13" style="fill:var(--charge-neg);opacity:.25;stroke:var(--charge-neg);stroke-width:2.5"/><text class="fg-c fg-b fg-t" x="98" y="172" font-size="14">C</text>
+            <path class="fg-neg" d="M84 40 A112 112 0 0 1 128 14 M118 12 L130 14 L121 22" style="stroke-width:2"/>
+            <text class="fg-m" x="52" y="30">gira</text>
+            <text class="fg-t fg-b" x="310" y="52">Estator (fijo)</text>
+            <text class="fg-m" x="310" y="72">tres devanados A, B, C a 120°.</text>
+            <text class="fg-m" x="310" y="90">De ahí sale la potencia, sin contactos deslizantes.</text>
+            <text class="fg-t fg-b" x="310" y="128">Rotor (gira con el eje)</text>
+            <text class="fg-m" x="310" y="148">electroimán alimentado con corriente continua</text>
+            <text class="fg-m" x="310" y="166">por dos anillos (corriente de campo, I<tspan dy="3" font-size="9">c</tspan><tspan dy="-3">).</tspan></text>
+            <text class="fg-t fg-b" x="310" y="204">Regulador de tensión (AVR)</text>
+            <text class="fg-m" x="310" y="224">mide V y ajusta I<tspan dy="3" font-size="9">c</tspan><tspan dy="-3">: más campo, más tensión.</tspan></text>
+          </svg>
+          <figcaption><strong>Cada devanado ve pasar un polo norte y un polo sur por vuelta.</strong> El flujo en cada bobina cambia como un coseno y las tres tensiones salen desfasadas porque las bobinas están en lugares distintos.</figcaption>
+        </figure>
+        <p id="excitacion"><strong>Controlar la tensión sin tocar la velocidad.</strong> La frecuencia queda fijada por la velocidad (no se puede cambiar), así que la tensión se regula con el campo: <span class="eq">ε = N · B · A · ω</span> con <em>B</em> proporcional a la corriente de campo (hasta que el hierro se satura). Es lo que hace el <em>regulador de tensión</em> (AVR): si la carga hace caer la tensión (reacción del capítulo <a class="xref" href="34-carga-y-campo.html#reaccion">34</a>), sube la corriente de campo; si la carga baja, la reduce. En un alternador de imanes permanentes (dínamo de bicicleta, aerogenerador chico) no se puede regular el campo, por lo que la tensión crece con las rpm y se la regula electrónicamente a la salida.</p>
+      </section>
+
+      <section>
+        <h2 id="polos">Polos y frecuencia</h2>
+        <p>Con un solo par de polos (norte y sur) el rotor da una vuelta por ciclo, y <span class="eq">f = n / 60</span>: para 50 Hz habría que girar a 3000 rpm. Eso sirve para un turbogenerador de vapor, que gira muy rápido, pero no para una turbina de río que va a 100 rpm. La solución es poner <strong>más pares de polos</strong>: con <em>p</em> pares, cada bobina ve pasar <em>p</em> polos norte por vuelta, es decir <em>p</em> ciclos:</p>
+        <p class="equation"><span class="eq">f = p · n / 60</span> &nbsp;&nbsp; <span class="eq">n = 60 · f / p</span></p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Velocidades para generar 50 Hz y 60 Hz</caption>
+            <thead><tr><th>Pares de polos (p)</th><th>Polos</th><th>50 Hz</th><th>60 Hz</th><th>Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2</td><td>3000 rpm</td><td>3600 rpm</td><td>Turbogenerador de vapor o de gas</td></tr>
+              <tr><td>2</td><td>4</td><td>1500 rpm</td><td>1800 rpm</td><td>Grupo electrógeno diésel</td></tr>
+              <tr><td>6</td><td>12</td><td>500 rpm</td><td>600 rpm</td><td>Turbina hidráulica rápida</td></tr>
+              <tr><td>24</td><td>48</td><td>125 rpm</td><td>150 rpm</td><td>Hidráulica de baja caída</td></tr>
+              <tr><td>30</td><td>60</td><td>100 rpm</td><td>120 rpm</td><td>Gran hidroeléctrica</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Quien “elige” cuántos polos tiene un generador es, entonces, la velocidad de su turbina: cuanto más lenta, más polos, y por eso los alternadores de las centrales hidroeléctricas tienen rotores enormes con decenas de polos, mientras que los turbogeneradores son largos y delgados.</p>
+      </section>
+
+      <section>
+        <h2 id="trifasica">Tres fases a 120°</h2>
+        <p>Si en el estator se ponen <strong>tres devanados</strong> iguales, separados 120° (eléctricos) entre sí, el rotor induce en cada uno la misma senoide, pero desfasada un tercio de ciclo:</p>
+        <p class="equation"><span class="eq">v<sub>A</sub> = V<sub>p</sub> · sen(ωt)</span> &nbsp; <span class="eq">v<sub>B</sub> = V<sub>p</sub> · sen(ωt − 120°)</span> &nbsp; <span class="eq">v<sub>C</sub> = V<sub>p</sub> · sen(ωt − 240°)</span></p>
+        <p>Es el sistema <strong>trifásico</strong>, el de toda la red de potencia. Tiene tres propiedades útiles:</p>
+        <ol>
+          <li><strong>La suma de las tres tensiones es cero en todo instante.</strong> Con una carga equilibrada, las tres corrientes también suman cero, así que el cable de retorno (neutro) casi no lleva corriente: se pueden transmitir tres veces la potencia con tres conductores (y un neutro delgado), en lugar de los seis que harían falta con tres líneas monofásicas separadas.</li>
+          <li><strong>La potencia total es constante.</strong> Cada fase entrega una potencia pulsante (proporcional a sen² del ángulo), pero las tres suman un valor fijo. En el eje, esto significa un <em>par de frenado constante</em>, sin la pulsación a doble frecuencia del capítulo <a class="xref" href="34-carga-y-campo.html#reactiva">34</a>: menos vibración y más rendimiento mecánico.</li>
+          <li><strong>Crean un campo giratorio.</strong> Tres bobinas con corrientes desfasadas producen un campo magnético que gira solo, sin partes móviles. Es la base del motor de inducción, el más usado en la industria (arranca sin capacitores y sin escobillas).</li>
+        </ol>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g35bt g35bd">
+            <title id="g35bt">Tres fases y potencia constante</title>
+            <desc id="g35bd">A la izquierda, las tres tensiones senoidales desfasadas 120 grados. A la derecha, la potencia de una fase, que pulsa entre cero y el máximo, y la potencia total de las tres, que es constante.</desc>
+            <text class="fg-t fg-b" x="40" y="24">Las tres tensiones</text>
+            <path class="fg-thin" d="M40 120 H330 M40 55 V185"/>
+            <path class="fg-acc" d="M40.0 120.0 L46.0 112.8 L52.1 105.8 L58.1 99.0 L64.2 92.5 L70.2 86.5 L76.3 81.1 L82.3 76.4 L88.3 72.4 L94.4 69.2 L100.4 66.9 L106.5 65.5 L112.5 65.0 L118.5 65.5 L124.6 66.9 L130.6 69.2 L136.7 72.4 L142.7 76.4 L148.8 81.1 L154.8 86.5 L160.8 92.5 L166.9 99.0 L172.9 105.8 L179.0 112.8 L185.0 120.0 L191.0 127.2 L197.1 134.2 L203.1 141.0 L209.2 147.5 L215.2 153.5 L221.3 158.9 L227.3 163.6 L233.3 167.6 L239.4 170.8 L245.4 173.1 L251.5 174.5 L257.5 175.0 L263.5 174.5 L269.6 173.1 L275.6 170.8 L281.7 167.6 L287.7 163.6 L293.8 158.9 L299.8 153.5 L305.8 147.5 L311.9 141.0 L317.9 134.2 L324.0 127.2 L330.0 120.0" style="stroke-width:2.5"/>
+            <path class="fg-pos" d="M40.0 167.6 L46.0 170.8 L52.1 173.1 L58.1 174.5 L64.2 175.0 L70.2 174.5 L76.3 173.1 L82.3 170.8 L88.3 167.6 L94.4 163.6 L100.4 158.9 L106.5 153.5 L112.5 147.5 L118.5 141.0 L124.6 134.2 L130.6 127.2 L136.7 120.0 L142.7 112.8 L148.8 105.8 L154.8 99.0 L160.8 92.5 L166.9 86.5 L172.9 81.1 L179.0 76.4 L185.0 72.4 L191.0 69.2 L197.1 66.9 L203.1 65.5 L209.2 65.0 L215.2 65.5 L221.3 66.9 L227.3 69.2 L233.3 72.4 L239.4 76.4 L245.4 81.1 L251.5 86.5 L257.5 92.5 L263.5 99.0 L269.6 105.8 L275.6 112.8 L281.7 120.0 L287.7 127.2 L293.8 134.2 L299.8 141.0 L305.8 147.5 L311.9 153.5 L317.9 158.9 L324.0 163.6 L330.0 167.6" style="stroke-width:2.5"/>
+            <path class="fg-neg" d="M40.0 72.4 L46.0 76.4 L52.1 81.1 L58.1 86.5 L64.2 92.5 L70.2 99.0 L76.3 105.8 L82.3 112.8 L88.3 120.0 L94.4 127.2 L100.4 134.2 L106.5 141.0 L112.5 147.5 L118.5 153.5 L124.6 158.9 L130.6 163.6 L136.7 167.6 L142.7 170.8 L148.8 173.1 L154.8 174.5 L160.8 175.0 L166.9 174.5 L172.9 173.1 L179.0 170.8 L185.0 167.6 L191.0 163.6 L197.1 158.9 L203.1 153.5 L209.2 147.5 L215.2 141.0 L221.3 134.2 L227.3 127.2 L233.3 120.0 L239.4 112.8 L245.4 105.8 L251.5 99.0 L257.5 92.5 L263.5 86.5 L269.6 81.1 L275.6 76.4 L281.7 72.4 L287.7 69.2 L293.8 66.9 L299.8 65.5 L305.8 65.0 L311.9 65.5 L317.9 66.9 L324.0 69.2 L330.0 72.4" style="stroke-width:2.5"/>
+            <text class="fg-m fg-c" x="185" y="204">en cada instante: v<tspan dy="3" font-size="9">A</tspan><tspan dy="-3"> + v</tspan><tspan dy="3" font-size="9">B</tspan><tspan dy="-3"> + v</tspan><tspan dy="3" font-size="9">C</tspan><tspan dy="-3"> = 0</tspan></text>
+            <path class="fg-acc" d="M40 232 H62"/><text class="fg-m" x="68" y="236">fase A</text>
+            <path class="fg-pos" d="M130 232 H152"/><text class="fg-m" x="158" y="236">fase B</text>
+            <path class="fg-neg" d="M220 232 H242"/><text class="fg-m" x="248" y="236">fase C</text>
+            <text class="fg-t fg-b" x="390" y="24">Potencia instantánea</text>
+            <path class="fg-thin" d="M390 200 H680 M390 200 V50"/>
+            <path class="fg-dash" d="M390 180 H680" style="stroke:var(--muted)"/>
+            <path class="fg-pos" d="M390.0 200.0 L396.0 199.3 L402.1 197.3 L408.1 194.1 L414.2 190.0 L420.2 185.2 L426.3 180.0 L432.3 174.8 L438.3 170.0 L444.4 165.9 L450.4 162.7 L456.5 160.7 L462.5 160.0 L468.5 160.7 L474.6 162.7 L480.6 165.9 L486.7 170.0 L492.7 174.8 L498.8 180.0 L504.8 185.2 L510.8 190.0 L516.9 194.1 L522.9 197.3 L529.0 199.3 L535.0 200.0 L541.0 199.3 L547.1 197.3 L553.1 194.1 L559.2 190.0 L565.2 185.2 L571.3 180.0 L577.3 174.8 L583.3 170.0 L589.4 165.9 L595.4 162.7 L601.5 160.7 L607.5 160.0 L613.5 160.7 L619.6 162.7 L625.6 165.9 L631.7 170.0 L637.7 174.8 L643.8 180.0 L649.8 185.2 L655.8 190.0 L661.9 194.1 L667.9 197.3 L674.0 199.3 L680.0 200.0" style="stroke-width:2.5"/>
+            <path class="fg-good" d="M390 140 H680" style="stroke-width:3"/>
+            <text class="fg-m fg-e" x="384" y="144">1,5</text><text class="fg-m fg-e" x="384" y="184">0,5</text><text class="fg-m fg-e" x="384" y="204">0</text>
+            <text class="fg-m" x="500" y="128" style="fill:var(--good)">tres fases: constante</text>
+            <text class="fg-m" x="500" y="224" style="fill:var(--charge-pos)">una fase: pulsa al doble de f</text>
+            <text class="fg-m fg-e" x="680" y="244" font-size="11.5">(unidades del pico de una fase, carga resistiva)</text>
+          </svg>
+          <figcaption><strong>Una fase pulsa; tres fases suman un valor fijo.</strong> Con una carga resistiva equilibrada, el eje del generador trifásico siente un freno constante en lugar de pulsante.</figcaption>
+        </figure>
+        <h3>Estrella y triángulo</h3>
+        <p>Las tres bobinas se pueden conectar por un extremo común, <strong>en estrella (Y)</strong>, o formando un anillo, <strong>en triángulo (Δ)</strong>. En estrella aparecen dos tensiones: la de cada bobina (<em>V<sub>F</sub></em>, entre fase y neutro) y la que hay entre dos fases cualesquiera (<em>V<sub>L</sub></em>, de línea), que es mayor porque los fasores están a 120°:</p>
+        <p class="equation"><span class="eq">V<sub>L</sub> = √3 · V<sub>F</sub></span> &nbsp;&nbsp; <span class="eq">P = √3 · V<sub>L</sub> · I<sub>L</sub> · cos φ</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 235" role="img" aria-labelledby="g35ct g35cd">
+            <title id="g35ct">Fasores de tensión de las tres fases y tensión de línea</title>
+            <desc id="g35cd">Tres flechas de igual largo a 120 grados entre sí, que representan la tensión de fase; el lado del triángulo que une dos extremos es la tensión de línea, raíz de tres veces mayor.</desc>
+            <path class="fg-dash" d="M200 45 L269.3 165 L130.7 165 Z"/>
+            <path class="fg-acc" d="M200 125 V45 M192 57 L200 43 L208 57" style="stroke-width:3"/>
+            <path class="fg-pos" d="M200 125 L269.3 165 M255 165 L271 166 L263 152" style="stroke-width:3"/>
+            <path class="fg-neg" d="M200 125 L130.7 165 M138 152 L130 166 L146 165" style="stroke-width:3"/>
+            <circle cx="200" cy="125" r="4" class="fg-fill-wire"/>
+            <text class="fg-b" x="212" y="64" font-size="14" style="fill:var(--accent)">V<tspan dy="3" font-size="10">A</tspan></text>
+            <text class="fg-b" x="266" y="148" font-size="14" style="fill:var(--charge-pos)">V<tspan dy="3" font-size="10">B</tspan></text>
+            <text class="fg-b fg-e" x="132" y="148" font-size="14" style="fill:var(--charge-neg)">V<tspan dy="3" font-size="10">C</tspan></text>
+            <text class="fg-m fg-c" x="200" y="188">V<tspan dy="3" font-size="10">L</tspan><tspan dy="-3"> = √3 · V</tspan><tspan dy="3" font-size="10">F</tspan></text>
+            <path class="fg-thin" d="M200 125 L200 95 A30 30 0 0 1 226 140" style="display:none"/>
+            <text class="fg-m" x="206" y="112">120°</text>
+            <text class="fg-t fg-b" x="360" y="64">En estrella</text>
+            <text class="fg-m" x="360" y="84">entre fase y neutro:  V<tspan dy="3" font-size="10">F</tspan><tspan dy="-3"> = 220 V</tspan></text>
+            <text class="fg-m" x="360" y="102">entre dos fases:  V<tspan dy="3" font-size="10">L</tspan><tspan dy="-3"> = 1,732 · 220 ≈ 380 V</tspan></text>
+            <text class="fg-t fg-b" x="360" y="140">Con una carga trifásica</text>
+            <text class="fg-m" x="360" y="160">de 380 V, 10 A de línea y cos φ = 0,85:</text>
+            <text class="fg-a fg-b" x="360" y="184" font-size="14">P = 1,732 · 380 · 10 · 0,85 ≈ 5,6 kW</text>
+          </svg>
+          <figcaption><strong>Una casa usa una fase y el neutro (220 V); un motor industrial usa las tres fases (380 V).</strong> La distancia entre dos puntas de fasores a 120° es √3 veces la longitud de cada uno.</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: por qué se transmite en trifásica</span>
+          <p>Hay que llevar 5,6 kW a un taller con una carga con cos φ = 0,85. ¿Qué corriente por conductor hace falta con una línea monofásica de 220 V y con una trifásica de 380 V?</p>
+          <ol>
+            <li><strong>Monofásica:</strong> <span class="eq">I = P / (V · cos φ) = 5600 / (220 · 0,85) ≈ 30 A</span> por conductor (2 conductores).</li>
+            <li><strong>Trifásica:</strong> <span class="eq">I = P / (√3 · V<sub>L</sub> · cos φ) = 5600 / (1,732 · 380 · 0,85) ≈ 10 A</span> por conductor (3 conductores).</li>
+            <li>La corriente por cable es un tercio: con la misma sección, las pérdidas por conductor (<em>I² · R</em>) son nueve veces menores. Y para aceptar las mismas pérdidas totales en la línea, la trifásica necesita solo la mitad del cobre.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="fuentes">Qué hace girar el eje: las fuentes primarias</h2>
+        <p>Un generador solo convierte potencia mecánica en eléctrica (capítulo <a class="xref" href="34-carga-y-campo.html#lenz-generador">34</a>). La “fuente de energía” verdadera es lo que mueve el eje:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Fuentes primarias que hacen girar un generador</caption>
+            <thead><tr><th>Qué mueve el eje</th><th>De dónde sale la energía</th><th>Velocidad típica</th><th>Rendimiento orientativo (energía primaria → eléctrica)</th></tr></thead>
+            <tbody>
+              <tr><td>Turbina de vapor</td><td>Carbón, gas, nuclear, biomasa, geotermia (calor que hierve agua)</td><td>3000 / 3600 rpm</td><td>33 a 45 %</td></tr>
+              <tr><td>Turbina de gas + vapor (ciclo combinado)</td><td>Gas natural</td><td>3000 / 3600 rpm</td><td>hasta ≈ 60 %</td></tr>
+              <tr><td>Turbina hidráulica</td><td>Energía potencial del agua (caída y caudal)</td><td>60 a 750 rpm</td><td>85 a 92 %</td></tr>
+              <tr><td>Aerogenerador</td><td>Energía cinética del viento</td><td>10 a 20 rpm (con o sin multiplicadora)</td><td>35 a 50 % (límite teórico 59 %)</td></tr>
+              <tr><td>Motor de combustión</td><td>Gasoil o nafta (grupos electrógenos, alternador del auto)</td><td>1500 / 3000 rpm</td><td>25 a 40 %</td></tr>
+              <tr><td>Músculo humano</td><td>Alimentos (manivela, pedal, linterna a cuerda)</td><td>muy variable</td><td>≈ 20 % del cuerpo; ≈ 100 W sostenidos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Casi todo lo que se ve en el panorama eléctrico mundial es una variante de lo mismo: <em>hacer girar un eje</em>. Solo los paneles fotovoltaicos (capítulo <a class="xref" href="31-solar.html">31</a>), las celdas de combustible y las baterías generan corriente continua sin partes móviles. Un parque solar de potencia se conecta a la red mediante un <strong>inversor</strong> que convierte esa continua en alterna sincronizada a 50 Hz.</p>
+        <p>El alternador del <strong>auto</strong> usa los dos mundos: genera CA trifásica y la convierte en CC con seis diodos (un puente rectificador trifásico) para cargar la batería de 12 V (capítulo <a class="xref" href="07-diodos-led.html#rectificacion">7</a>). Con rectificación trifásica el voltaje de salida es casi plano: sus mínimos están a cos 30° ≈ 87 % del pico de la tensión de línea, una ondulación mucho menor que la del rectificador monofásico (que baja a cero cada medio ciclo).</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: polos de una central hidroeléctrica</span>
+          <p>Una turbina Francis gira a 125 rpm. ¿Cuántos pares de polos necesita el alternador para entregar 50 Hz, y a qué velocidad gira el campo giratorio?</p>
+          <ol>
+            <li>Pares de polos: <span class="eq">p = 60 · f / n = 60 · 50 / 125 = 24</span> pares, es decir 48 polos.</li>
+            <li>Cada bobina ve pasar 24 polos norte por vuelta; a 125 rpm (2,08 vueltas por segundo) son <span class="eq">24 · 2,08 = 50</span> ciclos por segundo.</li>
+            <li>Con un alternador de 2 polos habría que girar a 3000 rpm: una turbina de río jamás llegaría a esa velocidad. Con 48 polos el rotor es una rueda de varios metros de diámetro.</li>
+          </ol>
+        </div>
+        <div class="example">
+          <span class="box-title">El grupo electrógeno</span>
+          <p>Un motor diésel de 1500 rpm mueve un alternador de 4 polos: <span class="eq">f = 2 · 1500 / 60 = 50 Hz</span>. El regulador del motor mantiene las rpm constantes aunque cambie la carga (un gobernador que da más combustible cuando el rotor frena, capítulo <a class="xref" href="34-carga-y-campo.html#efecto-carga">34</a>), y el AVR del alternador mantiene los 220 V ajustando la corriente de campo.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un aerogenerador moderno</span>
+          <p>El rotor de las aspas gira a 10 a 20 rpm, y su velocidad cambia con el viento. Con un alternador de imanes permanentes de muchos polos se genera una CA de frecuencia variable; luego un convertidor electrónico la rectifica a CC y la vuelve a convertir en CA de 50 Hz fija para la red.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con 2 pares de polos y 1500 rpm la frecuencia es 50 Hz. Pasá a 1 par y a 3000 rpm: otra combinación para los mismos 50 Hz. Mirá cómo el rotor gira el doble de rápido en pantalla (aunque la gráfica no cambia).</li>
+          <li>Con 1500 rpm y p = 2 elegí <strong>Una fase</strong>, después <strong>Tres fases</strong>: aparecen las otras dos ondas, desfasadas un tercio de ciclo. Mirá en el cuadro de fórmulas que la suma instantánea de las tres es siempre cero.</li>
+          <li>Con p = 1, subí las rpm de 1500 a 3000 (de 25 a 50 Hz): la tensión pico y la frecuencia se duplican a la vez. Es el ε ∝ ω del capítulo 33.</li>
+          <li>Con la velocidad en 1500 rpm, bajá la <strong>excitación</strong> de 1,0 a 0,5: la tensión de fase baja a la mitad pero la frecuencia no cambia. La tensión se regula con la corriente de campo; la frecuencia, con la velocidad.</li>
+          <li>Probá <strong>125 rpm</strong> con <strong>24 pares de polos</strong>: f = 50 Hz, aunque el eje gire a menos de 2 vueltas por segundo. Mirá cuántos polos tiene el rotor y la cantidad de devanados.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/alternator.js"></script>
+  <script src="../js/quizzes/35-alternadores.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

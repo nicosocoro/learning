@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>De dónde sale la tensión: fuentes de continua · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="30-fuentes-cc" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 30</p>
+        <h1>De dónde sale la tensión: fuentes de continua</h1>
+        <p class="lead">Una fuente no fabrica cargas: las separa. Hay muchas formas de hacerlo (química, luz, calor, presión, movimiento) y todas se describen con el mismo modelo: una tensión ideal con una resistencia interna en serie.</p>
+      </header>
+      <section>
+        <h2>Una fuente no crea cargas, las separa</h2>
+        <p>Un cable de cobre ya está lleno de electrones libres; una pila no “los trae”. Lo que hace es <strong>mantener una diferencia de potencial</strong> entre sus terminales, empujando cargas positivas hacia uno y negativas hacia el otro, <em>contra</em> la atracción eléctrica que las quiere juntar (capítulo <a class="xref" href="01-voltaje-corriente.html">1</a>). Para eso necesita una fuerza que no sea eléctrica y que gaste otra forma de energía: química, luz, calor, presión o movimiento.</p>
+        <p>El trabajo que esa fuerza hace por cada coulomb separado es la <strong>fuerza electromotriz</strong> (fem, símbolo <em>E</em> o <em>ε</em>). Su unidad es el volt, pero no es una “fuerza” sino una energía por carga:</p>
+        <p class="equation"><span class="eq">E = W<sub>no eléctrico</sub> / q</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 235" role="img" aria-labelledby="g30at g30ad">
+            <title id="g30at">Qué hace una fuente</title>
+            <desc id="g30ad">Una fuente con una fuerza no eléctrica que sube las cargas positivas contra el campo eléctrico y una carga externa por la que vuelven a bajar.</desc>
+            <rect class="fg-box" x="50" y="40" width="200" height="150" rx="6"/>
+            <text class="fg-t fg-b fg-c" x="150" y="30">fuente</text>
+            <text class="fg-b fg-c" x="150" y="62" font-size="20" style="fill:var(--charge-pos)">+</text>
+            <text class="fg-b fg-c" x="150" y="184" font-size="22" style="fill:var(--charge-neg)">−</text>
+            <path class="fg-pos" d="M76 165 V80 M70 90 L76 78 L82 90" style="stroke-width:3.5"/>
+            <text class="fg-m" x="90" y="106">fuerza no eléctrica</text>
+            <text class="fg-m" x="90" y="122">(química, luz, calor…)</text>
+            <path class="fg-neg" d="M228 80 V165 M222 155 L228 167 L234 155" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="150" y="152" font-size="11.5">campo E</text>
+            <path class="fg-line" d="M250 62 H420 V80 M420 150 V168 H250" style="stroke-width:2.5"/>
+            <path class="fg-line" d="M420 80 l12 8 l-24 12 l24 12 l-24 12 l24 12 l-12 14" style="stroke-width:2.5"/>
+            <text class="fg-t" x="445" y="118">carga (R)</text>
+            <path class="fg-pos" d="M290 54 H360 M350 48 L360 54 L350 60" style="stroke-width:2.2"/>
+            <text class="fg-m fg-c" x="325" y="46" style="fill:var(--charge-pos)">corriente convencional</text>
+            <text class="fg-m" x="445" y="138">las cargas “bajan” y entregan energía</text>
+            <text class="fg-m" x="445" y="158">(calor, luz, movimiento)</text>
+            <text class="fg-m fg-c" x="350" y="222">adentro la fuente las sube; afuera la carga las deja caer: el circuito cierra el ciclo</text>
+          </svg>
+          <figcaption><strong>La fuente es una bomba de cargas.</strong> Adentro empuja contra el campo eléctrico; afuera, la carga recibe esa energía a medida que las cargas “bajan”.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">La analogía del agua</span>
+          <p>Una bomba no fabrica agua: la sube a un tanque alto, y esa altura es la “presión” que luego mueve una turbina. La fem es la altura que la bomba logra; la corriente es el caudal. Una bomba chica puede dar mucha altura y poco caudal (un encendedor piezoeléctrico), o poca altura y mucho caudal (un panel solar grande).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="mecanismos">Cinco formas de separar cargas</h2>
+        <p>Toda fuente de continua se reduce a cuál de estos mecanismos usa. Entenderlos sirve para saber qué esperar de cada una: cuánta tensión, cuánta corriente y de qué depende.</p>
+        <ul>
+          <li><strong>Química (pilas y baterías).</strong> Dos metales distintos sumergidos en un electrolito tienen distinta tendencia a ceder electrones. La diferencia entre esas tendencias fija la tensión: zinc contra cobre da cerca de 1 V (la pila de Volta, la de limón); zinc contra dióxido de manganeso, 1,5 V (la alcalina); plomo contra óxido de plomo, 2,1 V por celda (batería de auto, seis celdas = 12,6 V). La tensión depende de <em>qué materiales</em>, no de su tamaño; el tamaño fija la corriente y la capacidad (capítulo <a class="xref" href="04-baterias.html">4</a>).</li>
+          <li><strong>Luz (fotovoltaica).</strong> En una unión P-N de silicio (como la de un diodo, capítulo <a class="xref" href="07-diodos-led.html">7</a>) los fotones con energía suficiente liberan pares electrón-hueco, y el campo interno de la unión los separa. Cada celda da unos 0,55 a 0,6 V sin importar su tamaño; un área mayor da más corriente. Se desarrolla en el capítulo <a class="xref" href="31-solar.html">31</a>.</li>
+          <li><strong>Calor (termoeléctrica, efecto Seebeck).</strong> Si dos metales distintos se unen y las uniones están a distinta temperatura, aparece una tensión proporcional a la diferencia: <span class="eq">V = S · ΔT</span>. Un termopar tipo K da unos 41 µV por cada °C; un módulo con cientos de uniones en serie (el de una celda Peltier usada al revés) da unos 50 mV por kelvin, es decir un par de volts con 40 °C de diferencia.</li>
+          <li><strong>Presión (piezoeléctrica).</strong> Al deformar ciertos cristales (cuarzo, cerámicas) las cargas de su red se desplazan y aparece tensión entre sus caras. El encendedor de cocina golpea un cristal y logra miles de volts, pero con una energía de microjoules: alcanza para una chispa y no para encender una lámpara.</li>
+          <li><strong>Movimiento (inducción).</strong> Mover un conductor dentro de un campo magnético, o variar el flujo que lo atraviesa, induce tensión (capítulo <a class="xref" href="12-induccion.html">12</a>). Es el origen de la dínamo, el alternador y de casi toda la energía de la red. Se estudia en los capítulos <a class="xref" href="33-generador-ca.html">33</a> a <a class="xref" href="37-lab-movimiento.html">37</a>.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g30bt g30bd">
+            <title id="g30bt">Cinco mecanismos de generación</title>
+            <desc id="g30bd">Cinco recuadros con la energía de entrada, el mecanismo y el orden de magnitud de la tensión de salida.</desc>
+            <rect class="fg-box" x="8" y="14" width="128" height="150" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="72" y="36">Química</text>
+            <text class="fg-m fg-c" x="72" y="62">dos metales</text><text class="fg-m fg-c" x="72" y="78">+ electrolito</text>
+            <path class="fg-line" d="M72 92 V112 M66 106 L72 114 L78 106"/>
+            <text class="fg-a fg-b fg-c" x="72" y="136" font-size="14">0,9 a 3,7 V</text><text class="fg-m fg-c" x="72" y="154">por celda</text>
+            <rect class="fg-box" x="146" y="14" width="128" height="150" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="210" y="36">Luz</text>
+            <text class="fg-m fg-c" x="210" y="62">fotones en</text><text class="fg-m fg-c" x="210" y="78">una unión P-N</text>
+            <path class="fg-line" d="M210 92 V112 M204 106 L210 114 L216 106"/>
+            <text class="fg-a fg-b fg-c" x="210" y="136" font-size="14">≈ 0,6 V</text><text class="fg-m fg-c" x="210" y="154">por celda</text>
+            <rect class="fg-box" x="284" y="14" width="128" height="150" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="348" y="36">Calor</text>
+            <text class="fg-m fg-c" x="348" y="62">dos metales,</text><text class="fg-m fg-c" x="348" y="78">uniones a ΔT</text>
+            <path class="fg-line" d="M348 92 V112 M342 106 L348 114 L354 106"/>
+            <text class="fg-a fg-b fg-c" x="348" y="136" font-size="14">41 µV/°C</text><text class="fg-m fg-c" x="348" y="154">termopar K</text>
+            <rect class="fg-box" x="422" y="14" width="128" height="150" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="486" y="36">Presión</text>
+            <text class="fg-m fg-c" x="486" y="62">cristal que</text><text class="fg-m fg-c" x="486" y="78">se deforma</text>
+            <path class="fg-line" d="M486 92 V112 M480 106 L486 114 L492 106"/>
+            <text class="fg-a fg-b fg-c" x="486" y="136" font-size="14">kV, µJ</text><text class="fg-m fg-c" x="486" y="154">chispa breve</text>
+            <rect class="fg-box" x="560" y="14" width="132" height="150" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="626" y="36">Movimiento</text>
+            <text class="fg-m fg-c" x="626" y="62">conductor en</text><text class="fg-m fg-c" x="626" y="78">un campo B</text>
+            <path class="fg-line" d="M626 92 V112 M620 106 L626 114 L632 106"/>
+            <text class="fg-a fg-b fg-c" x="626" y="136" font-size="14">de mV a kV</text><text class="fg-m fg-c" x="626" y="154">según N, B, ω</text>
+            <text class="fg-m fg-c" x="350" y="196">en todos los casos entra otra forma de energía y sale una tensión que mantiene separadas las cargas</text>
+          </svg>
+          <figcaption><strong>Cinco entradas, una misma salida.</strong> Lo que cambia es la energía que se consume y cuánta tensión y corriente se logra de cada una.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Órdenes de magnitud de fuentes de continua</caption>
+            <thead><tr><th>Fuente</th><th>Mecanismo</th><th>Tensión (E)</th><th>Resistencia interna (r)</th></tr></thead>
+            <tbody>
+              <tr><td>Pila alcalina AA</td><td>química</td><td>1,5 V</td><td>0,15 a 0,3 Ω (nueva)</td></tr>
+              <tr><td>Batería de auto</td><td>química</td><td>12,6 V</td><td>5 a 10 mΩ</td></tr>
+              <tr><td>Pila de limón (Zn–Cu)</td><td>química</td><td>0,9 a 1 V</td><td>0,5 a 2 kΩ</td></tr>
+              <tr><td>Celda solar de silicio</td><td>luz</td><td>0,6 V</td><td>depende de la luz (capítulo 31)</td></tr>
+              <tr><td>Módulo termoeléctrico</td><td>calor</td><td>≈ 50 mV por K</td><td>2 a 4 Ω</td></tr>
+              <tr><td>Termopar tipo K</td><td>calor</td><td>41 µV por °C</td><td>pocos Ω</td></tr>
+              <tr><td>Dínamo / alternador</td><td>movimiento</td><td>según la velocidad</td><td>depende de la bobina</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="modelo">Un solo modelo para todas: fem y resistencia interna</h2>
+        <p>Cualquier fuente real se puede representar con una fuente ideal de tensión <em>E</em> y una resistencia <em>r</em> en serie, la <strong>resistencia interna</strong>. Es el modelo de Thévenin; ya lo usamos con las baterías en el capítulo <a class="xref" href="04-baterias.html">4</a> y vale para un termopar, un panel o un generador. Al conectar una carga <em>R</em>:</p>
+        <p class="equation"><span class="eq">I = E / (R + r)</span> &nbsp;&nbsp; <span class="eq">V<sub>carga</sub> = E − I · r</span></p>
+        <p>Sin carga (circuito abierto) no hay corriente y la tensión en bornes es la fem completa: <span class="eq">V<sub>oc</sub> = E</span>. Con un cortocircuito, la corriente máxima es <span class="eq">I<sub>cc</sub> = E / r</span>. Esos dos números, tensión en vacío y corriente de cortocircuito, bastan para conocer la fuente: <span class="eq">r = V<sub>oc</sub> / I<sub>cc</sub></span>.</p>
+        <p>A la corriente <em>I</em> la tensión que llega a la carga baja linealmente, y la potencia que se entrega, <span class="eq">P = V · I = E·I − r·I²</span>, es una parábola: nula sin corriente, nula en cortocircuito, y máxima en el medio.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g30ct g30cd">
+            <title id="g30ct">Curva de una fuente y potencia entregada</title>
+            <desc id="g30cd">A la izquierda, la tensión en bornes en función de la corriente, una recta que baja desde E hasta cero en Icc. A la derecha, la potencia, una parábola con el máximo a la mitad de Icc.</desc>
+            <path class="fg-thin" d="M70 175 H320 M70 175 V25"/>
+            <path class="fg-acc" d="M70 45 L300 175"/>
+            <circle cx="185" cy="110" r="5.5" class="fg-fill-pos"/>
+            <path class="fg-dash" d="M185 110 V175 M70 110 H185"/>
+            <text class="fg-m fg-e" x="64" y="49">E</text>
+            <text class="fg-m fg-e" x="64" y="114">E/2</text>
+            <text class="fg-m fg-c" x="300" y="192">Icc = E/r</text>
+            <text class="fg-m fg-c" x="185" y="192">Icc/2</text>
+            <text class="fg-t fg-b" x="76" y="22">tensión en bornes V</text>
+            <text class="fg-m fg-e" x="320" y="208">corriente I →</text>
+            <text class="fg-m" x="200" y="86" style="fill:var(--accent)">V = E − I·r</text>
+            <path class="fg-thin" d="M400 175 H650 M400 175 V25"/>
+            <path class="fg-pos" d="M400 175 Q515 -65 630 175"/>
+            <circle cx="515" cy="55" r="5.5" class="fg-fill-pos"/>
+            <path class="fg-dash" d="M515 55 V175 M400 55 H515"/>
+            <text class="fg-m fg-e" x="394" y="59">Pmáx</text>
+            <text class="fg-m fg-c" x="630" y="192">Icc</text>
+            <text class="fg-m fg-c" x="515" y="192">Icc/2</text>
+            <text class="fg-t fg-b" x="406" y="22">potencia en la carga P</text>
+            <text class="fg-m fg-e" x="650" y="208">corriente I →</text>
+            <text class="fg-m fg-c" x="515" y="42" style="fill:var(--charge-pos)">con R = r: Pmáx = E²/(4r)</text>
+          </svg>
+          <figcaption><strong>La potencia útil es máxima cuando R = r.</strong> En ese punto la tensión cae a la mitad de E, y la otra mitad de la potencia se pierde dentro de la propia fuente.</figcaption>
+        </figure>
+        <p>Esto se llama <strong>adaptación de impedancias</strong> (o máxima transferencia de potencia). Tiene un costo: con <em>R = r</em> el rendimiento es apenas <span class="eq">η = R / (R + r) = 50 %</span>. Por eso se usa según la fuente:</p>
+        <ul>
+          <li>En una <strong>batería</strong> se evita: la energía almacenada es limitada y la mitad se gastaría calentando la propia batería. Se trabaja con <em>R ≫ r</em> para que casi toda llegue a la carga.</li>
+          <li>En un <strong>panel solar</strong> o un <strong>módulo termoeléctrico</strong> se busca: la luz o el calor son “gratis” y lo que importa es sacar la mayor potencia posible de la fuente que se tiene. Los reguladores MPPT (capítulo <a class="xref" href="31-solar.html#mppt">31</a>) hacen justamente eso.</li>
+        </ul>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Un módulo termoeléctrico con un lado en agua hirviendo y el otro en agua del grifo tiene <em>E</em> = 3 V y <em>r</em> = 3 Ω. ¿Qué potencia entrega a una carga de 3 Ω y a una de 30 Ω?</p>
+          <ol>
+            <li><strong>Con R = 3 Ω (R = r):</strong> <span class="eq">I = 3 / (3 + 3) = 0,5 A</span>, <span class="eq">V = 0,5 · 3 = 1,5 V</span>, <span class="eq">P = 1,5 · 0,5 = 0,75 W</span>. Coincide con <span class="eq">E²/(4r) = 9/12 = 0,75 W</span>, y el rendimiento eléctrico es 50 %.</li>
+            <li><strong>Con R = 30 Ω:</strong> <span class="eq">I = 3 / 33 = 0,091 A</span>, <span class="eq">V = 2,73 V</span>, <span class="eq">P = 0,248 W</span>. Entrega un tercio de la potencia, pero el rendimiento sube a <span class="eq">30/33 = 91 %</span>.</li>
+            <li><strong>Con R = 0,3 Ω:</strong> <span class="eq">I = 0,91 A</span> y <span class="eq">P = 0,25 W</span>. Hay una carga demasiado alta y una demasiado baja que dan la misma potencia: la máxima está entre ambas.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Por qué una pila AA no arranca un auto, pero sí enciende un reloj</span>
+          <p>Tienen una fem parecida (1,5 V contra 12,6 V en seis celdas), pero la resistencia interna de la pila AA es ≈ 0,25 Ω y la de la batería del auto es ≈ 0,01 Ω. El motor de arranque pide cientos de amperes: la batería puede darlos (<span class="eq">I<sub>cc</sub> = 12,6 / 0,01 ≈ 1260 A</span> en teoría), la pila AA se hunde en unos pocos amperes (<span class="eq">1,5 / 0,25 = 6 A</span>). La “potencia” de una fuente es cuánta corriente puede dar sin que su tensión se derrumbe, es decir, <em>r</em> pequeña.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">El encendedor de cocina</span>
+          <p>Un resorte golpea un cristal piezoeléctrico y aparece una tensión de varios kilovolts en un instante. Como la energía es mínima (microjoules) y la resistencia interna enorme, el golpe no es peligroso, pero salta una chispa en el aire.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Sensor de llama de una estufa o calefón</span>
+          <p>Una termocupla (termopar) calentada por la llama piloto genera unos 20 a 30 mV, que bastan para sostener el electroimán de la válvula de gas abierta. Si la llama se apaga, la tensión cae y la válvula corta el gas.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una pila de limón tiene <em>V<sub>oc</sub></em> = 0,95 V y, en cortocircuito, entrega 0,8 mA. ¿Cuánto vale <em>r</em> y cuál es la máxima potencia que puede dar?</p>
+          <ol>
+            <li>Resistencia interna: <span class="eq">r = V<sub>oc</sub> / I<sub>cc</sub> = 0,95 / 0,0008 ≈ 1190 Ω</span>.</li>
+            <li>Máxima potencia con <em>R = r</em>: <span class="eq">P<sub>máx</sub> = E² / (4r) = 0,9025 / 4760 ≈ 190 µW</span>.</li>
+            <li>Un LED rojo necesita unos 2 V y unos mA para verse bien: una sola pila de limón está muy lejos (ver el capítulo <a class="xref" href="32-lab-cc-casero.html">32</a>).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Elegí la <strong>pila AA</strong> y llevá la carga a <em>R/r = 1</em>: la tensión en la carga es la mitad de E y la potencia es la máxima. Mirá el cursor sobre la curva de potencia: está en la cima de la parábola.</li>
+          <li>Subí la carga a <em>R/r = 100</em>: la tensión sube casi hasta E y el rendimiento se acerca al 99 %, pero la potencia entregada es casi nula. Una carga muy grande no deja pasar corriente.</li>
+          <li>Bajá la carga a <em>R/r = 0,1</em>: la corriente es alta y la tensión cae a una décima de E; ahora la potencia se pierde casi toda dentro de la fuente (el recuadro de r se pone al rojo).</li>
+          <li>Pasá a la <strong>pila de limón</strong>: el mismo comportamiento, pero las corrientes son del orden del miliampere. La forma de las curvas no cambia; lo que cambia son <em>E</em> y <em>r</em>.</li>
+          <li>Probá la <strong>batería de auto</strong> con R/r = 1: la potencia máxima teórica es enorme (≈ 4 kW), pero entregarla destruiría la batería. Se la usa siempre con <em>R ≫ r</em>.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/source.js"></script>
+  <script src="../js/quizzes/30-fuentes-cc.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

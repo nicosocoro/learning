@@ -1,4 +1,27 @@
-# Electrónica interactiva
+# Electrónica
+
+Esta es la sección de **electrónica** del proyecto personal de aprendizaje de física. Es un libro interactivo de 38 capítulos, desde voltaje y corriente hasta seguridad, práctica de banco y generación de energía eléctrica.
+
+## Secciones del libro
+
+| Parte | Tema | Qué se aprende |
+|---|---|---|
+| I · Fundamentos | Voltaje, corriente, ley de Ohm, resistencias | Las magnitudes básicas y cómo se relacionan |
+| II · Fuentes de energía e instrumentos | Baterías y multímetro | De dónde sale la energía y cómo medirla |
+| III · Componentes y señales | Capacitores, diodos y LED, CC vs CA, onda senoidal, frecuencia, osciloscopio | Componentes básicos y cómo se comportan las señales en el tiempo |
+| IV · Electromagnetismo y transformación | Inducción y transformadores | Cómo los campos magnéticos generan tensión |
+| V · Transistores y relés | BJT, interruptor, amplificador, MOSFET, relé y cargas inductivas | Controlar y amplificar corriente |
+| VI · Filtros y análisis de alterna | Inductor y RL, impedancia y filtros, resonancia | Cómo responden los circuitos según la frecuencia |
+| VII · Amplificadores operacionales | Realimentación negativa y aplicaciones | El bloque analógico más versátil |
+| VIII · Electrónica digital | Lógica, entradas reales y ADC, temporizador 555 | Pasar de lo analógico a lo digital |
+| IX · Práctica de banco | Hojas de datos, calor, seguridad, masa y desacople | Lo necesario para armar circuitos reales |
+| X · Generación de energía eléctrica | Fuentes de continua, solar, generador de alterna, reacción de la carga, alternadores, dínamo y laboratorios caseros | De dónde sale la tensión (continua y alterna) y cómo medirla |
+
+Cada capítulo tiene teoría, figuras, un laboratorio con simulación interactiva y un cuestionario. Abrí `index.html` para empezar.
+
+A continuación, la documentación técnica del sitio.
+
+## Cómo está hecho
 
 Sitio estático (HTML, CSS y JS vanilla, sin build ni dependencias) con teoría de electrónica básica y simulaciones animadas que muestran las fórmulas con valores en vivo.
 
@@ -19,12 +42,12 @@ index.html            portada con el índice del libro
 lessons/              un capítulo por página (teoría + figuras + ejemplos reales + laboratorio + cuestionario)
 css/                  base (tokens claro/oscuro), components, lesson
 js/core/              piezas reutilizables
-js/sims/              una simulación por capítulo (29 capítulos)
+js/sims/              una simulación por capítulo (38 capítulos)
 js/quizzes/           las preguntas de cada capítulo
 .cursor/rules/        reglas para Cursor: qué debe tener cada lección y cómo escribirla
 ```
 
-El libro tiene nueve partes:
+El libro tiene diez partes:
 
 | Parte | Capítulos |
 |---|---|
@@ -37,6 +60,7 @@ El libro tiene nueve partes:
 | VII · Amplificadores operacionales | 23 y 24: realimentación negativa y aplicaciones |
 | VIII · Electrónica digital | 25 a 27: lógica, entradas reales y ADC, temporizador 555 |
 | IX · Práctica de banco | 28 y 29: hojas de datos y calor, seguridad, masa y desacople |
+| X · Generación de energía eléctrica | 30 a 38: fuentes de continua, energía solar, laboratorio de continua, la espira en el campo, la carga y el campo, alternadores y trifásica, dínamo, laboratorio de movimiento y banco de pruebas de fuentes |
 
 ## Qué tiene cada capítulo
 
@@ -56,7 +80,7 @@ Esa estructura (y cómo escribir cada parte) está en `.cursor/rules/`: `project
 | `sim.js` | `mountSim()`: arma canvas, botones, controles y panel de fórmulas y arranca el bucle |
 | `sim-loop.js` | Animación con play/pausa/velocidad |
 | `canvas.js` | Canvas HiDPI y dibujo de batería, resistor, flechas, cargas |
-| `parts.js` | Símbolos de transistor bipolar, MOSFET, amplificador operacional, compuertas lógicas, lámpara, LED, bobina, interruptor y tierra |
+| `parts.js` | Símbolos de transistor bipolar, MOSFET, amplificador operacional, compuertas lógicas, lámpara, LED, bobina, interruptor y tierra; polos de un imán y espira de canto para los generadores |
 | `flow.js` | `FlowPath`: cargas que se mueven por un camino (corriente) |
 | `controls.js` | Sliders y selectores segmentados |
 | `formula-panel.js` | Fórmula simbólica + fórmula con valores sustituidos |

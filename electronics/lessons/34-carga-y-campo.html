@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La carga y el campo: la reacción del generador · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="34-carga-y-campo" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 34</p>
+        <h1>La carga y el campo: la reacción del generador</h1>
+        <p class="lead">Un generador no “produce” energía: la transforma. Cuando se le conecta una carga, la corriente que circula por la bobina crea un campo propio que frena el giro. Ese freno es el precio de la energía eléctrica, y es lo que hace que cada lámpara encendida se sienta en el eje.</p>
+      </header>
+      <section>
+        <h2 id="sin-carga">Con los bornes abiertos, casi no cuesta nada</h2>
+        <p>En el capítulo <a class="xref" href="33-generador-ca.html">33</a> vimos que una espira que gira en un campo tiene una fem <span class="eq">ε = N · B · A · ω · sen θ</span>. Si no hay ningún circuito conectado, esa tensión existe pero <strong>no circula corriente</strong>: las cargas se acumulan en los extremos hasta compensar la fuerza magnética que las empuja, y se detienen (capítulo <a class="xref" href="33-generador-ca.html#lorentz">33</a>). Girar el eje solo cuesta vencer el rozamiento de los cojinetes y del aire.</p>
+        <p>Es una de las observaciones más sorprendentes de un generador: mirar un voltímetro con 220 V en un alternador y notar que el motor que lo mueve casi no hace esfuerzo. La energía no se “crea” con la tensión; la energía viene de la <em>corriente</em>.</p>
+      </section>
+
+      <section>
+        <h2 id="circuito">Se cierra el circuito: la carga fija la corriente</h2>
+        <p>Al conectar una carga <em>R</em>, la fem empuja una corriente por el circuito formado por la bobina (con su resistencia <em>r</em>) y la carga. Para una carga resistiva, la ley de Ohm da:</p>
+        <p class="equation"><span class="eq">i(t) = ε(t) / (R + r) = I<sub>p</sub> · sen(ωt)</span> &nbsp;&nbsp; <span class="eq">I<sub>p</sub> = V<sub>p</sub> / (R + r)</span></p>
+        <p>Es el modelo de fuente real del capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>, solo que con una fem que oscila. Nada de esto depende de que sea alterna: la carga determina cuánta corriente se pide, y el generador la entrega (hasta donde su resistencia interna y su capacidad de potencia lo permiten).</p>
+      </section>
+
+      <section>
+        <h2 id="lenz-generador">Cómo esa corriente frena el giro</h2>
+        <p>La corriente <em>i</em> circula por los dos lados activos de la espira, que están dentro del campo <em>B</em> del imán. Un conductor con corriente dentro de un campo sufre una fuerza (la misma fuerza que mueve a un motor): <span class="eq">F = N · B · i · L</span> sobre cada lado. Y la ley de Lenz (capítulo <a class="xref" href="12-induccion.html#lenz">12</a>) asegura el sentido: <strong>la fuerza se opone al movimiento que generó la tensión</strong>.</p>
+        <p>Hay otra manera de ver lo mismo. La espira con corriente es un electroimán: tiene un <strong>campo propio</strong>, con un momento magnético <span class="eq">m = N · i · A</span> perpendicular a su plano. Ese pequeño imán trata de alinearse con el campo <em>B</em> del imán grande, igual que dos imanes cercanos se acomodan, y el giro del rotor se lo impide: hay un <strong>par</strong> que se opone al giro:</p>
+        <p class="equation"><span class="eq">τ(t) = N · B · A · i(t) · sen θ</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="g34at g34ad">
+            <title id="g34at">Las fuerzas sobre una espira con corriente en un generador</title>
+            <desc id="g34ad">Espira horizontal vista de canto entre los polos de un imán. Cada lado se mueve en un sentido y la fuerza del campo sobre la corriente lo empuja en el sentido opuesto. El campo propio de la espira apunta hacia arriba.</desc>
+            <rect x="60" y="60" width="52" height="130" rx="3" style="fill:var(--charge-pos);opacity:.9;stroke:var(--wire);stroke-width:2"/><text class="fg-c fg-b" x="86" y="132" font-size="22" fill="#fff">N</text>
+            <rect x="428" y="60" width="52" height="130" rx="3" style="fill:var(--charge-neg);opacity:.9;stroke:var(--wire);stroke-width:2"/><text class="fg-c fg-b" x="454" y="132" font-size="22" fill="#fff">S</text>
+            <path class="fg-dash" d="M116 75 H420 M116 95 H420 M116 155 H420 M116 175 H420" style="opacity:.55"/>
+            <path class="fg-thin" d="M412 70 L420 75 L412 80 M412 90 L420 95 L412 100 M412 150 L420 155 L412 160 M412 170 L420 175 L412 180"/>
+            <text class="fg-m fg-c" x="270" y="52">campo B →</text>
+            <path class="fg-acc" d="M170 125 H370" style="stroke-width:6"/>
+            <circle cx="170" cy="125" r="10" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><circle cx="170" cy="125" r="3.5" class="fg-fill-wire"/>
+            <circle cx="370" cy="125" r="10" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><path d="M365 120 L375 130 M365 130 L375 120" style="stroke:var(--wire);stroke-width:2"/>
+            <circle cx="270" cy="125" r="4" class="fg-fill-wire"/>
+            <path class="fg-line" d="M170 140 V180 M164 172 L170 182 L176 172" style="stroke-width:2.2"/>
+            <path class="fg-line" d="M370 110 V70 M364 78 L370 68 L376 78" style="stroke-width:2.2"/>
+            <text class="fg-t fg-b" x="150" y="168" font-size="14">v</text><text class="fg-t fg-b" x="380" y="86" font-size="14">v</text>
+            <path class="fg-bad" d="M170 110 V66 M163 76 L170 64 L177 76" style="stroke-width:4"/>
+            <path class="fg-bad" d="M370 140 V184 M363 174 L370 186 L377 174" style="stroke-width:4"/>
+            <text class="fg-b" x="182" y="86" font-size="14" style="fill:var(--bad)">F</text><text class="fg-b" x="382" y="170" font-size="14" style="fill:var(--bad)">F</text>
+            <path class="fg-good" d="M270 118 V82 M263 92 L270 80 L277 92" style="stroke-width:3.5"/>
+            <text class="fg-b" x="282" y="96" font-size="14" style="fill:var(--good)">m</text>
+            <text class="fg-m" x="500" y="96">⊙ la corriente sale de la hoja</text>
+            <text class="fg-m" x="500" y="116">⊗ la corriente entra a la hoja</text>
+            <text class="fg-m" x="500" y="146">la espira gira en sentido</text><text class="fg-m" x="500" y="164">antihorario (↺)</text>
+            <path class="fg-line" d="M60 222 H84 M78 217 L84 222 L78 227" style="stroke-width:2"/><text class="fg-m" x="92" y="226">velocidad v del lado</text>
+            <path class="fg-bad" d="M240 222 H264 M258 217 L264 222 L258 227" style="stroke-width:3"/><text class="fg-m" x="272" y="226">fuerza F = N·B·i·L (frena)</text>
+            <path class="fg-good" d="M470 222 H494 M488 217 L494 222 L488 227" style="stroke-width:3"/><text class="fg-m" x="502" y="226">campo propio m = N·i·A</text>
+          </svg>
+          <figcaption><strong>La fuerza que el campo ejerce sobre la corriente apunta siempre contra la velocidad.</strong> Es la ley de Lenz en un generador: el imán “frena” a la bobina que le roba energía.</figcaption>
+        </figure>
+        <div class="note">
+          <span class="box-title">La conservación de la energía, en una línea</span>
+          <p>La potencia mecánica instantánea que hay que entregar es <span class="eq">τ · ω = N·B·A·i·sen θ · ω = ε · i</span>. Es exactamente la potencia eléctrica que genera la fuente. No hay energía que “sobre” ni que “falte”: <strong>la potencia eléctrica que sale del generador es el trabajo que hace quien lo gira contra el par de frenado</strong>.</p>
+        </div>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g34bt g34bd">
+            <title id="g34bt">Camino de la energía en un generador con carga</title>
+            <desc id="g34bd">De izquierda a derecha: el motor primario entrega 90 vatios al eje; el acople magnético los transfiere a la bobina; de ahí, 82 vatios van a la carga y 8 vatios se pierden como calor en el cobre.</desc>
+            <rect class="fg-box" x="14" y="62" width="146" height="90" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="87" y="92">Eje</text><text class="fg-m fg-c" x="87" y="112">turbina, motor, pedal</text><text class="fg-a fg-b fg-c" x="87" y="136">P = τ · ω = 90 W</text>
+            <path class="fg-bad" d="M160 107 H214" style="stroke-width:14;stroke-linecap:butt"/><path d="M214 92 L236 107 L214 122 Z" style="fill:var(--bad)"/>
+            <rect class="fg-box" x="236" y="62" width="150" height="90" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="311" y="92">Acople magnético</text><text class="fg-m fg-c" x="311" y="112">el par τ frena el rotor</text><text class="fg-m fg-c" x="311" y="132">y entrega la energía</text>
+            <path class="fg-bad" d="M386 107 H434" style="stroke-width:14;stroke-linecap:butt"/><path d="M434 92 L456 107 L434 122 Z" style="fill:var(--bad)"/>
+            <rect class="fg-box" x="456" y="62" width="110" height="90" rx="5"/>
+            <text class="fg-t fg-b fg-c" x="511" y="92">Bobina</text><text class="fg-m fg-c" x="511" y="112">ε · i = 90 W</text><text class="fg-m fg-c" x="511" y="132">(I² · (R + r))</text>
+            <path class="fg-pos" d="M566 92 H592" style="stroke-width:12;stroke-linecap:butt"/><path d="M592 78 L612 92 L592 106 Z" style="fill:var(--charge-pos)"/>
+            <text class="fg-t fg-b" x="620" y="90">carga</text><text class="fg-m" x="620" y="108">82 W</text>
+            <path class="fg-bad" d="M566 138 H592" style="stroke-width:2;stroke:var(--heat)"/><path d="M592 133 L604 138 L592 143 Z" style="fill:var(--heat)"/>
+            <text class="fg-t fg-b" x="612" y="136">calor</text><text class="fg-m" x="612" y="154">8 W (cobre)</text>
+            <text class="fg-m fg-c" x="350" y="196">sin contar el rozamiento mecánico ni las pérdidas del hierro; el ancho de cada flecha es proporcional a la potencia</text>
+          </svg>
+          <figcaption><strong>Toda la potencia que sale por los bornes entra por el eje.</strong> La parte que no llega a la carga se pierde en la resistencia de la bobina.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="efecto-carga">Cómo la carga afecta al generador</h2>
+        <p>Como el par es proporcional a la corriente, <strong>la carga eléctrica se traduce en esfuerzo mecánico</strong>:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Qué le pasa al generador según la carga (mismas rpm)</caption>
+            <thead><tr><th>Carga</th><th>Corriente</th><th>Par de frenado</th><th>Lo que se siente en el eje</th></tr></thead>
+            <tbody>
+              <tr><td>Sin carga (abierto)</td><td>0</td><td>0</td><td>gira “libre”</td></tr>
+              <tr><td>Ligera (R grande)</td><td>baja</td><td>bajo</td><td>poco esfuerzo</td></tr>
+              <tr><td>Pesada (R chica)</td><td>alta</td><td>alto</td><td>cuesta mucho girarlo</td></tr>
+              <tr><td>Cortocircuito</td><td>I = ε / r, la máxima</td><td>el mayor</td><td>casi se traba (y se quema el bobinado)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>¿Qué ocurre si el motor primario no puede entregar tanta potencia como se le pide? El par de frenado es mayor que el par motor, y el rotor <strong>se enlentece</strong>. Pero como <span class="eq">ε = N · B · A · ω</span> y <span class="eq">f = n / 60</span>, al bajar las rpm bajan <em>la tensión y la frecuencia</em> hasta que la potencia eléctrica iguala a la mecánica disponible. Es lo que se ve en la simulación con el motor de “potencia limitada”.</p>
+        <div class="example">
+          <span class="box-title">La frecuencia de la red es un termómetro del balance</span>
+          <p>Todos los generadores de la red giran sincronizados a 50 Hz. Si de pronto el consumo supera la generación (porque se desconectó una central, por ejemplo), la carga eléctrica es mayor que la potencia mecánica que reciben los ejes y los rotores frenan un poco: <strong>la frecuencia baja</strong>. Para recuperarla hay que entregar más potencia a las turbinas. Mientras la frecuencia se mantiene en 50 Hz, generación y consumo están equilibrados.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="reaccion">Cómo la carga afecta al campo: la reacción de la bobina</h2>
+        <p>La corriente que entrega el generador es la misma que circula por su bobina, y toda corriente crea un campo magnético. Ese <strong>campo propio</strong> (el verde de la figura) se suma, como vector, al del imán. En un generador con electroimán y núcleo de hierro, el resultado es que <strong>el campo neto cambia con la carga</strong>, un fenómeno que se llama <em>reacción de armadura</em>:</p>
+        <ul>
+          <li>Con una carga <strong>resistiva</strong> el campo de la corriente se desplaza respecto del principal: distorsiona el campo (más intenso de un lado del polo, menos del otro) y, como el hierro se satura, la fem baja ligeramente.</li>
+          <li>Con una carga <strong>inductiva</strong> (un motor, una bobina; capítulo <a class="xref" href="20-inductor-rl.html">20</a>) la corriente se atrasa respecto de la tensión, y su campo se opone directamente al del imán: <em>desmagnetiza</em>. La tensión en bornes cae más.</li>
+          <li>Con una carga <strong>capacitiva</strong> (capítulo <a class="xref" href="06-capacitores-rc.html">6</a>) la corriente se adelanta y su campo refuerza al principal: la tensión en bornes sube.</li>
+        </ul>
+        <p>El efecto neto es que <strong>la tensión en los bornes depende de la carga</strong>: <span class="eq">V<sub>bornes</sub> = ε − I · (r + jX)</span>, con <em>X</em> la reactancia de la bobina del generador. Por eso los alternadores llevan un regulador automático de tensión (AVR) que ajusta la corriente del electroimán del rotor para mantener 220 V aunque cambie la carga. Controlar <em>B</em> controla <em>ε</em> (capítulo <a class="xref" href="35-alternadores.html#excitacion">35</a>).</p>
+      </section>
+
+      <section>
+        <h2 id="reactiva">Carga resistiva frente a inductiva: el par que va y viene</h2>
+        <p>Con una carga puramente resistiva, la corriente está en fase con la tensión y el par es <span class="eq">τ ∝ sen²θ</span>: siempre positivo (siempre frena), pero <strong>pulsa al doble de la frecuencia</strong>: es cero cuando la espira está de frente al campo y máximo cuando está paralela. Esa pulsación (100 Hz en un generador monofásico de 50 Hz) es la causa de la vibración típica de un grupo electrógeno monofásico. Se resuelve con tres bobinas desfasadas 120° (capítulo <a class="xref" href="35-alternadores.html#trifasica">35</a>), cuyos pulsos se compensan.</p>
+        <p>Con una carga inductiva, la corriente se atrasa un ángulo <em>φ</em> respecto de la tensión. El producto <em>i · sen θ</em> tiene a veces signos opuestos y el par <strong>se invierte durante una parte del ciclo</strong>: por un instante la carga “empuja” al eje. Esa energía no se pierde: va y viene entre el campo de la carga y el eje. El valor medio es:</p>
+        <p class="equation"><span class="eq">τ<sub>medio</sub> = N · B · A · I<sub>p</sub> · cos φ / 2</span> &nbsp;&nbsp; <span class="eq">P<sub>mec</sub> = V<sub>rms</sub> · I<sub>rms</sub> · cos φ</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g34ct g34cd">
+            <title id="g34ct">Tensión, corriente y par con carga resistiva y con carga inductiva</title>
+            <desc id="g34cd">A la izquierda, con carga resistiva: tensión y corriente en fase y el par siempre positivo con valor medio un medio. A la derecha, con carga inductiva y desfase de 60 grados: la corriente se atrasa y el par se hace negativo durante un tramo, con valor medio menor.</desc>
+            <text class="fg-t fg-b" x="40" y="22">Carga resistiva (φ = 0°)</text>
+            <path class="fg-thin" d="M40 120 H320 M40 52 V190"/>
+            <path class="fg-dash" d="M40 92.5 H320" style="stroke:var(--bad)"/>
+            <path class="fg-pos" d="M40.0 120.0 L45.8 112.8 L51.7 105.8 L57.5 99.0 L63.3 92.5 L69.2 86.5 L75.0 81.1 L80.8 76.4 L86.7 72.4 L92.5 69.2 L98.3 66.9 L104.2 65.5 L110.0 65.0 L115.8 65.5 L121.7 66.9 L127.5 69.2 L133.3 72.4 L139.2 76.4 L145.0 81.1 L150.8 86.5 L156.7 92.5 L162.5 99.0 L168.3 105.8 L174.2 112.8 L180.0 120.0 L185.8 127.2 L191.7 134.2 L197.5 141.0 L203.3 147.5 L209.2 153.5 L215.0 158.9 L220.8 163.6 L226.7 167.6 L232.5 170.8 L238.3 173.1 L244.2 174.5 L250.0 175.0 L255.8 174.5 L261.7 173.1 L267.5 170.8 L273.3 167.6 L279.2 163.6 L285.0 158.9 L290.8 153.5 L296.7 147.5 L302.5 141.0 L308.3 134.2 L314.2 127.2 L320.0 120.0" style="stroke-width:2"/>
+            <path class="fg-neg" d="M40.0 120.0 L45.8 112.8 L51.7 105.8 L57.5 99.0 L63.3 92.5 L69.2 86.5 L75.0 81.1 L80.8 76.4 L86.7 72.4 L92.5 69.2 L98.3 66.9 L104.2 65.5 L110.0 65.0 L115.8 65.5 L121.7 66.9 L127.5 69.2 L133.3 72.4 L139.2 76.4 L145.0 81.1 L150.8 86.5 L156.7 92.5 L162.5 99.0 L168.3 105.8 L174.2 112.8 L180.0 120.0 L185.8 127.2 L191.7 134.2 L197.5 141.0 L203.3 147.5 L209.2 153.5 L215.0 158.9 L220.8 163.6 L226.7 167.6 L232.5 170.8 L238.3 173.1 L244.2 174.5 L250.0 175.0 L255.8 174.5 L261.7 173.1 L267.5 170.8 L273.3 167.6 L279.2 163.6 L285.0 158.9 L290.8 153.5 L296.7 147.5 L302.5 141.0 L308.3 134.2 L314.2 127.2 L320.0 120.0" style="stroke-width:1.5;stroke-dasharray:6 4"/>
+            <path class="fg-bad" d="M40.0 120.0 L45.8 119.1 L51.7 116.3 L57.5 111.9 L63.3 106.3 L69.2 99.6 L75.0 92.5 L80.8 85.4 L86.7 78.8 L92.5 73.1 L98.3 68.7 L104.2 65.9 L110.0 65.0 L115.8 65.9 L121.7 68.7 L127.5 73.1 L133.3 78.7 L139.2 85.4 L145.0 92.5 L150.8 99.6 L156.7 106.3 L162.5 111.9 L168.3 116.3 L174.2 119.1 L180.0 120.0 L185.8 119.1 L191.7 116.3 L197.5 111.9 L203.3 106.3 L209.2 99.6 L215.0 92.5 L220.8 85.4 L226.7 78.8 L232.5 73.1 L238.3 68.7 L244.2 65.9 L250.0 65.0 L255.8 65.9 L261.7 68.7 L267.5 73.1 L273.3 78.8 L279.2 85.4 L285.0 92.5 L290.8 99.6 L296.7 106.2 L302.5 111.9 L308.3 116.3 L314.2 119.1 L320.0 120.0" style="stroke-width:3"/>
+            <text class="fg-m fg-c" x="180" y="214">el par nunca es negativo: siempre frena</text>
+            <text class="fg-m fg-c" x="180" y="232">pero pulsa al doble de la frecuencia</text>
+            <text class="fg-t fg-b" x="390" y="22">Carga inductiva (φ = 60°)</text>
+            <path class="fg-thin" d="M390 120 H670 M390 52 V190"/>
+            <path class="fg-dash" d="M390 106.3 H670" style="stroke:var(--bad)"/>
+            <path class="fg-pos" d="M390.0 120.0 L395.8 112.8 L401.7 105.8 L407.5 99.0 L413.3 92.5 L419.2 86.5 L425.0 81.1 L430.8 76.4 L436.7 72.4 L442.5 69.2 L448.3 66.9 L454.2 65.5 L460.0 65.0 L465.8 65.5 L471.7 66.9 L477.5 69.2 L483.3 72.4 L489.2 76.4 L495.0 81.1 L500.8 86.5 L506.7 92.5 L512.5 99.0 L518.3 105.8 L524.2 112.8 L530.0 120.0 L535.8 127.2 L541.7 134.2 L547.5 141.0 L553.3 147.5 L559.2 153.5 L565.0 158.9 L570.8 163.6 L576.7 167.6 L582.5 170.8 L588.3 173.1 L594.2 174.5 L600.0 175.0 L605.8 174.5 L611.7 173.1 L617.5 170.8 L623.3 167.6 L629.2 163.6 L635.0 158.9 L640.8 153.5 L646.7 147.5 L652.5 141.0 L658.3 134.2 L664.2 127.2 L670.0 120.0" style="stroke-width:2"/>
+            <path class="fg-neg" d="M390.0 167.6 L395.8 163.6 L401.7 158.9 L407.5 153.5 L413.3 147.5 L419.2 141.0 L425.0 134.2 L430.8 127.2 L436.7 120.0 L442.5 112.8 L448.3 105.8 L454.2 99.0 L460.0 92.5 L465.8 86.5 L471.7 81.1 L477.5 76.4 L483.3 72.4 L489.2 69.2 L495.0 66.9 L500.8 65.5 L506.7 65.0 L512.5 65.5 L518.3 66.9 L524.2 69.2 L530.0 72.4 L535.8 76.4 L541.7 81.1 L547.5 86.5 L553.3 92.5 L559.2 99.0 L565.0 105.8 L570.8 112.8 L576.7 120.0 L582.5 127.2 L588.3 134.2 L594.2 141.0 L600.0 147.5 L605.8 153.5 L611.7 158.9 L617.5 163.6 L623.3 167.6 L629.2 170.8 L635.0 173.1 L640.8 174.5 L646.7 175.0 L652.5 174.5 L658.3 173.1 L664.2 170.8 L670.0 167.6" style="stroke-width:2"/>
+            <path class="fg-bad" d="M390.0 120.0 L395.8 125.7 L401.7 130.1 L407.5 132.8 L413.3 133.8 L419.2 132.8 L425.0 130.1 L430.8 125.7 L436.7 120.0 L442.5 113.4 L448.3 106.3 L454.2 99.1 L460.0 92.5 L465.8 86.8 L471.7 82.4 L477.5 79.7 L483.3 78.8 L489.2 79.7 L495.0 82.4 L500.8 86.8 L506.7 92.5 L512.5 99.1 L518.3 106.2 L524.2 113.4 L530.0 120.0 L535.8 125.7 L541.7 130.1 L547.5 132.8 L553.3 133.8 L559.2 132.8 L565.0 130.1 L570.8 125.7 L576.7 120.0 L582.5 113.4 L588.3 106.2 L594.2 99.1 L600.0 92.5 L605.8 86.8 L611.7 82.4 L617.5 79.7 L623.3 78.8 L629.2 79.7 L635.0 82.4 L640.8 86.8 L646.7 92.5 L652.5 99.1 L658.3 106.2 L664.2 113.4 L670.0 120.0" style="stroke-width:3"/>
+            <text class="fg-m fg-c" x="530" y="214">el par se vuelve negativo en un tramo:</text>
+            <text class="fg-m fg-c" x="530" y="232">la energía va y viene entre carga y eje</text>
+            <path class="fg-pos" d="M40 246 H62" /><text class="fg-m" x="68" y="250">tensión ε</text>
+            <path class="fg-neg" d="M160 246 H182" /><text class="fg-m" x="188" y="250">corriente i</text>
+            <path class="fg-bad" d="M290 246 H312" /><text class="fg-m" x="318" y="250">par de frenado τ</text>
+            <path class="fg-dash" d="M430 246 H452" style="stroke:var(--bad)"/><text class="fg-m" x="458" y="250">par medio (½ a la izquierda, ¼ a la derecha)</text>
+          </svg>
+          <figcaption><strong>Con carga inductiva la corriente llega tarde y el par a veces cambia de signo.</strong> El generador igual entrega energía neta (el promedio sigue siendo positivo), pero hace circular más corriente de la necesaria.</figcaption>
+        </figure>
+        <p>Por eso las instalaciones con muchos motores pagan penalidades por “bajo factor de potencia” (<em>cos φ</em>): hace falta una corriente mayor para entregar la misma potencia, y esa corriente extra recalienta los cables y el bobinado del generador sin dar potencia útil (se verá la impedancia en el capítulo <a class="xref" href="21-impedancia-filtros.html">21</a>).</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>El generador del capítulo 33 (N·B·A = 0,2 V·s, es decir 62,8 V de pico a 3000 rpm) tiene una resistencia de bobinado <em>r</em> = 2 Ω. ¿Qué esfuerzo pide con una carga de 20 Ω? ¿Y con una de 2 Ω? ¿Y si el motor primario solo puede dar 100 W?</p>
+          <ol>
+            <li><strong>R = 20 Ω:</strong> <span class="eq">I<sub>p</sub> = 62,8 / (20 + 2) = 2,86 A</span> y <span class="eq">I<sub>rms</sub> = 2,02 A</span>. Potencia en la carga: <span class="eq">2,02² · 20 ≈ 81,5 W</span>; calor en el cobre: <span class="eq">2,02² · 2 ≈ 8,2 W</span>. Potencia mecánica: <span class="eq">P<sub>mec</sub> ≈ 89,7 W</span>, y el par medio es <span class="eq">τ = P/ω = 89,7 / 314 ≈ 0,29 N·m</span> (coincide con <span class="eq">N·B·A·I<sub>p</sub>/2 = 0,2 · 2,86 / 2</span>).</li>
+            <li><strong>R = 2 Ω:</strong> <span class="eq">I<sub>p</sub> = 62,8 / 4 = 15,7 A</span>, <span class="eq">P<sub>mec</sub> = V<sub>p</sub>² / (2 · 4) ≈ 493 W</span> y <span class="eq">τ ≈ 1,57 N·m</span>: con una carga diez veces más “pesada” el eje pide <strong>5,5 veces más potencia</strong>, porque la tensión inducida es la misma y la corriente creció 5,5 veces.</li>
+            <li><strong>Con un motor de 100 W y R = 2 Ω:</strong> no alcanza para sostener 3000 rpm. A una velocidad ω la potencia es <span class="eq">P = (0,2·ω)² / (2 · 4)</span>; igualándola a 100 W: <span class="eq">ω = 141 rad/s ≈ 1350 rpm</span>. El generador baja a menos de la mitad de velocidad: la tensión pico cae a 28 V y la frecuencia a 22,5 Hz.</li>
+          </ol>
+        </div>
+        <div class="example">
+          <span class="box-title">El alternador del auto y el ralentí</span>
+          <p>Al encender las luces, la luneta térmica y el aire acondicionado, la corriente que pide el alternador sube y con ella el par de frenado. En un auto parado se nota: el motor “se hunde” un instante, la computadora sube las rpm del ralentí para compensar, y la correa que mueve el alternador se esfuerza más.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">La dínamo de la bicicleta</span>
+          <p>Con la luz apagada, el rodillo gira casi sin resistencia. Al encenderla, circula corriente por la lámpara y se siente de inmediato que pedalear cuesta un poco más: es el par de frenado de la dínamo, de unos pocos watts de potencia mecánica.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Frenado dinámico y regenerativo</span>
+          <p>En trenes y autos eléctricos, el motor funciona como generador al frenar: se lo conecta a una resistencia (frenado dinámico) o a la batería (regenerativo). Las ruedas mueven el rotor, la corriente que circula crea un par que frena el vehículo, y la energía cinética se transforma en calor o en carga de batería. Es exactamente la reacción de este capítulo, aprovechada a propósito (capítulo <a class="xref" href="36-dinamo-cc.html#reversible">36</a>).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con <strong>Sin carga</strong> mirá el recuadro del eje: el esfuerzo es 0 W y no hay flechas rojas, aunque la tensión inducida sea de 62,8 V. Sin corriente no hay fuerza sobre los lados activos.</li>
+          <li>Pasá a <strong>Resistiva</strong> con R = 100 Ω y bajá a 20, 10, 5, 2 y 1 Ω: la corriente sube, las flechas rojas se alargan y el esfuerzo crece rápidamente (de unos 20 W a unos 650 W). La tensión de la carga no cambia, pero la corriente sí.</li>
+          <li>En <strong>Resistiva</strong> mirá la curva roja del par: es siempre positiva y pulsa al doble de la frecuencia de la tensión (dos picos por cada ciclo). Es la causa de la vibración de los generadores monofásicos.</li>
+          <li>Cambiá a <strong>Inductiva (motor)</strong>: la corriente (azul) se atrasa respecto de la tensión y el par rojo pasa por debajo de cero en un tramo (la línea de “par medio” baja respecto de la resistiva).</li>
+          <li>Elegí <strong>Potencia limitada (100 W)</strong> con una carga resistiva de 2 Ω: el eje no alcanza a sostener las 3000 rpm y baja a unas 1350 rpm; la tensión pico, la frecuencia y la velocidad de giro en pantalla bajan con ella.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/reaction.js"></script>
+  <script src="../js/quizzes/34-carga-y-campo.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

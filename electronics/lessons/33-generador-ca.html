@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo se genera la alterna: la espira en el campo · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="33-generador-ca" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 33</p>
+        <h1>Cómo se genera la alterna: la espira en el campo</h1>
+        <p class="lead">La corriente alterna no sale de una pila: sale de hacer cambiar el flujo magnético que atraviesa un circuito. La forma más simple de lograrlo es girar una espira dentro de un campo. Este capítulo explica, paso a paso, por qué ese giro empuja a los electrones primero para un lado y después para el otro.</p>
+      </header>
+      <section>
+        <h2 id="idea">La idea: hay que cambiar el flujo</h2>
+        <p>En el capítulo <a class="xref" href="12-induccion.html#faraday">12</a> vimos que un imán quieto dentro de una bobina no genera nada: la tensión aparece solo cuando el <strong>flujo magnético</strong> que atraviesa la bobina <em>cambia</em>. Ese flujo depende de tres cosas:</p>
+        <p class="equation"><span class="eq">Φ = B · A · cos θ</span></p>
+        <p>Cambiar cualquiera de las tres alcanza para inducir tensión: la intensidad del campo <em>B</em> (acercar o alejar un imán, o variar la corriente de un electroimán), el área <em>A</em> (deformar la espira) o el ángulo <em>θ</em> (girarla). Un generador de corriente alterna elige la tercera opción porque es la única que se puede repetir indefinidamente, sin que el imán se aleje ni la espira se estire: <strong>un eje que gira</strong> cambia el ángulo una y otra vez, y a la vez es la forma más natural de aprovechar una turbina, un motor o un pedal.</p>
+      </section>
+
+      <section>
+        <h2 id="lorentz">Qué empuja a los electrones: dos formas de ver lo mismo</h2>
+        <p>Hay dos explicaciones equivalentes de por qué aparece una tensión:</p>
+        <ul>
+          <li><strong>Mirada global (Faraday):</strong> el flujo que atraviesa la espira cambia, entonces <span class="eq">ε = −N · ΔΦ/Δt</span>. Es la que permite calcular.</li>
+          <li><strong>Mirada local (fuerza sobre las cargas):</strong> los electrones del alambre se mueven junto con el alambre dentro del campo. Una carga <em>q</em> que se mueve con velocidad <em>v</em> en un campo <em>B</em> sufre una fuerza <span class="eq">F = q · v × B</span>, perpendicular a ambos. Si el alambre es perpendicular a <em>v</em> y a <em>B</em>, esa fuerza empuja a los electrones <em>a lo largo del alambre</em>. Es la “fuerza no eléctrica” que, en el capítulo <a class="xref" href="30-fuentes-cc.html">30</a>, separa las cargas en una fuente.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 215" role="img" aria-labelledby="g33at g33ad">
+            <title id="g33at">Fuerza sobre las cargas de un conductor que se mueve en un campo</title>
+            <desc id="g33ad">Un conductor vertical que se mueve hacia la derecha dentro de un campo magnético que entra a la hoja; la fuerza empuja las cargas positivas hacia arriba y las negativas hacia abajo, y los extremos quedan cargados.</desc>
+            <path class="fg-thin" d="M66 41 L74 49 M74 41 L66 49 M66 81 L74 89 M74 81 L66 89 M66 121 L74 129 M74 121 L66 129 M66 161 L74 169 M74 161 L66 169 M111 41 L119 49 M119 41 L111 49 M111 81 L119 89 M119 81 L111 89 M111 121 L119 129 M119 121 L111 129 M111 161 L119 169 M119 161 L111 169 M156 41 L164 49 M164 41 L156 49 M156 81 L164 89 M164 81 L156 89 M156 121 L164 129 M164 121 L156 129 M156 161 L164 169 M164 161 L156 169 M201 41 L209 49 M209 41 L201 49 M201 81 L209 89 M209 81 L201 89 M201 121 L209 129 M209 121 L201 129 M201 161 L209 169 M209 161 L201 169 M246 41 L254 49 M254 41 L246 49 M246 81 L254 89 M254 81 L246 89 M246 121 L254 129 M254 121 L246 129 M246 161 L254 169 M254 161 L246 169 M291 41 L299 49 M299 41 L291 49 M291 81 L299 89 M299 81 L291 89 M291 121 L299 129 M299 121 L291 129 M291 161 L299 169 M299 161 L291 169" style="opacity:.7"/>
+            <text class="fg-m" x="68" y="206">campo B (entra a la hoja: ×)</text>
+            <path class="fg-acc" d="M190 55 V165" style="stroke-width:6"/>
+            <circle cx="190" cy="45" r="9" class="fg-fill-pos"/><path d="M185 45 H195 M190 40 V50" style="stroke:#fff;stroke-width:2"/>
+            <circle cx="190" cy="175" r="9" class="fg-fill-neg"/><path d="M185 175 H195" style="stroke:#fff;stroke-width:2"/>
+            <path class="fg-line" d="M215 110 H275 M265 104 L275 110 L265 116" style="stroke-width:2.5"/>
+            <text class="fg-t fg-b" x="282" y="114" font-size="15">v</text>
+            <path class="fg-pos" d="M160 145 V82 M154 94 L160 80 L166 94" style="stroke-width:3"/>
+            <text class="fg-m fg-e" x="150" y="118">F</text>
+            <text class="fg-m" x="206" y="49">+ se acumulan arriba</text>
+            <text class="fg-m" x="206" y="179">− se acumulan abajo</text>
+            <text class="fg-t fg-b" x="360" y="62" font-size="14">Un conductor de largo L que se mueve a velocidad v</text>
+            <text class="fg-m" x="360" y="86">1. sus electrones se mueven con él dentro del campo B</text>
+            <text class="fg-m" x="360" y="106">2. cada carga siente F = q·v×B, a lo largo del alambre</text>
+            <text class="fg-m" x="360" y="126">3. las cargas se separan hasta que el campo eléctrico</text>
+            <text class="fg-m" x="360" y="144">    que se forma compensa a esa fuerza</text>
+            <text class="fg-a fg-b" x="360" y="174" font-size="15">ε = B · L · v</text>
+          </svg>
+          <figcaption><strong>Un conductor que corta líneas de campo se comporta como una fuente.</strong> La fuerza magnética sobre las cargas en movimiento es la “bomba” que separa las cargas, igual que la química en una pila.</figcaption>
+        </figure>
+        <p>Una espira tiene dos lados “activos” (los que cortan el campo al girar). En uno, la fuerza empuja las cargas hacia un extremo; en el lado opuesto, que se mueve en sentido contrario, las empuja hacia el otro: las dos fuerzas <em>se suman</em> alrededor de la espira, así que el circuito cerrado tiene una fem total. Las dos explicaciones dan el mismo número, como se verá en el ejemplo resuelto.</p>
+      </section>
+
+      <section>
+        <h2 id="posiciones">Qué pasa en cada posición de la espira</h2>
+        <p>Imaginá la espira vista de canto (desde arriba) girando a velocidad constante, con el campo <em>B</em> apuntando hacia la derecha. El ángulo <em>θ</em> se mide entre el campo y la <em>normal</em> de la espira (la perpendicular a su plano):</p>
+        <ul>
+          <li><strong>θ = 0°.</strong> La espira está de frente al campo: todas las líneas la atraviesan, el flujo es máximo. Pero en ese instante los lados activos se mueven <em>a lo largo</em> del campo, sin cortar líneas: no hay fuerza útil sobre las cargas y <strong>ε = 0</strong>. Es el punto donde el flujo “se detiene” antes de empezar a bajar.</li>
+          <li><strong>θ = 90°.</strong> La espira está paralela al campo: no la atraviesa ninguna línea, el flujo es cero. Pero ahora los lados activos se mueven <em>perpendiculares</em> al campo, cortando el mayor número de líneas por segundo: el flujo cambia lo más rápido posible y la <strong>tensión es máxima</strong>.</li>
+          <li><strong>θ = 180°.</strong> De nuevo de frente, pero con la otra cara: el flujo es máximo y negativo, ε = 0 otra vez.</li>
+          <li><strong>θ = 270°.</strong> Paralela otra vez, pero ahora cada lado se mueve en el sentido contrario al de los 90°: <strong>la tensión es máxima y de signo opuesto</strong>.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 345" role="img" aria-labelledby="g33bt g33bd">
+            <title id="g33bt">Flujo y tensión en las cuatro posiciones de la espira</title>
+            <desc id="g33bd">Cuatro dibujos de la espira vista de canto a 0, 90, 180 y 270 grados, y debajo las curvas del flujo (coseno) y de la tensión (seno) con los puntos correspondientes.</desc>
+            <path class="fg-dash" d="M18 32 H116" style="opacity:.6"/><path class="fg-thin" d="M110 28 L118 32 L110 36"/>
+            <path class="fg-dash" d="M18 55 H116" style="opacity:.6"/><path class="fg-thin" d="M110 51 L118 55 L110 59"/>
+            <path class="fg-dash" d="M18 101 H116" style="opacity:.6"/><path class="fg-thin" d="M110 97 L118 101 L110 105"/>
+            <path class="fg-dash" d="M18 124 H116" style="opacity:.6"/><path class="fg-thin" d="M110 120 L118 124 L110 128"/>
+            <path class="fg-acc" d="M70.0 44.0 L70.0 112.0" style="stroke-width:5"/><circle cx="70" cy="78" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-t fg-b fg-c" x="70" y="22">θ = 0°</text><text class="fg-m fg-c" x="70" y="146">Φ = +máx</text><text class="fg-m fg-c" x="70" y="162">ε = 0</text>
+            <path class="fg-dash" d="M70 170 V300"/>
+            <path class="fg-dash" d="M160.5 32 H258.5" style="opacity:.6"/><path class="fg-thin" d="M252.5 28 L260.5 32 L252.5 36"/>
+            <path class="fg-dash" d="M160.5 55 H258.5" style="opacity:.6"/><path class="fg-thin" d="M252.5 51 L260.5 55 L252.5 59"/>
+            <path class="fg-dash" d="M160.5 101 H258.5" style="opacity:.6"/><path class="fg-thin" d="M252.5 97 L260.5 101 L252.5 105"/>
+            <path class="fg-dash" d="M160.5 124 H258.5" style="opacity:.6"/><path class="fg-thin" d="M252.5 120 L260.5 124 L252.5 128"/>
+            <path class="fg-acc" d="M178.5 78.0 L246.5 78.0" style="stroke-width:5"/><circle cx="212.5" cy="78" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-t fg-b fg-c" x="212.5" y="22">θ = 90°</text><text class="fg-m fg-c" x="212.5" y="146">Φ = 0</text><text class="fg-m fg-c" x="212.5" y="162">ε = +máx</text>
+            <path class="fg-dash" d="M212.5 170 V300"/>
+            <path class="fg-dash" d="M303 32 H401" style="opacity:.6"/><path class="fg-thin" d="M395 28 L403 32 L395 36"/>
+            <path class="fg-dash" d="M303 55 H401" style="opacity:.6"/><path class="fg-thin" d="M395 51 L403 55 L395 59"/>
+            <path class="fg-dash" d="M303 101 H401" style="opacity:.6"/><path class="fg-thin" d="M395 97 L403 101 L395 105"/>
+            <path class="fg-dash" d="M303 124 H401" style="opacity:.6"/><path class="fg-thin" d="M395 120 L403 124 L395 128"/>
+            <path class="fg-acc" d="M355.0 112.0 L355.0 44.0" style="stroke-width:5"/><circle cx="355" cy="78" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-t fg-b fg-c" x="355" y="22">θ = 180°</text><text class="fg-m fg-c" x="355" y="146">Φ = −máx</text><text class="fg-m fg-c" x="355" y="162">ε = 0</text>
+            <path class="fg-dash" d="M355 170 V300"/>
+            <path class="fg-dash" d="M445.5 32 H543.5" style="opacity:.6"/><path class="fg-thin" d="M537.5 28 L545.5 32 L537.5 36"/>
+            <path class="fg-dash" d="M445.5 55 H543.5" style="opacity:.6"/><path class="fg-thin" d="M537.5 51 L545.5 55 L537.5 59"/>
+            <path class="fg-dash" d="M445.5 101 H543.5" style="opacity:.6"/><path class="fg-thin" d="M537.5 97 L545.5 101 L537.5 105"/>
+            <path class="fg-dash" d="M445.5 124 H543.5" style="opacity:.6"/><path class="fg-thin" d="M537.5 120 L545.5 124 L537.5 128"/>
+            <path class="fg-acc" d="M531.5 78.0 L463.5 78.0" style="stroke-width:5"/><circle cx="497.5" cy="78" r="3.5" class="fg-fill-wire"/>
+            <text class="fg-t fg-b fg-c" x="497.5" y="22">θ = 270°</text><text class="fg-m fg-c" x="497.5" y="146">Φ = 0</text><text class="fg-m fg-c" x="497.5" y="162">ε = −máx</text>
+            <path class="fg-dash" d="M497.5 170 V300"/>
+            <path class="fg-thin" d="M70 240 H650 M70 175 V305"/>
+            <path class="fg-neg" d="M70.0 185.0 L81.9 185.5 L93.8 186.9 L105.6 189.2 L117.5 192.4 L129.4 196.4 L141.3 201.1 L153.1 206.5 L165.0 212.5 L176.9 219.0 L188.8 225.8 L200.6 232.8 L212.5 240.0 L224.4 247.2 L236.3 254.2 L248.1 261.0 L260.0 267.5 L271.9 273.5 L283.8 278.9 L295.6 283.6 L307.5 287.6 L319.4 290.8 L331.3 293.1 L343.1 294.5 L355.0 295.0 L366.9 294.5 L378.8 293.1 L390.6 290.8 L402.5 287.6 L414.4 283.6 L426.3 278.9 L438.1 273.5 L450.0 267.5 L461.9 261.0 L473.8 254.2 L485.6 247.2 L497.5 240.0 L509.4 232.8 L521.3 225.8 L533.1 219.0 L545.0 212.5 L556.9 206.5 L568.8 201.1 L580.6 196.4 L592.5 192.4 L604.4 189.2 L616.3 186.9 L628.1 185.5 L640.0 185.0" style="stroke-width:2.5"/>
+            <path class="fg-pos" d="M70.0 240.0 L81.9 232.8 L93.8 225.8 L105.6 219.0 L117.5 212.5 L129.4 206.5 L141.3 201.1 L153.1 196.4 L165.0 192.4 L176.9 189.2 L188.8 186.9 L200.6 185.5 L212.5 185.0 L224.4 185.5 L236.3 186.9 L248.1 189.2 L260.0 192.4 L271.9 196.4 L283.8 201.1 L295.6 206.5 L307.5 212.5 L319.4 219.0 L331.3 225.8 L343.1 232.8 L355.0 240.0 L366.9 247.2 L378.8 254.2 L390.6 261.0 L402.5 267.5 L414.4 273.5 L426.3 278.9 L438.1 283.6 L450.0 287.6 L461.9 290.8 L473.8 293.1 L485.6 294.5 L497.5 295.0 L509.4 294.5 L521.3 293.1 L533.1 290.8 L545.0 287.6 L556.9 283.6 L568.8 278.9 L580.6 273.5 L592.5 267.5 L604.4 261.0 L616.3 254.2 L628.1 247.2 L640.0 240.0" style="stroke-width:2.5"/>
+            <circle cx="70" cy="185" r="5" class="fg-fill-neg"/><circle cx="355" cy="295" r="5" class="fg-fill-neg"/><circle cx="212.5" cy="185" r="5" class="fg-fill-pos"/><circle cx="497.5" cy="295" r="5" class="fg-fill-pos"/>
+            <text class="fg-m fg-c" x="70" y="322">0°</text><text class="fg-m fg-c" x="212" y="322">90°</text><text class="fg-m fg-c" x="355" y="322">180°</text><text class="fg-m fg-c" x="497" y="322">270°</text><text class="fg-m fg-c" x="640" y="322">360°</text>
+            <path class="fg-neg" d="M440 336 H462" /><text class="fg-m" x="468" y="340">flujo Φ</text>
+            <path class="fg-pos" d="M550 336 H572" /><text class="fg-m" x="578" y="340">tensión ε</text>
+            <text class="fg-m fg-e" x="64" y="190">+</text><text class="fg-m fg-e" x="64" y="296">−</text>
+            <text class="fg-m" x="70" y="340">ángulo de giro θ (una vuelta = un ciclo)</text>
+          </svg>
+          <figcaption><strong>El flujo es un coseno y la tensión un seno.</strong> La tensión es máxima cuando el flujo cruza por cero (el momento en que más rápido cambia) y cero cuando el flujo está en un extremo.</figcaption>
+        </figure>
+        <p>Matemáticamente, con la espira girando a velocidad angular <em>ω</em> (<span class="eq">θ = ω · t</span>):</p>
+        <p class="equation"><span class="eq">Φ(t) = B · A · cos(ωt)</span> &nbsp;&nbsp; <span class="eq">ε(t) = −N · dΦ/dt = N · B · A · ω · sen(ωt)</span></p>
+        <p>Es una senoide de valor pico <span class="eq">V<sub>p</sub> = N · B · A · ω</span>, que es lo que se vio en el capítulo <a class="xref" href="09-onda-senoidal.html#alternador">9</a>. Y como en cada vuelta se completa un ciclo, la frecuencia es el número de vueltas por segundo: <span class="eq">f = n / 60</span> (con <em>n</em> en rpm).</p>
+      </section>
+
+      <section>
+        <h2 id="anillos">Cómo sacar la tensión del eje que gira</h2>
+        <p>La espira gira, pero la carga está quieta: hay que unir las dos cosas sin enredar los cables. Se hace con <strong>anillos rozantes</strong> (<em>slip rings</em>): dos aros metálicos fijos al eje, cada uno unido a un extremo de la espira, y dos <strong>escobillas</strong> (bloques de carbón o metal) fijas al soporte que los rozan. La corriente pasa del anillo a la escobilla por contacto deslizante, y de ahí a la carga.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g33ct g33cd">
+            <title id="g33ct">Generador elemental con anillos rozantes</title>
+            <desc id="g33cd">Una espira en el campo de un imán, girando sobre un eje vertical; sus dos extremos van a dos anillos y dos escobillas llevan la corriente a una carga.</desc>
+            <rect x="90" y="50" width="52" height="110" rx="3" style="fill:var(--charge-pos);opacity:.9;stroke:var(--wire);stroke-width:2"/><text class="fg-c fg-b" x="116" y="112" font-size="22" fill="#fff">N</text>
+            <rect x="478" y="50" width="52" height="110" rx="3" style="fill:var(--charge-neg);opacity:.9;stroke:var(--wire);stroke-width:2"/><text class="fg-c fg-b" x="504" y="112" font-size="22" fill="#fff">S</text>
+            <path class="fg-dash" d="M146 76 H474 M146 105 H474 M146 134 H474" style="opacity:.7"/>
+            <path class="fg-thin" d="M466 71 L474 76 L466 81 M466 100 L474 105 L466 110 M466 129 L474 134 L466 139"/>
+            <text class="fg-m fg-c" x="212" y="66">campo B</text>
+            <path class="fg-dash" d="M310 25 V200" style="stroke-width:1.5"/>
+            <path class="fg-acc" d="M270 62 L350 72 L350 152 L270 142 Z" style="stroke-width:4;fill:var(--surface-2);fill-opacity:.55"/>
+            <path class="fg-neg" d="M262 36 C 290 22 335 22 362 36 M351 28 L363 36 L349 38" style="stroke-width:2"/>
+            <text class="fg-m" x="376" y="30">gira</text>
+            <path class="fg-line" d="M298 150 V172 M322 154 V188" style="stroke-width:2"/>
+            <rect x="286" y="170" width="48" height="6" rx="2" class="fg-fill-wire"/><rect x="286" y="186" width="48" height="6" rx="2" class="fg-fill-wire"/>
+            <rect x="262" y="167" width="20" height="12" rx="2" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/><rect x="338" y="183" width="20" height="12" rx="2" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:2"/>
+            <path class="fg-line" d="M262 173 H235 V225 H215 M358 189 H395 V225 H335"/>
+            <path class="fg-line" d="M215 225 l10 -9 l12 18 l12 -18 l12 18 l12 -18 l12 18 l12 -18 l12 18 l10 -9" style="stroke-width:2.2"/>
+            <text class="fg-t fg-c" x="275" y="248">carga</text>
+            <text class="fg-m fg-e" x="150" y="182">escobillas</text>
+            <path class="fg-thin" d="M156 178 H260"/>
+            <text class="fg-m" x="420" y="182">anillos rozantes</text>
+            <path class="fg-thin" d="M418 178 H336"/>
+            <text class="fg-m" x="560" y="86">la espira corta las</text><text class="fg-m" x="560" y="104">líneas de campo al girar</text>
+            <text class="fg-m" x="560" y="140">sus extremos van a los</text><text class="fg-m" x="560" y="158">anillos y de ahí, por las</text><text class="fg-m" x="560" y="176">escobillas, a la carga</text>
+          </svg>
+          <figcaption><strong>Los anillos giran con la espira y las escobillas, fijas, recogen la corriente.</strong> A cada media vuelta la corriente por la carga cambia de sentido: es alterna.</figcaption>
+        </figure>
+        <p>Los dos lados activos de la espira (⊙ y ⊗ en la simulación) tienen siempre corrientes opuestas respecto de la hoja, pero en el circuito cerrado forman un solo camino: la corriente sale por un anillo, recorre la carga y vuelve por el otro, y a media vuelta sale por el otro anillo.</p>
+      </section>
+
+      <section>
+        <h2 id="formula">De qué depende la tensión</h2>
+        <p class="equation"><span class="eq">V<sub>p</sub> = N · B · A · ω</span> &nbsp;&nbsp; <span class="eq">V<sub>rms</sub> = V<sub>p</sub> / √2</span> &nbsp;&nbsp; <span class="eq">f = n / 60</span></p>
+        <ul>
+          <li><strong>N (vueltas):</strong> cada vuelta aporta lo mismo y se suman en serie. Doble N, doble tensión.</li>
+          <li><strong>B (campo):</strong> más intenso, más líneas por cortar. Por eso los generadores grandes usan electroimanes potentes, y ajustar la corriente de ese electroimán es la forma de regular la tensión (capítulo <a class="xref" href="35-alternadores.html">35</a>).</li>
+          <li><strong>A (área):</strong> una espira más grande atraviesa más flujo.</li>
+          <li><strong>ω (velocidad):</strong> girar más rápido hace que el flujo cambie más rápido: sube la tensión <em>y</em> la frecuencia a la vez. En un generador real esas dos cosas están atadas: la frecuencia de la red (50 Hz) se mantiene manteniendo constante la velocidad de giro.</li>
+        </ul>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Una bobina de 100 vueltas y 10 cm × 10 cm gira a 3000 rpm dentro de un campo uniforme de 0,2 T. ¿Qué tensión pico, eficaz y qué frecuencia genera?</p>
+          <ol>
+            <li>Velocidad angular: <span class="eq">ω = 2π · 3000 / 60 = 314 rad/s</span>. Área: <span class="eq">A = 0,1 · 0,1 = 0,01 m²</span>.</li>
+            <li>Tensión pico: <span class="eq">V<sub>p</sub> = N·B·A·ω = 100 · 0,2 · 0,01 · 314 ≈ 62,8 V</span>.</li>
+            <li>Tensión eficaz: <span class="eq">V<sub>rms</sub> = 62,8 / 1,414 ≈ 44,4 V</span>.</li>
+            <li>Frecuencia: <span class="eq">f = 3000 / 60 = 50 Hz</span>, es decir <span class="eq">T = 20 ms</span> por ciclo.</li>
+            <li><strong>Comprobación con la fuerza sobre las cargas:</strong> cada lado activo mide <em>L</em> = 0,1 m y se mueve a <span class="eq">v = ω · (0,1/2) = 15,7 m/s</span>. Un lado da <span class="eq">B·L·v = 0,2 · 0,1 · 15,7 = 0,314 V</span>; los dos lados, 0,628 V por vuelta; con 100 vueltas, <strong>62,8 V</strong>. Coincide.</li>
+            <li>Si se baja a 1500 rpm: la tensión pico se reduce a la mitad (31,4 V) y la frecuencia también (25 Hz).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="senoide">Por qué es una senoide (y cuándo no lo es)</h2>
+        <p>La forma sale del movimiento circular uniforme: si <em>θ</em> crece de manera uniforme, <em>cos θ</em> y su derivada <em>sen θ</em> son senoides, y la carga conectada no influye en esa forma (sí en la corriente, como se verá en el capítulo <a class="xref" href="34-carga-y-campo.html">34</a>). Si el campo no fuera uniforme (por ejemplo, un imán de polos muy pequeños pasando cerca de una bobina), o si la velocidad no fuera constante (un pedal, una manivela a mano), la tensión sería una onda más complicada. Los alternadores reales dan forma a los polos para que el campo se acerque a una senoide pura.</p>
+      </section>
+
+      <section>
+        <h2 id="otras-formas">Otras formas de variar el flujo: la misma física</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Maneras de cambiar el flujo en un circuito</caption>
+            <thead><tr><th>Qué cambia</th><th>Ejemplo</th><th>Dónde se ve</th></tr></thead>
+            <tbody>
+              <tr><td>Gira la espira (cambia θ)</td><td>Generador elemental, alternador con bobina móvil</td><td>Este capítulo</td></tr>
+              <tr><td>Se mueve el imán (cambia B en la bobina)</td><td>Imán por una bobina, dínamo de bicicleta, linterna de agitar</td><td>Capítulos <a class="xref" href="12-induccion.html">12</a> y <a class="xref" href="37-lab-movimiento.html">37</a></td></tr>
+              <tr><td>Gira el imán o el electroimán, bobina fija</td><td>Alternador de auto y de una central</td><td>Capítulo <a class="xref" href="35-alternadores.html">35</a></td></tr>
+              <tr><td>Varía la corriente de otro bobinado (cambia B)</td><td>Transformador</td><td>Capítulo <a class="xref" href="13-transformadores.html">13</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>En todos los casos lo que importa es la derivada del flujo: nada se mueve sin que el flujo varíe, y nada varía sin que alguien aporte energía. La energía eléctrica que sale del generador tiene que venir de alguna parte: del esfuerzo de mantener girando el eje. Cómo y por qué la carga “se siente” en ese eje es el tema del capítulo siguiente.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">La dínamo de la bicicleta</span>
+          <p>Un pequeño rodillo roza el neumático y hace girar un imán dentro de una bobina fija. Al pedalear más rápido, la tensión sube y la luz brilla más; al frenar, la luz se apaga. Funciona con 6 V y unos 3 W. (A pesar de su nombre, casi todas son alternadores de imán permanente.)</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Una central hidroeléctrica</span>
+          <p>El agua hace girar una turbina cuyo eje es el rotor de un alternador enorme. La física es la de la espira del capítulo, con electroimanes de campo gigantes, miles de vueltas y 50 Hz fijados por la velocidad de giro (en una central de 100 rpm hay 30 pares de polos, ver el capítulo <a class="xref" href="35-alternadores.html">35</a>).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Mirá la espira cuando está <strong>de frente</strong> al campo (θ = 0° o 180°): el flujo es máximo y los puntos ⊙ ⊗ se apagan, porque la tensión es cero. Es el máximo de la curva azul y el cruce por cero de la naranja.</li>
+          <li>Cuando está <strong>paralela</strong> al campo (θ = 90° o 270°) el flujo es cero pero los marcadores se encienden: la tensión es máxima. Fijate que al pasar de 90° a 270° los puntos ⊙ y ⊗ se intercambian: cambia el sentido de la corriente.</li>
+          <li>Duplicá las <strong>rpm</strong> (de 1500 a 3000): la tensión pico y la frecuencia se duplican a la vez. Mirá cómo el período de la gráfica baja de 40 a 20 ms.</li>
+          <li>Subí las <strong>vueltas</strong> de 100 a 200: la tensión se duplica pero la frecuencia no cambia. Con el área ocurre lo mismo; con B también.</li>
+          <li>Con los valores iniciales (100 vueltas, 0,2 T, 100 cm², 3000 rpm) comprobá los números del ejemplo resuelto: V<sub>p</sub> = 62,8 V, V<sub>rms</sub> = 44,4 V, f = 50 Hz.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/loop.js"></script>
+  <script src="../js/quizzes/33-generador-ca.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

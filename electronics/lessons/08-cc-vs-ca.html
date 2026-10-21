@@ -52,6 +52,30 @@
       </section>
 
       <section>
+        <h2 id="generacion">¿De dónde sale cada una?</h2>
+        <p>Las dos formas de corriente nacen de procesos distintos, y conviene tener claro cuál es cuál antes de ver cómo se convierten:</p>
+        <ul>
+          <li><strong>La continua sale de fuentes que separan cargas.</strong> Una pila lo hace con energía química, un panel solar con luz, un módulo termoeléctrico con calor y un cristal piezoeléctrico con presión. Todas mantienen una tensión de polaridad fija entre sus bornes (capítulos <a class="xref" href="30-fuentes-cc.html">30</a> a <a class="xref" href="32-lab-cc-casero.html">32</a>).</li>
+          <li><strong>La alterna sale de hacer cambiar un flujo magnético.</strong> Si una espira gira dentro de un campo, el flujo que la atraviesa sube y baja, y por la ley de Faraday (capítulo <a class="xref" href="12-induccion.html#faraday">12</a>) la tensión inducida cambia de signo a cada media vuelta. No hace falta ninguna pila: hace falta algo que gire (capítulo <a class="xref" href="33-generador-ca.html">33</a>).</li>
+        </ul>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Cómo se genera cada tipo</caption>
+            <thead><tr><th>Tipo</th><th>Mecanismo</th><th>Ejemplos</th><th>Dónde se explica</th></tr></thead>
+            <tbody>
+              <tr><td>CC</td><td>Química, luz, calor, presión</td><td>Pila, panel solar, termopar, encendedor</td><td>Capítulos <a class="xref" href="30-fuentes-cc.html">30</a> y <a class="xref" href="31-solar.html">31</a></td></tr>
+              <tr><td>CC</td><td>Espira que gira con conmutador (rectificador mecánico)</td><td>Dínamo, motor de continua como generador</td><td>Capítulo <a class="xref" href="36-dinamo-cc.html">36</a></td></tr>
+              <tr><td>CA</td><td>Espira o imán que gira: cambia el flujo</td><td>Alternador de auto, central eléctrica, dínamo de bicicleta</td><td>Capítulos <a class="xref" href="33-generador-ca.html">33</a> y <a class="xref" href="35-alternadores.html">35</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="box-title">La energía de la alterna sale del eje</span>
+          <p>Un generador de alterna no “inventa” energía: cuando se le conecta una carga, la corriente que circula crea un par que frena el giro, y ese esfuerzo mecánico es la energía eléctrica que se entrega. Cómo la carga actúa sobre el campo y sobre el eje se explica en el capítulo <a class="xref" href="34-carga-y-campo.html">34</a>.</p>
+        </div>
+      </section>
+
+      <section>
         <h2>Convertir de una a otra</h2>
         <p>Casi todos los aparatos electrónicos funcionan internamente en CC, así que el adaptador de pared hace, en esencia, cuatro pasos:</p>
         <figure class="figure">
@@ -114,10 +138,10 @@
               <tr><td>Pila AA</td><td>CC</td><td>1,5 V</td></tr>
               <tr><td>Puerto USB</td><td>CC</td><td>5 V</td></tr>
               <tr><td>Batería de auto</td><td>CC</td><td>12 V</td></tr>
-              <tr><td>Panel solar</td><td>CC</td><td>según la configuración</td></tr>
+              <tr><td>Panel solar (<a class="xref" href="31-solar.html">capítulo 31</a>)</td><td>CC</td><td>según la configuración</td></tr>
               <tr><td>Enchufe (Argentina, Europa)</td><td>CA</td><td>220–230 V eficaces, 50 Hz</td></tr>
               <tr><td>Enchufe (EE. UU.)</td><td>CA</td><td>120 V eficaces, 60 Hz</td></tr>
-              <tr><td>Alternador de un auto o generador</td><td>CA</td><td>según el equipo</td></tr>
+              <tr><td>Alternador de un auto o generador (<a class="xref" href="35-alternadores.html">capítulo 35</a>)</td><td>CA</td><td>según el equipo</td></tr>
             </tbody>
           </table>
         </div>

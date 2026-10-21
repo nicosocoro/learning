@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio casero: generar continua · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="32-lab-cc-casero" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 32</p>
+        <h1>Laboratorio casero: generar continua</h1>
+        <p class="lead">Cuatro experimentos para generar tensión continua con cosas que se consiguen en la cocina, la ferretería o una casa de electrónica, y un método común para medir qué entrega cada una.</p>
+      </header>
+      <section>
+        <h2 id="antes">Antes de empezar</h2>
+        <p>Los cuatro experimentos de este capítulo generan tensiones y potencias muy bajas (como máximo, unos volts y unos pocos watts), pero igual conviene seguir unas reglas:</p>
+        <div class="note">
+          <span class="box-title">Seguridad</span>
+          <ul>
+            <li>Ninguna de estas fuentes es peligrosa por su tensión, pero <strong>nunca</strong> las conectes a un enchufe ni intentes “probarlas” con la red (capítulo <a class="xref" href="29-seguridad-masa-desacople.html">29</a>).</li>
+            <li>El vinagre irrita los ojos; el agua caliente quema: usá agua a menos de 80 °C y apoyala sobre una superficie firme.</li>
+            <li>No uses metales con sustancias que no conocés (sulfato de cobre, ácidos de batería, etc.): no hace falta para aprender el principio.</li>
+            <li>Al medir corriente de cortocircuito, hacelo solo con las fuentes chicas de este capítulo (ver la tabla de más abajo).</li>
+          </ul>
+        </div>
+        <p><strong>Materiales comunes:</strong> un multímetro (capítulo <a class="xref" href="05-multimetro.html">5</a>), cables con cocodrilos, algunos resistores (100 Ω, 330 Ω, 1 kΩ, 3,3 kΩ, 10 kΩ, 100 kΩ) o un potenciómetro, un LED rojo, una libreta para anotar y una planilla de cálculo o papel cuadriculado.</p>
+      </section>
+
+      <section>
+        <h2 id="metodo">El método: cómo probar cualquier fuente</h2>
+        <p>Las cinco mediciones siguientes valen para todas las fuentes de este capítulo (y para el capítulo <a class="xref" href="38-caracterizar-fuentes.html">38</a>). Se apoyan en el modelo de fem más resistencia interna (capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>).</p>
+        <ol>
+          <li><strong>Tensión en vacío (V<sub>oc</sub>).</strong> Con el multímetro en volts de continua y <em>sin</em> carga. Como un voltímetro tiene unos 10 MΩ de resistencia de entrada, casi no circula corriente y la lectura es E.</li>
+          <li><strong>Tensión con carga.</strong> Conectá un resistor <em>R</em> conocido y medí la tensión <em>V</em> en bornes <em>de la fuente</em>. La corriente se calcula sin amperímetro: <span class="eq">I = V / R</span>.</li>
+          <li><strong>Resistencia interna.</strong> Con los datos anteriores: <span class="eq">r = (V<sub>oc</sub> − V) / I</span>. Es más exacta cuando la carga es parecida a <em>r</em> (así V cae lo suficiente como para medirlo bien).</li>
+          <li><strong>Potencia.</strong> <span class="eq">P = V · I</span> para varias cargas distintas; la máxima debe darse cerca de <em>R = r</em>.</li>
+          <li><strong>Corriente de cortocircuito (I<sub>cc</sub>), solo en fuentes chicas.</strong> Con el multímetro en amperes, en serie entre los bornes de la fuente. Debe cumplirse <span class="eq">I<sub>cc</sub> ≈ V<sub>oc</sub> / r</span>: sirve para confirmar el valor de r.</li>
+        </ol>
+        <figure class="figure">
+          <svg viewBox="0 0 700 235" role="img" aria-labelledby="g32at g32ad">
+            <title id="g32at">Tres conexiones para medir una fuente</title>
+            <desc id="g32ad">Una fuente con un voltímetro sin carga para medir la tensión en vacío; una fuente con un resistor y un voltímetro en paralelo con el resistor; una fuente con un amperímetro en serie que la pone en cortocircuito.</desc>
+            <path class="fg-line" d="M40 60 V92 M40 104 V150"/>
+            <path class="fg-line" d="M30 92 H50" style="stroke-width:3"/><path class="fg-line" d="M34 104 H46" style="stroke-width:3"/>
+            <text class="fg-b" x="56" y="94" font-size="14" style="fill:var(--charge-pos)">+</text><text class="fg-b" x="56" y="112" font-size="14" style="fill:var(--charge-neg)">−</text>
+            <path class="fg-line" d="M40 60 H170 V84 M170 116 V150 H40"/>
+            <circle cx="170" cy="100" r="16" class="fg-box"/><text class="fg-t fg-b fg-c" x="170" y="106" font-size="16">V</text>
+            <text class="fg-t fg-b fg-c" x="110" y="30">1 · en vacío</text>
+            <text class="fg-m fg-c" x="110" y="184">V = E</text>
+            <text class="fg-m fg-c" x="110" y="204">voltímetro: casi no deja pasar corriente</text>
+            <path class="fg-line" d="M270 60 V92 M270 104 V150"/>
+            <path class="fg-line" d="M260 92 H280" style="stroke-width:3"/><path class="fg-line" d="M264 104 H276" style="stroke-width:3"/>
+            <path class="fg-line" d="M270 60 H350 V78 l10 6 l-20 10 l20 10 l-20 10 l10 6 V150 H270"/>
+            <text class="fg-t" x="368" y="104" font-size="13">R</text>
+            <path class="fg-line" d="M350 60 H420 V84 M420 116 V150 H350"/>
+            <circle cx="420" cy="100" r="16" class="fg-box"/><text class="fg-t fg-b fg-c" x="420" y="106" font-size="16">V</text>
+            <text class="fg-t fg-b fg-c" x="340" y="30">2 · con carga</text>
+            <text class="fg-m fg-c" x="340" y="184">V = E − I·r  ·  I = V/R</text>
+            <text class="fg-m fg-c" x="340" y="204">el voltímetro va en bornes de la fuente</text>
+            <path class="fg-line" d="M520 60 V92 M520 104 V150"/>
+            <path class="fg-line" d="M510 92 H530" style="stroke-width:3"/><path class="fg-line" d="M514 104 H526" style="stroke-width:3"/>
+            <path class="fg-line" d="M520 60 H640 V84 M640 116 V150 H520"/>
+            <circle cx="640" cy="100" r="16" class="fg-box"/><text class="fg-t fg-b fg-c" x="640" y="106" font-size="16">A</text>
+            <text class="fg-t fg-b fg-c" x="580" y="30">3 · en corto</text>
+            <text class="fg-m fg-c" x="580" y="184">Icc = E/r</text>
+            <text class="fg-m fg-c" x="580" y="204" style="fill:var(--bad)">solo con fuentes chicas</text>
+          </svg>
+          <figcaption><strong>El voltímetro va en paralelo y el amperímetro en serie.</strong> Los dos extremos (vacío y cortocircuito) dan E e I<sub>cc</sub>; con una carga intermedia se obtiene r.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Qué fuente se puede poner en cortocircuito para medir I<sub>cc</sub></caption>
+            <thead><tr><th>Fuente</th><th>I<sub>cc</sub> esperada</th><th>¿Se puede?</th></tr></thead>
+            <tbody>
+              <tr><td>Pila de limón o de monedas</td><td>≈ 1 mA</td><td>Sí</td></tr>
+              <tr><td>Módulo termoeléctrico</td><td>≈ 1 A</td><td>Sí, con el multímetro en 10 A</td></tr>
+              <tr><td>Panel solar de 1 a 2 W</td><td>0,2 a 0,4 A</td><td>Sí (en la escala de 10 A si pasa de 200 mA)</td></tr>
+              <tr><td>Pila AA o AAA</td><td>≈ 6 A</td><td>No: se calienta; calcular r con una carga</td></tr>
+              <tr><td>Batería de auto, ion-litio, power bank</td><td>cientos de A</td><td>Nunca</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Errores típicos:</strong> un contacto flojo o corroído (agrega resistencia y se nota como lecturas que bailan), medir la tensión en los cables lejos de la fuente (incluye su caída), dejar la punta en la entrada de corriente cuando se quiere medir tensión (capítulo <a class="xref" href="05-multimetro.html">5</a>) y no esperar a que la lectura se estabilice (una pila de limón se “agota” en minutos).</p>
+      </section>
+
+      <section>
+        <h2 id="limon">Experimento 1: la pila de limón</h2>
+        <p><strong>Materiales:</strong> un limón, un clavo o tornillo galvanizado (recubierto de zinc) y un trozo de alambre de cobre pelado (o una moneda de cobre: las monedas modernas casi siempre son de otras aleaciones y rinden poco).</p>
+        <ol>
+          <li>Hacé rodar el limón sobre la mesa apretándolo (rompe las membranas internas y libera jugo).</li>
+          <li>Clavá el clavo y el alambre a unos 2 cm de distancia, sin que se toquen.</li>
+          <li>Medí la tensión en vacío entre ambos: lo esperable es de <strong>0,85 a 1 V</strong>, con el cobre como polo positivo. Es el principio de la pila de Volta: dos metales distintos en un electrolito (el ácido del limón).</li>
+          <li>Medí la corriente de cortocircuito (la escala de 200 µA o de 2 mA): entre <strong>0,2 y 1 mA</strong>. Con r = Voc / Icc, una resistencia interna de unos 1 a 4 kΩ.</li>
+        </ol>
+        <figure class="figure">
+          <svg viewBox="0 0 700 220" role="img" aria-labelledby="g32bt g32bd">
+            <title id="g32bt">Tres pilas de limón en serie con un LED</title>
+            <desc id="g32bd">Tres limones con un clavo de zinc y un alambre de cobre cada uno, conectados en serie con un LED rojo en el extremo.</desc>
+            <ellipse cx="120" cy="100" rx="55" ry="36" style="fill:var(--heat);opacity:.38;stroke:var(--wire);stroke-width:2"/>
+            <ellipse cx="270" cy="100" rx="55" ry="36" style="fill:var(--heat);opacity:.38;stroke:var(--wire);stroke-width:2"/>
+            <ellipse cx="420" cy="100" rx="55" ry="36" style="fill:var(--heat);opacity:.38;stroke:var(--wire);stroke-width:2"/>
+            <rect x="94" y="70" width="8" height="52" style="fill:var(--muted)"/><rect x="138" y="70" width="8" height="52" style="fill:var(--charge-pos)"/>
+            <rect x="244" y="70" width="8" height="52" style="fill:var(--muted)"/><rect x="288" y="70" width="8" height="52" style="fill:var(--charge-pos)"/>
+            <rect x="394" y="70" width="8" height="52" style="fill:var(--muted)"/><rect x="438" y="70" width="8" height="52" style="fill:var(--charge-pos)"/>
+            <path class="fg-line" d="M142 70 V48 H248 V70 M292 70 V48 H398 V70 M442 70 V48 H530 V82"/>
+            <path class="fg-line" d="M98 70 V48 H40 V190 H530 V134"/>
+            <path d="M515 84 H545 L530 110 Z" style="fill:var(--surface);stroke:var(--wire);stroke-width:2.5;stroke-linejoin:round"/>
+            <path class="fg-line" d="M513 112 H547 M530 110 V134"/>
+            <path class="fg-pos" d="M552 92 L568 76 M560 76 H568 V84" style="stroke-width:2"/><path class="fg-pos" d="M556 104 L572 88 M564 88 H572 V96" style="stroke-width:2"/>
+            <text class="fg-t" x="580" y="112" font-size="13">LED rojo</text>
+            <text class="fg-m fg-c" x="120" y="150">0,95 V</text><text class="fg-m fg-c" x="270" y="150">0,95 V</text><text class="fg-m fg-c" x="420" y="150">0,95 V</text>
+            <text class="fg-m fg-e" x="92" y="168">Zn (clavo)</text><text class="fg-m" x="148" y="168">Cu (alambre)</text>
+            <text class="fg-t fg-b fg-c" x="270" y="24">3 en serie: E = 2,85 V · r ≈ 3 kΩ</text>
+            <text class="fg-m fg-c" x="300" y="210">la corriente sale por el cobre (+), pasa por el LED y vuelve al zinc (−)</text>
+          </svg>
+          <figcaption><strong>En serie las tensiones se suman, y también las resistencias internas.</strong> Con tres limones se supera la tensión mínima del LED, pero la corriente es de décimas de miliampere.</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Cada limón da E = 0,95 V con r = 1 kΩ. ¿Qué corriente le llega a un LED rojo (se enciende desde unos 1,6 V) con tres limones en serie? ¿Y con tres ramas de tres limones en paralelo?</p>
+          <ol>
+            <li><strong>Una rama de tres:</strong> <span class="eq">E = 2,85 V</span>, <span class="eq">r = 3 kΩ</span>. El LED queda a unos 1,66 V, entonces <span class="eq">I = (2,85 − 1,66) / 3000 ≈ 0,4 mA</span>: se ve tenue en la penumbra.</li>
+            <li><strong>Tres ramas en paralelo (9 limones):</strong> E sigue siendo 2,85 V, pero <span class="eq">r = 3 kΩ / 3 = 1 kΩ</span>. El LED queda a unos 1,74 V: <span class="eq">I = (2,85 − 1,74) / 1000 ≈ 1,1 mA</span>, casi tres veces más brillo.</li>
+            <li><strong>Seis limones en serie:</strong> E = 5,7 V pero r = 6 kΩ: <span class="eq">I ≈ (5,7 − 1,7) / 6000 ≈ 0,67 mA</span>. Más tensión, pero apenas más corriente que con tres: <em>la tensión extra se pierde en la resistencia interna</em>.</li>
+          </ol>
+        </div>
+        <p><strong>Para pensar y probar:</strong> cambiá la fruta (papa, naranja, tomate) manteniendo los mismos metales: la tensión casi no cambia, pero la resistencia interna sí. Cambiá los metales (zinc con cobre, hierro con cobre, aluminio con cobre): ahí cambia la tensión.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Pares de metales en un limón (valores medidos típicos, orden de magnitud)</caption>
+            <thead><tr><th>Par</th><th>Tensión medida</th><th>Observaciones</th></tr></thead>
+            <tbody>
+              <tr><td>Zinc – cobre</td><td>0,85 a 1 V</td><td>El más usado; estable por unos minutos</td></tr>
+              <tr><td>Hierro – cobre</td><td>0,4 a 0,6 V</td><td>El hierro es menos “ávido” de ceder electrones que el zinc</td></tr>
+              <tr><td>Aluminio – cobre</td><td>0,6 a 0,9 V</td><td>La capa de óxido del aluminio reduce y vuelve inestable la tensión</td></tr>
+              <tr><td>Cobre – cobre</td><td>≈ 0 V</td><td>Dos metales iguales no dan diferencia: no hay pila</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="volta">Experimento 2: la pila de Volta con monedas y cartón</h2>
+        <p>En 1800 Alessandro Volta apiló discos de cobre y de zinc separados por paños empapados en agua salada y obtuvo la primera fuente de corriente continua estable. Se puede repetir con material cotidiano.</p>
+        <ol>
+          <li>Cortá discos de cartón o papel de cocina del tamaño de las monedas y empapalos en vinagre con sal.</li>
+          <li>Armá una pila alternando: <strong>cobre – papel mojado – zinc</strong> (podés usar arandelas galvanizadas y discos de cobre de ferretería). Repetí en el mismo orden para sumar pares.</li>
+          <li>Medí la tensión entre el primero y el último disco: unos <strong>0,7 a 0,9 V por cada par</strong>. Con 5 pares llegarás a unos 4 V, con 10 a unos 8 V.</li>
+          <li>Con una carga de 1 kΩ medí la caída: si está bien armada, la tensión baja poco; si el papel está seco o los discos sucios, baja mucho (r alto). Probá apretar la pila: la resistencia interna baja.</li>
+        </ol>
+        <div class="note">
+          <span class="box-title">Por qué cada par aporta lo mismo</span>
+          <p>Cada par cobre–zinc es una celda de ≈ 0,9 V. Al apilarlas, el cobre de una toca el zinc de la siguiente por medio del electrolito, y las tensiones se suman: el mismo principio que las seis celdas de una batería de auto. Las resistencias internas también se suman (un poco más de tensión, un poco menos de corriente disponible).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="termico">Experimento 3: calor en tensión</h2>
+        <p>Un <strong>módulo termoeléctrico</strong> (la “celda Peltier” TEC1-12706 que se vende para armar heladeritas) tiene 127 pares de uniones entre dos placas cerámicas. Si se usa al revés, calentando una cara y enfriando la otra, genera tensión por el efecto Seebeck (capítulo <a class="xref" href="30-fuentes-cc.html#mecanismos">30</a>): <span class="eq">V ≈ 0,05 V/K · ΔT</span>.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 235" role="img" aria-labelledby="g32ct g32cd">
+            <title id="g32ct">Módulo termoeléctrico entre agua caliente y agua fría</title>
+            <desc id="g32cd">Un módulo entre un recipiente caliente arriba y uno frío abajo; el calor atraviesa el módulo y genera una tensión medida por un voltímetro.</desc>
+            <rect x="200" y="20" width="220" height="50" rx="4" style="fill:var(--heat);opacity:.45;stroke:var(--wire);stroke-width:2"/>
+            <text class="fg-t fg-b fg-c" x="310" y="50">agua caliente ≈ 70 °C</text>
+            <rect x="215" y="84" width="190" height="10" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/>
+            <rect x="215" y="136" width="190" height="10" style="fill:var(--surface-2);stroke:var(--wire);stroke-width:1.5"/>
+            <rect x="228" y="94" width="14" height="42" style="fill:var(--charge-pos);opacity:.8"/><rect x="252" y="94" width="14" height="42" style="fill:var(--charge-neg);opacity:.8"/><rect x="276" y="94" width="14" height="42" style="fill:var(--charge-pos);opacity:.8"/><rect x="300" y="94" width="14" height="42" style="fill:var(--charge-neg);opacity:.8"/><rect x="324" y="94" width="14" height="42" style="fill:var(--charge-pos);opacity:.8"/><rect x="348" y="94" width="14" height="42" style="fill:var(--charge-neg);opacity:.8"/><rect x="372" y="94" width="14" height="42" style="fill:var(--charge-pos);opacity:.8"/>
+            <rect x="200" y="162" width="220" height="50" rx="4" style="fill:var(--charge-neg);opacity:.3;stroke:var(--wire);stroke-width:2"/>
+            <text class="fg-t fg-b fg-c" x="310" y="192">agua fría con hielo ≈ 5 °C</text>
+            <path d="M200 72 V84 M420 72 V84" class="fg-line"/>
+            <path class="fg-bad" d="M170 74 V158 M164 150 L170 160 L176 150" style="stroke-width:2.5"/>
+            <text class="fg-m fg-e" x="158" y="112">el calor fluye</text><text class="fg-m fg-e" x="158" y="130">de arriba a abajo</text>
+            <path class="fg-line" d="M215 115 H192 V220 H520 V120 M405 115 H450 V60 H520 V88"/>
+            <circle cx="520" cy="104" r="16" class="fg-box"/><text class="fg-t fg-b fg-c" x="520" y="110" font-size="16">V</text>
+            <text class="fg-m" x="548" y="100">V ≈ 0,05 V/K · ΔT</text>
+            <text class="fg-m" x="548" y="118">ΔT = 50 K → ≈ 2,5 V</text>
+            <text class="fg-m" x="548" y="136">en vacío (r ≈ 3 Ω)</text>
+          </svg>
+          <figcaption><strong>Lo que genera tensión es la diferencia de temperatura entre las dos caras</strong>, no la temperatura de una sola. Las dos caras tienen que mantenerse a temperaturas distintas.</figcaption>
+        </figure>
+        <ol>
+          <li>Poné el módulo entre dos recipientes metálicos chicos: agua caliente (de pava, menos de 80 °C) arriba y agua con hielo abajo. Algo de pasta térmica o un trapito húmedo mejora el contacto.</li>
+          <li>Medí la tensión en vacío. La diferencia de temperatura <em>entre las caras</em> es menor que entre los recipientes (hay resistencia térmica), así que 1 a 2 V ya es un buen resultado.</li>
+          <li>Conectá resistores de 1, 2, 3, 5 y 10 Ω y medí la tensión de cada uno. Calculá <span class="eq">I = V/R</span> y <span class="eq">P = V·I</span>, y verificá que la máxima potencia ocurre con R ≈ r.</li>
+          <li>Mantené el agua caliente caliente: a medida que se enfría, E baja. Es la mejor forma de ver que <em>E ∝ ΔT</em>.</li>
+        </ol>
+        <p><strong>Variante: el termopar casero.</strong> Retorcé las puntas de un alambre de cobre y uno de hierro (por ejemplo, un clip desplegado) y calentá la unión con una vela. Con el multímetro en la escala de milivolts verás unos pocos mV. Es mucho menos que con el módulo, porque un solo par de uniones aporta unas decenas de µV por °C.</p>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Un módulo con ΔT = 40 K entre caras da V<sub>oc</sub> = 2,0 V. Con una carga de 2 Ω se mide 0,9 V. ¿Cuánto valen r y la potencia entregada?</p>
+          <ol>
+            <li>Corriente: <span class="eq">I = 0,9 V / 2 Ω = 0,45 A</span>.</li>
+            <li>Resistencia interna: <span class="eq">r = (2,0 − 0,9) / 0,45 ≈ 2,4 Ω</span>.</li>
+            <li>Potencia en la carga: <span class="eq">P = 0,9 · 0,45 ≈ 0,41 W</span>. La máxima, con R = r, sería <span class="eq">E²/(4r) = 4 / 9,6 ≈ 0,42 W</span>: la carga de 2 Ω está muy cerca de la ideal.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="panel">Experimento 4: curva de un panel solar chico</h2>
+        <p>Con un panel de jardín o de calculadora (por ejemplo 6 V y 1 a 2 W) se puede dibujar la curva I–V del capítulo <a class="xref" href="31-solar.html#curva">31</a> con resistores comunes.</p>
+        <ol>
+          <li>Al sol, medí V<sub>oc</sub> (≈ 7 V) e I<sub>cc</sub> (≈ 0,2 A). Si I<sub>cc</sub> pasa de 200 mA, usá la entrada de 10 A.</li>
+          <li>Conectá, de a uno, resistores de 10, 22, 33, 47, 100, 220 y 470 Ω (de 1 W o más, capítulo <a class="xref" href="28-hoja-de-datos.html">28</a>) y anotá la tensión sobre cada uno. Calculá <em>I = V/R</em> y <em>P = V·I</em>.</li>
+          <li>Graficá <em>I</em> contra <em>V</em>: vas a obtener la curva de “codo” y vas a ver que casi no es una recta. Marcá el máximo de potencia.</li>
+          <li>Repetí con el panel inclinado, tapando una celda con la mano y bajo una lámpara de escritorio, y comparalo.</li>
+        </ol>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Ejemplo de resultados de un panel de 7 V y 200 mA (valores ilustrativos de un modelo)</caption>
+            <thead><tr><th>R (Ω)</th><th>V (V)</th><th>I (mA)</th><th>P (mW)</th></tr></thead>
+            <tbody>
+              <tr><td>10</td><td>2,0</td><td>200</td><td>400</td></tr>
+              <tr><td>22</td><td>4,4</td><td>200</td><td>880</td></tr>
+              <tr><td>33</td><td>6,1</td><td>186</td><td>1140</td></tr>
+              <tr><td>47</td><td>6,7</td><td>143</td><td>955</td></tr>
+              <tr><td>100</td><td>7,0</td><td>70</td><td>494</td></tr>
+              <tr><td>470</td><td>7,2</td><td>15</td><td>109</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Se ve que de 10 a 22 Ω la corriente <em>no cambia</em> (el panel actúa como fuente de corriente), que la máxima potencia (≈ 1,1 W) se da con unos 33 Ω, y que el factor de llenado es <span class="eq">FF = 1,14 / (7,2 · 0,2) ≈ 0,79</span>.</p>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">Por qué estas fuentes no encienden una lámpara</span>
+          <p>Una pila de limón entrega, como máximo, unos 200 µW. Una lámpara de 3 W necesita 15 000 veces más. Con fuentes tan débiles se usan cargas de microwatts (un reloj de cuarzo, un LED muy eficiente), o se acumula la energía en un capacitor y se la usa de golpe.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Cosecha de energía (energy harvesting)</span>
+          <p>Los sensores inalámbricos sin batería usan justo este tipo de fuentes: un panel pequeño (iluminación de interior), un módulo termoeléctrico (la diferencia de temperatura de una cañería), o un cristal piezoeléctrico (la vibración de una máquina). Un circuito integrado eleva la poca tensión con una fuente conmutada (capítulo <a class="xref" href="08-cc-vs-ca.html#reguladores">8</a>) y la guarda en un capacitor.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con 1 limón y el LED, la corriente es de nanoamperes y no enciende: la tensión de 0,95 V no alcanza para que el LED conduzca. Subí a 2 y 3 limones: el LED empieza a encender (cerca de 0,15 y 0,4 mA).</li>
+          <li>Con 6 limones en serie y 1 rama la corriente es apenas mayor que con 3: la tensión se duplicó, pero también la resistencia interna. Mirá la recta azul: sube la ordenada al origen, pero la inclinación es mucho más suave.</li>
+          <li>Dejá 3 limones en serie y pasá de 1 a 3 ramas en paralelo: la resistencia interna baja a un tercio y la corriente del LED sube a cerca del triple. La intersección de la recta con la curva del LED se mueve hacia la derecha y arriba.</li>
+          <li>Cambiá la carga a <strong>Resistor</strong> y con 3 × 1 buscá qué valor le saca más potencia al banco: es el más cercano a r = 3 kΩ (probá 3,3 kΩ). Con un resistor de 100 Ω la tensión cae casi a cero.</li>
+          <li>Cambiá a 3 × 3 y repetí la búsqueda: ahora r = 1 kΩ y la mejor carga es la de 1 kΩ. Más ramas, menor r, mayor potencia máxima (E²/4r).</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/lemon.js"></script>
+  <script src="../js/quizzes/32-lab-cc-casero.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 // Símbolos de componentes activos y electromecánicos para los canvas: transistor bipolar,
-// MOSFET, lámpara, LED, bobina, interruptor y tierra. Cada símbolo devuelve las coordenadas de
+// MOSFET, lámpara, LED, bobina, interruptor, tierra y las piezas de un generador (polos y espira). Cada símbolo devuelve las coordenadas de
 // sus terminales para que la simulación conecte los cables ahí.
 
 (function () {
@@ -293,5 +293,58 @@
     return nodes;
   }
 
-  Object.assign(Elec, { drawOpAmp, drawGate, drawBjt, drawMosfet, drawLamp, drawLed, drawCoil, drawSwitch, drawGround, headAt });
+  /**
+   * Polos de un imán vistos desde arriba: N a la izquierda y S a la derecha, con las líneas del
+   * campo B (de N a S) en el hueco. `span` es la distancia entre las caras enfrentadas.
+   */
+  function drawPoles(ctx, cx, cy, { span = 160, h = 120, w = 40 } = {}) {
+    const c = colors();
+    const left = cx - span / 2;
+    const right = cx + span / 2;
+    for (const [x0, fill, letter] of [[left - w, c.chargePos, 'N'], [right, c.chargeNeg, 'S']]) {
+      ctx.fillStyle = fill;
+      ctx.fillRect(x0, cy - h / 2, w, h);
+      ctx.strokeStyle = c.text;
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x0, cy - h / 2, w, h);
+      text(ctx, letter, x0 + w / 2, cy, { align: 'center', size: 20, weight: 700, color: '#fff' });
+    }
+    for (const k of [-0.36, -0.18, 0, 0.18, 0.36]) {
+      const y = cy + k * h;
+      polyline(ctx, [[left + 4, y], [right - 12, y]], { color: c.grid, width: 1.5, dash: [5, 5] });
+      arrow(ctx, right - 22, y, right - 4, y, { color: c.grid, width: 1.5, head: 6 });
+    }
+    return { left, right };
+  }
+
+  /**
+   * Espira vista de canto, girando en el plano de la pantalla dentro de un campo B horizontal (→).
+   * `theta` es el ángulo entre B y la normal de la espira: con 0 la espira queda perpendicular al
+   * campo (flujo máximo) y con 90° paralela (flujo nulo). `dir` (−1..1) marca el sentido de la
+   * corriente en los dos lados activos: ⊙ sale de la hoja y ⊗ entra (positivo: sale en el lado A).
+   * Devuelve los extremos { a, b } y el versor de la velocidad de cada uno { va, vb }.
+   */
+  function drawEdgeLoop(ctx, cx, cy, { theta, half = 60, dir = 0 } = {}) {
+    const c = colors();
+    const a = [cx - half * Math.sin(theta), cy - half * Math.cos(theta)];
+    const b = [cx + half * Math.sin(theta), cy + half * Math.cos(theta)];
+    const va = [-Math.cos(theta), Math.sin(theta)];
+    const vb = [-va[0], -va[1]];
+    polyline(ctx, [a, b], { color: c.accent, width: 5 });
+    circle(ctx, cx, cy, 4, { fill: c.wire });
+    [[a, 1], [b, -1]].forEach(([p, side]) => {
+      circle(ctx, p[0], p[1], 9, { fill: c.surface, stroke: c.wire, width: 2 });
+      if (Math.abs(dir) < 0.04) return;
+      const out = dir * side > 0;
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, 0.35 + Math.abs(dir));
+      if (out) circle(ctx, p[0], p[1], 3.5, { fill: c.text });
+      else polyline(ctx, [[p[0] - 4.5, p[1] - 4.5], [p[0] + 4.5, p[1] + 4.5]], { color: c.text, width: 2 });
+      if (!out) polyline(ctx, [[p[0] - 4.5, p[1] + 4.5], [p[0] + 4.5, p[1] - 4.5]], { color: c.text, width: 2 });
+      ctx.restore();
+    });
+    return { a, b, va, vb };
+  }
+
+  Object.assign(Elec, { drawPoles, drawEdgeLoop, drawOpAmp, drawGate, drawBjt, drawMosfet, drawLamp, drawLed, drawCoil, drawSwitch, drawGround, headAt });
 })();

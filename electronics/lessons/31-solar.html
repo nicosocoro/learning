@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energía solar fotovoltaica · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="31-solar" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 31</p>
+        <h1>Energía solar fotovoltaica</h1>
+        <p class="lead">Una celda solar es un diodo grande que, al recibir luz, se convierte en fuente. No se comporta como una pila: su corriente depende de la luz, su tensión casi no, y por eso su mejor punto de trabajo hay que buscarlo.</p>
+      </header>
+      <section>
+        <h2 id="efecto">De la luz a la corriente</h2>
+        <p>La luz llega en paquetes de energía, los <strong>fotones</strong>. Cada uno tiene una energía <span class="eq">E = h · f</span> que crece con la frecuencia (capítulo <a class="xref" href="10-frecuencia.html">10</a>). En el silicio hace falta una energía mínima de 1,12 eV para arrancar un electrón de su enlace, lo que corresponde a una luz de hasta 1100 nm de longitud de onda (infrarrojo cercano). Un fotón de menor energía atraviesa el silicio sin hacer nada; uno de mayor energía arranca un electrón, pero el exceso se pierde en forma de calor.</p>
+        <p>Arrancar el electrón crea un <strong>par electrón-hueco</strong>. Si no pasara nada más, se volverían a juntar y toda la energía se iría en calor. Lo que lo evita es la <strong>unión P-N</strong> (capítulo <a class="xref" href="07-diodos-led.html#diodo">7</a>): en esa frontera hay un campo eléctrico interno que empuja los electrones hacia el lado N y los huecos hacia el lado P. Así se acumulan cargas de signo opuesto en cada cara, y esa separación <em>es</em> la tensión. Si se conecta una carga entre las dos caras, los electrones la recorren y vuelven al lado P.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 230" role="img" aria-labelledby="g31at g31ad">
+            <title id="g31at">Corte de una celda solar</title>
+            <desc id="g31ad">Capa N fina arriba y capa P gruesa abajo, con la unión entre ambas. Un fotón crea un par electrón-hueco y el campo de la unión los separa; los electrones recorren la carga exterior.</desc>
+            <path class="fg-heat" d="M175 8 L181 18 L169 28 L175 38 L175 56 M170 48 L175 57 L180 48" style="fill:none;stroke:var(--heat);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+            <path d="M315 8 L321 18 L309 28 L315 38 L315 56 M310 48 L315 57 L320 48" style="fill:none;stroke:var(--heat);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+            <text class="fg-m fg-c" x="245" y="22" style="fill:var(--heat)">fotones</text>
+            <rect x="140" y="62" width="14" height="8" class="fg-fill-wire"/><rect x="220" y="62" width="14" height="8" class="fg-fill-wire"/><rect x="300" y="62" width="14" height="8" class="fg-fill-wire"/><rect x="380" y="62" width="14" height="8" class="fg-fill-wire"/>
+            <rect x="130" y="70" width="290" height="26" style="fill:var(--charge-neg);opacity:.28;stroke:var(--wire);stroke-width:1.5"/>
+            <rect x="130" y="96" width="290" height="62" style="fill:var(--charge-pos);opacity:.22;stroke:var(--wire);stroke-width:1.5"/>
+            <rect x="130" y="158" width="290" height="8" class="fg-fill-wire"/>
+            <path class="fg-dash" d="M130 96 H420"/>
+            <text class="fg-t fg-b" x="138" y="88" font-size="13">N</text>
+            <text class="fg-t fg-b" x="138" y="116" font-size="13">P</text>
+            <path class="fg-neg" d="M400 82 V110 M394 102 L400 112 L406 102" style="stroke-width:2"/>
+            <text class="fg-m fg-e" x="394" y="108" font-size="11.5">campo de la unión</text>
+            <circle cx="260" cy="112" r="7" class="fg-fill-neg"/><path d="M256 112 H264" style="stroke:#fff;stroke-width:1.8"/>
+            <circle cx="230" cy="130" r="7" class="fg-fill-pos"/><path d="M226 130 H234 M230 126 V134" style="stroke:#fff;stroke-width:1.8"/>
+            <path class="fg-neg" d="M260 104 V82 M255 90 L260 82 L265 90" style="stroke-width:2.2"/>
+            <path class="fg-pos" d="M230 138 V152 M225 146 L230 153 L235 146" style="stroke-width:2.2"/>
+            <path class="fg-line" d="M140 66 H70 V100 l10 6 l-20 10 l20 10 l-20 10 l10 6 V196 H270 V166" style="stroke-width:2.2"/>
+            <text class="fg-t" x="92" y="140" font-size="12.5">carga</text>
+            <path class="fg-neg" d="M150 186 H190 M182 180 L190 186 L182 192" style="stroke-width:2"/>
+            <text class="fg-m fg-c" x="170" y="216">electrones</text>
+            <text class="fg-m" x="440" y="82">1. un fotón arranca un electrón</text>
+            <text class="fg-m" x="440" y="102">2. el campo de la unión lo manda al lado N</text>
+            <text class="fg-m" x="440" y="122">3. el hueco queda del lado P</text>
+            <text class="fg-m" x="440" y="142">4. el electrón recorre la carga y vuelve</text>
+            <text class="fg-m" x="440" y="162">por el contacto de atrás: corriente</text>
+          </svg>
+          <figcaption><strong>Una celda es un diodo iluminado.</strong> La luz crea los pares; el campo de la unión P-N los separa; la carga exterior cierra el circuito.</figcaption>
+        </figure>
+        <p>Cada celda de silicio entrega unos <strong>0,55 a 0,6 V</strong>, sin importar su tamaño: esa tensión la fija el material y la unión. Lo que crece con la superficie es la corriente: a pleno sol una celda da unos 25 a 35 mA por cada cm² de área.</p>
+      </section>
+
+      <section>
+        <h2 id="paneles">Celdas, paneles y arreglos</h2>
+        <p>Una sola celda es poco útil (0,6 V). Se las asocia como cualquier fuente (capítulo <a class="xref" href="04-baterias.html">4</a>):</p>
+        <ul>
+          <li><strong>En serie</strong> las tensiones se suman y la corriente es la misma. Un panel “de 12 V” tiene 36 celdas: <span class="eq">36 · 0,6 V ≈ 21,6 V</span> en vacío y unos 18 V en su mejor punto. Esa tensión de sobra es la que permite cargar una batería de 12 V (≈ 13 a 14 V) con poca luz.</li>
+          <li><strong>En paralelo</strong> las corrientes se suman y la tensión es la misma. Se usa para aumentar la corriente de un conjunto de paneles.</li>
+        </ul>
+        <p>La calculadora solar tiene unas pocas celdas pequeñas en serie (de silicio amorfo, que rinde con luz de ambiente); una cubierta de casa tiene decenas de paneles de 60 a 72 celdas, conectados en serie y paralelo según la tensión que pida el inversor.</p>
+      </section>
+
+      <section>
+        <h2 id="curva">La curva I–V: una fuente que no es una pila</h2>
+        <p>Una pila (capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>) baja su tensión de forma lineal con la corriente. Una celda solar no: se comporta como una <strong>fuente de corriente</strong> casi constante hasta cerca de su tensión máxima, y después la corriente se desploma. La razón es que la celda es un diodo que está generando una corriente <em>I<sub>sc</sub></em> por la luz, y a la vez conduce en sentido contrario (como cualquier diodo) cuando su tensión se acerca a 0,6 V:</p>
+        <p class="equation"><span class="eq">I = I<sub>sc</sub> − I<sub>0</sub> · (e<sup>V / (n·V<sub>T</sub>)</sup> − 1)</span></p>
+        <p>El primer término es la corriente que da la luz; el segundo, la corriente del diodo que “se come” una parte a medida que sube la tensión. Los datos importantes de la curva son:</p>
+        <ul>
+          <li><strong>I<sub>sc</sub></strong>, corriente de cortocircuito (V = 0): proporcional a la luz.</li>
+          <li><strong>V<sub>oc</sub></strong>, tensión en vacío (I = 0): ≈ 0,6 V por celda.</li>
+          <li><strong>Punto de máxima potencia</strong> (<em>V<sub>mp</sub></em>, <em>I<sub>mp</sub></em>): donde el producto V · I es mayor, en el “codo” de la curva.</li>
+          <li><strong>Factor de llenado</strong> <span class="eq">FF = P<sub>mp</sub> / (V<sub>oc</sub> · I<sub>sc</sub>)</span>: qué tan cuadrada es la curva. Una celda buena tiene FF de 0,7 a 0,8.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 225" role="img" aria-labelledby="g31bt g31bd">
+            <title id="g31bt">Curva I–V y curva de potencia de un panel de 100 W</title>
+            <desc id="g31bd">A la izquierda, corriente en función de la tensión: casi plana hasta unos 17 V y luego cae a cero en 21,6 V. A la derecha, la potencia con un máximo de 101 W cerca de 18 V.</desc>
+            <path class="fg-thin" d="M60 175 H340 M60 175 V30"/>
+            <path class="fg-acc" d="M60.0 57.0 L62.0 57.0 L64.0 57.0 L66.1 57.0 L68.1 57.0 L70.1 57.0 L72.1 57.0 L74.2 57.0 L76.2 57.0 L78.2 57.0 L80.3 57.0 L82.3 57.0 L84.3 57.0 L86.3 57.0 L88.3 57.0 L90.4 57.0 L92.4 57.0 L94.4 57.0 L96.4 57.0 L98.5 57.0 L100.5 57.0 L102.5 57.0 L104.5 57.0 L106.6 57.0 L108.6 57.0 L110.6 57.0 L112.6 57.0 L114.7 57.0 L116.7 57.0 L118.7 57.0 L120.8 57.0 L122.8 57.0 L124.8 57.0 L126.8 57.0 L128.8 57.0 L130.9 57.0 L132.9 57.0 L134.9 57.0 L136.9 57.0 L139.0 57.0 L141.0 57.0 L143.0 57.0 L145.0 57.0 L147.1 57.0 L149.1 57.0 L151.1 57.0 L153.1 57.0 L155.2 57.0 L157.2 57.0 L159.2 57.0 L161.3 57.0 L163.3 57.0 L165.3 57.0 L167.3 57.0 L169.3 57.0 L171.4 57.0 L173.4 57.0 L175.4 57.0 L177.4 57.0 L179.5 57.0 L181.5 57.0 L183.5 57.0 L185.6 57.0 L187.6 57.0 L189.6 57.0 L191.6 57.0 L193.6 57.0 L195.7 57.0 L197.7 57.0 L199.7 57.1 L201.8 57.1 L203.8 57.1 L205.8 57.1 L207.8 57.1 L209.8 57.1 L211.9 57.1 L213.9 57.2 L215.9 57.2 L217.9 57.2 L220.0 57.3 L222.0 57.3 L224.0 57.3 L226.0 57.4 L228.1 57.5 L230.1 57.5 L232.1 57.6 L234.1 57.7 L236.2 57.8 L238.2 58.0 L240.2 58.1 L242.2 58.3 L244.3 58.5 L246.3 58.8 L248.3 59.1 L250.3 59.4 L252.4 59.8 L254.4 60.2 L256.4 60.8 L258.4 61.4 L260.5 62.1 L262.5 62.9 L264.5 63.9 L266.6 65.0 L268.6 66.3 L270.6 67.8 L272.6 69.5 L274.6 71.5 L276.7 73.9 L278.7 76.6 L280.7 79.7 L282.8 83.4 L284.8 87.7 L286.8 92.6 L288.8 98.4 L290.8 105.1 L292.9 112.8 L294.9 121.8 L296.9 132.3 L298.9 144.5 L301.0 158.6 L303.0 175.0"/>
+            <path class="fg-dash" d="M60 64 H265 V175"/>
+            <circle cx="265.3" cy="64.2" r="5.5" class="fg-fill-pos"/>
+            <text class="fg-m fg-e" x="54" y="61">Isc</text>
+            <text class="fg-m fg-e" x="56" y="82">Imp</text>
+            <text class="fg-m fg-c" x="265" y="192">Vmp ≈ 18 V</text>
+            <text class="fg-m fg-c" x="303" y="208">Voc ≈ 21,6 V</text>
+            <text class="fg-t fg-b" x="66" y="24">corriente I (A)</text>
+            <text class="fg-m" x="112" y="52" style="fill:var(--accent)">fuente de corriente</text>
+            <text class="fg-m fg-e" x="340" y="165">tensión V →</text>
+            <path class="fg-thin" d="M400 175 H680 M400 175 V30"/>
+            <path class="fg-pos" d="M400.0 175.0 L402.0 173.8 L404.1 172.5 L406.1 171.3 L408.1 170.0 L410.1 168.8 L412.1 167.6 L414.2 166.3 L416.2 165.1 L418.2 163.8 L420.3 162.6 L422.3 161.4 L424.3 160.1 L426.3 158.9 L428.4 157.7 L430.4 156.4 L432.4 155.2 L434.4 153.9 L436.4 152.7 L438.5 151.5 L440.5 150.2 L442.5 149.0 L444.6 147.7 L446.6 146.5 L448.6 145.3 L450.6 144.0 L452.6 142.8 L454.7 141.5 L456.7 140.3 L458.7 139.1 L460.8 137.8 L462.8 136.6 L464.8 135.4 L466.8 134.1 L468.8 132.9 L470.9 131.6 L472.9 130.4 L474.9 129.2 L476.9 127.9 L479.0 126.7 L481.0 125.4 L483.0 124.2 L485.0 123.0 L487.1 121.7 L489.1 120.5 L491.1 119.2 L493.1 118.0 L495.2 116.8 L497.2 115.5 L499.2 114.3 L501.3 113.1 L503.3 111.8 L505.3 110.6 L507.3 109.3 L509.4 108.1 L511.4 106.9 L513.4 105.6 L515.4 104.4 L517.5 103.1 L519.5 101.9 L521.5 100.7 L523.5 99.4 L525.5 98.2 L527.6 97.0 L529.6 95.7 L531.6 94.5 L533.6 93.3 L535.7 92.0 L537.7 90.8 L539.7 89.6 L541.8 88.3 L543.8 87.1 L545.8 85.9 L547.8 84.6 L549.9 83.4 L551.9 82.2 L553.9 81.0 L555.9 79.7 L558.0 78.5 L560.0 77.3 L562.0 76.1 L564.0 74.9 L566.0 73.7 L568.1 72.6 L570.1 71.4 L572.1 70.2 L574.1 69.1 L576.2 68.0 L578.2 66.9 L580.2 65.8 L582.3 64.7 L584.3 63.7 L586.3 62.7 L588.3 61.8 L590.4 60.9 L592.4 60.1 L594.4 59.3 L596.4 58.7 L598.4 58.1 L600.5 57.6 L602.5 57.3 L604.5 57.1 L606.5 57.2 L608.6 57.4 L610.6 57.9 L612.6 58.7 L614.6 59.8 L616.7 61.4 L618.7 63.4 L620.7 66.0 L622.8 69.2 L624.8 73.2 L626.8 78.1 L628.8 84.1 L630.8 91.3 L632.9 99.9 L634.9 110.2 L636.9 122.6 L638.9 137.2 L641.0 154.5 L643.0 175.0"/>
+            <path class="fg-dash" d="M400 57 H605 V175"/>
+            <circle cx="605.3" cy="57.2" r="5.5" class="fg-fill-pos"/>
+            <text class="fg-m fg-e" x="394" y="61">Pmp</text>
+            <text class="fg-t fg-b" x="406" y="24">potencia P (W)</text>
+            <text class="fg-m fg-c" x="605" y="192">Vmp</text>
+            <text class="fg-m fg-c" x="498" y="130" style="fill:var(--charge-pos)">P = 101 W</text>
+            <text class="fg-m fg-e" x="680" y="165">tensión V →</text>
+          </svg>
+          <figcaption><strong>El rectángulo V<sub>mp</sub> × I<sub>mp</sub> es la potencia máxima.</strong> Cuanto más cuadrada es la curva I–V, mayor es el factor de llenado y mejor la celda.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="depende">De qué depende lo que entrega un panel</h2>
+        <ul>
+          <li><strong>La luz (irradiancia G).</strong> La corriente es proporcional a G; la tensión cambia poco (depende del logaritmo). Con la mitad del sol, la potencia es casi la mitad.</li>
+          <li><strong>La temperatura.</strong> Al calentarse, la tensión de cada celda baja unos 2 mV por °C y la corriente casi no sube: la potencia cae cerca de 0,4 % por cada °C por encima de 25 °C. Un panel a 60 °C rinde cerca de un 15 % menos. Por eso conviene dejar circular aire por detrás.</li>
+          <li><strong>El ángulo.</strong> La luz útil es la perpendicular al panel: <span class="eq">G<sub>útil</sub> = G · cos θ</span>.</li>
+          <li><strong>La sombra.</strong> En una cadena en serie circula la misma corriente por todas las celdas, así que una celda a la sombra limita a todas. Para evitar que una sola sombra apague medio panel, los paneles llevan <em>diodos de paso</em> (bypass) que dejan pasar la corriente por fuera del grupo sombreado.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 225" role="img" aria-labelledby="g31ct g31cd">
+            <title id="g31ct">Curvas según la luz y la temperatura</title>
+            <desc id="g31cd">A la izquierda, tres curvas I–V para 1000, 500 y 200 vatios por metro cuadrado: la corriente baja casi proporcional a la luz. A la derecha, tres curvas a 25, 45 y 65 grados: la tensión baja con el calor.</desc>
+            <path class="fg-thin" d="M60 175 H340 M60 175 V30"/>
+            <path class="fg-acc" d="M60.0 57.0 L62.0 57.0 L64.0 57.0 L66.1 57.0 L68.1 57.0 L70.1 57.0 L72.1 57.0 L74.2 57.0 L76.2 57.0 L78.2 57.0 L80.3 57.0 L82.3 57.0 L84.3 57.0 L86.3 57.0 L88.3 57.0 L90.4 57.0 L92.4 57.0 L94.4 57.0 L96.4 57.0 L98.5 57.0 L100.5 57.0 L102.5 57.0 L104.5 57.0 L106.6 57.0 L108.6 57.0 L110.6 57.0 L112.6 57.0 L114.7 57.0 L116.7 57.0 L118.7 57.0 L120.8 57.0 L122.8 57.0 L124.8 57.0 L126.8 57.0 L128.8 57.0 L130.9 57.0 L132.9 57.0 L134.9 57.0 L136.9 57.0 L139.0 57.0 L141.0 57.0 L143.0 57.0 L145.0 57.0 L147.1 57.0 L149.1 57.0 L151.1 57.0 L153.1 57.0 L155.2 57.0 L157.2 57.0 L159.2 57.0 L161.3 57.0 L163.3 57.0 L165.3 57.0 L167.3 57.0 L169.3 57.0 L171.4 57.0 L173.4 57.0 L175.4 57.0 L177.4 57.0 L179.5 57.0 L181.5 57.0 L183.5 57.0 L185.6 57.0 L187.6 57.0 L189.6 57.0 L191.6 57.0 L193.6 57.0 L195.7 57.0 L197.7 57.0 L199.7 57.1 L201.8 57.1 L203.8 57.1 L205.8 57.1 L207.8 57.1 L209.8 57.1 L211.9 57.1 L213.9 57.2 L215.9 57.2 L217.9 57.2 L220.0 57.3 L222.0 57.3 L224.0 57.3 L226.0 57.4 L228.1 57.5 L230.1 57.5 L232.1 57.6 L234.1 57.7 L236.2 57.8 L238.2 58.0 L240.2 58.1 L242.2 58.3 L244.3 58.5 L246.3 58.8 L248.3 59.1 L250.3 59.4 L252.4 59.8 L254.4 60.2 L256.4 60.8 L258.4 61.4 L260.5 62.1 L262.5 62.9 L264.5 63.9 L266.6 65.0 L268.6 66.3 L270.6 67.8 L272.6 69.5 L274.6 71.5 L276.7 73.9 L278.7 76.6 L280.7 79.7 L282.8 83.4 L284.8 87.7 L286.8 92.6 L288.8 98.4 L290.8 105.1 L292.9 112.8 L294.9 121.8 L296.9 132.3 L298.9 144.5 L301.0 158.6 L303.0 175.0"/>
+            <path class="fg-pos" d="M60.0 116.0 L61.9 116.0 L63.9 116.0 L65.8 116.0 L67.8 116.0 L69.7 116.0 L71.7 116.0 L73.6 116.0 L75.6 116.0 L77.5 116.0 L79.5 116.0 L81.4 116.0 L83.4 116.0 L85.3 116.0 L87.3 116.0 L89.2 116.0 L91.1 116.0 L93.1 116.0 L95.0 116.0 L97.0 116.0 L98.9 116.0 L100.9 116.0 L102.8 116.0 L104.8 116.0 L106.7 116.0 L108.7 116.0 L110.6 116.0 L112.6 116.0 L114.5 116.0 L116.5 116.0 L118.4 116.0 L120.4 116.0 L122.3 116.0 L124.2 116.0 L126.2 116.0 L128.1 116.0 L130.1 116.0 L132.0 116.0 L134.0 116.0 L135.9 116.0 L137.9 116.0 L139.8 116.0 L141.8 116.0 L143.7 116.0 L145.7 116.0 L147.6 116.0 L149.6 116.0 L151.5 116.0 L153.4 116.0 L155.4 116.0 L157.3 116.0 L159.3 116.0 L161.2 116.0 L163.2 116.0 L165.1 116.0 L167.1 116.0 L169.0 116.0 L171.0 116.0 L172.9 116.0 L174.9 116.0 L176.8 116.0 L178.8 116.0 L180.7 116.0 L182.7 116.0 L184.6 116.0 L186.5 116.0 L188.5 116.0 L190.4 116.0 L192.4 116.0 L194.3 116.0 L196.3 116.0 L198.2 116.1 L200.2 116.1 L202.1 116.1 L204.1 116.1 L206.0 116.1 L208.0 116.1 L209.9 116.1 L211.9 116.1 L213.8 116.2 L215.7 116.2 L217.7 116.2 L219.6 116.2 L221.6 116.3 L223.5 116.3 L225.5 116.4 L227.4 116.4 L229.4 116.5 L231.3 116.6 L233.3 116.7 L235.2 116.8 L237.2 116.9 L239.1 117.0 L241.1 117.2 L243.0 117.4 L245.0 117.6 L246.9 117.9 L248.8 118.2 L250.8 118.5 L252.7 118.9 L254.7 119.3 L256.6 119.8 L258.6 120.4 L260.5 121.1 L262.5 121.9 L264.4 122.8 L266.4 123.9 L268.3 125.1 L270.3 126.5 L272.2 128.1 L274.2 130.0 L276.1 132.2 L278.0 134.7 L280.0 137.5 L281.9 140.9 L283.9 144.7 L285.8 149.2 L287.8 154.3 L289.7 160.2 L291.7 167.1 L293.6 175.0"/>
+            <path class="fg-neg" d="M60.0 151.4 L61.8 151.4 L63.7 151.4 L65.5 151.4 L67.4 151.4 L69.2 151.4 L71.1 151.4 L72.9 151.4 L74.7 151.4 L76.6 151.4 L78.4 151.4 L80.3 151.4 L82.1 151.4 L84.0 151.4 L85.8 151.4 L87.7 151.4 L89.5 151.4 L91.3 151.4 L93.2 151.4 L95.0 151.4 L96.9 151.4 L98.7 151.4 L100.6 151.4 L102.4 151.4 L104.2 151.4 L106.1 151.4 L107.9 151.4 L109.8 151.4 L111.6 151.4 L113.5 151.4 L115.3 151.4 L117.2 151.4 L119.0 151.4 L120.8 151.4 L122.7 151.4 L124.5 151.4 L126.4 151.4 L128.2 151.4 L130.1 151.4 L131.9 151.4 L133.7 151.4 L135.6 151.4 L137.4 151.4 L139.3 151.4 L141.1 151.4 L143.0 151.4 L144.8 151.4 L146.6 151.4 L148.5 151.4 L150.3 151.4 L152.2 151.4 L154.0 151.4 L155.9 151.4 L157.7 151.4 L159.6 151.4 L161.4 151.4 L163.2 151.4 L165.1 151.4 L166.9 151.4 L168.8 151.4 L170.6 151.4 L172.5 151.4 L174.3 151.4 L176.1 151.4 L178.0 151.4 L179.8 151.4 L181.7 151.4 L183.5 151.4 L185.4 151.4 L187.2 151.4 L189.1 151.4 L190.9 151.4 L192.7 151.4 L194.6 151.4 L196.4 151.4 L198.3 151.5 L200.1 151.5 L202.0 151.5 L203.8 151.5 L205.6 151.5 L207.5 151.5 L209.3 151.5 L211.2 151.5 L213.0 151.6 L214.9 151.6 L216.7 151.6 L218.5 151.6 L220.4 151.7 L222.2 151.7 L224.1 151.7 L225.9 151.8 L227.8 151.9 L229.6 151.9 L231.5 152.0 L233.3 152.1 L235.1 152.2 L237.0 152.3 L238.8 152.4 L240.7 152.6 L242.5 152.7 L244.4 152.9 L246.2 153.2 L248.0 153.4 L249.9 153.7 L251.7 154.1 L253.6 154.5 L255.4 154.9 L257.3 155.4 L259.1 156.0 L260.9 156.7 L262.8 157.4 L264.6 158.3 L266.5 159.3 L268.3 160.5 L270.2 161.8 L272.0 163.3 L273.9 165.1 L275.7 167.1 L277.5 169.4 L279.4 172.0 L281.2 175.0"/>
+            <text class="fg-m" x="128" y="48" style="fill:var(--accent)">1000 W/m²</text>
+            <text class="fg-m" x="128" y="102" style="fill:var(--charge-pos)">500 W/m²</text>
+            <text class="fg-m" x="128" y="146" style="fill:var(--charge-neg)">200 W/m²</text>
+            <text class="fg-t fg-b" x="66" y="24">menos luz: menos corriente</text>
+            <text class="fg-m fg-c" x="200" y="196">tensión V →</text>
+            <path class="fg-thin" d="M400 175 H680 M400 175 V30"/>
+            <path class="fg-neg" d="M400.0 57.0 L402.0 57.0 L404.1 57.0 L406.1 57.0 L408.1 57.0 L410.1 57.0 L412.1 57.0 L414.2 57.0 L416.2 57.0 L418.2 57.0 L420.3 57.0 L422.3 57.0 L424.3 57.0 L426.3 57.0 L428.4 57.0 L430.4 57.0 L432.4 57.0 L434.4 57.0 L436.4 57.0 L438.5 57.0 L440.5 57.0 L442.5 57.0 L444.6 57.0 L446.6 57.0 L448.6 57.0 L450.6 57.0 L452.6 57.0 L454.7 57.0 L456.7 57.0 L458.7 57.0 L460.8 57.0 L462.8 57.0 L464.8 57.0 L466.8 57.0 L468.8 57.0 L470.9 57.0 L472.9 57.0 L474.9 57.0 L476.9 57.0 L479.0 57.0 L481.0 57.0 L483.0 57.0 L485.0 57.0 L487.1 57.0 L489.1 57.0 L491.1 57.0 L493.1 57.0 L495.2 57.0 L497.2 57.0 L499.2 57.0 L501.3 57.0 L503.3 57.0 L505.3 57.0 L507.3 57.0 L509.4 57.0 L511.4 57.0 L513.4 57.0 L515.4 57.0 L517.5 57.0 L519.5 57.0 L521.5 57.0 L523.5 57.0 L525.5 57.0 L527.6 57.0 L529.6 57.0 L531.6 57.0 L533.6 57.0 L535.7 57.0 L537.7 57.0 L539.7 57.1 L541.8 57.1 L543.8 57.1 L545.8 57.1 L547.8 57.1 L549.9 57.1 L551.9 57.1 L553.9 57.2 L555.9 57.2 L558.0 57.2 L560.0 57.3 L562.0 57.3 L564.0 57.3 L566.0 57.4 L568.1 57.5 L570.1 57.5 L572.1 57.6 L574.1 57.7 L576.2 57.8 L578.2 58.0 L580.2 58.1 L582.3 58.3 L584.3 58.5 L586.3 58.8 L588.3 59.1 L590.4 59.4 L592.4 59.8 L594.4 60.2 L596.4 60.8 L598.4 61.4 L600.5 62.1 L602.5 62.9 L604.5 63.9 L606.5 65.0 L608.6 66.3 L610.6 67.8 L612.6 69.5 L614.6 71.5 L616.7 73.9 L618.7 76.6 L620.7 79.7 L622.8 83.4 L624.8 87.7 L626.8 92.6 L628.8 98.4 L630.8 105.1 L632.9 112.8 L634.9 121.8 L636.9 132.3 L638.9 144.5 L641.0 158.6 L643.0 175.0"/>
+            <path class="fg-pos" d="M400.0 55.8 L401.9 55.8 L403.8 55.8 L405.6 55.8 L407.5 55.8 L409.4 55.8 L411.3 55.8 L413.2 55.8 L415.1 55.8 L416.9 55.8 L418.8 55.8 L420.7 55.8 L422.6 55.8 L424.5 55.8 L426.4 55.8 L428.2 55.8 L430.1 55.8 L432.0 55.8 L433.9 55.8 L435.8 55.8 L437.7 55.8 L439.5 55.8 L441.4 55.8 L443.3 55.8 L445.2 55.8 L447.1 55.8 L449.0 55.8 L450.8 55.8 L452.7 55.8 L454.6 55.8 L456.5 55.8 L458.4 55.8 L460.3 55.8 L462.1 55.8 L464.0 55.8 L465.9 55.8 L467.8 55.8 L469.7 55.8 L471.6 55.8 L473.4 55.8 L475.3 55.8 L477.2 55.8 L479.1 55.8 L481.0 55.8 L482.9 55.8 L484.7 55.8 L486.6 55.8 L488.5 55.8 L490.4 55.8 L492.3 55.8 L494.2 55.8 L496.0 55.8 L497.9 55.8 L499.8 55.8 L501.7 55.8 L503.6 55.8 L505.5 55.8 L507.3 55.9 L509.2 55.9 L511.1 55.9 L513.0 55.9 L514.9 55.9 L516.8 55.9 L518.6 55.9 L520.5 55.9 L522.4 55.9 L524.3 55.9 L526.2 55.9 L528.1 56.0 L529.9 56.0 L531.8 56.0 L533.7 56.0 L535.6 56.0 L537.5 56.1 L539.4 56.1 L541.2 56.2 L543.1 56.2 L545.0 56.3 L546.9 56.3 L548.8 56.4 L550.7 56.5 L552.5 56.6 L554.4 56.7 L556.3 56.8 L558.2 56.9 L560.1 57.1 L562.0 57.2 L563.8 57.4 L565.7 57.7 L567.6 57.9 L569.5 58.2 L571.4 58.5 L573.3 58.9 L575.1 59.3 L577.0 59.8 L578.9 60.4 L580.8 61.0 L582.7 61.7 L584.6 62.6 L586.4 63.5 L588.3 64.6 L590.2 65.8 L592.1 67.2 L594.0 68.8 L595.9 70.6 L597.7 72.7 L599.6 75.0 L601.5 77.7 L603.4 80.7 L605.3 84.2 L607.2 88.1 L609.0 92.7 L610.9 97.8 L612.8 103.6 L614.7 110.3 L616.6 117.9 L618.5 126.5 L620.3 136.4 L622.2 147.6 L624.1 160.4 L626.0 175.0"/>
+            <path class="fg-acc" d="M400.0 54.6 L401.7 54.6 L403.5 54.6 L405.2 54.6 L407.0 54.6 L408.7 54.6 L410.4 54.6 L412.2 54.6 L413.9 54.6 L415.7 54.6 L417.4 54.6 L419.2 54.6 L420.9 54.6 L422.6 54.6 L424.4 54.6 L426.1 54.6 L427.9 54.6 L429.6 54.6 L431.3 54.6 L433.1 54.6 L434.8 54.6 L436.6 54.6 L438.3 54.6 L440.1 54.6 L441.8 54.6 L443.5 54.6 L445.3 54.6 L447.0 54.6 L448.8 54.6 L450.5 54.6 L452.2 54.6 L454.0 54.6 L455.7 54.6 L457.5 54.6 L459.2 54.6 L461.0 54.6 L462.7 54.6 L464.4 54.6 L466.2 54.7 L467.9 54.7 L469.7 54.7 L471.4 54.7 L473.1 54.7 L474.9 54.7 L476.6 54.7 L478.4 54.7 L480.1 54.7 L481.9 54.7 L483.6 54.7 L485.3 54.7 L487.1 54.7 L488.8 54.7 L490.6 54.7 L492.3 54.7 L494.0 54.7 L495.8 54.7 L497.5 54.7 L499.3 54.7 L501.0 54.7 L502.7 54.8 L504.5 54.8 L506.2 54.8 L508.0 54.8 L509.7 54.8 L511.5 54.8 L513.2 54.9 L514.9 54.9 L516.7 54.9 L518.4 55.0 L520.2 55.0 L521.9 55.1 L523.6 55.1 L525.4 55.2 L527.1 55.2 L528.9 55.3 L530.6 55.4 L532.4 55.5 L534.1 55.6 L535.8 55.7 L537.6 55.8 L539.3 55.9 L541.1 56.1 L542.8 56.3 L544.5 56.4 L546.3 56.7 L548.0 56.9 L549.8 57.2 L551.5 57.5 L553.3 57.8 L555.0 58.2 L556.7 58.6 L558.5 59.1 L560.2 59.7 L562.0 60.3 L563.7 60.9 L565.4 61.7 L567.2 62.5 L568.9 63.5 L570.7 64.5 L572.4 65.7 L574.1 67.1 L575.9 68.6 L577.6 70.2 L579.4 72.1 L581.1 74.2 L582.9 76.6 L584.6 79.2 L586.3 82.2 L588.1 85.5 L589.8 89.2 L591.6 93.3 L593.3 98.0 L595.0 103.2 L596.8 109.0 L598.5 115.6 L600.3 122.9 L602.0 131.1 L603.8 140.3 L605.5 150.6 L607.2 162.1 L609.0 175.0"/>
+            <path class="fg-neg" d="M430 100 H452"/><text class="fg-m" x="458" y="104" style="fill:var(--charge-neg)">25 °C</text>
+            <path class="fg-pos" d="M430 120 H452"/><text class="fg-m" x="458" y="124" style="fill:var(--charge-pos)">45 °C</text>
+            <path class="fg-acc" d="M430 140 H452"/><text class="fg-m" x="458" y="144" style="fill:var(--accent)">65 °C</text>
+            <text class="fg-t fg-b" x="406" y="24">más calor: menos tensión</text>
+            <text class="fg-m fg-c" x="540" y="196">tensión V →</text>
+          </svg>
+          <figcaption><strong>La luz mueve la curva hacia abajo; el calor, hacia la izquierda.</strong> Las dos reducen la potencia máxima, por razones distintas.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="mppt">Conectar el panel: PWM, directo y MPPT</h2>
+        <p>El punto donde trabaja el panel no lo elige el panel: lo fija la carga, como en cualquier fuente (capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>). Con una batería de 12 V la tensión queda “clavada” cerca de 13 V, que está lejos de los 18 V donde el panel rinde más. En esa zona la corriente casi no baja, pero <em>P = V · I</em> es bastante menor que la máxima.</p>
+        <p>Un <strong>regulador MPPT</strong> (<em>Maximum Power Point Tracking</em>) es una fuente conmutada (capítulo <a class="xref" href="08-cc-vs-ca.html#reguladores">8</a>) que le pide al panel el punto de máxima potencia, midiendo y ajustando continuamente su tensión de entrada, y convierte esa potencia a la tensión de la batería (sube la corriente y baja la tensión, como un transformador de continua). Los reguladores más simples (PWM) conectan el panel a la batería directamente y solo cortan cuando se llena, sin buscar el máximo.</p>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto</span>
+          <p>Un panel de 101 W (V<sub>mp</sub> = 18,3 V, I<sub>mp</sub> = 5,5 A, V<sub>oc</sub> = 21,6 V, I<sub>sc</sub> = 5,9 A) carga una batería de 12,6 V. ¿Cuánto aprovecha cada forma de conexión?</p>
+          <ol>
+            <li><strong>Directo (PWM):</strong> el panel trabaja a unos 12,9 V con corriente casi igual a I<sub>sc</sub>: <span class="eq">P ≈ 12,9 V · 5,9 A ≈ 76 W</span> (el 75 % de lo disponible).</li>
+            <li><strong>Con MPPT (rendimiento 95 %):</strong> el panel trabaja en 18,3 V y 5,5 A: <span class="eq">P<sub>pan</sub> = 101 W</span>. Entrega a la batería <span class="eq">0,95 · 101 ≈ 96 W</span>, o <span class="eq">96 / 12,6 ≈ 7,6 A</span> (más corriente que la del panel, porque la tensión baja).</li>
+            <li>Ganancia: <span class="eq">96 − 76 ≈ 20 W</span> (+26 %). Con mucho frío o poca batería es mayor; con el panel muy caliente es menor.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El potencial: un panel de techo</span>
+          <p>A pleno sol llegan unos 1000 W por cada m². Un panel moderno de 1,7 m² y 20 % de rendimiento entrega <span class="eq">1000 · 1,7 · 0,20 ≈ 340 W</span> en su mejor momento. El límite teórico de una celda de silicio común, por la energía de los fotones que no aprovecha, ronda el 30 %; los paneles de uso general están entre 15 y 22 %.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Horas de sol pico</span>
+          <p>El sol no brilla a 1000 W/m² todo el día. Se resume el día en “horas sol pico” (HSP): las horas equivalentes a pleno sol. En gran parte de la Argentina son 4 a 6 horas en promedio anual. Un panel de 100 W entrega, en un día, unos <span class="eq">100 W · 5 h = 500 Wh</span> en el mejor de los casos, y en la práctica 70 a 75 % de eso por temperatura, cables y regulador.</p>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: una luz de jardín</span>
+          <p>Se quiere encender una lámpara LED de 10 W durante 5 h cada noche con una batería de 12 V. ¿Qué panel y qué batería hacen falta?</p>
+          <ol>
+            <li>Energía diaria: <span class="eq">10 W · 5 h = 50 Wh</span>.</li>
+            <li>Panel: con 5 HSP y 70 % de rendimiento, cada watt del panel da <span class="eq">5 · 0,7 = 3,5 Wh</span> por día, así que hacen falta <span class="eq">50 / 3,5 ≈ 14 W</span>. Un panel de 20 W deja margen para días nublados.</li>
+            <li>Batería: para 2 días sin sol y descargando solo hasta la mitad (para cuidar una batería de plomo, capítulo <a class="xref" href="04-baterias.html#tipos">4</a>): <span class="eq">50 Wh · 2 / 0,5 = 200 Wh</span>, es decir <span class="eq">200 / 12 ≈ 17 Ah</span>.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con <strong>Resistencia</strong>, subí R de 1 a 100 Ω: la corriente se mantiene casi constante y la tensión crece (zona de “fuente de corriente”), después la corriente se desploma. La potencia pasa por un máximo, cerca de R ≈ 3 Ω. El punto verde marca el máximo de la curva.</li>
+          <li>Elegí <strong>Batería directa</strong> a pleno sol: el panel queda clavado en ≈ 13 V y entrega cerca del 75 % de su máximo. Pasá a <strong>Con MPPT</strong>: el punto de trabajo salta al máximo y la potencia aprovechada sube.</li>
+          <li>Bajá la luz de 1000 a 500 W/m²: la corriente de la curva se achata a la mitad y la potencia máxima cae a cerca de la mitad, mientras la tensión casi no cambia.</li>
+          <li>Subí la temperatura de 25 a 65 °C a pleno sol: la curva se corre hacia la izquierda, V<sub>oc</sub> baja y la potencia máxima cae cerca de un 15 %.</li>
+          <li>Con <strong>Batería directa</strong> y pleno sol, subí la temperatura de 25 a 65 °C: el panel entrega casi lo mismo que antes (≈ 76 W) pero ahora eso es más del 90 % de su máximo, que bajó. El codo de la curva se acercó a los 13 V de la batería. En frío (10 °C) pasa al revés: el directo aprovecha apenas el 70 % y el MPPT gana más.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/solar.js"></script>
+  <script src="../js/quizzes/31-solar.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

@@ -60,5 +60,15 @@
       "No debería calentarse: el regulador no consume energía."
     ],
     "explain": "Un regulador lineal se comporta como una resistencia en serie que absorbe la diferencia de tensión; con 1 A, esa diferencia se transforma íntegramente en calor."
+  },
+  {
+    "q": "¿Cuál de estas fuentes entrega naturalmente corriente alterna sin necesidad de ningún circuito adicional?",
+    "correct": "Una bobina que gira dentro de un campo magnético, porque el flujo que la atraviesa sube y baja.",
+    "wrong": [
+      "Una pila de zinc y cobre, porque sus electrodos se alternan.",
+      "Un panel solar, porque la luz del sol oscila durante el día.",
+      "Un módulo termoeléctrico, porque el calor fluye en ambos sentidos."
+    ],
+    "explain": "Las pilas, los paneles y los módulos termoeléctricos mantienen una polaridad fija: son de continua. La alterna aparece al cambiar el flujo magnético, por ejemplo girando una espira (capítulo 33)."
   }
 ] };

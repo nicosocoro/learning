@@ -14,6 +14,7 @@
     { name: 'Parte VII · Amplificadores operacionales', ids: ['23-amplificador-operacional', '24-aplicaciones-operacional'] },
     { name: 'Parte VIII · Electrónica digital', ids: ['25-logica', '26-entradas-adc', '27-temporizador-555'] },
     { name: 'Parte IX · Práctica de banco', ids: ['28-hoja-de-datos', '29-seguridad-masa-desacople'] },
+    { name: 'Parte X · Generación de energía eléctrica', ids: ['30-fuentes-cc', '31-solar', '32-lab-cc-casero', '33-generador-ca', '34-carga-y-campo', '35-alternadores', '36-dinamo-cc', '37-lab-movimiento', '38-caracterizar-fuentes'] },
   ];
 
   Elec.LESSONS = [
@@ -46,5 +47,14 @@
     { id: '27-temporizador-555', title: 'El temporizador 555', summary: 'Un circuito integrado clásico que combina un circuito RC, comparadores y un flip-flop: monoestable y astable.', tags: 'T = 1,1·RC · f = 1,44/((R1+2R2)C)' },
     { id: '28-hoja-de-datos', title: 'Hojas de datos y elección de componentes', summary: 'Valores comerciales, potencia de los resistores, tensión de los capacitores y cómo se calienta un semiconductor.', tags: 'E12 · Tj = Ta + P·θ' },
     { id: '29-seguridad-masa-desacople', title: 'Seguridad, masa y desacople', summary: 'Corrientes peligrosas, tierra y masa, descargas electrostáticas, capacitores de desacople y aislación galvánica.', tags: 'I = V/R · 100 nF · aislación' },
+    { id: '30-fuentes-cc', title: 'De dónde sale la tensión: fuentes de continua', summary: 'Una fuente no crea cargas, las separa: química, luz, calor, presión y movimiento, y el modelo común de fem más resistencia interna.', tags: 'V = E − I·r · Pmáx = E²/4r' },
+    { id: '31-solar', title: 'Energía solar fotovoltaica', summary: 'Cómo una celda convierte luz en corriente, su curva I–V, el punto de máxima potencia y qué pasa con la sombra y el calor.', tags: 'I = Isc − I₀(e^(V/nVt) − 1)' },
+    { id: '32-lab-cc-casero', title: 'Laboratorio casero: generar continua', summary: 'Pilas de limón y de monedas, termopar y módulo termoeléctrico, panel solar: cómo armarlos y cómo medir tensión, corriente y resistencia interna.', tags: 'Voc · Isc · r = (E − V)/I' },
+    { id: '33-generador-ca', title: 'Cómo se genera la alterna: la espira en el campo', summary: 'Una espira que gira dentro de un campo magnético: flujo, ley de Faraday y por qué sale una senoide.', tags: 'ε = N·B·A·ω·sen(ωt) · f = p·n/60' },
+    { id: '34-carga-y-campo', title: 'La carga y el campo: la reacción del generador', summary: 'Qué corriente circula, cómo esa corriente frena el rotor, cómo deforma el campo y por qué la carga se siente en el eje.', tags: 'τ = N·B·A·i·sen θ · Pmec = ε·i' },
+    { id: '35-alternadores', title: 'Alternadores, trifásica y fuentes primarias', summary: 'Campo giratorio, número de polos, tres fases a 120° y qué hace girar el eje en una central, un auto o una bicicleta.', tags: 'f = p·n/60 · VL = √3·VF' },
+    { id: '36-dinamo-cc', title: 'Dínamo y generadores de continua', summary: 'El conmutador como rectificador mecánico, cómo se alisa la salida y por qué un motor de continua también es un generador.', tags: 'V = ke·ω − I·Ra' },
+    { id: '37-lab-movimiento', title: 'Laboratorio casero: generar con movimiento', summary: 'Bobina e imán, linterna de agitar, motor paso a paso y motor de juguete como generadores, y cómo sentir y medir la reacción de la carga.', tags: 'imán + bobina · puente + capacitor' },
+    { id: '38-caracterizar-fuentes', title: 'Medir y comparar fuentes: el banco de pruebas', summary: 'Curva tensión–corriente, resistencia interna, regulación, rendimiento y ondulación: un protocolo común para cualquier fuente.', tags: 'r = (V₁ − V₂)/(I₂ − I₁) · η = V/E' },
   ];
 })();

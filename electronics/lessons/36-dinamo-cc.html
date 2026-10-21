@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dínamo y generadores de continua · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="36-dinamo-cc" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 36</p>
+        <h1>Dínamo y generadores de continua</h1>
+        <p class="lead">Una espira que gira entrega alterna. Para obtener continua directamente del eje se usa un conmutador, un rectificador mecánico que invierte las conexiones justo cuando la tensión cambia de signo. El mismo dispositivo, además, funciona como motor: un motor de continua es un generador al revés.</p>
+      </header>
+      <section>
+        <h2 id="problema">El problema: la espira entrega alterna</h2>
+        <p>En el capítulo <a class="xref" href="33-generador-ca.html">33</a> vimos que una espira que gira en un campo entrega <span class="eq">ε = V<sub>p</sub> · sen θ</span>: alterna. Para las cargas que necesitan continua (una batería para cargar, un motor de tracción, electrólisis) hay dos caminos:</p>
+        <ul>
+          <li><strong>Rectificar con diodos</strong> (capítulo <a class="xref" href="07-diodos-led.html#rectificacion">7</a>): es lo que hace el alternador del auto con su puente de seis diodos. No tiene partes móviles en el camino de la potencia.</li>
+          <li><strong>Rectificar mecánicamente</strong> con un <strong>conmutador</strong>: es lo que hacía la <em>dínamo</em> clásica, y lo que lleva casi todo motor de continua con escobillas.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="conmutador">El conmutador: un rectificador mecánico</h2>
+        <p>Se reemplazan los dos anillos completos por un solo anillo <strong>partido en dos mitades aisladas</strong> (<em>delgas</em>), cada una unida a un extremo de la espira, y se las hace rozar con las mismas dos escobillas fijas. Se coloca de modo que las escobillas pasen de una delga a la otra <em>justo cuando la espira está de frente al campo</em>, es decir cuando ε = 0 (capítulo <a class="xref" href="33-generador-ca.html#posiciones">33</a>).</p>
+        <p>En la primera media vuelta, la escobilla izquierda toca el extremo A, que es positivo. Cuando la espira cruza la posición de ε = 0, la tensión de la bobina cambia de signo, pero <em>cada escobilla pasa a tocar la otra delga</em>: ahora el extremo A es negativo y toca la escobilla derecha, y el B (ahora positivo) toca la izquierda. <strong>La escobilla izquierda siempre es positiva</strong> y la corriente por la carga circula siempre en el mismo sentido.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 255" role="img" aria-labelledby="g36at g36ad">
+            <title id="g36at">Conmutador en dos posiciones</title>
+            <desc id="g36ad">Una espira con un anillo partido y dos escobillas fijas, en dos posiciones separadas media vuelta. Aunque la polaridad de la espira se invierte, la corriente por la carga conserva el sentido.</desc>
+            <text class="fg-t fg-b fg-c" x="175" y="20">θ = 90° · ε > 0</text>
+            <path class="fg-acc" d="M123.0 150.0 L227.0 150.0" style="stroke-width:3.5"/>
+            <path d="M170.8 173.6 A24 24 0 0 1 170.8 126.4" class="fg-acc" style="stroke-width:9;stroke-linecap:butt;"/><path d="M179.2 126.4 A24 24 0 0 1 179.2 173.6" class="fg-neg" style="stroke-width:9;stroke-linecap:butt;"/>
+            <circle cx="123.0" cy="150.0" r="7" class="fg-fill-acc"/><text class="fg-c fg-b" x="123.0" y="154.0" font-size="10" fill="#fff">A</text>
+            <circle cx="227.0" cy="150.0" r="7" class="fg-fill-neg"/><text class="fg-c fg-b" x="227.0" y="154.0" font-size="10" fill="#fff">B</text>
+            <circle cx="175" cy="150" r="3" class="fg-fill-wire"/>
+            <rect x="133" y="144" width="14" height="12" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><rect x="203" y="144" width="14" height="12" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/>
+            <path class="fg-line" d="M133 150 H95 V70 H143 M217 150 H255 V70 H207"/>
+            <path class="fg-line" d="M143 70 l7 0 l7 -9 l12 18 l12 -18 l12 18 l7 -9 l7 0" style="stroke-width:2.2"/>
+            <text class="fg-b" x="121" y="138" font-size="16" style="fill:var(--charge-pos)">+</text><text class="fg-b" x="223" y="138" font-size="16" style="fill:var(--charge-neg)">−</text>
+            <path class="fg-pos" d="M155 46 H195 M187 41 L196 46 L187 51" style="stroke-width:2.2"/><text class="fg-m fg-c" x="175" y="38" style="fill:var(--charge-pos)">i</text>
+            <text class="fg-m fg-c" x="175" y="228">A toca la escobilla izquierda (+)</text><text class="fg-m fg-c" x="175" y="246">la tensión de la bobina es positiva</text>
+            <text class="fg-t fg-b fg-c" x="525" y="20">θ = 270° · ε < 0</text>
+            <path class="fg-acc" d="M577.0 150.0 L473.0 150.0" style="stroke-width:3.5"/>
+            <path d="M529.2 126.4 A24 24 0 0 1 529.2 173.6" class="fg-acc" style="stroke-width:9;stroke-linecap:butt;"/><path d="M520.8 173.6 A24 24 0 0 1 520.8 126.4" class="fg-neg" style="stroke-width:9;stroke-linecap:butt;"/>
+            <circle cx="577.0" cy="150.0" r="7" class="fg-fill-acc"/><text class="fg-c fg-b" x="577.0" y="154.0" font-size="10" fill="#fff">A</text>
+            <circle cx="473.0" cy="150.0" r="7" class="fg-fill-neg"/><text class="fg-c fg-b" x="473.0" y="154.0" font-size="10" fill="#fff">B</text>
+            <circle cx="525" cy="150" r="3" class="fg-fill-wire"/>
+            <rect x="483" y="144" width="14" height="12" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/><rect x="553" y="144" width="14" height="12" style="fill:var(--surface);stroke:var(--wire);stroke-width:2"/>
+            <path class="fg-line" d="M483 150 H445 V70 H493 M567 150 H605 V70 H557"/>
+            <path class="fg-line" d="M493 70 l7 0 l7 -9 l12 18 l12 -18 l12 18 l7 -9 l7 0" style="stroke-width:2.2"/>
+            <text class="fg-b" x="471" y="138" font-size="16" style="fill:var(--charge-pos)">+</text><text class="fg-b" x="573" y="138" font-size="16" style="fill:var(--charge-neg)">−</text>
+            <path class="fg-pos" d="M505 46 H545 M537 41 L546 46 L537 51" style="stroke-width:2.2"/><text class="fg-m fg-c" x="525" y="38" style="fill:var(--charge-pos)">i</text>
+            <text class="fg-m fg-c" x="525" y="228">A pasó a la escobilla derecha</text><text class="fg-m fg-c" x="525" y="246">la bobina invirtió su polaridad… y las conexiones también</text>
+            <path class="fg-dash" d="M350 20 V240"/>
+          </svg>
+          <figcaption><strong>A media vuelta la espira invierte su polaridad, y el conmutador invierte las conexiones.</strong> La carga ve siempre el mismo sentido de corriente: es continua, aunque pulsante.</figcaption>
+        </figure>
+        <p>La tensión que ve la carga es el <strong>valor absoluto</strong> de la senoide: <span class="eq">v = |V<sub>p</sub> · sen θ|</span>. Es unidireccional, pero cae a cero dos veces por vuelta y su promedio es <span class="eq">2/π ≈ 0,64</span> del pico: continua, pero muy “ondulada”.</p>
+      </section>
+
+      <section>
+        <h2 id="alisado">Alisar la salida: más bobinas, más delgas</h2>
+        <p>Ya se vio en el capítulo <a class="xref" href="07-diodos-led.html#alisado">7</a> que un capacitor alisa la salida de un rectificador. El equivalente mecánico es poner <strong>varias bobinas</strong> en el rotor, giradas unas respecto de otras, con un conmutador de más delgas. En cada instante las escobillas toman la bobina que tenga más tensión, y la salida nunca baja mucho:</p>
+        <p class="equation"><span class="eq">V<sub>mín</sub> / V<sub>p</sub> = cos(π / 2n)</span> &nbsp;&nbsp; <span class="eq">ondulación = 1 − cos(π / 2n)</span></p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 225" role="img" aria-labelledby="g36bt g36bd">
+            <title id="g36bt">Salida del conmutador con una, dos y cuatro bobinas</title>
+            <desc id="g36bd">Tres gráficas de la tensión rectificada: con una bobina cae a cero cada media vuelta; con dos baja hasta el 71 por ciento; con cuatro, hasta el 92 por ciento del pico.</desc>
+            <path class="fg-thin" d="M30 165 H220 M30 165 V80"/>
+            <path class="fg-acc" d="M30.0 165.0 L32.0 155.9 L34.0 146.9 L35.9 138.2 L37.9 130.0 L39.9 122.4 L41.9 115.5 L43.9 109.5 L45.8 104.4 L47.8 100.3 L49.8 97.4 L51.8 95.6 L53.8 95.0 L55.7 95.6 L57.7 97.4 L59.7 100.3 L61.7 104.4 L63.6 109.5 L65.6 115.5 L67.6 122.4 L69.6 130.0 L71.6 138.2 L73.5 146.9 L75.5 155.9 L77.5 165.0 L79.5 155.9 L81.5 146.9 L83.4 138.2 L85.4 130.0 L87.4 122.4 L89.4 115.5 L91.4 109.5 L93.3 104.4 L95.3 100.3 L97.3 97.4 L99.3 95.6 L101.3 95.0 L103.2 95.6 L105.2 97.4 L107.2 100.3 L109.2 104.4 L111.1 109.5 L113.1 115.5 L115.1 122.4 L117.1 130.0 L119.1 138.2 L121.0 146.9 L123.0 155.9 L125.0 165.0 L127.0 155.9 L129.0 146.9 L130.9 138.2 L132.9 130.0 L134.9 122.4 L136.9 115.5 L138.9 109.5 L140.8 104.4 L142.8 100.3 L144.8 97.4 L146.8 95.6 L148.8 95.0 L150.7 95.6 L152.7 97.4 L154.7 100.3 L156.7 104.4 L158.6 109.5 L160.6 115.5 L162.6 122.4 L164.6 130.0 L166.6 138.2 L168.5 146.9 L170.5 155.9 L172.5 165.0 L174.5 155.9 L176.5 146.9 L178.4 138.2 L180.4 130.0 L182.4 122.4 L184.4 115.5 L186.4 109.5 L188.3 104.4 L190.3 100.3 L192.3 97.4 L194.3 95.6 L196.3 95.0 L198.2 95.6 L200.2 97.4 L202.2 100.3 L204.2 104.4 L206.1 109.5 L208.1 115.5 L210.1 122.4 L212.1 130.0 L214.1 138.2 L216.0 146.9 L218.0 155.9 L220.0 165.0" style="stroke-width:2.5"/>
+            <text class="fg-t fg-b fg-c" x="125" y="30">1 bobina (2 delgas)</text><text class="fg-m fg-c" x="125" y="188">ondulación 100 %</text><text class="fg-m fg-c" x="125" y="206">cae a cero cada media vuelta</text>
+            <path class="fg-thin" d="M255 165 H445 M255 165 V80"/>
+            <path class="fg-dash" d="M255 115.5 H445"/>
+            <path class="fg-acc" d="M255.0 95.0 L257.0 95.6 L259.0 97.4 L260.9 100.3 L262.9 104.4 L264.9 109.5 L266.9 115.5 L268.9 109.5 L270.8 104.4 L272.8 100.3 L274.8 97.4 L276.8 95.6 L278.8 95.0 L280.7 95.6 L282.7 97.4 L284.7 100.3 L286.7 104.4 L288.6 109.5 L290.6 115.5 L292.6 109.5 L294.6 104.4 L296.6 100.3 L298.5 97.4 L300.5 95.6 L302.5 95.0 L304.5 95.6 L306.5 97.4 L308.4 100.3 L310.4 104.4 L312.4 109.5 L314.4 115.5 L316.4 109.5 L318.3 104.4 L320.3 100.3 L322.3 97.4 L324.3 95.6 L326.3 95.0 L328.2 95.6 L330.2 97.4 L332.2 100.3 L334.2 104.4 L336.1 109.5 L338.1 115.5 L340.1 109.5 L342.1 104.4 L344.1 100.3 L346.0 97.4 L348.0 95.6 L350.0 95.0 L352.0 95.6 L354.0 97.4 L355.9 100.3 L357.9 104.4 L359.9 109.5 L361.9 115.5 L363.9 109.5 L365.8 104.4 L367.8 100.3 L369.8 97.4 L371.8 95.6 L373.8 95.0 L375.7 95.6 L377.7 97.4 L379.7 100.3 L381.7 104.4 L383.6 109.5 L385.6 115.5 L387.6 109.5 L389.6 104.4 L391.6 100.3 L393.5 97.4 L395.5 95.6 L397.5 95.0 L399.5 95.6 L401.5 97.4 L403.4 100.3 L405.4 104.4 L407.4 109.5 L409.4 115.5 L411.4 109.5 L413.3 104.4 L415.3 100.3 L417.3 97.4 L419.3 95.6 L421.3 95.0 L423.2 95.6 L425.2 97.4 L427.2 100.3 L429.2 104.4 L431.1 109.5 L433.1 115.5 L435.1 109.5 L437.1 104.4 L439.1 100.3 L441.0 97.4 L443.0 95.6 L445.0 95.0" style="stroke-width:2.5"/>
+            <text class="fg-t fg-b fg-c" x="350" y="30">2 bobinas (4 delgas)</text><text class="fg-m fg-c" x="350" y="188">ondulación 29 %</text><text class="fg-m fg-c" x="350" y="206">mínimo: cos 45° = 0,71</text>
+            <path class="fg-thin" d="M480 165 H670 M480 165 V80"/>
+            <path class="fg-dash" d="M480 100.3 H670"/>
+            <path class="fg-acc" d="M480.0 95.0 L482.0 95.6 L484.0 97.4 L485.9 100.3 L487.9 97.4 L489.9 95.6 L491.9 95.0 L493.9 95.6 L495.8 97.4 L497.8 100.3 L499.8 97.4 L501.8 95.6 L503.8 95.0 L505.7 95.6 L507.7 97.4 L509.7 100.3 L511.7 97.4 L513.6 95.6 L515.6 95.0 L517.6 95.6 L519.6 97.4 L521.6 100.3 L523.5 97.4 L525.5 95.6 L527.5 95.0 L529.5 95.6 L531.5 97.4 L533.4 100.3 L535.4 97.4 L537.4 95.6 L539.4 95.0 L541.4 95.6 L543.3 97.4 L545.3 100.3 L547.3 97.4 L549.3 95.6 L551.3 95.0 L553.2 95.6 L555.2 97.4 L557.2 100.3 L559.2 97.4 L561.1 95.6 L563.1 95.0 L565.1 95.6 L567.1 97.4 L569.1 100.3 L571.0 97.4 L573.0 95.6 L575.0 95.0 L577.0 95.6 L579.0 97.4 L580.9 100.3 L582.9 97.4 L584.9 95.6 L586.9 95.0 L588.9 95.6 L590.8 97.4 L592.8 100.3 L594.8 97.4 L596.8 95.6 L598.8 95.0 L600.7 95.6 L602.7 97.4 L604.7 100.3 L606.7 97.4 L608.6 95.6 L610.6 95.0 L612.6 95.6 L614.6 97.4 L616.6 100.3 L618.5 97.4 L620.5 95.6 L622.5 95.0 L624.5 95.6 L626.5 97.4 L628.4 100.3 L630.4 97.4 L632.4 95.6 L634.4 95.0 L636.4 95.6 L638.3 97.4 L640.3 100.3 L642.3 97.4 L644.3 95.6 L646.3 95.0 L648.2 95.6 L650.2 97.4 L652.2 100.3 L654.2 97.4 L656.1 95.6 L658.1 95.0 L660.1 95.6 L662.1 97.4 L664.1 100.3 L666.0 97.4 L668.0 95.6 L670.0 95.0" style="stroke-width:2.5"/>
+            <text class="fg-t fg-b fg-c" x="575" y="30">4 bobinas (8 delgas)</text><text class="fg-m fg-c" x="575" y="188">ondulación 7,6 %</text><text class="fg-m fg-c" x="575" y="206">mínimo: cos 22,5° = 0,92</text>
+            <text class="fg-m fg-e" x="26" y="86">pico</text>
+          </svg>
+          <figcaption><strong>Cada bobina adicional rellena el hueco de las anteriores.</strong> Un motor chico tiene 3 a 7 bobinas; una dínamo grande, decenas o cientos de delgas.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Ondulación según el número de bobinas</caption>
+            <thead><tr><th>Bobinas (n)</th><th>Delgas</th><th>V<sub>mín</sub> / V<sub>p</sub></th><th>Ondulación</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2</td><td>0</td><td>100 %</td></tr>
+              <tr><td>2</td><td>4</td><td>0,707</td><td>29 %</td></tr>
+              <tr><td>4</td><td>8</td><td>0,924</td><td>7,6 %</td></tr>
+              <tr><td>8</td><td>16</td><td>0,981</td><td>1,9 %</td></tr>
+              <tr><td>16</td><td>32</td><td>0,995</td><td>0,5 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="box-title">Una simplificación de la simulación</span>
+          <p>El modelo del laboratorio supone que las escobillas siempre toman la bobina de mayor tensión. En una máquina real, varias bobinas quedan en serie entre las escobillas y se suman: la tensión total es mayor, pero la forma (y el porcentaje de ondulación) es la misma.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="dinamos">Tipos de dínamo y sus límites</h2>
+        <p>El campo de una dínamo puede venir de imanes permanentes (dínamos chicas, motores de juguete) o de un electroimán, el <strong>inductor</strong>, cuya corriente de campo se toma de la propia dínamo. Los dos arreglos clásicos son:</p>
+        <ul>
+          <li><strong>Excitación en derivación (<em>shunt</em>):</strong> el campo se conecta en paralelo con la salida. La dínamo arranca gracias al <em>magnetismo remanente</em> del hierro: ese débil campo induce una pequeña tensión, que alimenta el campo, que refuerza la tensión, y así crece hasta estabilizarse.</li>
+          <li><strong>Excitación en serie:</strong> el campo se conecta en serie con la carga: a más corriente, más campo y más tensión. Se la usa más en motores de tracción que en generadores.</li>
+        </ul>
+        <p>La dínamo tiene el mismo comportamiento ante la carga que cualquier generador (capítulo <a class="xref" href="34-carga-y-campo.html">34</a>): la corriente crea un par de frenado y un campo propio que distorsiona el principal (reacción de inducido), lo que la hace saltar chispas en las escobillas si no se la compensa. Con el tiempo, el conmutador y las escobillas, que llevan toda la potencia, <strong>se desgastan</strong>, producen chispas y limitan la tensión y la corriente. Por eso en los autos la dínamo fue reemplazada, hacia los años sesenta, por el alternador con diodos (capítulo <a class="xref" href="35-alternadores.html#fuentes">35</a>), más liviano, más robusto y que carga bien incluso al ralentí.</p>
+      </section>
+
+      <section>
+        <h2 id="reversible">Un motor es un generador al revés</h2>
+        <p>El conmutador, las bobinas y el imán son los mismos en un motor y en un generador, y por eso <strong>la máquina de continua es reversible</strong>:</p>
+        <ul>
+          <li>Como <strong>generador</strong>: se la hace girar (con una turbina, un taladro) y entrega tensión. Cuando circula corriente aparece un par de frenado (capítulo <a class="xref" href="34-carga-y-campo.html">34</a>).</li>
+          <li>Como <strong>motor</strong>: se le aplica una tensión, circula corriente por el inducido y aparece un par que la hace girar. Y al girar, las bobinas cortan el campo y <em>generan</em> una tensión, la <strong>fuerza contraelectromotriz</strong> (fcem), que se opone a la tensión aplicada.</li>
+        </ul>
+        <figure class="figure">
+          <svg viewBox="0 0 700 240" role="img" aria-labelledby="g36ct g36cd">
+            <title id="g36ct">Una máquina de continua como motor y como generador</title>
+            <desc id="g36cd">Un recuadro central, la máquina de continua. Como motor, entra electricidad y sale giro. Como generador, entra giro y sale electricidad.</desc>
+            <rect class="fg-box" x="260" y="60" width="180" height="104" rx="6"/>
+            <text class="fg-t fg-b fg-c" x="350" y="90">Máquina de CC</text>
+            <text class="fg-m fg-c" x="350" y="114">tensión inducida E = k<tspan dy="3" font-size="9">e</tspan><tspan dy="-3"> · ω</tspan></text>
+            <text class="fg-m fg-c" x="350" y="134">par τ = k<tspan dy="3" font-size="9">t</tspan><tspan dy="-3"> · I</tspan></text>
+            <text class="fg-m fg-c" x="350" y="152" font-size="11.5">(en el SI k<tspan dy="3" font-size="8">e</tspan><tspan dy="-3"> = k</tspan><tspan dy="3" font-size="8">t</tspan><tspan dy="-3">)</tspan></text>
+            <text class="fg-t fg-b" x="30" y="30" style="fill:var(--accent)">Como motor</text>
+            <path class="fg-acc" d="M40 92 H254 M244 86 L254 92 L244 98" style="stroke-width:3"/>
+            <text class="fg-m" x="40" y="82">entra electricidad (V, I)</text>
+            <path class="fg-acc" d="M446 92 H660 M650 86 L660 92 L650 98" style="stroke-width:3"/>
+            <text class="fg-m fg-e" x="660" y="82">sale giro (τ, ω)</text>
+            <text class="fg-t fg-b" x="30" y="206" style="fill:var(--good)">Como generador</text>
+            <path class="fg-good" d="M660 134 H446 M456 128 L446 134 L456 140" style="stroke-width:3"/>
+            <text class="fg-m fg-e" x="660" y="158">entra giro (turbina, taladro)</text>
+            <path class="fg-good" d="M254 134 H40 M50 128 L40 134 L50 140" style="stroke-width:3"/>
+            <text class="fg-m" x="40" y="158">sale electricidad a la carga</text>
+            <text class="fg-m fg-c" x="350" y="196">Motor: V = E + I · R<tspan dy="3" font-size="9">a</tspan><tspan dy="-3">   ·   Generador: V = E − I · R</tspan><tspan dy="3" font-size="9">a</tspan></text>
+            <text class="fg-m fg-c" x="350" y="216">(R<tspan dy="3" font-size="9">a</tspan><tspan dy="-3"> es la resistencia del inducido)</tspan></text>
+          </svg>
+          <figcaption><strong>Es la misma máquina con la energía en sentido contrario.</strong> E depende solo de la velocidad; la corriente I y su par son las que cambian de sentido de transferencia.</figcaption>
+        </figure>
+        <p>Esto explica por qué un motor que arranca consume mucha corriente (con ω = 0 no hay fcem y <span class="eq">I = V / R<sub>a</sub></span>) y a medida que acelera la corriente baja (<span class="eq">I = (V − E) / R<sub>a</sub></span>), y también por qué <strong>un motor se puede usar como generador</strong>: si se lo hace girar, su fcem aparece en los bornes. Los motores de juguete, de ventiladores o de impresoras son generadores de bajo costo.</p>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: un motor de juguete como generador</span>
+          <p>Un motor de 3 V gira sin carga a 6000 rpm con una corriente de 0,1 A. Su inducido tiene <em>R<sub>a</sub></em> = 2 Ω. Se lo gira con un taladro a 3000 rpm y se conecta a una carga de 10 Ω. ¿Qué entrega?</p>
+          <ol>
+            <li>Constante del motor: sin carga, <span class="eq">E = V − I·R<sub>a</sub> = 3 − 0,1 · 2 = 2,8 V</span> a <span class="eq">ω = 628 rad/s</span>, entonces <span class="eq">k<sub>e</sub> = 2,8 / 628 = 4,46 mV·s/rad</span>.</li>
+            <li>Como generador a 3000 rpm (<span class="eq">ω = 314 rad/s</span>): <span class="eq">E = 4,46 mV·s/rad · 314 = 1,40 V</span> en vacío.</li>
+            <li>Con la carga de 10 Ω: <span class="eq">I = 1,40 / (10 + 2) = 0,117 A</span>; tensión en la carga <span class="eq">V = 0,117 · 10 = 1,17 V</span>; potencia útil <span class="eq">P = 1,17 · 0,117 = 0,137 W</span>.</li>
+            <li>El par de frenado es <span class="eq">τ = k<sub>t</sub> · I = 4,46 mV·s/rad · 0,117 A = 0,52 mN·m</span> (el mismo valor numérico para k<sub>e</sub> y k<sub>t</sub> en unidades del SI). La potencia mecánica es <span class="eq">τ · ω = 0,164 W</span>, igual a 0,137 W en la carga más <span class="eq">I² · R<sub>a</sub> = 0,027 W</span> perdidos en el inducido.</li>
+          </ol>
+        </div>
+        <div class="note">
+          <span class="box-title">Frenado dinámico y regenerativo</span>
+          <p>Si se unen los bornes de un motor que gira (con una resistencia, o en cortocircuito), la fcem hace circular corriente, el par que aparece frena el rotor y la energía cinética se disipa en el inducido y la resistencia. Es el <strong>frenado dinámico</strong> de trenes y grúas. Si en lugar de una resistencia se conecta una batería, esa energía se recupera (<strong>frenado regenerativo</strong>), como en los autos eléctricos e híbridos.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>En la vida real</h2>
+        <div class="example">
+          <span class="box-title">El motor de arranque del auto</span>
+          <p>Es un motor de continua en serie, de pocos miliohms de resistencia de inducido. Al girar la llave, con ω = 0, no hay fcem y la corriente es enorme (cientos de amperes) hasta que el motor acelera. Por eso hace caer momentáneamente la tensión de la batería, y por eso las luces parpadean al arrancar.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Un taladro o una licuadora universal</span>
+          <p>Los motores con escobillas, muy usados en herramientas manuales, llevan un conmutador de muchas delgas (como el de la simulación): las chispas que se ven por las ranuras de ventilación al usar un taladro son los saltos de las escobillas entre una delga y otra.</p>
+        </div>
+        <div class="example">
+          <span class="box-title">Motores sin escobillas (BLDC)</span>
+          <p>Los ventiladores de computadora y los drones usan el esquema inverso: las bobinas quedan fijas y el imán gira, y un circuito electrónico hace la tarea del conmutador, invirtiendo las corrientes en el momento justo. Se evita el desgaste mecánico, a cambio de agregar electrónica.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con <strong>Anillos</strong> y 1 bobina la tensión de la carga es alterna: el promedio es cero. Mirá cómo cambia el sentido de la corriente (electrones) en la carga cada media vuelta.</li>
+          <li>Pasá a <strong>Conmutador</strong> con 1 bobina: la corriente siempre tiene el mismo sentido, pero la tensión cae a cero cada media vuelta. El promedio (línea verde) es 0,64 del pico.</li>
+          <li>Subí a 2, 4, 8 y 16 bobinas: la ondulación baja de 100 % a 29 %, 7,6 %, 1,9 % y 0,5 %. El promedio sube hacia el pico.</li>
+          <li>Con 1 bobina, duplicá las rpm: la tensión pico y el promedio se duplican, y las pulsaciones son el doble de frecuentes.</li>
+          <li>Probá cargas de 1 Ω y 50 Ω: con la carga chica la tensión en la carga cae mucho respecto de la fem (la resistencia del inducido de 1 Ω se lleva la mitad); con la grande casi no cae.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/dynamo.js"></script>
+  <script src="../js/quizzes/36-dinamo-cc.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>

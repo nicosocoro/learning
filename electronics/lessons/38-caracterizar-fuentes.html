@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medir y comparar fuentes: el banco de pruebas · Elementos de Electrónica</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/lesson.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body data-lesson="38-caracterizar-fuentes" data-base="../">
+  <header data-masthead></header>
+
+  <main class="page">
+    <article class="chapter">
+      <header class="chapter-head">
+        <p class="chapter-kicker">Capítulo 38</p>
+        <h1>Medir y comparar fuentes: el banco de pruebas</h1>
+        <p class="lead">La etiqueta de una fuente dice una tensión, pero no cuánta potencia puede entregar ni cómo se comporta al cargarla. Este capítulo reúne un protocolo único para caracterizar cualquier fuente (de continua o de alterna) y cierra la parte comparando todas las que se estudiaron.</p>
+      </header>
+      <section>
+        <h2 id="que-medir">Qué hay que saber de una fuente</h2>
+        <p>Para elegir o diagnosticar una fuente alcanzan cuatro datos, que se obtienen todos con el multímetro y unos pocos resistores:</p>
+        <ul>
+          <li><strong>Tensión en vacío (V<sub>oc</sub>):</strong> la fem de la fuente, sin carga (capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>).</li>
+          <li><strong>Resistencia interna (r):</strong> cuánto cae la tensión al cargarla. Una fuente “rígida” tiene r pequeña.</li>
+          <li><strong>Curva tensión–corriente (V–I):</strong> si es una recta (pila, módulo termoeléctrico), una curva con “codo” (panel solar) o una elipse (generador con mucha reactancia, como una dínamo de bicicleta). La resistencia interna solo es un número fijo en el primer caso.</li>
+          <li><strong>Potencia máxima y rendimiento:</strong> cuánto puede entregar y qué parte se pierde dentro de la propia fuente (capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>).</li>
+        </ul>
+        <p>Para fuentes de alterna se agregan dos más: la <strong>frecuencia</strong> y la <strong>forma de onda</strong>. Para fuentes rectificadas, la <strong>ondulación</strong> (cuánto varía la tensión de continua).</p>
+      </section>
+
+      <section>
+        <h2 id="banco">Armar el banco de pruebas</h2>
+        <p>Una carga variable es la clave. Puede ser un <strong>potenciómetro de potencia</strong> (un reóstato), una <strong>década de resistores</strong> que se van conectando, o una carga electrónica (una fuente de corriente ajustable, que se compra armada). Los resistores tienen que soportar la potencia: con 3 A y 10 Ω se disipan 90 W, mucho más que un resistor de 1/4 W (capítulo <a class="xref" href="28-hoja-de-datos.html">28</a>).</p>
+        <figure class="figure">
+          <svg viewBox="0 0 700 235" role="img" aria-labelledby="g38at g38ad">
+            <title id="g38at">Conexión de un banco de pruebas de una fuente</title>
+            <desc id="g38ad">Una fuente con un voltímetro conectado directamente a sus bornes, cables de potencia con resistencia propia, un amperímetro en serie, una carga variable y un segundo voltímetro sobre la carga.</desc>
+            <path class="fg-line" d="M100 60 V96 M100 108 V160"/>
+            <path class="fg-line" d="M84 96 H116" style="stroke-width:3.5"/><path class="fg-line" d="M90 108 H110" style="stroke-width:3.5"/>
+            <text class="fg-b" x="122" y="94" font-size="15" style="fill:var(--charge-pos)">+</text><text class="fg-b" x="122" y="118" font-size="16" style="fill:var(--charge-neg)">−</text>
+            <text class="fg-t fg-b fg-c" x="100" y="184">fuente (E, r)</text>
+            <path class="fg-thin" d="M100 60 H40 V92 M40 128 V160 H100" style="stroke-width:1.6"/>
+            <circle cx="40" cy="110" r="17" class="fg-box"/><text class="fg-t fg-b fg-c" x="40" y="116" font-size="15">V</text>
+            <text class="fg-m" x="10" y="204">V₁: en los bornes,</text><text class="fg-m" x="10" y="220">con cables propios</text>
+            <path class="fg-line" d="M100 60 H160 l6 0 l6 -9 l10 18 l10 -18 l10 18 l6 -9 l6 0 H312 M330 60 H560 V84"/>
+            <circle cx="321" cy="60" r="17" class="fg-box"/><text class="fg-t fg-b fg-c" x="321" y="66" font-size="15">A</text>
+            <path class="fg-line" d="M100 160 H160 l6 0 l6 -9 l10 18 l10 -18 l10 18 l6 -9 l6 0 H560 V136"/>
+            <text class="fg-m fg-c" x="214" y="40">cables de potencia, con resistencia r<tspan dy="3" font-size="9">c</tspan></text>
+            <path class="fg-line" d="M560 84 l9 6 l-18 10 l18 10 l-18 10 l9 6" style="stroke-width:2.2"/>
+            <path class="fg-bad" d="M538 140 L582 80 M572 82 L584 78 L580 90" style="stroke-width:2"/>
+            <text class="fg-t fg-b fg-c" x="560" y="184">carga variable</text>
+            <path class="fg-thin" d="M560 60 H640 V92 M640 128 V160 H560" style="stroke-width:1.6"/>
+            <circle cx="640" cy="110" r="17" class="fg-box"/><text class="fg-t fg-b fg-c" x="640" y="116" font-size="15">V</text>
+            <text class="fg-m fg-c" x="640" y="216">V₂: en la carga</text>
+            <text class="fg-m fg-c" x="350" y="210">V₂ = V₁ − I · 2r<tspan dy="3" font-size="9">c</tspan><tspan dy="-3">: la caída en los cables no es de la fuente</tspan></text>
+          </svg>
+          <figcaption><strong>El voltímetro de la fuente se conecta con cables propios, directo a los bornes.</strong> Si se mide al final de los cables de potencia se incluye su caída I·r<sub>c</sub> y la fuente parece peor de lo que es.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2 id="protocolo">El protocolo en seis pasos</h2>
+        <ol>
+          <li><strong>Tensión en vacío.</strong> Medí V<sub>oc</sub> con la carga desconectada.</li>
+          <li><strong>Elegir una corriente de prueba.</strong> Para que la caída interna sea medible, conviene que la carga sea del orden de <em>r</em> o menor (idealmente una corriente que no pase del 30 a 50 % de la que la fuente aguanta).</li>
+          <li><strong>Medir V e I con la carga conectada.</strong> Con un voltímetro en los bornes (<em>V<sub>1</sub></em>) y un amperímetro en serie; si no hay amperímetro, <span class="eq">I = V / R</span>.</li>
+          <li><strong>Calcular r.</strong> Con la fórmula de un solo punto <span class="eq">r = (V<sub>oc</sub> − V) / I</span>, o mejor, con <em>dos</em> cargas: <span class="eq">r = (V<sub>1</sub> − V<sub>2</sub>) / (I<sub>2</sub> − I<sub>1</sub>)</span>, que además sirve para fuentes no lineales (da la pendiente local de la curva).</li>
+          <li><strong>Barrer la carga</strong> de abierto a casi cortocircuito en 6 a 10 pasos y graficar V contra I, y P = V·I contra I.</li>
+          <li><strong>Anotar condiciones</strong>: temperatura, luz (en un panel), velocidad (en un generador mecánico), estado de carga (en una pila). Una fuente cambia de un día para otro.</li>
+        </ol>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Hoja de laboratorio (para completar)</caption>
+            <thead><tr><th>R (Ω)</th><th>V (V)</th><th>I = V/R (A)</th><th>P = V·I (W)</th><th>η = V/V<sub>oc</sub></th><th>r aparente</th></tr></thead>
+            <tbody>
+              <tr><td>∞ (abierto)</td><td>V<sub>oc</sub> = …</td><td>0</td><td>0</td><td>100 %</td><td>—</td></tr>
+              <tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: r por dos cargas</span>
+          <p>Una pila usada da 1,52 V en vacío, 1,43 V con una carga de 10 Ω y 1,19 V con una de 2,2 Ω. ¿Cuánto vale su resistencia interna?</p>
+          <ol>
+            <li>Corrientes: <span class="eq">I<sub>1</sub> = 1,43 / 10 = 0,143 A</span> e <span class="eq">I<sub>2</sub> = 1,19 / 2,2 = 0,541 A</span>.</li>
+            <li>Con dos cargas: <span class="eq">r = (1,43 − 1,19) / (0,541 − 0,143) = 0,24 / 0,398 ≈ 0,60 Ω</span>.</li>
+            <li>Con un solo punto y V<sub>oc</sub>: <span class="eq">r = (1,52 − 1,19) / 0,541 = 0,61 Ω</span> y <span class="eq">r = (1,52 − 1,43) / 0,143 = 0,63 Ω</span>. Los tres valores coinciden: es una fuente lineal.</li>
+            <li>Corriente de cortocircuito teórica: <span class="eq">1,52 / 0,6 ≈ 2,5 A</span>; potencia máxima <span class="eq">E²/(4r) = 2,31/2,4 ≈ 0,96 W</span> con R = 0,6 Ω (no se hace así con una pila: se calienta, capítulo <a class="xref" href="30-fuentes-cc.html#modelo">30</a>).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="errores">Cómo se arruina una medición</h2>
+        <ul>
+          <li><strong>Resolución del instrumento.</strong> Si la caída interna es menor que la resolución del voltímetro, el cálculo no tiene sentido. Una pila AA nueva (<em>r</em> ≈ 0,25 Ω) con una carga de 100 Ω pierde solo 4 mV; con un voltímetro de 10 mV de resolución el resultado es “0 Ω”. Con una carga de 4,7 Ω la caída es de unos 76 mV y el error baja a pocos %.</li>
+          <li><strong>Cables.</strong> Con 3 A, dos cables de 0,1 Ω cada uno pierden 0,6 V: más que la caída interna de la pila. Se lo evita midiendo con cables propios (como en la figura).</li>
+          <li><strong>La fuente cambia mientras se mide.</strong> Una pila se calienta o se descarga, un panel cambia con una nube, un generador cambia con la velocidad: medir rápido y en el mismo orden.</li>
+          <li><strong>Usar la fórmula de r en una fuente no lineal.</strong> En un panel solar, la resistencia aparente cambia de punto a punto (de poca en la zona de corriente constante, a grande cerca del codo). Lo que se mide es una pendiente local.</li>
+        </ul>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: el error de r con un voltímetro de 10 mV</span>
+          <p>Una pila AA tiene E = 1,50 V y r = 0,25 Ω. Se la prueba con dos cargas, midiendo la tensión con un voltímetro de 10 mV de resolución. ¿Qué r se obtiene?</p>
+          <ol>
+            <li><strong>Carga de 100 Ω:</strong> <span class="eq">I = 1,5 / 100,25 = 14,96 mA</span>, la tensión real es <span class="eq">1,4963 V</span> y el voltímetro lee <strong>1,50 V</strong>. Entonces <span class="eq">r = (1,50 − 1,50) / 0,015 = 0</span>: el resultado es inútil.</li>
+            <li><strong>Carga de 4,7 Ω:</strong> <span class="eq">I = 1,5 / 4,95 = 0,303 A</span>, la tensión real es <span class="eq">1,424 V</span> y el voltímetro lee <strong>1,42 V</strong>. Con ese valor, <span class="eq">I = 1,42 / 4,7 = 0,302 A</span> y <span class="eq">r = (1,50 − 1,42) / 0,302 ≈ 0,265 Ω</span>: un error de unos 6 % respecto de 0,25 Ω.</li>
+            <li>La lección: <em>para medir una resistencia interna chica hay que pedirle a la fuente una corriente grande</em>.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="comparar">Comparar las curvas: tres comportamientos</h2>
+        <figure class="figure">
+          <svg viewBox="0 0 700 245" role="img" aria-labelledby="g38bt g38bd">
+            <title id="g38bt">Curvas tensión–corriente y potencia de tres tipos de fuente</title>
+            <desc id="g38bd">A la izquierda, la tensión en función de la corriente: una recta para una pila, una curva con codo para un panel solar y un cuarto de elipse para un generador con mucha reactancia. A la derecha, la potencia de cada una.</desc>
+            <path class="fg-thin" d="M40 190 H310 M40 190 V50"/>
+            <path class="fg-acc" d="M40.0 55.0 L41.7 55.8 L43.4 56.7 L45.1 57.5 L46.8 58.4 L48.4 59.2 L50.1 60.1 L51.8 60.9 L53.5 61.8 L55.2 62.6 L56.9 63.4 L58.6 64.3 L60.3 65.1 L61.9 66.0 L63.6 66.8 L65.3 67.7 L67.0 68.5 L68.7 69.3 L70.4 70.2 L72.1 71.0 L73.8 71.9 L75.4 72.7 L77.1 73.6 L78.8 74.4 L80.5 75.3 L82.2 76.1 L83.9 76.9 L85.6 77.8 L87.3 78.6 L88.9 79.5 L90.6 80.3 L92.3 81.2 L94.0 82.0 L95.7 82.8 L97.4 83.7 L99.1 84.5 L100.8 85.4 L102.4 86.2 L104.1 87.1 L105.8 87.9 L107.5 88.8 L109.2 89.6 L110.9 90.4 L112.6 91.3 L114.3 92.1 L115.9 93.0 L117.6 93.8 L119.3 94.7 L121.0 95.5 L122.7 96.3 L124.4 97.2 L126.1 98.0 L127.8 98.9 L129.4 99.7 L131.1 100.6 L132.8 101.4 L134.5 102.3 L136.2 103.1 L137.9 103.9 L139.6 104.8 L141.3 105.6 L142.9 106.5 L144.6 107.3 L146.3 108.2 L148.0 109.0 L149.7 109.8 L151.4 110.7 L153.1 111.5 L154.8 112.4 L156.4 113.2 L158.1 114.1 L159.8 114.9 L161.5 115.8 L163.2 116.6 L164.9 117.4 L166.6 118.3 L168.3 119.1 L169.9 120.0 L171.6 120.8 L173.3 121.7 L175.0 122.5 L176.7 123.3 L178.4 124.2 L180.1 125.0 L181.8 125.9 L183.4 126.7 L185.1 127.6 L186.8 128.4 L188.5 129.3 L190.2 130.1 L191.9 130.9 L193.6 131.8 L195.3 132.6 L196.9 133.5 L198.6 134.3 L200.3 135.2 L202.0 136.0 L203.7 136.8 L205.4 137.7 L207.1 138.5 L208.8 139.4 L210.4 140.2 L212.1 141.1 L213.8 141.9 L215.5 142.8 L217.2 143.6 L218.9 144.4 L220.6 145.3 L222.3 146.1 L223.9 147.0 L225.6 147.8 L227.3 148.7 L229.0 149.5 L230.7 150.3 L232.4 151.2 L234.1 152.0 L235.8 152.9 L237.4 153.7 L239.1 154.6 L240.8 155.4 L242.5 156.3 L244.2 157.1 L245.9 157.9 L247.6 158.8 L249.3 159.6 L250.9 160.5 L252.6 161.3 L254.3 162.2 L256.0 163.0 L257.7 163.8 L259.4 164.7 L261.1 165.5 L262.8 166.4 L264.4 167.2 L266.1 168.1 L267.8 168.9 L269.5 169.8 L271.2 170.6 L272.9 171.4 L274.6 172.3 L276.3 173.1 L277.9 174.0 L279.6 174.8 L281.3 175.7 L283.0 176.5 L284.7 177.3 L286.4 178.2 L288.1 179.0 L289.8 179.9 L291.4 180.7 L293.1 181.6 L294.8 182.4 L296.5 183.3 L298.2 184.1 L299.9 184.9 L301.6 185.8 L303.3 186.6 L304.9 187.5 L306.6 188.3 L308.3 189.2 L310.0 189.9"/>
+            <path class="fg-pos" d="M40.0 55.0 L41.7 55.0 L43.4 55.1 L45.1 55.1 L46.8 55.2 L48.4 55.2 L50.1 55.3 L51.8 55.3 L53.5 55.4 L55.2 55.4 L56.9 55.5 L58.6 55.5 L60.3 55.6 L61.9 55.6 L63.6 55.7 L65.3 55.7 L67.0 55.8 L68.7 55.8 L70.4 55.9 L72.1 56.0 L73.8 56.0 L75.4 56.1 L77.1 56.1 L78.8 56.2 L80.5 56.2 L82.2 56.3 L83.9 56.3 L85.6 56.4 L87.3 56.4 L88.9 56.5 L90.6 56.6 L92.3 56.6 L94.0 56.7 L95.7 56.7 L97.4 56.8 L99.1 56.9 L100.8 56.9 L102.4 57.0 L104.1 57.0 L105.8 57.1 L107.5 57.2 L109.2 57.2 L110.9 57.3 L112.6 57.4 L114.3 57.4 L115.9 57.5 L117.6 57.5 L119.3 57.6 L121.0 57.7 L122.7 57.7 L124.4 57.8 L126.1 57.9 L127.8 58.0 L129.4 58.0 L131.1 58.1 L132.8 58.2 L134.5 58.2 L136.2 58.3 L137.9 58.4 L139.6 58.5 L141.3 58.5 L142.9 58.6 L144.6 58.7 L146.3 58.8 L148.0 58.8 L149.7 58.9 L151.4 59.0 L153.1 59.1 L154.8 59.2 L156.4 59.2 L158.1 59.3 L159.8 59.4 L161.5 59.5 L163.2 59.6 L164.9 59.7 L166.6 59.8 L168.3 59.8 L169.9 59.9 L171.6 60.0 L173.3 60.1 L175.0 60.2 L176.7 60.3 L178.4 60.4 L180.1 60.5 L181.8 60.6 L183.4 60.7 L185.1 60.8 L186.8 60.9 L188.5 61.0 L190.2 61.1 L191.9 61.2 L193.6 61.3 L195.3 61.4 L196.9 61.5 L198.6 61.7 L200.3 61.8 L202.0 61.9 L203.7 62.0 L205.4 62.1 L207.1 62.2 L208.8 62.4 L210.4 62.5 L212.1 62.6 L213.8 62.8 L215.5 62.9 L217.2 63.0 L218.9 63.2 L220.6 63.3 L222.3 63.4 L223.9 63.6 L225.6 63.7 L227.3 63.9 L229.0 64.0 L230.7 64.2 L232.4 64.4 L234.1 64.5 L235.8 64.7 L237.4 64.9 L239.1 65.1 L240.8 65.2 L242.5 65.4 L244.2 65.6 L245.9 65.8 L247.6 66.0 L249.3 66.2 L250.9 66.4 L252.6 66.6 L254.3 66.9 L256.0 67.1 L257.7 67.3 L259.4 67.6 L261.1 67.8 L262.8 68.1 L264.4 68.4 L266.1 68.7 L267.8 69.0 L269.5 69.3 L271.2 69.6 L272.9 69.9 L274.6 70.3 L276.3 70.6 L277.9 71.0 L279.6 71.4 L281.3 71.8 L283.0 72.3 L284.7 72.8 L286.4 73.3 L288.1 73.9 L289.8 74.5 L291.4 75.1 L293.1 75.8 L294.8 76.6 L296.5 77.5 L298.2 78.5 L299.9 79.7 L301.6 81.0 L303.3 82.7 L304.9 84.9 L306.6 87.9 L308.3 93.1 L310.0 112.1"/>
+            <path class="fg-neg" d="M40.0 55.0 L41.7 55.0 L43.4 55.0 L45.1 55.0 L46.8 55.0 L48.4 55.1 L50.1 55.1 L51.8 55.1 L53.5 55.2 L55.2 55.2 L56.9 55.3 L58.6 55.3 L60.3 55.4 L61.9 55.4 L63.6 55.5 L65.3 55.6 L67.0 55.7 L68.7 55.8 L70.4 55.9 L72.1 56.0 L73.8 56.1 L75.4 56.2 L77.1 56.3 L78.8 56.4 L80.5 56.5 L82.2 56.7 L83.9 56.8 L85.6 56.9 L87.3 57.1 L88.9 57.2 L90.6 57.4 L92.3 57.6 L94.0 57.7 L95.7 57.9 L97.4 58.1 L99.1 58.3 L100.8 58.5 L102.4 58.7 L104.1 58.9 L105.8 59.1 L107.5 59.3 L109.2 59.5 L110.9 59.7 L112.6 60.0 L114.3 60.2 L115.9 60.4 L117.6 60.7 L119.3 61.0 L121.0 61.2 L122.7 61.5 L124.4 61.8 L126.1 62.0 L127.8 62.3 L129.4 62.6 L131.1 62.9 L132.8 63.2 L134.5 63.5 L136.2 63.9 L137.9 64.2 L139.6 64.5 L141.3 64.9 L142.9 65.2 L144.6 65.5 L146.3 65.9 L148.0 66.3 L149.7 66.6 L151.4 67.0 L153.1 67.4 L154.8 67.8 L156.4 68.2 L158.1 68.6 L159.8 69.0 L161.5 69.4 L163.2 69.9 L164.9 70.3 L166.6 70.8 L168.3 71.2 L169.9 71.7 L171.6 72.1 L173.3 72.6 L175.0 73.1 L176.7 73.6 L178.4 74.1 L180.1 74.6 L181.8 75.1 L183.4 75.6 L185.1 76.2 L186.8 76.7 L188.5 77.3 L190.2 77.8 L191.9 78.4 L193.6 79.0 L195.3 79.5 L196.9 80.1 L198.6 80.8 L200.3 81.4 L202.0 82.0 L203.7 82.6 L205.4 83.3 L207.1 83.9 L208.8 84.6 L210.4 85.3 L212.1 86.0 L213.8 86.7 L215.5 87.4 L217.2 88.1 L218.9 88.9 L220.6 89.6 L222.3 90.4 L223.9 91.2 L225.6 92.0 L227.3 92.8 L229.0 93.6 L230.7 94.4 L232.4 95.3 L234.1 96.1 L235.8 97.0 L237.4 97.9 L239.1 98.8 L240.8 99.8 L242.5 100.7 L244.2 101.7 L245.9 102.7 L247.6 103.7 L249.3 104.7 L250.9 105.7 L252.6 106.8 L254.3 107.9 L256.0 109.0 L257.7 110.1 L259.4 111.3 L261.1 112.5 L262.8 113.7 L264.4 115.0 L266.1 116.2 L267.8 117.5 L269.5 118.9 L271.2 120.3 L272.9 121.7 L274.6 123.1 L276.3 124.6 L277.9 126.2 L279.6 127.8 L281.3 129.4 L283.0 131.2 L284.7 132.9 L286.4 134.8 L288.1 136.7 L289.8 138.7 L291.4 140.8 L293.1 143.0 L294.8 145.4 L296.5 147.8 L298.2 150.5 L299.9 153.4 L301.6 156.5 L303.3 160.0 L304.9 164.0 L306.6 168.7 L308.3 174.9 L310.0 185.7"/>
+            <text class="fg-t fg-b" x="46" y="34">tensión V / V<tspan dy="3" font-size="9">oc</tspan></text><text class="fg-m fg-e" x="34" y="60">1</text>
+            <text class="fg-m fg-e" x="310" y="210">corriente I / I<tspan dy="3" font-size="9">cc</tspan><tspan dy="-3"> →</tspan></text>
+            <path class="fg-thin" d="M400 190 H670 M400 190 V50"/>
+            <path class="fg-acc" d="M400.0 190.0 L401.7 186.6 L403.4 183.3 L405.1 180.1 L406.8 176.8 L408.4 173.7 L410.1 170.5 L411.8 167.4 L413.5 164.3 L415.2 161.3 L416.9 158.4 L418.6 155.4 L420.3 152.5 L421.9 149.7 L423.6 146.9 L425.3 144.1 L427.0 141.4 L428.7 138.7 L430.4 136.1 L432.1 133.5 L433.8 130.9 L435.4 128.4 L437.1 126.0 L438.8 123.5 L440.5 121.2 L442.2 118.8 L443.9 116.5 L445.6 114.3 L447.3 112.0 L448.9 109.9 L450.6 107.7 L452.3 105.6 L454.0 103.6 L455.7 101.6 L457.4 99.6 L459.1 97.7 L460.8 95.8 L462.4 94.0 L464.1 92.2 L465.8 90.5 L467.5 88.8 L469.2 87.1 L470.9 85.5 L472.6 83.9 L474.3 82.3 L475.9 80.8 L477.6 79.4 L479.3 78.0 L481.0 76.6 L482.7 75.3 L484.4 74.0 L486.1 72.7 L487.8 71.5 L489.4 70.4 L491.1 69.3 L492.8 68.2 L494.5 67.2 L496.2 66.2 L497.9 65.2 L499.6 64.3 L501.3 63.4 L502.9 62.6 L504.6 61.8 L506.3 61.1 L508.0 60.4 L509.7 59.7 L511.4 59.1 L513.1 58.6 L514.8 58.0 L516.4 57.6 L518.1 57.1 L519.8 56.7 L521.5 56.3 L523.2 56.0 L524.9 55.8 L526.6 55.5 L528.3 55.3 L529.9 55.2 L531.6 55.1 L533.3 55.0 L535.0 55.0 L536.7 55.0 L538.4 55.1 L540.1 55.2 L541.8 55.3 L543.4 55.5 L545.1 55.8 L546.8 56.0 L548.5 56.3 L550.2 56.7 L551.9 57.1 L553.6 57.6 L555.3 58.0 L556.9 58.6 L558.6 59.1 L560.3 59.7 L562.0 60.4 L563.7 61.1 L565.4 61.8 L567.1 62.6 L568.8 63.4 L570.4 64.3 L572.1 65.2 L573.8 66.2 L575.5 67.2 L577.2 68.2 L578.9 69.3 L580.6 70.4 L582.3 71.5 L583.9 72.7 L585.6 74.0 L587.3 75.3 L589.0 76.6 L590.7 78.0 L592.4 79.4 L594.1 80.8 L595.8 82.3 L597.4 83.9 L599.1 85.5 L600.8 87.1 L602.5 88.8 L604.2 90.5 L605.9 92.2 L607.6 94.0 L609.3 95.8 L610.9 97.7 L612.6 99.6 L614.3 101.6 L616.0 103.6 L617.7 105.6 L619.4 107.7 L621.1 109.9 L622.8 112.0 L624.4 114.3 L626.1 116.5 L627.8 118.8 L629.5 121.2 L631.2 123.5 L632.9 126.0 L634.6 128.4 L636.3 130.9 L637.9 133.5 L639.6 136.1 L641.3 138.7 L643.0 141.4 L644.7 144.1 L646.4 146.9 L648.1 149.7 L649.8 152.5 L651.4 155.4 L653.1 158.4 L654.8 161.3 L656.5 164.3 L658.2 167.4 L659.9 170.5 L661.6 173.7 L663.3 176.8 L664.9 180.1 L666.6 183.3 L668.3 186.6 L670.0 189.7"/>
+            <path class="fg-pos" d="M400.0 190.0 L401.7 188.9 L403.4 187.9 L405.1 186.8 L406.8 185.7 L408.4 184.7 L410.1 183.6 L411.8 182.6 L413.5 181.5 L415.2 180.5 L416.9 179.4 L418.6 178.3 L420.3 177.3 L421.9 176.2 L423.6 175.2 L425.3 174.1 L427.0 173.1 L428.7 172.0 L430.4 171.0 L432.1 169.9 L433.8 168.9 L435.4 167.8 L437.1 166.8 L438.8 165.7 L440.5 164.7 L442.2 163.6 L443.9 162.6 L445.6 161.6 L447.3 160.5 L448.9 159.5 L450.6 158.4 L452.3 157.4 L454.0 156.4 L455.7 155.3 L457.4 154.3 L459.1 153.3 L460.8 152.2 L462.4 151.2 L464.1 150.2 L465.8 149.1 L467.5 148.1 L469.2 147.1 L470.9 146.1 L472.6 145.0 L474.3 144.0 L475.9 143.0 L477.6 142.0 L479.3 140.9 L481.0 139.9 L482.7 138.9 L484.4 137.9 L486.1 136.9 L487.8 135.9 L489.4 134.9 L491.1 133.8 L492.8 132.8 L494.5 131.8 L496.2 130.8 L497.9 129.8 L499.6 128.8 L501.3 127.8 L502.9 126.8 L504.6 125.8 L506.3 124.8 L508.0 123.8 L509.7 122.8 L511.4 121.8 L513.1 120.8 L514.8 119.9 L516.4 118.9 L518.1 117.9 L519.8 116.9 L521.5 115.9 L523.2 114.9 L524.9 114.0 L526.6 113.0 L528.3 112.0 L529.9 111.0 L531.6 110.1 L533.3 109.1 L535.0 108.1 L536.7 107.2 L538.4 106.2 L540.1 105.3 L541.8 104.3 L543.4 103.4 L545.1 102.4 L546.8 101.5 L548.5 100.5 L550.2 99.6 L551.9 98.6 L553.6 97.7 L555.3 96.8 L556.9 95.8 L558.6 94.9 L560.3 94.0 L562.0 93.0 L563.7 92.1 L565.4 91.2 L567.1 90.3 L568.8 89.4 L570.4 88.5 L572.1 87.6 L573.8 86.7 L575.5 85.8 L577.2 84.9 L578.9 84.0 L580.6 83.1 L582.3 82.3 L583.9 81.4 L585.6 80.5 L587.3 79.6 L589.0 78.8 L590.7 77.9 L592.4 77.1 L594.1 76.3 L595.8 75.4 L597.4 74.6 L599.1 73.8 L600.8 73.0 L602.5 72.1 L604.2 71.3 L605.9 70.6 L607.6 69.8 L609.3 69.0 L610.9 68.2 L612.6 67.5 L614.3 66.7 L616.0 66.0 L617.7 65.3 L619.4 64.5 L621.1 63.8 L622.8 63.1 L624.4 62.5 L626.1 61.8 L627.8 61.2 L629.5 60.5 L631.2 59.9 L632.9 59.4 L634.6 58.8 L636.3 58.3 L637.9 57.7 L639.6 57.3 L641.3 56.8 L643.0 56.4 L644.7 56.0 L646.4 55.7 L648.1 55.4 L649.8 55.2 L651.4 55.1 L653.1 55.0 L654.8 55.0 L656.5 55.2 L658.2 55.5 L659.9 56.1 L661.6 56.9 L663.3 58.1 L664.9 59.9 L666.6 62.9 L668.3 68.6 L670.0 91.8"/>
+            <path class="fg-neg" d="M400.0 190.0 L401.7 188.3 L403.4 186.6 L405.1 184.9 L406.8 183.3 L408.4 181.6 L410.1 179.9 L411.8 178.2 L413.5 176.5 L415.2 174.8 L416.9 173.2 L418.6 171.5 L420.3 169.8 L421.9 168.1 L423.6 166.5 L425.3 164.8 L427.0 163.1 L428.7 161.5 L430.4 159.8 L432.1 158.2 L433.8 156.5 L435.4 154.9 L437.1 153.2 L438.8 151.6 L440.5 150.0 L442.2 148.3 L443.9 146.7 L445.6 145.1 L447.3 143.5 L448.9 141.9 L450.6 140.3 L452.3 138.7 L454.0 137.1 L455.7 135.5 L457.4 133.9 L459.1 132.4 L460.8 130.8 L462.4 129.3 L464.1 127.7 L465.8 126.2 L467.5 124.6 L469.2 123.1 L470.9 121.6 L472.6 120.1 L474.3 118.6 L475.9 117.1 L477.6 115.7 L479.3 114.2 L481.0 112.7 L482.7 111.3 L484.4 109.9 L486.1 108.4 L487.8 107.0 L489.4 105.6 L491.1 104.2 L492.8 102.8 L494.5 101.5 L496.2 100.1 L497.9 98.8 L499.6 97.5 L501.3 96.1 L502.9 94.8 L504.6 93.5 L506.3 92.3 L508.0 91.0 L509.7 89.8 L511.4 88.5 L513.1 87.3 L514.8 86.1 L516.4 84.9 L518.1 83.8 L519.8 82.6 L521.5 81.5 L523.2 80.4 L524.9 79.3 L526.6 78.2 L528.3 77.1 L529.9 76.1 L531.6 75.1 L533.3 74.1 L535.0 73.1 L536.7 72.1 L538.4 71.2 L540.1 70.3 L541.8 69.4 L543.4 68.5 L545.1 67.6 L546.8 66.8 L548.5 66.0 L550.2 65.2 L551.9 64.4 L553.6 63.7 L555.3 63.0 L556.9 62.3 L558.6 61.6 L560.3 61.0 L562.0 60.4 L563.7 59.8 L565.4 59.3 L567.1 58.8 L568.8 58.3 L570.4 57.8 L572.1 57.4 L573.8 57.0 L575.5 56.6 L577.2 56.3 L578.9 56.0 L580.6 55.8 L582.3 55.5 L583.9 55.3 L585.6 55.2 L587.3 55.1 L589.0 55.0 L590.7 55.0 L592.4 55.0 L594.1 55.1 L595.8 55.2 L597.4 55.3 L599.1 55.5 L600.8 55.8 L602.5 56.1 L604.2 56.4 L605.9 56.8 L607.6 57.3 L609.3 57.8 L610.9 58.3 L612.6 59.0 L614.3 59.6 L616.0 60.4 L617.7 61.2 L619.4 62.1 L621.1 63.1 L622.8 64.1 L624.4 65.2 L626.1 66.4 L627.8 67.7 L629.5 69.1 L631.2 70.6 L632.9 72.2 L634.6 73.8 L636.3 75.6 L637.9 77.5 L639.6 79.6 L641.3 81.8 L643.0 84.1 L644.7 86.6 L646.4 89.2 L648.1 92.1 L649.8 95.1 L651.4 98.4 L653.1 101.9 L654.8 105.7 L656.5 109.9 L658.2 114.5 L659.9 119.5 L661.6 125.1 L663.3 131.5 L664.9 138.9 L666.6 148.0 L668.3 160.0 L670.0 181.5"/>
+            <text class="fg-t fg-b" x="406" y="34">potencia P / P<tspan dy="3" font-size="9">máx</tspan></text><text class="fg-m fg-e" x="394" y="60">1</text>
+            <text class="fg-m fg-e" x="670" y="210">corriente I / I<tspan dy="3" font-size="9">cc</tspan><tspan dy="-3"> →</tspan></text>
+            <path class="fg-acc" d="M40 228 H62"/><text class="fg-m" x="68" y="232">recta: pila, termoeléctrico</text>
+            <path class="fg-pos" d="M250 228 H272"/><text class="fg-m" x="278" y="232">codo: panel solar</text>
+            <path class="fg-neg" d="M420 228 H442"/><text class="fg-m" x="448" y="232">elipse: dínamo de bicicleta</text>
+          </svg>
+          <figcaption><strong>No todas las fuentes “se caen” igual.</strong> La pila baja con la corriente en línea recta; el panel casi no baja hasta el codo y la dínamo de bicicleta cae cada vez más rápido: su corriente no puede superar un límite (capítulo <a class="xref" href="37-lab-movimiento.html#dinamo-bici">37</a>).</figcaption>
+        </figure>
+        <div class="worked">
+          <span class="box-title">Ejemplo resuelto: regulación de carga y rendimiento</span>
+          <p>Una fuente de 5 V da 4,80 V con su corriente máxima (2 A). ¿Cuál es su regulación y su resistencia interna aparente? Un generador de 90 W en el eje entrega 82 W a su carga: ¿cuál es su rendimiento?</p>
+          <ol>
+            <li>Regulación de carga: <span class="eq">(5,00 − 4,80) / 4,80 ≈ 4,2 %</span>.</li>
+            <li>Resistencia interna aparente: <span class="eq">r = (5,00 − 4,80) / 2 A = 0,10 Ω</span>. Una fuente conmutada de buena calidad logra < 1 %; una fuente de pila no lo logra.</li>
+            <li>Rendimiento del generador (ver el capítulo <a class="xref" href="34-carga-y-campo.html#lenz-generador">34</a>): <span class="eq">η = 82 / 90 ≈ 91 %</span>; los 8 W restantes se pierden en el cobre. Con la pila que entrega 1,43 V de 1,52 V, <span class="eq">η = V/E = 94 %</span>.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="alterna">Si la fuente es de alterna</h2>
+        <ul>
+          <li><strong>Tensión:</strong> el valor <em>eficaz</em> se lee con un multímetro True RMS; si no lo es, el valor es correcto solo para senoides (capítulo <a class="xref" href="09-onda-senoidal.html#truerms">9</a>). El valor pico, con un osciloscopio.</li>
+          <li><strong>Frecuencia:</strong> con el multímetro (Hz) o el osciloscopio. En un generador mecánico, da las rpm: <span class="eq">n = 60 · f / p</span>.</li>
+          <li><strong>Forma de onda:</strong> con un osciloscopio. Una carga conectada, especialmente un rectificador con capacitor, deforma la senoide.</li>
+          <li><strong>Potencia:</strong> con carga resistiva, <span class="eq">P = V<sub>rms</sub> · I<sub>rms</sub></span>. Con una carga con reactancia aparece el factor de potencia: <span class="eq">P = V<sub>rms</sub> · I<sub>rms</sub> · cos φ</span> (capítulo <a class="xref" href="34-carga-y-campo.html#reactiva">34</a>). Con un multímetro común se mide la potencia aparente (V·I) pero no la real; para esa hace falta un vatímetro.</li>
+          <li><strong>Resistencia interna:</strong> con cargas resistivas el método de las dos cargas da la parte resistiva; con una bobina como fuente, hay que sumar la reactancia (<em>Z = √(r² + X²)</em>, capítulo <a class="xref" href="21-impedancia-filtros.html">21</a>).</li>
+        </ul>
+        <p>Para fuentes rectificadas, la <strong>ondulación</strong> se mide como la tensión pico a pico de la parte alterna que queda sobre la continua (con el osciloscopio en acoplamiento de alterna): <span class="eq">ondulación % = V<sub>pp</sub> / V<sub>cc</sub></span>. Su frecuencia es la de la red (o de la rotación) multiplicada por el número de pulsos del rectificador (2 para el monofásico de onda completa, 6 para el trifásico).</p>
+      </section>
+
+      <section>
+        <h2 id="resumen">Resumen de la parte: cómo se genera la energía eléctrica</h2>
+        <figure class="figure">
+          <svg viewBox="0 0 700 298" role="img" aria-labelledby="g38ct g38cd">
+            <title id="g38ct">Mapa de las fuentes de energía eléctrica y sus conversiones</title>
+            <desc id="g38cd">A la izquierda, las fuentes (química, luz, calor, movimiento con conmutador, movimiento con alternador y presión); en el centro, el tipo de salida (continua o alterna); a la derecha, las conversiones posibles entre ellas.</desc>
+            <rect class="fg-box" x="14" y="14" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="29" font-size="13">Química</text><text class="fg-m" x="24" y="44" font-size="11.5">pila, batería</text>
+            <rect class="fg-box" x="14" y="58" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="73" font-size="13">Luz</text><text class="fg-m" x="24" y="88" font-size="11.5">panel solar</text>
+            <rect class="fg-box" x="14" y="102" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="117" font-size="13">Calor</text><text class="fg-m" x="24" y="132" font-size="11.5">módulo termoeléctrico</text>
+            <rect class="fg-box" x="14" y="146" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="161" font-size="13">Movimiento</text><text class="fg-m" x="24" y="176" font-size="11.5">dínamo (conmutador)</text>
+            <rect class="fg-box" x="14" y="190" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="205" font-size="13">Movimiento</text><text class="fg-m" x="24" y="220" font-size="11.5">alternador, dínamo de bici</text>
+            <rect class="fg-box" x="14" y="234" width="196" height="36" rx="4"/><text class="fg-t fg-b" x="24" y="249" font-size="13">Presión</text><text class="fg-m" x="24" y="264" font-size="11.5">piezoeléctrico</text>
+            <rect class="fg-box" x="300" y="34" width="120" height="96" rx="5" style="fill:var(--surface-2);stroke:var(--accent);stroke-width:2.5"/><text class="fg-t fg-b fg-c" x="360" y="76" font-size="15">Continua</text><text class="fg-m fg-c" x="360" y="96">(CC)</text>
+            <rect class="fg-box" x="300" y="150" width="120" height="96" rx="5" style="fill:var(--surface-2);stroke:var(--charge-neg);stroke-width:2.5"/><text class="fg-t fg-b fg-c" x="360" y="192" font-size="15">Alterna</text><text class="fg-m fg-c" x="360" y="212">(CA)</text>
+            <path class="fg-line" d="M210 32 H255 V82 H294" style="stroke-width:1.6;fill:none"/><path d="M294 78 L300 82 L294 86" class="fg-line" style="stroke-width:1.6"/>
+            <path class="fg-line" d="M210 76 H255 V82 H294" style="stroke-width:1.6;fill:none"/><path d="M294 78 L300 82 L294 86" class="fg-line" style="stroke-width:1.6"/>
+            <path class="fg-line" d="M210 120 H255 V82 H294" style="stroke-width:1.6;fill:none"/><path d="M294 78 L300 82 L294 86" class="fg-line" style="stroke-width:1.6"/>
+            <path class="fg-line" d="M210 164 H255 V82 H294" style="stroke-width:1.6;fill:none"/><path d="M294 78 L300 82 L294 86" class="fg-line" style="stroke-width:1.6"/>
+            <path class="fg-line" d="M210 208 H255 V198 H294" style="stroke-width:1.6;fill:none"/><path d="M294 194 L300 198 L294 202" class="fg-line" style="stroke-width:1.6"/>
+            <path class="fg-line" d="M210 252 H255 V198 H294" style="stroke-width:1.6;fill:none"/><path d="M294 194 L300 198 L294 202" class="fg-line" style="stroke-width:1.6"/>
+            <rect class="fg-box" x="520" y="34" width="166" height="40" rx="4"/><text class="fg-t fg-b" x="530" y="51" font-size="13">Regulador / convertidor</text><text class="fg-m" x="530" y="67" font-size="11.5">CC → CC</text>
+            <path class="fg-line" d="M420 68 H470 V54 H514" style="stroke-width:1.6;fill:none"/><path d="M514 50 L520 54 L514 58" class="fg-line" style="stroke-width:1.6"/>
+            <rect class="fg-box" x="520" y="84" width="166" height="40" rx="4"/><text class="fg-t fg-b" x="530" y="101" font-size="13">Inversor</text><text class="fg-m" x="530" y="117" font-size="11.5">CC → CA</text>
+            <path class="fg-line" d="M420 96 H470 V104 H514" style="stroke-width:1.6;fill:none"/><path d="M514 100 L520 104 L514 108" class="fg-line" style="stroke-width:1.6"/>
+            <rect class="fg-box" x="520" y="154" width="166" height="40" rx="4"/><text class="fg-t fg-b" x="530" y="171" font-size="13">Rectificador y filtro</text><text class="fg-m" x="530" y="187" font-size="11.5">CA → CC</text>
+            <path class="fg-line" d="M420 184 H470 V174 H514" style="stroke-width:1.6;fill:none"/><path d="M514 170 L520 174 L514 178" class="fg-line" style="stroke-width:1.6"/>
+            <rect class="fg-box" x="520" y="204" width="166" height="40" rx="4"/><text class="fg-t fg-b" x="530" y="221" font-size="13">Transformador</text><text class="fg-m" x="530" y="237" font-size="11.5">CA → CA</text>
+            <path class="fg-line" d="M420 212 H470 V224 H514" style="stroke-width:1.6;fill:none"/><path d="M514 220 L520 224 L514 228" class="fg-line" style="stroke-width:1.6"/>
+            <text class="fg-m fg-c" x="112" y="292">¿de qué se obtiene?</text><text class="fg-m fg-c" x="360" y="292">¿qué sale?</text><text class="fg-m fg-c" x="603" y="292">¿cómo se convierte?</text>
+          </svg>
+          <figcaption><strong>Cinco mecanismos y dos formas de salida.</strong> Las conversiones de la derecha son las del capítulo <a class="xref" href="08-cc-vs-ca.html">8</a>: transformador, rectificador, inversor y regulador.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Comparación de las fuentes de la Parte X</caption>
+            <thead><tr><th>Fuente</th><th>Salida</th><th>E típica</th><th>r típica</th><th>Curva V–I</th><th>Qué la controla</th></tr></thead>
+            <tbody>
+              <tr><td>Pila alcalina</td><td>CC</td><td>1,5 V</td><td>0,15–0,3 Ω</td><td>recta</td><td>materiales; descarga</td></tr>
+              <tr><td>Pila de limón</td><td>CC</td><td>0,95 V</td><td>≈ 1 kΩ</td><td>recta</td><td>metales; tamaño de electrodos</td></tr>
+              <tr><td>Panel solar</td><td>CC</td><td>0,6 V por celda</td><td>según el punto</td><td>codo</td><td>luz, temperatura, ángulo</td></tr>
+              <tr><td>Módulo termoeléctrico</td><td>CC</td><td>≈ 50 mV/K</td><td>2–4 Ω</td><td>recta</td><td>diferencia de temperatura</td></tr>
+              <tr><td>Espira con anillos</td><td>CA</td><td>N·B·A·ω</td><td>bobinado</td><td>recta (con reactancia, elipse)</td><td>rpm, campo, vueltas</td></tr>
+              <tr><td>Alternador trifásico</td><td>CA, 3 fases</td><td>según excitación</td><td>poco</td><td>recta con reactancia</td><td>rpm (f), corriente de campo (V)</td></tr>
+              <tr><td>Dínamo con conmutador</td><td>CC pulsante</td><td>k<sub>e</sub> · ω</td><td>inducido</td><td>recta</td><td>rpm, campo</td></tr>
+              <tr><td>Dínamo de bicicleta</td><td>CA</td><td>sube con rpm</td><td>reactancia alta</td><td>elipse (I limitada)</td><td>velocidad de la rueda</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cuatro ideas atraviesan toda la parte:</p>
+        <ol>
+          <li><strong>Una fuente no crea energía:</strong> convierte otra forma (química, luz, calor, movimiento) usando una fuerza no eléctrica que separa cargas.</li>
+          <li><strong>El modelo de fem más resistencia interna</strong> describe a casi todas, y su curva V–I dice cómo se comporta bajo carga.</li>
+          <li><strong>En un generador de movimiento, la energía viene del eje:</strong> la corriente que la carga hace circular crea un par de frenado (Lenz), y por eso cada watt eléctrico es un watt mecánico.</li>
+          <li><strong>La alterna sale de variar el flujo</strong> (girar una espira, mover un imán), y se puede convertir en continua con un conmutador o con diodos; la continua pasa a alterna con un inversor.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="laboratorio">Laboratorio</h2>
+        <div data-sim></div>
+        <h3>Qué probar</h3>
+        <ol class="experiments">
+          <li>Con la <strong>Fuente 1</strong> y la carga abierta (∞) leé V<sub>oc</sub> (1,42 V). Pasá a 47 Ω, 10 Ω, 4,7 Ω y 1 Ω: la tensión baja y la estimación de r se vuelve más precisa a medida que aumenta la corriente. Revelá los valores: r real es 1,2 Ω.</li>
+          <li>Cambiá la <strong>resolución</strong> a 100 mV y repetí con 100 Ω: la caída interna es menor que la resolución del voltímetro y la estimación de r sale cero o absurda. Con 1 Ω la estimación mejora, pero sigue siendo gruesa.</li>
+          <li>Probá la <strong>Fuente 5</strong> (la pila de limón): con cargas de 10 Ω la tensión cae casi a cero, y recién con 1 kΩ o más se obtiene una medida útil. La carga hay que elegirla según la fuente.</li>
+          <li>Probá la <strong>Fuente 3</strong> con cargas de 100, 47, 22 y 10 Ω: la estimación de r da valores muy distintos en cada caso, porque el panel no es lineal. La curva azul tiene un codo; la recta naranja de tus mediciones no coincide con ella en toda su extensión.</li>
+          <li>Con la <strong>Fuente 4</strong> (el alternador casero) buscá la carga que le da la máxima potencia leída: es la más cercana a r = 8 Ω. Calculá P = V·I en cada paso y observá que baja a ambos lados.</li>
+        </ol>
+      </section>
+
+      <section data-quiz></section>
+
+      <div data-pager></div>
+    </article>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script src="../js/core/lessons-data.js"></script>
+  <script src="../js/core/progress.js"></script>
+  <script src="../js/core/site.js"></script>
+  <script src="../js/core/units.js"></script>
+  <script src="../js/core/theme.js"></script>
+  <script src="../js/core/sim-loop.js"></script>
+  <script src="../js/core/canvas.js"></script>
+  <script src="../js/core/flow.js"></script>
+  <script src="../js/core/parts.js"></script>
+  <script src="../js/core/controls.js"></script>
+  <script src="../js/core/formula-panel.js"></script>
+  <script src="../js/core/chart.js"></script>
+  <script src="../js/core/audio.js"></script>
+  <script src="../js/core/sim.js"></script>
+  <script src="../js/sims/bench.js"></script>
+  <script src="../js/quizzes/38-caracterizar-fuentes.js"></script>
+  <script src="../js/core/quiz.js"></script>
+</body>
+</html>
