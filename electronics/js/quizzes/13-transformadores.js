@@ -70,5 +70,25 @@
       "No pasa nada: la continua y la alterna se comportan igual."
     ],
     "explain": "En alterna, la tensión inducida en el propio primario limita la corriente a unas decenas de mA. Con continua esa tensión no aparece y la corriente es enorme."
+  },
+  {
+    "q": "Conectás una carga al secundario. Según la ley de Lenz, ¿cómo es el flujo que crea la corriente del secundario respecto del flujo del primario?",
+    "correct": "Se opone a él, y el primario responde tomando más corriente para mantener el flujo del núcleo.",
+    "wrong": [
+      "Se suma a él, y el flujo del núcleo aumenta con la carga.",
+      "No lo afecta, porque las bobinas no están conectadas eléctricamente.",
+      "Es perpendicular a él, por lo que no interactúan."
+    ],
+    "explain": "La corriente inducida se opone a la causa que la produce. Como la fuente mantiene el flujo del núcleo, el primario compensa con una corriente adicional: es la forma en que el primario “se entera” de la carga."
+  },
+  {
+    "q": "Pasás de secundario en vacío a un secundario con carga pesada. ¿Qué ocurre con el flujo neto en el núcleo?",
+    "correct": "Casi no cambia: la fuente lo fija, y lo que cambia es la corriente del primario.",
+    "wrong": [
+      "Aumenta en proporción a la corriente de la carga.",
+      "Se anula, porque el flujo del secundario cancela al del primario.",
+      "Disminuye a la mitad."
+    ],
+    "explain": "El flujo del núcleo depende de V<sub>p</sub>/N<sub>p</sub>, que no cambia con la carga. Los flujos de las dos bobinas crecen pero se restan, y el primario toma la corriente justa para que la diferencia siga siendo la misma."
   }
 ] };
